@@ -1,0 +1,19 @@
+(package "recipe" "0.1.0"
+  (description "LevitateOS package manager")
+  (license "MIT")
+  (homepage "https://github.com/LevitateOS/levitateos")
+
+  (acquire
+    (source "https://github.com/LevitateOS/levitateos/archive/refs/heads/main.tar.gz"
+      (sha256 "todo-compute-actual-hash")))
+
+  (build-deps
+    (rust))
+
+  (build
+    (steps
+      (configure "cd recipe")
+      (compile "cargo build --release")))
+
+  (install
+    (to-bin "recipe/target/release/recipe")))

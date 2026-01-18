@@ -1,0 +1,58 @@
+(package "base" "1.0"
+  (description "Base filesystem layout and essential configuration")
+  (license "MIT")
+  (homepage "https://github.com/LevitateOS/levitateos")
+
+  ; No sources needed - this creates the filesystem structure
+  (build skip)
+
+  (install
+    ; Essential directories are created by bootstrap
+    ; This package provides essential config files
+
+    ; /etc/passwd - minimal user database
+    (write "/etc/passwd"
+      "root:x:0:0:root:/root:/bin/bash
+nobody:x:65534:65534:Nobody:/:/sbin/nologin
+")
+
+    ; /etc/group - minimal group database
+    (write "/etc/group"
+      "root:x:0:
+wheel:x:10:
+users:x:100:
+nobody:x:65534:
+")
+
+    ; /etc/shadow - password file (root has no password initially)
+    (write "/etc/shadow"
+      "root::0:0:99999:7:::
+nobody:*:0:0:99999:7:::
+")
+
+    ; /etc/hostname
+    (write "/etc/hostname" "levitateos
+")
+
+    ; /etc/os-release
+    (write "/etc/os-release"
+      "NAME=\"LevitateOS\"
+ID=levitateos
+VERSION=\"1.0\"
+PRETTY_NAME=\"LevitateOS 1.0\"
+HOME_URL=\"https://levitateos.org\"
+")
+
+    ; /etc/shells
+    (write "/etc/shells"
+      "/bin/bash
+/bin/sh
+")
+
+    ; /etc/fstab - minimal
+    (write "/etc/fstab"
+      "# <device>  <mount>  <type>  <options>  <dump>  <pass>
+proc        /proc    proc    defaults   0       0
+sysfs       /sys     sysfs   defaults   0       0
+devtmpfs    /dev     devtmpfs defaults  0       0
+")))

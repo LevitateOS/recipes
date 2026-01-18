@@ -1,0 +1,20 @@
+(package "linux" "6.12"
+  (description "Linux kernel")
+  (license "GPL-2.0")
+  (homepage "https://kernel.org")
+
+  (acquire
+    (source "https://cdn.kernel.org/pub/linux/kernel/v6.x/linux-6.12.tar.xz"
+      (sha256 "todo-compute-actual-hash")))
+
+  (build
+    (steps
+      ; Use existing defconfig or custom LevitateOS config
+      (configure "make defconfig")
+      (compile "make -j$NPROC")))
+
+  (install
+    ; Install kernel image
+    (to-boot "arch/x86/boot/bzImage" "vmlinuz-6.12")
+    ; Install modules
+    (shell "make INSTALL_MOD_PATH=$PREFIX modules_install")))

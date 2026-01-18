@@ -1,0 +1,14 @@
+(package "linux-firmware" "20241210"
+  (description "Firmware files for Linux kernel drivers")
+  (license "various")
+  (homepage "https://git.kernel.org/pub/scm/linux/kernel/git/firmware/linux-firmware.git")
+
+  (acquire
+    (source "https://git.kernel.org/pub/scm/linux/kernel/git/firmware/linux-firmware.git/snapshot/linux-firmware-20241210.tar.gz"
+      (sha256 "todo-compute-actual-hash")))
+
+  (build skip)
+
+  (install
+    ; Install all firmware to /lib/firmware
+    (shell "make DESTDIR=$PREFIX install")))

@@ -1,0 +1,18 @@
+(package "bash" "5.2"
+  (description "GNU Bourne-Again Shell")
+  (license "GPL-3.0")
+  (homepage "https://www.gnu.org/software/bash/")
+
+  (acquire
+    (source "https://ftp.gnu.org/gnu/bash/bash-5.2.tar.gz"
+      (sha256 "a139c166df7ff4471c5e0733051642ee5556c1cc8a4a78f145583c5c81ab32fb")))
+
+  (build
+    (steps
+      (configure "./configure --prefix=$PREFIX --without-bash-malloc")
+      (compile "make -j$NPROC")))
+
+  (install
+    (to-bin "bash")
+    ; Create /bin/sh symlink
+    (symlink "$PREFIX/bin/bash" "$PREFIX/bin/sh")))
