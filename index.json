@@ -1,0 +1,68 @@
+{
+  "commit": "2a46a42ad1f408fd4db7311d5832022be41ed0c4",
+  "recipes": [
+    {
+      "about": {
+        "adds": {
+          "menu": [],
+          "programs": [
+            "rg"
+          ]
+        },
+        "category": "utilities",
+        "details": "Searches the files under a folder for a text pattern, fast. It skips what .gitignore hides, and binary files, unless told otherwise.",
+        "homepage": "https://github.com/BurntSushi/ripgrep",
+        "keeps": [],
+        "kind": "tool",
+        "license": "MIT OR Unlicense",
+        "steps": {
+          "acquire": "Downloads upstream's static release archive and checks it against the digest published with the release.",
+          "build": "Nothing is compiled: the archive is unpacked and each file is checked against its own digest.",
+          "install": "Puts rg, its manual page and its licences in place."
+        }
+      },
+      "build_deps": [],
+      "deps": [],
+      "description": "Fast recursive text search with rg",
+      "files": [
+        {
+          "bytes": 4243,
+          "path": "ripgrep.rhai",
+          "sha256": "a3a8bf193466d2239bf8d9e4fd8c23bd035691be56d5c26d515164141edbd67f"
+        }
+      ],
+      "hooks": [
+        "acquire",
+        "build",
+        "install",
+        "remove"
+      ],
+      "name": "ripgrep",
+      "needs": {
+        "inputs": {},
+        "memory_mib": 2048,
+        "network": [
+          "github.com:443",
+          "release-assets.githubusercontent.com:443"
+        ],
+        "network_max_bytes": 8388608,
+        "outputs": {
+          "package": "directory"
+        },
+        "storage_max_bytes": null,
+        "storage_max_objects": 16384,
+        "timeout_secs": 300
+      },
+      "version": "15.2.0"
+    }
+  ],
+  "schema_version": 1,
+  "source": {
+    "about": "Software kept by the LevitateOS project.",
+    "address": "https://github.com/LevitateOS/recipes",
+    "keeper": "LevitateOS",
+    "name": "levitate",
+    "title": "LevitateOS recipes",
+    "uses": []
+  }
+}
