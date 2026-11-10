@@ -1,0 +1,31 @@
+name: Index
+
+# A source is used through index.json: Recipe lists from it and checks every
+# downloaded file against it. An index that is behind the recipes makes
+# installs stop with a checksum error, so a push that leaves it behind fails.
+
+on:
+  push:
+    branches: [master]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  index:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          # recipe index names the last commit that changed the recipes.
+          fetch-depth: 0
+          persist-credentials: false
+      - name: Build recipe
+        run: |
+          rustup toolchain install stable --profile minimal
+          git clone --depth 1 https://github.com/LevitateOS/recipe "$RUNNER_TEMP/recipe"
+          cargo +stable build --release --bin recipe --manifest-path "$RUNNER_TEMP/recipe/Cargo.toml"
+      - name: The index is current
+        run: '"$RUNNER_TEMP/recipe/target/release/recipe" index --check'

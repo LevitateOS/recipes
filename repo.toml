@@ -1,0 +1,6 @@
+# What this source says about itself. `recipe index` copies it into index.json.
+name = "levitate"
+title = "LevitateOS recipes"
+about = "Software kept by the LevitateOS project."
+address = "https://github.com/LevitateOS/recipes"
+keeper = "LevitateOS"
