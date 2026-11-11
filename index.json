@@ -1,5 +1,5 @@
 {
-  "commit": "58a82a18b666da609598ea57a329b72cce0d3917",
+  "commit": "08a1149899d75ab3e9561204bdafc2f1c003b07c",
   "recipes": [
     {
       "about": {
@@ -446,9 +446,9 @@
       "description": "Go compiler and standard library",
       "files": [
         {
-          "bytes": 1769405,
+          "bytes": 679152,
           "path": "go.rhai",
-          "sha256": "3ce69aafaaf2235cdfadc4ef603e8e14a87621ff48f3114d9aff5f2f06a51e16"
+          "sha256": "4aa0b2c7039d315f7a1731ddad355a198dfac5a30eb6ca5c6ab0fa9213cc2ae9"
         }
       ],
       "hooks": [
@@ -493,9 +493,9 @@
       "description": "C++ frontend and headers for the GCC 14 build image",
       "files": [
         {
-          "bytes": 114310,
+          "bytes": 115208,
           "path": "gxx.rhai",
-          "sha256": "11185bae563374f7d59a3990c12e4be6b1f07bed422e059486f39874f737bb5b"
+          "sha256": "b6d30ab16939a4da2e74b2102f5906db80aaeffdf4dbc5dffbe4f0c50df91ce2"
         }
       ],
       "hooks": [
