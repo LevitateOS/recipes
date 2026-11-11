@@ -1,5 +1,5 @@
 {
-  "commit": "a28620aa4fb2d4d6167ecfc33436e4d21d3e820d",
+  "commit": "58a82a18b666da609598ea57a329b72cce0d3917",
   "recipes": [
     {
       "about": {
@@ -108,6 +108,53 @@
         "timeout_secs": 300
       },
       "version": "1.4.8"
+    },
+    {
+      "about": {
+        "category": "development",
+        "details": "Configures projects and generates build rules inside the Recipe sandbox. This upstream Linux build uses the shared build image C library.",
+        "homepage": "https://cmake.org",
+        "kind": "library",
+        "license": "BSD-3-Clause",
+        "steps": {
+          "acquire": "Downloads the pinned toolchain files and checks their SHA-256 values.",
+          "build": "Extracts the release and checks every regular file against the committed payload manifest.",
+          "install": "Publishes a private tools directory for recipes that name this under build_deps."
+        }
+      },
+      "build_deps": [],
+      "deps": [],
+      "description": "CMake build configuration tools",
+      "files": [
+        {
+          "bytes": 1065903,
+          "path": "cmake.rhai",
+          "sha256": "58afbb2c3a8624bf0c11bf184d3db5b1c16aba782d85c350f1af204009706eb0"
+        }
+      ],
+      "hooks": [
+        "acquire",
+        "build",
+        "install",
+        "remove"
+      ],
+      "name": "cmake",
+      "needs": {
+        "inputs": {},
+        "memory_mib": 4096,
+        "network": [
+          "github.com:443",
+          "release-assets.githubusercontent.com:443"
+        ],
+        "network_max_bytes": 74776576,
+        "outputs": {
+          "tools": "directory"
+        },
+        "storage_max_bytes": null,
+        "storage_max_objects": 131072,
+        "timeout_secs": 1800
+      },
+      "version": "4.4.5"
     },
     {
       "about": {
@@ -383,6 +430,100 @@
     },
     {
       "about": {
+        "category": "development",
+        "details": "Compiles Go programs inside the Recipe sandbox with the pinned compiler and standard library. The go launcher selects this bundled toolchain and disables automatic toolchain downloads.",
+        "homepage": "https://go.dev",
+        "kind": "library",
+        "license": "BSD-3-Clause",
+        "steps": {
+          "acquire": "Downloads the pinned toolchain files and checks their SHA-256 values.",
+          "build": "Extracts the release and checks every regular file against the committed payload manifest.",
+          "install": "Publishes a private tools directory for recipes that name this under build_deps."
+        }
+      },
+      "build_deps": [],
+      "deps": [],
+      "description": "Go compiler and standard library",
+      "files": [
+        {
+          "bytes": 1769405,
+          "path": "go.rhai",
+          "sha256": "3ce69aafaaf2235cdfadc4ef603e8e14a87621ff48f3114d9aff5f2f06a51e16"
+        }
+      ],
+      "hooks": [
+        "acquire",
+        "build",
+        "install",
+        "remove"
+      ],
+      "name": "go",
+      "needs": {
+        "inputs": {},
+        "memory_mib": 4096,
+        "network": [
+          "dl.google.com:443",
+          "go.dev:443"
+        ],
+        "network_max_bytes": 81461248,
+        "outputs": {
+          "tools": "directory"
+        },
+        "storage_max_bytes": null,
+        "storage_max_objects": 131072,
+        "timeout_secs": 1800
+      },
+      "version": "1.27.4"
+    },
+    {
+      "about": {
+        "category": "development",
+        "details": "Adds the matching Rocky GCC C++ frontend, standard library and headers to the shared Recipe build image. It requires that image to provide GCC 14.3.1, its C headers and linker.",
+        "homepage": "https://gcc.gnu.org",
+        "kind": "library",
+        "license": "GPL-3.0-or-later AND (GPL-3.0-or-later WITH GCC-exception-3.1)",
+        "steps": {
+          "acquire": "Downloads the pinned toolchain files and checks their SHA-256 values.",
+          "build": "Extracts the release and checks every regular file against the committed payload manifest.",
+          "install": "Publishes a private tools directory for recipes that name this under build_deps."
+        }
+      },
+      "build_deps": [],
+      "deps": [],
+      "description": "C++ frontend and headers for the GCC 14 build image",
+      "files": [
+        {
+          "bytes": 114310,
+          "path": "gxx.rhai",
+          "sha256": "11185bae563374f7d59a3990c12e4be6b1f07bed422e059486f39874f737bb5b"
+        }
+      ],
+      "hooks": [
+        "acquire",
+        "build",
+        "install",
+        "remove"
+      ],
+      "name": "gxx",
+      "needs": {
+        "inputs": {},
+        "memory_mib": 4096,
+        "network": [
+          "dl.rockylinux.org:443",
+          "raw.githubusercontent.com:443"
+        ],
+        "network_max_bytes": 22937600,
+        "outputs": {
+          "tools": "directory"
+        },
+        "storage_max_bytes": null,
+        "storage_max_objects": 131072,
+        "timeout_secs": 600
+      },
+      "version": "14.3.1-4.4.el10"
+    },
+    {
+      "about": {
         "adds": {
           "menu": [],
           "programs": [
@@ -488,6 +629,101 @@
         "timeout_secs": 300
       },
       "version": "2.0.15"
+    },
+    {
+      "about": {
+        "category": "development",
+        "details": "Runs build rules generated by CMake and other build configuration tools inside the Recipe sandbox. This upstream Linux build uses the shared build image C and C++ libraries.",
+        "homepage": "https://ninja-build.org",
+        "kind": "library",
+        "license": "Apache-2.0",
+        "steps": {
+          "acquire": "Downloads the pinned toolchain files and checks their SHA-256 values.",
+          "build": "Extracts the release and checks every regular file against the committed payload manifest.",
+          "install": "Publishes a private tools directory for recipes that name this under build_deps."
+        }
+      },
+      "build_deps": [],
+      "deps": [],
+      "description": "Ninja build runner",
+      "files": [
+        {
+          "bytes": 4830,
+          "path": "ninja.rhai",
+          "sha256": "27d0555a30f8f4b5e0e8ff1111036cba05c7aeedf7aa221518c239df21e4f22d"
+        }
+      ],
+      "hooks": [
+        "acquire",
+        "build",
+        "install",
+        "remove"
+      ],
+      "name": "ninja",
+      "needs": {
+        "inputs": {},
+        "memory_mib": 4096,
+        "network": [
+          "github.com:443",
+          "raw.githubusercontent.com:443",
+          "release-assets.githubusercontent.com:443"
+        ],
+        "network_max_bytes": 327680,
+        "outputs": {
+          "tools": "directory"
+        },
+        "storage_max_bytes": null,
+        "storage_max_objects": 131072,
+        "timeout_secs": 600
+      },
+      "version": "1.13.2"
+    },
+    {
+      "about": {
+        "category": "development",
+        "details": "Provides CPython with its standard library and bundled extension modules for build scripts inside the Recipe sandbox. This standalone distribution uses the shared build image C library.",
+        "homepage": "https://www.python.org",
+        "kind": "library",
+        "license": "Python-2.0",
+        "steps": {
+          "acquire": "Downloads the pinned toolchain files and checks their SHA-256 values.",
+          "build": "Extracts the release and checks every regular file against the committed payload manifest.",
+          "install": "Publishes a private tools directory for recipes that name this under build_deps."
+        }
+      },
+      "build_deps": [],
+      "deps": [],
+      "description": "Self-contained Python interpreter and standard library",
+      "files": [
+        {
+          "bytes": 360270,
+          "path": "python.rhai",
+          "sha256": "31685290d25efb7325f94df4d68e108296a577e0b17a54f0d91a0c8064c8c60d"
+        }
+      ],
+      "hooks": [
+        "acquire",
+        "build",
+        "install",
+        "remove"
+      ],
+      "name": "python",
+      "needs": {
+        "inputs": {},
+        "memory_mib": 4096,
+        "network": [
+          "github.com:443",
+          "release-assets.githubusercontent.com:443"
+        ],
+        "network_max_bytes": 42467328,
+        "outputs": {
+          "tools": "directory"
+        },
+        "storage_max_bytes": null,
+        "storage_max_objects": 131072,
+        "timeout_secs": 600
+      },
+      "version": "3.14.10+20261026"
     },
     {
       "about": {
