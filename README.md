@@ -46,8 +46,12 @@ committed. A push whose index is behind the recipes fails the Index check.
 
 - One flat folder. A recipe's `name` equals its file name.
 - Every `.rhai` file is a recipe on its own, with `RECIPE_API`, `NEEDS` and an
-  `ABOUT` block. It publishes a directory output named `package` holding
-  regular `bin/COMMAND` and `share/PATH` files.
+  `ABOUT` block. User programs publish a directory output named `package`
+  holding regular `bin/COMMAND` and `share/PATH` files.
+- Build tools publish `tools` instead, are named only under `build_deps`, and
+  are never activated into a profile. Their `ABOUT.kind` is `library` so a
+  front end hides them until asked. Both OS variants use the same glibc build
+  image; these tools run there, independently of the host C library.
 - Files beside a recipe that share its name belong to it and are fetched with
   it: `NAME.svg` is its icon.
 - [`repo.toml`](repo.toml) is what this source says about itself.
