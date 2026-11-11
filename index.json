@@ -1,6 +1,549 @@
 {
-  "commit": "2a46a42ad1f408fd4db7311d5832022be41ed0c4",
+  "commit": "a28620aa4fb2d4d6167ecfc33436e4d21d3e820d",
   "recipes": [
+    {
+      "about": {
+        "adds": {
+          "menu": [],
+          "programs": [
+            "bat"
+          ]
+        },
+        "category": "utilities",
+        "details": "Displays files with syntax highlighting and line numbers. It can show Git changes beside the text.",
+        "homepage": "https://github.com/sharkdp/bat",
+        "keeps": [],
+        "kind": "tool",
+        "license": "MIT OR Apache-2.0",
+        "steps": {
+          "acquire": "Downloads the pinned upstream release and any companion documentation or licence files, checking every SHA-256.",
+          "build": "Unpacks the static release and checks each selected file against its own digest; nothing is compiled.",
+          "install": "Copies the commands and accompanying release files into bin and share."
+        }
+      },
+      "build_deps": [],
+      "deps": [],
+      "description": "File viewer with syntax highlighting",
+      "files": [
+        {
+          "bytes": 5627,
+          "path": "bat.rhai",
+          "sha256": "df3c2cef4c0473752136caaa6c3fce187a7807373c165619ee2dd4224522908f"
+        }
+      ],
+      "hooks": [
+        "acquire",
+        "build",
+        "install",
+        "remove"
+      ],
+      "name": "bat",
+      "needs": {
+        "inputs": {},
+        "memory_mib": 2048,
+        "network": [
+          "github.com:443",
+          "release-assets.githubusercontent.com:443"
+        ],
+        "network_max_bytes": 4259840,
+        "outputs": {
+          "package": "directory"
+        },
+        "storage_max_bytes": null,
+        "storage_max_objects": 16384,
+        "timeout_secs": 300
+      },
+      "version": "0.26.1"
+    },
+    {
+      "about": {
+        "adds": {
+          "menu": [],
+          "programs": [
+            "btop"
+          ]
+        },
+        "category": "utilities",
+        "details": "Shows processor, memory, disk, network and process activity in the terminal. This static release does not include GPU monitoring.",
+        "homepage": "https://github.com/aristocratos/btop",
+        "keeps": [],
+        "kind": "tool",
+        "license": "Apache-2.0",
+        "steps": {
+          "acquire": "Downloads the pinned upstream release and any companion documentation or licence files, checking every SHA-256.",
+          "build": "Unpacks the static release and checks each selected file against its own digest; nothing is compiled.",
+          "install": "Copies the commands and accompanying release files into bin and share."
+        }
+      },
+      "build_deps": [],
+      "deps": [],
+      "description": "Interactive system resource monitor",
+      "files": [
+        {
+          "bytes": 12696,
+          "path": "btop.rhai",
+          "sha256": "9a2c75d275b50cab175e15a593f93de39a690e62dbfe311e817c3ed7cabf2a6f"
+        }
+      ],
+      "hooks": [
+        "acquire",
+        "build",
+        "install",
+        "remove"
+      ],
+      "name": "btop",
+      "needs": {
+        "inputs": {},
+        "memory_mib": 2048,
+        "network": [
+          "github.com:443",
+          "release-assets.githubusercontent.com:443"
+        ],
+        "network_max_bytes": 1376256,
+        "outputs": {
+          "package": "directory"
+        },
+        "storage_max_bytes": null,
+        "storage_max_objects": 16384,
+        "timeout_secs": 300
+      },
+      "version": "1.4.8"
+    },
+    {
+      "about": {
+        "adds": {
+          "menu": [],
+          "programs": [
+            "delta"
+          ]
+        },
+        "category": "development",
+        "details": "Displays diffs with syntax highlighting and side-by-side views. It can serve as the pager for Git output.",
+        "homepage": "https://github.com/dandavison/delta",
+        "keeps": [],
+        "kind": "tool",
+        "license": "MIT",
+        "steps": {
+          "acquire": "Downloads the pinned upstream release and any companion documentation or licence files, checking every SHA-256.",
+          "build": "Unpacks the static release and checks each selected file against its own digest; nothing is compiled.",
+          "install": "Copies the commands and accompanying release files into bin and share."
+        }
+      },
+      "build_deps": [],
+      "deps": [],
+      "description": "Syntax-highlighted pager for diffs",
+      "files": [
+        {
+          "bytes": 4264,
+          "path": "delta.rhai",
+          "sha256": "97ad6bb6335d6a0883d9ef93cc22122394aa47aa5c475121ed5c26f8a8183edb"
+        }
+      ],
+      "hooks": [
+        "acquire",
+        "build",
+        "install",
+        "remove"
+      ],
+      "name": "delta",
+      "needs": {
+        "inputs": {},
+        "memory_mib": 2048,
+        "network": [
+          "github.com:443",
+          "release-assets.githubusercontent.com:443"
+        ],
+        "network_max_bytes": 4063232,
+        "outputs": {
+          "package": "directory"
+        },
+        "storage_max_bytes": null,
+        "storage_max_objects": 16384,
+        "timeout_secs": 300
+      },
+      "version": "0.20.1"
+    },
+    {
+      "about": {
+        "adds": {
+          "menu": [],
+          "programs": [
+            "eza"
+          ]
+        },
+        "category": "utilities",
+        "details": "Lists files with colours, Git status and tree views. It can display permissions, timestamps and other file details.",
+        "homepage": "https://github.com/eza-community/eza",
+        "keeps": [],
+        "kind": "tool",
+        "license": "EUPL-1.2 AND MIT AND CC-BY-4.0",
+        "steps": {
+          "acquire": "Downloads the pinned upstream release and any companion documentation or licence files, checking every SHA-256.",
+          "build": "Unpacks the static release and checks each selected file against its own digest; nothing is compiled.",
+          "install": "Copies the commands and accompanying release files into bin and share."
+        }
+      },
+      "build_deps": [],
+      "deps": [],
+      "description": "Directory listing with file details",
+      "files": [
+        {
+          "bytes": 8285,
+          "path": "eza.rhai",
+          "sha256": "224a17157702253c85d4727cf69f0e0b87eb01eb08430c6ea68d2064b35bae02"
+        }
+      ],
+      "hooks": [
+        "acquire",
+        "build",
+        "install",
+        "remove"
+      ],
+      "name": "eza",
+      "needs": {
+        "inputs": {},
+        "memory_mib": 2048,
+        "network": [
+          "github.com:443",
+          "raw.githubusercontent.com:443",
+          "release-assets.githubusercontent.com:443"
+        ],
+        "network_max_bytes": 1835008,
+        "outputs": {
+          "package": "directory"
+        },
+        "storage_max_bytes": null,
+        "storage_max_objects": 16384,
+        "timeout_secs": 300
+      },
+      "version": "0.23.5"
+    },
+    {
+      "about": {
+        "adds": {
+          "menu": [],
+          "programs": [
+            "fd"
+          ]
+        },
+        "category": "utilities",
+        "details": "Finds files and directories by name with simple defaults. It respects ignore files and can run a command for each match.",
+        "homepage": "https://github.com/sharkdp/fd",
+        "keeps": [],
+        "kind": "tool",
+        "license": "MIT OR Apache-2.0",
+        "steps": {
+          "acquire": "Downloads the pinned upstream release and any companion documentation or licence files, checking every SHA-256.",
+          "build": "Unpacks the static release and checks each selected file against its own digest; nothing is compiled.",
+          "install": "Copies the commands and accompanying release files into bin and share."
+        }
+      },
+      "build_deps": [],
+      "deps": [],
+      "description": "Fast file finder",
+      "files": [
+        {
+          "bytes": 6317,
+          "path": "fd.rhai",
+          "sha256": "e86db61062905d667eb91a96038e63bf882157da9126b6ed07001db06df8f5ab"
+        }
+      ],
+      "hooks": [
+        "acquire",
+        "build",
+        "install",
+        "remove"
+      ],
+      "name": "fd",
+      "needs": {
+        "inputs": {},
+        "memory_mib": 2048,
+        "network": [
+          "github.com:443",
+          "release-assets.githubusercontent.com:443"
+        ],
+        "network_max_bytes": 2228224,
+        "outputs": {
+          "package": "directory"
+        },
+        "storage_max_bytes": null,
+        "storage_max_objects": 16384,
+        "timeout_secs": 300
+      },
+      "version": "10.5.2"
+    },
+    {
+      "about": {
+        "adds": {
+          "menu": [],
+          "programs": [
+            "fzf"
+          ]
+        },
+        "category": "utilities",
+        "details": "Filters a list of lines with an interactive fuzzy search. It works with files, command history and other text supplied on standard input.",
+        "homepage": "https://github.com/junegunn/fzf",
+        "keeps": [],
+        "kind": "tool",
+        "license": "MIT",
+        "steps": {
+          "acquire": "Downloads the pinned upstream release and any companion documentation or licence files, checking every SHA-256.",
+          "build": "Unpacks the static release and checks each selected file against its own digest; nothing is compiled.",
+          "install": "Copies the commands and accompanying release files into bin and share."
+        }
+      },
+      "build_deps": [],
+      "deps": [],
+      "description": "Interactive fuzzy finder",
+      "files": [
+        {
+          "bytes": 4544,
+          "path": "fzf.rhai",
+          "sha256": "82acfe19debdd48ec97f5a6173d3031d5d42276474d6b8bb94b9066ea0029940"
+        }
+      ],
+      "hooks": [
+        "acquire",
+        "build",
+        "install",
+        "remove"
+      ],
+      "name": "fzf",
+      "needs": {
+        "inputs": {},
+        "memory_mib": 2048,
+        "network": [
+          "github.com:443",
+          "raw.githubusercontent.com:443",
+          "release-assets.githubusercontent.com:443"
+        ],
+        "network_max_bytes": 2818048,
+        "outputs": {
+          "package": "directory"
+        },
+        "storage_max_bytes": null,
+        "storage_max_objects": 16384,
+        "timeout_secs": 300
+      },
+      "version": "0.75.0"
+    },
+    {
+      "about": {
+        "adds": {
+          "menu": [],
+          "programs": [
+            "gh"
+          ]
+        },
+        "category": "development",
+        "details": "Works with GitHub issues, pull requests, releases and workflows from the terminal. Network operations require an account and access to GitHub as appropriate.",
+        "homepage": "https://cli.github.com",
+        "keeps": [],
+        "kind": "tool",
+        "license": "MIT",
+        "steps": {
+          "acquire": "Downloads the pinned upstream release and any companion documentation or licence files, checking every SHA-256.",
+          "build": "Unpacks the static release and checks each selected file against its own digest; nothing is compiled.",
+          "install": "Copies the commands and accompanying release files into bin and share."
+        }
+      },
+      "build_deps": [],
+      "deps": [],
+      "description": "GitHub command-line client",
+      "files": [
+        {
+          "bytes": 58392,
+          "path": "gh.rhai",
+          "sha256": "12e3763284d2dc6baf2b9057bb2a5bf5096d351d50fc2d3093a85e79a196346e"
+        }
+      ],
+      "hooks": [
+        "acquire",
+        "build",
+        "install",
+        "remove"
+      ],
+      "name": "gh",
+      "needs": {
+        "inputs": {},
+        "memory_mib": 2048,
+        "network": [
+          "github.com:443",
+          "release-assets.githubusercontent.com:443"
+        ],
+        "network_max_bytes": 17432576,
+        "outputs": {
+          "package": "directory"
+        },
+        "storage_max_bytes": null,
+        "storage_max_objects": 16384,
+        "timeout_secs": 300
+      },
+      "version": "2.103.3"
+    },
+    {
+      "about": {
+        "adds": {
+          "menu": [],
+          "programs": [
+            "jq"
+          ]
+        },
+        "category": "development",
+        "details": "Filters and transforms JSON using a small expression language. It can select fields, combine records and format results.",
+        "homepage": "https://jqlang.org",
+        "keeps": [],
+        "kind": "tool",
+        "license": "MIT",
+        "steps": {
+          "acquire": "Downloads the pinned upstream release and any companion documentation or licence files, checking every SHA-256.",
+          "build": "Unpacks the static release and checks each selected file against its own digest; nothing is compiled.",
+          "install": "Copies the commands and accompanying release files into bin and share."
+        }
+      },
+      "build_deps": [],
+      "deps": [],
+      "description": "Command-line JSON processor",
+      "files": [
+        {
+          "bytes": 4796,
+          "path": "jq.rhai",
+          "sha256": "4b72462e7c8b94440d75005efe4d7f65f44cd58477fa0070f3b59da3d4af8978"
+        }
+      ],
+      "hooks": [
+        "acquire",
+        "build",
+        "install",
+        "remove"
+      ],
+      "name": "jq",
+      "needs": {
+        "inputs": {},
+        "memory_mib": 2048,
+        "network": [
+          "github.com:443",
+          "release-assets.githubusercontent.com:443"
+        ],
+        "network_max_bytes": 5046272,
+        "outputs": {
+          "package": "directory"
+        },
+        "storage_max_bytes": null,
+        "storage_max_objects": 16384,
+        "timeout_secs": 300
+      },
+      "version": "1.8.2"
+    },
+    {
+      "about": {
+        "adds": {
+          "menu": [],
+          "programs": [
+            "micro"
+          ]
+        },
+        "category": "utilities",
+        "details": "Edits text in the terminal with familiar keyboard shortcuts and mouse support. It includes syntax highlighting and multiple buffers.",
+        "homepage": "https://micro-editor.github.io",
+        "keeps": [],
+        "kind": "tool",
+        "license": "MIT",
+        "steps": {
+          "acquire": "Downloads the pinned upstream release and any companion documentation or licence files, checking every SHA-256.",
+          "build": "Unpacks the static release and checks each selected file against its own digest; nothing is compiled.",
+          "install": "Copies the commands and accompanying release files into bin and share."
+        }
+      },
+      "build_deps": [],
+      "deps": [],
+      "description": "Terminal text editor",
+      "files": [
+        {
+          "bytes": 4596,
+          "path": "micro.rhai",
+          "sha256": "833a39cefbac3e3bc83c71b5ee82aa2bfdc98130c46ddd097536b99792f491b8"
+        }
+      ],
+      "hooks": [
+        "acquire",
+        "build",
+        "install",
+        "remove"
+      ],
+      "name": "micro",
+      "needs": {
+        "inputs": {},
+        "memory_mib": 2048,
+        "network": [
+          "github.com:443",
+          "release-assets.githubusercontent.com:443"
+        ],
+        "network_max_bytes": 6029312,
+        "outputs": {
+          "package": "directory"
+        },
+        "storage_max_bytes": null,
+        "storage_max_objects": 16384,
+        "timeout_secs": 300
+      },
+      "version": "2.0.15"
+    },
+    {
+      "about": {
+        "adds": {
+          "menu": [],
+          "programs": [
+            "rclone"
+          ]
+        },
+        "category": "utilities",
+        "details": "Copies and synchronises files between local storage and cloud services. It also supports checking file contents and managing remote directories.",
+        "homepage": "https://rclone.org",
+        "keeps": [],
+        "kind": "tool",
+        "license": "MIT",
+        "steps": {
+          "acquire": "Downloads the pinned upstream release and any companion documentation or licence files, checking every SHA-256.",
+          "build": "Unpacks the static release and checks each selected file against its own digest; nothing is compiled.",
+          "install": "Copies the commands and accompanying release files into bin and share."
+        }
+      },
+      "build_deps": [],
+      "deps": [],
+      "description": "File synchronisation for cloud storage",
+      "files": [
+        {
+          "bytes": 4785,
+          "path": "rclone.rhai",
+          "sha256": "07a0f7a2fab1f4f5bd19747b16d83705e699ec3d8332ba116e428467f9011d98"
+        }
+      ],
+      "hooks": [
+        "acquire",
+        "build",
+        "install",
+        "remove"
+      ],
+      "name": "rclone",
+      "needs": {
+        "inputs": {},
+        "memory_mib": 2048,
+        "network": [
+          "github.com:443",
+          "raw.githubusercontent.com:443",
+          "release-assets.githubusercontent.com:443"
+        ],
+        "network_max_bytes": 37158912,
+        "outputs": {
+          "package": "directory"
+        },
+        "storage_max_bytes": null,
+        "storage_max_objects": 16384,
+        "timeout_secs": 300
+      },
+      "version": "1.76.0"
+    },
     {
       "about": {
         "adds": {
@@ -54,6 +597,116 @@
         "timeout_secs": 300
       },
       "version": "15.2.0"
+    },
+    {
+      "about": {
+        "adds": {
+          "menu": [],
+          "programs": [
+            "uv",
+            "uvx"
+          ]
+        },
+        "category": "development",
+        "details": "Manages Python projects, environments and packages. The companion uvx command runs tools in isolated Python environments.",
+        "homepage": "https://docs.astral.sh/uv",
+        "keeps": [],
+        "kind": "tool",
+        "license": "MIT OR Apache-2.0",
+        "steps": {
+          "acquire": "Downloads the pinned upstream release and any companion documentation or licence files, checking every SHA-256.",
+          "build": "Unpacks the static release and checks each selected file against its own digest; nothing is compiled.",
+          "install": "Copies the commands and accompanying release files into bin and share."
+        }
+      },
+      "build_deps": [],
+      "deps": [],
+      "description": "Python project and package manager",
+      "files": [
+        {
+          "bytes": 5271,
+          "path": "uv.rhai",
+          "sha256": "555b6af65f653cf4e76335eff0a05e6da3fe02c54702a879c484208b80fc0030"
+        }
+      ],
+      "hooks": [
+        "acquire",
+        "build",
+        "install",
+        "remove"
+      ],
+      "name": "uv",
+      "needs": {
+        "inputs": {},
+        "memory_mib": 2048,
+        "network": [
+          "github.com:443",
+          "raw.githubusercontent.com:443",
+          "release-assets.githubusercontent.com:443"
+        ],
+        "network_max_bytes": 21364736,
+        "outputs": {
+          "package": "directory"
+        },
+        "storage_max_bytes": null,
+        "storage_max_objects": 16384,
+        "timeout_secs": 300
+      },
+      "version": "0.13.7"
+    },
+    {
+      "about": {
+        "adds": {
+          "menu": [],
+          "programs": [
+            "zoxide"
+          ]
+        },
+        "category": "utilities",
+        "details": "Remembers directories you visit and helps you return to them by a short name. It supplies shell integration through its init command.",
+        "homepage": "https://github.com/ajeetdsouza/zoxide",
+        "keeps": [],
+        "kind": "tool",
+        "license": "MIT",
+        "steps": {
+          "acquire": "Downloads the pinned upstream release and any companion documentation or licence files, checking every SHA-256.",
+          "build": "Unpacks the static release and checks each selected file against its own digest; nothing is compiled.",
+          "install": "Copies the commands and accompanying release files into bin and share."
+        }
+      },
+      "build_deps": [],
+      "deps": [],
+      "description": "Directory jumping based on usage",
+      "files": [
+        {
+          "bytes": 6968,
+          "path": "zoxide.rhai",
+          "sha256": "0bbefdecf93b1c0915ee1226a42c4f4334af4ba4d86bdae43b3250cccabf1743"
+        }
+      ],
+      "hooks": [
+        "acquire",
+        "build",
+        "install",
+        "remove"
+      ],
+      "name": "zoxide",
+      "needs": {
+        "inputs": {},
+        "memory_mib": 2048,
+        "network": [
+          "github.com:443",
+          "release-assets.githubusercontent.com:443"
+        ],
+        "network_max_bytes": 851968,
+        "outputs": {
+          "package": "directory"
+        },
+        "storage_max_bytes": null,
+        "storage_max_objects": 16384,
+        "timeout_secs": 300
+      },
+      "version": "0.10.0"
     }
   ],
   "schema_version": 1,
