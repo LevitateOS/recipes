@@ -4,12 +4,19 @@
 // COPYING3 and COPYING.RUNTIME are pinned upstream texts, hashed on 2026-11-11.
 // FILE_SHA256 pins every installed regular file from these verified archives.
 const RECIPE_API = 2;
+// Retain GCC image support paths after relocating the C++ frontend.
+const CXX_LAUNCHER = `#!/bin/sh
+set -eu
+tool_bin=$(CDPATH= cd -- "$(dirname -- "$0")" && pwd)
+exec "$tool_bin/g++-real" -B/usr/libexec/gcc/x86_64-redhat-linux/14/ -B/usr/lib/gcc/x86_64-redhat-linux/14/ "$@"
+`;
 const FILE_SHA256 = `9d6b43ce4d8de0c878bf16b54d8e7a10d9bd42b75178153e3af6a815bdc90f74  share/licenses/gxx/COPYING.RUNTIME
 8ceb4b9ee5adedde47b31e975c1d90c73ad27b6b165a1dcd80c7c545eb65b903  share/licenses/gxx/COPYING3
-de0d127b34bc41c4298235df3fe87db14b233ea1c3fc26815a4f944414c7452b  usr/bin/c++
-de0d127b34bc41c4298235df3fe87db14b233ea1c3fc26815a4f944414c7452b  usr/bin/g++
-de0d127b34bc41c4298235df3fe87db14b233ea1c3fc26815a4f944414c7452b  usr/bin/x86_64-redhat-linux-c++
-de0d127b34bc41c4298235df3fe87db14b233ea1c3fc26815a4f944414c7452b  usr/bin/x86_64-redhat-linux-g++
+36bb04bbf910ca6dd52a2231880647c051e5cf8e9fe6794c07d144ac33bcb1fd  usr/bin/c++
+36bb04bbf910ca6dd52a2231880647c051e5cf8e9fe6794c07d144ac33bcb1fd  usr/bin/g++
+de0d127b34bc41c4298235df3fe87db14b233ea1c3fc26815a4f944414c7452b  usr/bin/g++-real
+36bb04bbf910ca6dd52a2231880647c051e5cf8e9fe6794c07d144ac33bcb1fd  usr/bin/x86_64-redhat-linux-c++
+36bb04bbf910ca6dd52a2231880647c051e5cf8e9fe6794c07d144ac33bcb1fd  usr/bin/x86_64-redhat-linux-g++
 1a09bb56534284cb95b64f6acb2784d060b7e61bc18cbbee1caaf50ecd4fcade  usr/include/c++/14/algorithm
 8670aa4bbf7f7bdf083fc7f82a41a866699e3a68ca806c13b4834ea5405df33a  usr/include/c++/14/any
 4a002c7679a0141e4ac7aaaae14f29da53431d95cc9676936f250254b9e09e55  usr/include/c++/14/array
@@ -973,7 +980,7 @@ let ctx = #{
     unpacked: join_path(RUNTIME.paths.build, "unpacked"),
     tools: join_path(RUNTIME.paths.output, "tools"),
     manifest: join_path(RUNTIME.paths.temp, "gxx.sha256"),
-    manifest_sha256: "4c6026ddee67b70ea66e200d547cb540ae88b3b26ac1e6a9d74a7ab8363a17e4",
+    manifest_sha256: "82c7af9e4a5bbe38a7304321928049de73aff5965b1ec819669523a17e1507cf",
     source_subdir: "",
     probe: "usr/bin/g++",
     links: [
@@ -1007,6 +1014,7 @@ let ctx = #{
 };
 // Setup stages the literal payload manifest in owned temporary storage.
 write_file(ctx.manifest, FILE_SHA256);
+ctx.launcher = CXX_LAUNCHER;
 
 fn check_payload(ctx, root) {
     if !is_file(join_path(root, ctx.probe)) {
@@ -1064,6 +1072,14 @@ fn build(ctx) {
     }
     // The native toolchain does not include the i686 development libraries.
     rm(join_path(ctx.unpacked, "usr/lib/gcc/x86_64-redhat-linux/14/32"));
+    exec_checked("mv", [join_path(ctx.unpacked, "usr/bin/g++"), join_path(ctx.unpacked, "usr/bin/g++-real")]);
+    for name in ["usr/bin/c++", "usr/bin/x86_64-redhat-linux-g++", "usr/bin/x86_64-redhat-linux-c++"] {
+        rm(join_path(ctx.unpacked, name));
+    }
+    for name in ["usr/bin/g++", "usr/bin/c++", "usr/bin/x86_64-redhat-linux-g++", "usr/bin/x86_64-redhat-linux-c++"] {
+        write_file(join_path(ctx.unpacked, name), ctx.launcher);
+        chmod(join_path(ctx.unpacked, name), 0o755);
+    }
     ctx
 }
 fn is_installed(ctx) {
