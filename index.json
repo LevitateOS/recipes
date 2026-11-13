@@ -1,6 +1,63 @@
 {
-  "commit": "378acab62e6a2354008c61a609c392f81639d5e0",
+  "commit": "0530995697d4d9f06dce9b3b540b912760240b08",
   "recipes": [
+    {
+      "about": {
+        "adds": {
+          "menu": [
+            "Antigravity"
+          ],
+          "programs": [
+            "antigravity"
+          ]
+        },
+        "category": "development",
+        "details": "For LevitateOS only: this is a glibc build and AcornOS (musl) is not supported. Runs Antigravity, Google's agent-first desktop application for software development. It needs a Google account and network access to Google's services. It carries the desktop runtime (GTK, NSS, X11, GLib and the C library) inside its own package instead of using the host's, so the desktop image does not have to ship them; the package is about 600 MB. Its sandbox uses unprivileged user namespaces, since the setuid helper is not installed; a kernel without them stops it with an error. The program can check for newer versions through its bundled updater; updates are made by Recipe (recipe update antigravity), and the program's own update setting can be set to manual or none. The package is proprietary Google software.",
+        "homepage": "https://antigravity.google",
+        "keeps": [],
+        "kind": "app",
+        "license": "proprietary (Google terms; bundles Electron MIT, Chromium and Apache-2.0 parts)",
+        "steps": {
+          "acquire": "Downloads the pinned Antigravity tarball from Google's storage. Google publishes no checksum for it; the digest is of the bytes first downloaded.",
+          "build": "Unpacks the tarball and checks every file against its own digest; nothing is compiled.",
+          "install": "Puts the application under lib/antigravity without its setuid helper, adds the desktop runtime's data, rewrites the program and its libraries to the carried C library and libraries, and adds a starter, a menu entry and an icon."
+        }
+      },
+      "build_deps": [
+        "desktop-runtime"
+      ],
+      "deps": [],
+      "description": "Antigravity agent-first desktop application",
+      "files": [
+        {
+          "bytes": 104798,
+          "path": "antigravity.rhai",
+          "sha256": "a744241fd7f7e2af96457b68fd3ab1abb9845ce77f8e5552ec92ddff14bafc63"
+        }
+      ],
+      "hooks": [
+        "acquire",
+        "build",
+        "install",
+        "remove"
+      ],
+      "name": "antigravity",
+      "needs": {
+        "inputs": {},
+        "memory_mib": 4096,
+        "network": [
+          "storage.googleapis.com:443"
+        ],
+        "network_max_bytes": 201326592,
+        "outputs": {
+          "package": "directory"
+        },
+        "storage_max_bytes": null,
+        "storage_max_objects": 131072,
+        "timeout_secs": 3600
+      },
+      "version": "2.31.2"
+    },
     {
       "about": {
         "adds": {
