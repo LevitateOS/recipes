@@ -1,5 +1,5 @@
 {
-  "commit": "69b295c0783770458fed85b35199f840aaa6ab07",
+  "commit": "ee989ac6e0b1b66e36fcbd3f1d1c9c2416bd248b",
   "recipes": [
     {
       "about": {
@@ -922,9 +922,9 @@
       "description": "Ninja build runner",
       "files": [
         {
-          "bytes": 4830,
+          "bytes": 4980,
           "path": "ninja.rhai",
-          "sha256": "27d0555a30f8f4b5e0e8ff1111036cba05c7aeedf7aa221518c239df21e4f22d"
+          "sha256": "ee5c403b9478f8ffc0b03c2ae68fa7f7b63be51c3b164214edb958b59b1ce1fb"
         }
       ],
       "hooks": [
