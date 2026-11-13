@@ -1,5 +1,5 @@
 {
-  "commit": "f0716fdb5059ad4de0ef206128477a54cd9a7dea",
+  "commit": "378acab62e6a2354008c61a609c392f81639d5e0",
   "recipes": [
     {
       "about": {
@@ -316,6 +316,52 @@
         "timeout_secs": 300
       },
       "version": "0.20.1"
+    },
+    {
+      "about": {
+        "category": "development",
+        "details": "The runtime upstream desktop builds carry: GTK 3, GLib, Pango, Cairo, HarfBuzz, fontconfig and FreeType, NSS and NSPR, X11 and xcb, xkbcommon, GBM and DRM, CUPS, ALSA, AT-SPI, D-Bus, libsecret and libnotify with the glibc they were built for, from a pinned Fedora package set. It adds the loader, iconv modules, one UTF-8 locale, compiled GSettings schemas and glycin's image loaders. Electron, Chromium and Zed packages name it under build_deps and carry what they load.",
+        "homepage": "https://fedoraproject.org",
+        "kind": "library",
+        "license": "LGPL-2.1-or-later AND LGPL-3.0-or-later AND GPL-2.0-or-later AND MPL-2.0 AND MIT AND BSD-3-Clause AND Apache-2.0",
+        "steps": {
+          "acquire": "Downloads each pinned Fedora RPM and checks its SHA-256.",
+          "build": "Extracts the RPMs without scriptlets, keeps the shared libraries and the data they read at run time, compiles the GSettings schemas and checks that every library and loader finds all it links against inside lib.",
+          "install": "Publishes the sdk directory for recipes that name this under build_deps."
+        }
+      },
+      "build_deps": [],
+      "deps": [],
+      "description": "Libraries and data carried by upstream desktop builds",
+      "files": [
+        {
+          "bytes": 41785,
+          "path": "desktop-runtime.rhai",
+          "sha256": "9999efab4edf00b4ea44e7fe70155c34a22f4bdf7edfdcea00862373a00bcd69"
+        }
+      ],
+      "hooks": [
+        "acquire",
+        "build",
+        "install",
+        "remove"
+      ],
+      "name": "desktop-runtime",
+      "needs": {
+        "inputs": {},
+        "memory_mib": 4096,
+        "network": [
+          "dl.fedoraproject.org:443"
+        ],
+        "network_max_bytes": 100663296,
+        "outputs": {
+          "sdk": "directory"
+        },
+        "storage_max_bytes": null,
+        "storage_max_objects": 65536,
+        "timeout_secs": 3600
+      },
+      "version": "45.20261113"
     },
     {
       "about": {
