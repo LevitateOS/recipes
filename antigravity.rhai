@@ -16,10 +16,10 @@
 // Licence: no Google licence text ships in the tarball; the product is proprietary Google software. It bundles
 // Electron (MIT, LICENSE.electron.txt), Chromium and its third parties (LICENSES.chromium.html) and
 // chrome-devtools-mcp (Apache-2.0).
-// LevitateOS only: this is a glibc build and its libraries are carried from the glibc desktop-runtime, so AcornOS
-// (musl) is not supported and nothing is done to make it run there. Recipe has no way for a recipe to declare the
-// systems it supports (RUNTIME.target has only os and arch, both linux/x86_64 on either system), so nothing refuses
-// it on AcornOS: that gate is missing in tools/recipe and is reported rather than invented here.
+// C library: the build is linked against glibc, and the package brings its own glibc and loader, carried from the
+// glibc desktop-runtime (ABOUT.libc and ABOUT.libc_carried). It was made and tried on LevitateOS; on a musl system
+// (AcornOS) it has not been tried, and Recipe says so with the command that installs it anyway:
+// recipe install --any-libc antigravity.
 const RECIPE_API = 2;
 const STARTER = `#!/bin/sh
 # Starts Antigravity from its package: finds the package through the profile's symlink, names the carried
@@ -62,7 +62,9 @@ const NEEDS = #{
 const ABOUT = #{
     kind: "app",
     category: "development",
-    details: "For LevitateOS only: this is a glibc build and AcornOS (musl) is not supported. Runs Antigravity, Google's agent-first desktop application for software development. It needs a Google account and network access to Google's services. It carries the desktop runtime (GTK, NSS, X11, GLib and the C library) inside its own package instead of using the host's, so the desktop image does not have to ship them; the package is about 600 MB. Its sandbox uses unprivileged user namespaces, since the setuid helper is not installed; a kernel without them stops it with an error. The program can check for newer versions through its bundled updater; updates are made by Recipe (recipe update antigravity), and the program's own update setting can be set to manual or none. The package is proprietary Google software.",
+    libc: ["glibc"],
+    libc_carried: true,
+    details: "Runs Antigravity, Google's agent-first desktop application for software development. It needs a Google account and network access to Google's services. Its build is linked against glibc, and it was made and tried on LevitateOS. It carries the desktop runtime (GTK, NSS, X11, GLib and the C library) inside its own package instead of using the host's, so the desktop image does not have to ship them; the package is about 600 MB. Its sandbox uses unprivileged user namespaces, since the setuid helper is not installed; a kernel without them stops it with an error. The program can check for newer versions through its bundled updater; updates are made by Recipe (recipe update antigravity), and the program's own update setting can be set to manual or none. The package is proprietary Google software.",
     homepage: "https://antigravity.google",
     license: "proprietary (Google terms; bundles Electron MIT, Chromium and Apache-2.0 parts)",
     adds: #{ programs: ["antigravity"], menu: ["Antigravity"] },

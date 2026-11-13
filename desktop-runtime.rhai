@@ -52,7 +52,9 @@ const NEEDS = #{
 const ABOUT = #{
     kind: "library",
     category: "development",
-    details: "The runtime upstream desktop builds carry: GTK 3, GLib, Pango, Cairo, HarfBuzz, fontconfig and FreeType, NSS and NSPR, X11 and xcb, xkbcommon, GBM and DRM, CUPS, ALSA, AT-SPI, D-Bus, libsecret and libnotify with the glibc they were built for, from a pinned Fedora package set. It adds the loader, iconv modules, one UTF-8 locale, compiled GSettings schemas and glycin's image loaders. Electron, Chromium and Zed packages name it under build_deps and carry what they load.",
+    libc: ["glibc"],
+    libc_carried: true,
+    details: "The runtime upstream desktop builds carry: GTK 3, GLib, Pango, Cairo, HarfBuzz, fontconfig and FreeType, NSS and NSPR, X11 and xcb, xkbcommon, GBM and DRM, CUPS, ALSA, AT-SPI, D-Bus, libsecret and libnotify with the glibc they were built for, from a pinned Fedora package set. Its build is linked against glibc, as LevitateOS has. It adds the loader, iconv modules, one UTF-8 locale, compiled GSettings schemas and glycin's image loaders. Electron, Chromium and Zed packages name it under build_deps and carry what they load.",
     homepage: "https://fedoraproject.org",
     license: "LGPL-2.1-or-later AND LGPL-3.0-or-later AND GPL-2.0-or-later AND MPL-2.0 AND MIT AND BSD-3-Clause AND Apache-2.0",
     steps: #{

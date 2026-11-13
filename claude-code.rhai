@@ -3,9 +3,9 @@
 // verified against our own download; the installed file is that same file, so one digest serves as both.
 // Proprietary: (c) Anthropic PBC, all rights reserved, subject to Anthropic's Commercial Terms. The recipe fetches the
 // file from Anthropic at install time; nothing is redistributed.
-// libc: Recipe has no way to select an artifact by the target's C library (RUNTIME carries only target/host os and arch),
-// so only the glibc build is shipped. AcornOS (musl) needs .../2.1.323/linux-x64-musl/claude, sha256
-// 8ba3c07a4531a04843048d1ecd4abad2c41fd9a5a52476789a23280ed227d399, once Recipe can choose by libc.
+// libc: this recipe ships the glibc build, and ABOUT.libc says so. Upstream also publishes a musl build,
+// .../2.1.323/linux-x64-musl/claude, sha256 8ba3c07a4531a04843048d1ecd4abad2c41fd9a5a52476789a23280ed227d399, which Recipe does
+// not yet choose by RUNTIME.host.libc.
 const RECIPE_API = 2;
 const NEEDS = #{
     outputs: #{ "package": "directory" },
@@ -17,7 +17,8 @@ const NEEDS = #{
 const ABOUT = #{
     kind: "tool",
     category: "development",
-    details: "Runs Anthropic's Claude Code coding agent in the terminal. Needs a Claude account or API key and network access to Anthropic. Proprietary software under Anthropic's Commercial Terms. Upstream updates itself; Recipe manages updates here, so set DISABLE_AUTOUPDATER=1 in your environment. This recipe does not change user environment. This build needs glibc.",
+    libc: ["glibc"],
+    details: "Runs Anthropic's Claude Code coding agent in the terminal. Needs a Claude account or API key and network access to Anthropic. Proprietary software under Anthropic's Commercial Terms. Upstream updates itself; Recipe manages updates here, so set DISABLE_AUTOUPDATER=1 in your environment. This recipe does not change user environment. Its build is linked against glibc, as LevitateOS has.",
     homepage: "https://claude.com/product/claude-code",
     license: "proprietary (Anthropic Commercial Terms, all rights reserved)",
     adds: #{ programs: ["claude"], menu: [] },

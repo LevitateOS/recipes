@@ -1,10 +1,10 @@
 // opencode v1.19.5 (anomalyco/opencode), Bun-compiled x86_64 Linux CLI, glibc variant (dynamic, glibc <= 2.17).
 // Archive SHA-256: the digest GitHub publishes for the release asset (verified against our own download).
 // The tarball holds one file, opencode; its digest below was computed from the verified archive.
-// libc: Recipe has no way to select an artifact by the target's C library (RUNTIME carries only target/host os and arch),
-// so only the glibc build is shipped. AcornOS (musl) needs opencode-linux-x64-musl.tar.gz, sha256
-// e8d5be23bf8f3f69bc3206f3311215c049329cd6afa7c06d733987cc2d33b568 (inner opencode sha256 528058cf8f2a7196ec94dc113052b785f8f94f6802ced3980ad7359369ddacc8),
-// once Recipe can choose by libc.
+// libc: this recipe ships the glibc build, and ABOUT.libc says so. Upstream also publishes a musl build,
+// opencode-linux-x64-musl.tar.gz, sha256 e8d5be23bf8f3f69bc3206f3311215c049329cd6afa7c06d733987cc2d33b568
+// (inner opencode sha256 528058cf8f2a7196ec94dc113052b785f8f94f6802ced3980ad7359369ddacc8), which Recipe does not yet choose by
+// RUNTIME.host.libc.
 // Nothing is compiled. The archive carries no licence file (the project is MIT, see the repository).
 const RECIPE_API = 2;
 const NEEDS = #{
@@ -17,7 +17,8 @@ const NEEDS = #{
 const ABOUT = #{
     kind: "tool",
     category: "development",
-    details: "Runs the opencode coding agent in the terminal, with the model provider of your choice. Needs network access to that provider, and fetches a model catalogue and may download language servers. Upstream can update itself; Recipe manages updates here, so set \"update\": \"disable\" in opencode's global config. This recipe does not write user configuration. This build needs glibc.",
+    libc: ["glibc"],
+    details: "Runs the opencode coding agent in the terminal, with the model provider of your choice. Needs network access to that provider, and fetches a model catalogue and may download language servers. Upstream can update itself; Recipe manages updates here, so set \"update\": \"disable\" in opencode's global config. This recipe does not write user configuration. Its build is linked against glibc, as LevitateOS has.",
     homepage: "https://opencode.ai",
     license: "MIT",
     adds: #{ programs: ["opencode"], menu: [] },

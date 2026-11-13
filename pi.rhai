@@ -1,6 +1,6 @@
 // pi v1.5.2 (earendil-works/pi, Mario Zechner's coding agent), x86_64 Linux release: a dynamic glibc Bun binary (glibc <= 2.17)
 // with the files it reads at run time next to it (package.json, docs, themes, export-html, photon_rs_bg.wasm and
-// native/linux/prebuilds/linux-x64/linux-platform-x11.node). No musl build is published, so AcornOS cannot use this recipe yet.
+// native/linux/prebuilds/linux-x64/linux-platform-x11.node). Upstream publishes a glibc build only.
 // Archive SHA-256: upstream SHA256SUMS at the pinned release, verified against our own download.
 // Every file of the tree is pinned separately below, computed from the verified archive; nothing is compiled.
 // Packages may not hold symlinks, so the tree lives whole under lib/pi/ and bin/pi is a small launcher, the same
@@ -26,7 +26,8 @@ const NEEDS = #{
 const ABOUT = #{
     kind: "tool",
     category: "development",
-    details: "Runs pi, a minimal terminal coding agent, with the model provider of your choice. Needs network access to that provider. pi checks for newer versions and can update itself; Recipe manages updates here, so set PI_SKIP_VERSION_CHECK=1 in your environment. This recipe does not change user environment. This build needs glibc.",
+    libc: ["glibc"],
+    details: "Runs pi, a minimal terminal coding agent, with the model provider of your choice. Needs network access to that provider. pi checks for newer versions and can update itself; Recipe manages updates here, so set PI_SKIP_VERSION_CHECK=1 in your environment. This recipe does not change user environment. Its build is linked against glibc, as LevitateOS has; upstream publishes a glibc build only.",
     homepage: "https://pi.dev",
     license: "MIT",
     adds: #{ programs: ["pi"], menu: [] },
