@@ -1,0 +1,550 @@
+// pi v1.5.2 (earendil-works/pi, Mario Zechner's coding agent), x86_64 Linux release: a dynamic glibc Bun binary (glibc <= 2.17)
+// with the files it reads at run time next to it (package.json, docs, themes, export-html, photon_rs_bg.wasm and
+// native/linux/prebuilds/linux-x64/linux-platform-x11.node). No musl build is published, so AcornOS cannot use this recipe yet.
+// Archive SHA-256: upstream SHA256SUMS at the pinned release, verified against our own download.
+// Every file of the tree is pinned separately below, computed from the verified archive; nothing is compiled.
+// Packages may not hold symlinks, so the tree lives whole under lib/pi/ and bin/pi is a small launcher, the same
+// pattern go.rhai uses, but following its own symlink first (the profile's bin/pi links into the package): it sets
+// PI_PACKAGE_DIR (documented upstream) and execs lib/pi/pi, whose real path keeps the
+// binary beside its assets. The launcher's own SHA-256 is pinned in LAUNCHER_SHA256.
+// The archive carries no licence file (the project is MIT, see the repository).
+const RECIPE_API = 2;
+const LAUNCHER = `#!/bin/sh
+set -eu
+tool_root=$(CDPATH= cd -- "$(dirname -- "$(readlink -f -- "$0")")/.." && pwd)
+export PI_PACKAGE_DIR="$tool_root/lib/pi"
+exec "$PI_PACKAGE_DIR/pi" "$@"
+`;
+const LAUNCHER_SHA256 = "451344448aa35e1ee5269409eff00145bc28c7ad7610f096da336cb2cff821fc";
+const NEEDS = #{
+    outputs: #{ "package": "directory" },
+    network: ["github.com:443", "release-assets.githubusercontent.com:443"],
+    network_max_bytes: 62914560,
+    timeout_secs: 3600,
+};
+
+const ABOUT = #{
+    kind: "tool",
+    category: "development",
+    details: "Runs pi, a minimal terminal coding agent, with the model provider of your choice. Needs network access to that provider. pi checks for newer versions and can update itself; Recipe manages updates here, so set PI_SKIP_VERSION_CHECK=1 in your environment. This recipe does not change user environment. This build needs glibc.",
+    homepage: "https://pi.dev",
+    license: "MIT",
+    adds: #{ programs: ["pi"], menu: [] },
+    steps: #{
+        acquire: "Downloads the pinned upstream release archive and checks it against the digest in upstream's SHA256SUMS.",
+        build: "Unpacks the release and checks every file against its own digest; nothing is compiled.",
+        install: "Puts the program and its support files under lib/pi and a launcher in bin.",
+    },
+    keeps: [],
+};
+
+let ctx = #{
+    name: "pi",
+    version: "1.5.2",
+    description: "pi terminal coding agent",
+    package_root: join_path(RUNTIME.paths.output, "package"),
+    unpacked: join_path(RUNTIME.paths.build, "unpacked"),
+    sources: [
+        #{ url: "https://github.com/earendil-works/pi/releases/download/v1.5.2/pi-linux-x64.tar.gz",
+           archive: "pi-linux-x64.tar.gz", sha256: "811c6f2c9e7aaee252b5404252e556fb713aa209c1f7f924226aa77d4ef70cb5",
+           destination: "main", unpack: true },
+    ],
+    files: [
+        #{ source: "main/pi/CHANGELOG.md", target: "lib/pi/CHANGELOG.md", mode: 0o644,
+           sha256: "0234d4b3c078dedc752cc05e39c703222704b5a8424f190ee8afec194020d0bb" },
+        #{ source: "main/pi/README.md", target: "lib/pi/README.md", mode: 0o644,
+           sha256: "fbc7abec7d0829ac8bc4b217e950794e1ba4d8d1b3e0850f970da318ad72e863" },
+        #{ source: "main/pi/assets/clankolas.png", target: "lib/pi/assets/clankolas.png", mode: 0o644,
+           sha256: "169acd0dfe6fbb8d8742ed24a3fc654fd0b2e2d4223c733249c5493723f1b72d" },
+        #{ source: "main/pi/docs/cli-integration.md", target: "lib/pi/docs/cli-integration.md", mode: 0o644,
+           sha256: "edf8e723a70b4c3c40275db0391219e55d30597936212a9cfdef33963dd37f93" },
+        #{ source: "main/pi/docs/cli.md", target: "lib/pi/docs/cli.md", mode: 0o644,
+           sha256: "d3b719dafaa11c93841059eb02d0167403e26a19d8845ca54aad3443c58952fc" },
+        #{ source: "main/pi/docs/codemode.md", target: "lib/pi/docs/codemode.md", mode: 0o644,
+           sha256: "3a96ee10da36395bbd22beb60ac029f8ca8a859f2fd3c3104cfc38f9d5a1f95a" },
+        #{ source: "main/pi/docs/compaction.md", target: "lib/pi/docs/compaction.md", mode: 0o644,
+           sha256: "b5b23d10bb86d8ab32b67f80a7e57febd953222c6da6fd422ae91d232ef28faf" },
+        #{ source: "main/pi/docs/configuration.md", target: "lib/pi/docs/configuration.md", mode: 0o644,
+           sha256: "fc48d1ce7d885c5253222415fb7a4b46d75f80e6431eb924174657ff775099eb" },
+        #{ source: "main/pi/docs/containerization.md", target: "lib/pi/docs/containerization.md", mode: 0o644,
+           sha256: "e309fcb9a0a7592c0dba000ef8ee90f2d7ef1e01e6a1ac2f0cd9760dd63dee0c" },
+        #{ source: "main/pi/docs/custom-provider.md", target: "lib/pi/docs/custom-provider.md", mode: 0o644,
+           sha256: "78e01e866af7969e2d8e70937988bc0fb7b4a2a43bc25aab665c3549e169971f" },
+        #{ source: "main/pi/docs/docs.json", target: "lib/pi/docs/docs.json", mode: 0o644,
+           sha256: "fc0bccd6bf66716ad1067d4fbf7258f674d89c89a12cb0b2587a027b9d7fdc49" },
+        #{ source: "main/pi/docs/environment-variables.md", target: "lib/pi/docs/environment-variables.md", mode: 0o644,
+           sha256: "1a59b88928be611f04758e8607c96beea91327de803ff696c672c8216996dfc9" },
+        #{ source: "main/pi/docs/extensions.md", target: "lib/pi/docs/extensions.md", mode: 0o644,
+           sha256: "d59f4ded8e49275120c8379dbeabb847267efd36e15fc21f6189026d0fbf8f22" },
+        #{ source: "main/pi/docs/how-pi-works.md", target: "lib/pi/docs/how-pi-works.md", mode: 0o644,
+           sha256: "7d43ab8e2b886cd1047dcee503588a1c828b92333dd4f177526b89e6db8aaa8b" },
+        #{ source: "main/pi/docs/images/doom-extension.png", target: "lib/pi/docs/images/doom-extension.png", mode: 0o644,
+           sha256: "c3b89b5e1fba711a5bcfa188e13d8695a84f7cdda12d9e127bb45b36d13cbb27" },
+        #{ source: "main/pi/docs/images/exy.png", target: "lib/pi/docs/images/exy.png", mode: 0o644,
+           sha256: "a8f253347440aed01ff659f41f573d340bcfd6010d829726ae92fe18abf601de" },
+        #{ source: "main/pi/docs/images/interactive-mode.png", target: "lib/pi/docs/images/interactive-mode.png", mode: 0o644,
+           sha256: "4078001e39978151bd66b1d0a20123e7ca2ec2d1b572dfd70f552be5e88c0692" },
+        #{ source: "main/pi/docs/images/tree-view.png", target: "lib/pi/docs/images/tree-view.png", mode: 0o644,
+           sha256: "ca61e7bbf300dfb3840cc191dc66dc4e9f5166b2f1f4089e6fb13fd04a2c3c66" },
+        #{ source: "main/pi/docs/index.md", target: "lib/pi/docs/index.md", mode: 0o644,
+           sha256: "c107426e88eac570e9ecbea325cb45c2a6b778a324fd6e424bd032380a65614d" },
+        #{ source: "main/pi/docs/json.md", target: "lib/pi/docs/json.md", mode: 0o644,
+           sha256: "f103191816fdcf3627dfc98b89acad8a28eee737697130ddaeb2581131213543" },
+        #{ source: "main/pi/docs/keybindings.md", target: "lib/pi/docs/keybindings.md", mode: 0o644,
+           sha256: "9f5fd7d753593fbfff7ca8ab25ec7ca4a3267cab08d6f81959f0e8cdaf103770" },
+        #{ source: "main/pi/docs/llama-cpp.md", target: "lib/pi/docs/llama-cpp.md", mode: 0o644,
+           sha256: "24d7d9bc1dc66fcf0e3cacf8716fc9e0561072aea95058d805818d3819389152" },
+        #{ source: "main/pi/docs/mcp.md", target: "lib/pi/docs/mcp.md", mode: 0o644,
+           sha256: "c353a4cb49cfff85e5bf1839a7e702f58bfed9df2afcbeeb29cae2b5574cbe3b" },
+        #{ source: "main/pi/docs/message-types.md", target: "lib/pi/docs/message-types.md", mode: 0o644,
+           sha256: "78bb9c295e88948c9bdb23e7c75a66a0e2703601c48d731fda01d24664dcf63a" },
+        #{ source: "main/pi/docs/models-configuration.md", target: "lib/pi/docs/models-configuration.md", mode: 0o644,
+           sha256: "1761b36835cf37fbeb7adc9ebb1cb88d190145f69a6d507ad5d4349f17f908a6" },
+        #{ source: "main/pi/docs/models.md", target: "lib/pi/docs/models.md", mode: 0o644,
+           sha256: "a1a373ac64d62afc3a039d7b614caf1216d3ef9c9278179f9d859eee5ca0855d" },
+        #{ source: "main/pi/docs/nvidia-rtx-llama-cpp.md", target: "lib/pi/docs/nvidia-rtx-llama-cpp.md", mode: 0o644,
+           sha256: "bcd12ebfd283d8f528cf206ee4ec74f981ab36d3604419acc434c595decbebdb" },
+        #{ source: "main/pi/docs/packages.md", target: "lib/pi/docs/packages.md", mode: 0o644,
+           sha256: "f03ce96224985c1b0daac643cb6edc97a58701c492243c8eda16a7d1633e9dac" },
+        #{ source: "main/pi/docs/prompt-templates.md", target: "lib/pi/docs/prompt-templates.md", mode: 0o644,
+           sha256: "3ca3033678cd7f762d8bf4fff40e52e6c7fce3e5c6f24716105fa7fcbca60267" },
+        #{ source: "main/pi/docs/providers.md", target: "lib/pi/docs/providers.md", mode: 0o644,
+           sha256: "9809a2199aea9e0c247caa688bfd33cfce1f293ad0fbd2feb9481148aecd7366" },
+        #{ source: "main/pi/docs/quickstart.md", target: "lib/pi/docs/quickstart.md", mode: 0o644,
+           sha256: "d3d2ca438dc2fff747bae69deccf2bb512027825fe1c9b3a7b7f478f3c889850" },
+        #{ source: "main/pi/docs/rpc-commands.md", target: "lib/pi/docs/rpc-commands.md", mode: 0o644,
+           sha256: "4deeee367852f4633ef594bc079f9e9fb14640a4e3ba8a69b7c89b6f54740838" },
+        #{ source: "main/pi/docs/rpc-extension-ui.md", target: "lib/pi/docs/rpc-extension-ui.md", mode: 0o644,
+           sha256: "3c6f2c6edfc8b1ace6642343727aef97a7e9234c85509850921b52d6ff09a48e" },
+        #{ source: "main/pi/docs/rpc.md", target: "lib/pi/docs/rpc.md", mode: 0o644,
+           sha256: "54e29df00e080c962df4fbb516dc441a9ce6805287bea61d45f3c99f92078446" },
+        #{ source: "main/pi/docs/sdk.md", target: "lib/pi/docs/sdk.md", mode: 0o644,
+           sha256: "d9034ccbf2219a58712d8dd4fcdf47e687d77131e71dd5d119d8a71e9bd2a2e8" },
+        #{ source: "main/pi/docs/security.md", target: "lib/pi/docs/security.md", mode: 0o644,
+           sha256: "3b1e40a8d28b17c9eb7e496a7ba88fbe04665e3e6ae02873a58b943e325ad504" },
+        #{ source: "main/pi/docs/session-format.md", target: "lib/pi/docs/session-format.md", mode: 0o644,
+           sha256: "4f8fc42179b332bcf71fe4c85cc95d914853ff7486d68742954a45316b512a4a" },
+        #{ source: "main/pi/docs/sessions.md", target: "lib/pi/docs/sessions.md", mode: 0o644,
+           sha256: "187baefd3dbf6279d493b2ded5fec5cd3b479779e10c0935a3920b40019df87d" },
+        #{ source: "main/pi/docs/settings.md", target: "lib/pi/docs/settings.md", mode: 0o644,
+           sha256: "a0579b5f63a92f96e60e2397d0c2eebfe0ca9957395c146eb682ab1d823bd43a" },
+        #{ source: "main/pi/docs/shell-aliases.md", target: "lib/pi/docs/shell-aliases.md", mode: 0o644,
+           sha256: "ebb55456870455b4da91cfd054ae2ac9b3a417e6ff48a009587c33e68ecd7807" },
+        #{ source: "main/pi/docs/skills.md", target: "lib/pi/docs/skills.md", mode: 0o644,
+           sha256: "5b9805525b194474ef1fe5455a0917ef15ed7f710aa9bec2eee11879556469e5" },
+        #{ source: "main/pi/docs/slash-commands.md", target: "lib/pi/docs/slash-commands.md", mode: 0o644,
+           sha256: "8d44fc21253e7f0cdd468d0484e6a6ed50cc90f3e2b639d9e804a00f1ea93080" },
+        #{ source: "main/pi/docs/terminal-setup.md", target: "lib/pi/docs/terminal-setup.md", mode: 0o644,
+           sha256: "a75900ac7ac18d14000c753dc5542dc43d0bfa6acf01ddfd034f6dc3275eba49" },
+        #{ source: "main/pi/docs/termux.md", target: "lib/pi/docs/termux.md", mode: 0o644,
+           sha256: "1b0687157f2384385d07800ec23e6c225ef28fbf6648f55453cc7ce62f4c64ea" },
+        #{ source: "main/pi/docs/themes.md", target: "lib/pi/docs/themes.md", mode: 0o644,
+           sha256: "6f11eb43ca6dad4c71bcfa2fc72ac13c013e3cb9383688b88923e0139b2d097c" },
+        #{ source: "main/pi/docs/tmux.md", target: "lib/pi/docs/tmux.md", mode: 0o644,
+           sha256: "cba8048064e0f3322d5b693b5e7b50a0d17c2e0af2aabc59285eb6024775b7d4" },
+        #{ source: "main/pi/docs/tui.md", target: "lib/pi/docs/tui.md", mode: 0o644,
+           sha256: "4609ae4993337361d0db993f9a81b87edfa4c5c6131f1d351fd2a703cc4eab34" },
+        #{ source: "main/pi/docs/usage.md", target: "lib/pi/docs/usage.md", mode: 0o644,
+           sha256: "6dfe7446c81d601d5ebef5769523115229f802da364fe90fcdf96e322ae9fbcd" },
+        #{ source: "main/pi/docs/virtual-models.md", target: "lib/pi/docs/virtual-models.md", mode: 0o644,
+           sha256: "5ab04dee3b3712b317522bb0784e28a3fef2e6b7fe1aeb1c1ca27778685a38f7" },
+        #{ source: "main/pi/docs/windows.md", target: "lib/pi/docs/windows.md", mode: 0o644,
+           sha256: "b30d75000d9623832c375b20a53b492929ef31d9631f1be90a0ed1469d8c0728" },
+        #{ source: "main/pi/examples/README.md", target: "lib/pi/examples/README.md", mode: 0o644,
+           sha256: "294836cfa47cd2cff1cab628533aefc5fe2d888621e43fe9f4101c09c2917a98" },
+        #{ source: "main/pi/examples/extensions/README.md", target: "lib/pi/examples/extensions/README.md", mode: 0o644,
+           sha256: "12a15e808b483c3d130fad851a1c75579a350e10e9fe405d2b21af2456dac3be" },
+        #{ source: "main/pi/examples/extensions/auto-commit-on-exit.ts", target: "lib/pi/examples/extensions/auto-commit-on-exit.ts", mode: 0o644,
+           sha256: "b89b5cb4c6f1f07b0b4291ab85a3c5f025d7d31ebb285821716502452b46af62" },
+        #{ source: "main/pi/examples/extensions/bash-spawn-hook.ts", target: "lib/pi/examples/extensions/bash-spawn-hook.ts", mode: 0o644,
+           sha256: "c79c87653e20ac6bd9f4813aa4bb01a483b3637700fa2edda220703958532662" },
+        #{ source: "main/pi/examples/extensions/bookmark.ts", target: "lib/pi/examples/extensions/bookmark.ts", mode: 0o644,
+           sha256: "a71d9449d415ad75c9f3d0d13afde129b9bea2d695b889566db17ecfca256d79" },
+        #{ source: "main/pi/examples/extensions/border-status-editor.ts", target: "lib/pi/examples/extensions/border-status-editor.ts", mode: 0o644,
+           sha256: "ccbbfddd4ff402432293b7adb21f58e869f37a5d12d4da81cea10cc5fc2311cd" },
+        #{ source: "main/pi/examples/extensions/built-in-tool-renderer.ts", target: "lib/pi/examples/extensions/built-in-tool-renderer.ts", mode: 0o644,
+           sha256: "4bfd0953e3dbf96ee0cdb26989a60ec91d4850323852ef09eafe5c2efdf23c00" },
+        #{ source: "main/pi/examples/extensions/claude-rules.ts", target: "lib/pi/examples/extensions/claude-rules.ts", mode: 0o644,
+           sha256: "8a935f14f62c1c1a3e937f5c912c2215e25aa5fa591716e23c86224ce1dc34cd" },
+        #{ source: "main/pi/examples/extensions/commands.ts", target: "lib/pi/examples/extensions/commands.ts", mode: 0o644,
+           sha256: "36716b53da169936c7e1360a4fde1e2fc0c3356a6505f177235f09c5538c6e4f" },
+        #{ source: "main/pi/examples/extensions/confirm-destructive.ts", target: "lib/pi/examples/extensions/confirm-destructive.ts", mode: 0o644,
+           sha256: "55502f82109df07e922ef3ec41af1b1a5ed33d4d6d56076654ab2bc88e2e0888" },
+        #{ source: "main/pi/examples/extensions/custom-compaction.ts", target: "lib/pi/examples/extensions/custom-compaction.ts", mode: 0o644,
+           sha256: "ea797b3508fd8600526f381466e8b08bb84f3d234932a9d6ce512698527d0aa9" },
+        #{ source: "main/pi/examples/extensions/custom-footer.ts", target: "lib/pi/examples/extensions/custom-footer.ts", mode: 0o644,
+           sha256: "1e5f17bec95a48d407fbcc092faf7e1f6021c30cee4a66ec09bc120412292cb2" },
+        #{ source: "main/pi/examples/extensions/custom-header.ts", target: "lib/pi/examples/extensions/custom-header.ts", mode: 0o644,
+           sha256: "5de09cf861d3965201991d6e837d6b68e8a2e80cb89279ee9177cc05d31f723d" },
+        #{ source: "main/pi/examples/extensions/custom-provider-anthropic/.gitignore", target: "lib/pi/examples/extensions/custom-provider-anthropic/.gitignore", mode: 0o644,
+           sha256: "4d56952b0fb13bf8f9b6c13a6d4c34a075bac3af447636a1df4335d7576e2f97" },
+        #{ source: "main/pi/examples/extensions/custom-provider-anthropic/index.ts", target: "lib/pi/examples/extensions/custom-provider-anthropic/index.ts", mode: 0o644,
+           sha256: "29ecf2cd22407868c024031465c9f4beaf0b6726249c5c20a0363091af664cb5" },
+        #{ source: "main/pi/examples/extensions/custom-provider-anthropic/package-lock.json", target: "lib/pi/examples/extensions/custom-provider-anthropic/package-lock.json", mode: 0o644,
+           sha256: "68021ab3b6d06008b96a45936f4128b0bdda4575196286535447d15852b3aba8" },
+        #{ source: "main/pi/examples/extensions/custom-provider-anthropic/package.json", target: "lib/pi/examples/extensions/custom-provider-anthropic/package.json", mode: 0o644,
+           sha256: "283009c8f59db5a834c28a3cb4e2f504eadfbfe713f6ea31e44f007bd136c51d" },
+        #{ source: "main/pi/examples/extensions/custom-provider-gitlab-duo/.gitignore", target: "lib/pi/examples/extensions/custom-provider-gitlab-duo/.gitignore", mode: 0o644,
+           sha256: "4d56952b0fb13bf8f9b6c13a6d4c34a075bac3af447636a1df4335d7576e2f97" },
+        #{ source: "main/pi/examples/extensions/custom-provider-gitlab-duo/index.ts", target: "lib/pi/examples/extensions/custom-provider-gitlab-duo/index.ts", mode: 0o644,
+           sha256: "0c4adac82eff25fef23223af77e11cd53535834fece9731009b125446e213158" },
+        #{ source: "main/pi/examples/extensions/custom-provider-gitlab-duo/package.json", target: "lib/pi/examples/extensions/custom-provider-gitlab-duo/package.json", mode: 0o644,
+           sha256: "59c394efce9062c0bf7312bc6a4acfe73b30c16ef8470761e39dd2874178ac48" },
+        #{ source: "main/pi/examples/extensions/custom-provider-gitlab-duo/test.ts", target: "lib/pi/examples/extensions/custom-provider-gitlab-duo/test.ts", mode: 0o644,
+           sha256: "58dfa6fdb63521ccad551b7463ff56d4aecf735074934a8e9fc34b71e7083d00" },
+        #{ source: "main/pi/examples/extensions/debug-provider.ts", target: "lib/pi/examples/extensions/debug-provider.ts", mode: 0o644,
+           sha256: "0de8958fdc86dc7d8bdd19aad5371ebf8bcec28cf333155d3c12dada8c8141b8" },
+        #{ source: "main/pi/examples/extensions/dirty-repo-guard.ts", target: "lib/pi/examples/extensions/dirty-repo-guard.ts", mode: 0o644,
+           sha256: "0037a69abdf4cf98181db799bef5bdee8981861315eb82ddab78126c2b0f13c4" },
+        #{ source: "main/pi/examples/extensions/doom-overlay/.gitignore", target: "lib/pi/examples/extensions/doom-overlay/.gitignore", mode: 0o644,
+           sha256: "b26aa26693c610d46d9c8b387b28d20dc5196a73b979f5522e24dd689aab7bc8" },
+        #{ source: "main/pi/examples/extensions/doom-overlay/README.md", target: "lib/pi/examples/extensions/doom-overlay/README.md", mode: 0o644,
+           sha256: "e17bc73b76c7977ffeef99120c7896ff992cf5938a60c4d7427a7b19fc180d97" },
+        #{ source: "main/pi/examples/extensions/doom-overlay/doom-component.ts", target: "lib/pi/examples/extensions/doom-overlay/doom-component.ts", mode: 0o644,
+           sha256: "d95dc47c92db0fdc5b0e0b56a277c67f277012d3f7296df745d8a93f64d5a42e" },
+        #{ source: "main/pi/examples/extensions/doom-overlay/doom-engine.ts", target: "lib/pi/examples/extensions/doom-overlay/doom-engine.ts", mode: 0o644,
+           sha256: "706e43f70bd374b73928e5a44d196d1dd5c03d93979d08bdfc01d049b5083855" },
+        #{ source: "main/pi/examples/extensions/doom-overlay/doom-keys.ts", target: "lib/pi/examples/extensions/doom-overlay/doom-keys.ts", mode: 0o644,
+           sha256: "e8bd99a4ce90dd44ad120c58f3b2ba7bc0b0c662bcdc4ed4994d059130be9fdd" },
+        #{ source: "main/pi/examples/extensions/doom-overlay/doom/build.sh", target: "lib/pi/examples/extensions/doom-overlay/doom/build.sh", mode: 0o644,
+           sha256: "ab09c9b6dc98ea7c1fa8e74c13981ce69b698c01aec77309c5c7d40ad114d38c" },
+        #{ source: "main/pi/examples/extensions/doom-overlay/doom/build/doom.js", target: "lib/pi/examples/extensions/doom-overlay/doom/build/doom.js", mode: 0o644,
+           sha256: "c3147cf4881c88b4210c017c26828f52aff83f0c4db27d7dad3fe6cda9ade1fb" },
+        #{ source: "main/pi/examples/extensions/doom-overlay/doom/build/doom.wasm", target: "lib/pi/examples/extensions/doom-overlay/doom/build/doom.wasm", mode: 0o644,
+           sha256: "571d161956593508cf4ade732ae93753f00484bb526667a8676571cca14dec7d" },
+        #{ source: "main/pi/examples/extensions/doom-overlay/doom/doomgeneric_pi.c", target: "lib/pi/examples/extensions/doom-overlay/doom/doomgeneric_pi.c", mode: 0o644,
+           sha256: "98210909e1e7dee71cbbdba64f1db4bebd88b504e861ee36ea42093c59b251a1" },
+        #{ source: "main/pi/examples/extensions/doom-overlay/index.ts", target: "lib/pi/examples/extensions/doom-overlay/index.ts", mode: 0o644,
+           sha256: "f89818dd75c7d8970458b1dbb9c5e85fea9b86534fd740c898c1f6f9c9f9ceba" },
+        #{ source: "main/pi/examples/extensions/doom-overlay/wad-finder.ts", target: "lib/pi/examples/extensions/doom-overlay/wad-finder.ts", mode: 0o644,
+           sha256: "20254888262081bf96932253bfd346971deefa48d8df011fd3baa7aa2d653b7d" },
+        #{ source: "main/pi/examples/extensions/dynamic-resources/SKILL.md", target: "lib/pi/examples/extensions/dynamic-resources/SKILL.md", mode: 0o644,
+           sha256: "f8f34b0d81aa791a2d56501756fe0ace21fb78ca2754025d093f41d3b0ccaf69" },
+        #{ source: "main/pi/examples/extensions/dynamic-resources/dynamic.json", target: "lib/pi/examples/extensions/dynamic-resources/dynamic.json", mode: 0o644,
+           sha256: "2bf0164779b4ea3c2572f33b1e979c427a4839193998fda19bfc5cba2a4692c5" },
+        #{ source: "main/pi/examples/extensions/dynamic-resources/dynamic.md", target: "lib/pi/examples/extensions/dynamic-resources/dynamic.md", mode: 0o644,
+           sha256: "e61e2c971d02d628a58f7c36b9b37bd3e636e4ad60618a7f65e2b41410c38f35" },
+        #{ source: "main/pi/examples/extensions/dynamic-resources/index.ts", target: "lib/pi/examples/extensions/dynamic-resources/index.ts", mode: 0o644,
+           sha256: "dfbc49418fe46ebc9696fa335709df2ed0d4c4703da8c1ad0eb317d11fce8433" },
+        #{ source: "main/pi/examples/extensions/dynamic-tools.ts", target: "lib/pi/examples/extensions/dynamic-tools.ts", mode: 0o644,
+           sha256: "4394098c11f98ffc26e2487acda2e09b9467ef9ff5867def7273cb0c82a2b6c0" },
+        #{ source: "main/pi/examples/extensions/entry-renderer.ts", target: "lib/pi/examples/extensions/entry-renderer.ts", mode: 0o644,
+           sha256: "e4c01fcf382972d570ebf37d044e32065eae062fe70987b1b885d75d46aa0b11" },
+        #{ source: "main/pi/examples/extensions/event-bus.ts", target: "lib/pi/examples/extensions/event-bus.ts", mode: 0o644,
+           sha256: "1185942b7afd83692d9e8da029e8594d702157398c693ec8b3ddb02b0780828a" },
+        #{ source: "main/pi/examples/extensions/file-trigger.ts", target: "lib/pi/examples/extensions/file-trigger.ts", mode: 0o644,
+           sha256: "6f5fc3dc8fa387d8ca6973786c521feb94da58838b0e171a881fb6b3a5243ac0" },
+        #{ source: "main/pi/examples/extensions/git-checkpoint.ts", target: "lib/pi/examples/extensions/git-checkpoint.ts", mode: 0o644,
+           sha256: "b60c85f797091a1f21ccb2a998027c6229fe995bdd62dbb1cdcc22946768f40b" },
+        #{ source: "main/pi/examples/extensions/git-merge-and-resolve.ts", target: "lib/pi/examples/extensions/git-merge-and-resolve.ts", mode: 0o644,
+           sha256: "a3c077c87544122abe83b275f3d527f60c80c87f460ea2499d66bde9b4880133" },
+        #{ source: "main/pi/examples/extensions/github-issue-autocomplete.ts", target: "lib/pi/examples/extensions/github-issue-autocomplete.ts", mode: 0o644,
+           sha256: "4646ef360e57aa98c787ba21ca2f2e8acb3db30c4db0503e64cdbea4a4c2ac65" },
+        #{ source: "main/pi/examples/extensions/gondolin/.gitignore", target: "lib/pi/examples/extensions/gondolin/.gitignore", mode: 0o644,
+           sha256: "4d56952b0fb13bf8f9b6c13a6d4c34a075bac3af447636a1df4335d7576e2f97" },
+        #{ source: "main/pi/examples/extensions/gondolin/index.ts", target: "lib/pi/examples/extensions/gondolin/index.ts", mode: 0o644,
+           sha256: "9a9897639de8127a2abe6bb0d00f0005cd9e9cf9d51fd15893a827e67326bf62" },
+        #{ source: "main/pi/examples/extensions/gondolin/package-lock.json", target: "lib/pi/examples/extensions/gondolin/package-lock.json", mode: 0o644,
+           sha256: "0016b75610b835975091f7f9f8a4c24913369433c51d276b512aa90d3ca894ff" },
+        #{ source: "main/pi/examples/extensions/gondolin/package.json", target: "lib/pi/examples/extensions/gondolin/package.json", mode: 0o644,
+           sha256: "1328b569cafdec00113c31ae744aadd565f88b7e10e61a9fce3c51b8a16e77d0" },
+        #{ source: "main/pi/examples/extensions/handoff.ts", target: "lib/pi/examples/extensions/handoff.ts", mode: 0o644,
+           sha256: "ea07b6f680357b677d0f43f0016961ee8cb1331d37ae113e9466a3acffb2e381" },
+        #{ source: "main/pi/examples/extensions/hello.ts", target: "lib/pi/examples/extensions/hello.ts", mode: 0o644,
+           sha256: "0aa4e9800c2526914d4c1edb00b2cfa9bd9dd6da5218289994cccd5f5bfa4934" },
+        #{ source: "main/pi/examples/extensions/hidden-thinking-label.ts", target: "lib/pi/examples/extensions/hidden-thinking-label.ts", mode: 0o644,
+           sha256: "179dc3704b5c563b49a7f4577222bf9bbaa5becf98b85c75e56ab26c001c5b22" },
+        #{ source: "main/pi/examples/extensions/inline-bash.ts", target: "lib/pi/examples/extensions/inline-bash.ts", mode: 0o644,
+           sha256: "69b9dfc34e7b1ada9afe10cda3384b0b1a6f3c3a47da5fb7d16f914399b023d4" },
+        #{ source: "main/pi/examples/extensions/input-transform-streaming.ts", target: "lib/pi/examples/extensions/input-transform-streaming.ts", mode: 0o644,
+           sha256: "5c251ebda6163c8279e3c6d5f0aee56421ed150255dbb954f08ca7d2280b3ad2" },
+        #{ source: "main/pi/examples/extensions/input-transform.ts", target: "lib/pi/examples/extensions/input-transform.ts", mode: 0o644,
+           sha256: "cf0f65d610631ca75d18aae1c8f1408139702f674cb2835f8c009b943776474b" },
+        #{ source: "main/pi/examples/extensions/interactive-shell.ts", target: "lib/pi/examples/extensions/interactive-shell.ts", mode: 0o644,
+           sha256: "36a7efb5b132e666c643129ce09c3f83f56aed9924563e6b7269e0e126611ecc" },
+        #{ source: "main/pi/examples/extensions/jev-router.ts", target: "lib/pi/examples/extensions/jev-router.ts", mode: 0o644,
+           sha256: "cf2c9ef4baf9233faa133e99255786b00518cb4977d068c811a11b3c96f0a2d6" },
+        #{ source: "main/pi/examples/extensions/mac-system-theme.ts", target: "lib/pi/examples/extensions/mac-system-theme.ts", mode: 0o644,
+           sha256: "d7349bae999a798c71b283165e06d0142d41b0264bfdad11ddcb1ec8b62f8710" },
+        #{ source: "main/pi/examples/extensions/message-renderer.ts", target: "lib/pi/examples/extensions/message-renderer.ts", mode: 0o644,
+           sha256: "bedc198df5215c0a758e0743224599003630741a4ff72d4327837ce309e5ec8c" },
+        #{ source: "main/pi/examples/extensions/minimal-mode.ts", target: "lib/pi/examples/extensions/minimal-mode.ts", mode: 0o644,
+           sha256: "040cbc7619b2e903888c8626e2fa55ca5e3f820535dfd1aadcb2060e156a8770" },
+        #{ source: "main/pi/examples/extensions/modal-editor.ts", target: "lib/pi/examples/extensions/modal-editor.ts", mode: 0o644,
+           sha256: "4742283930949fad1920359540aa9d42c833d2d24eaa49564bfc08f90e328b0d" },
+        #{ source: "main/pi/examples/extensions/model-status.ts", target: "lib/pi/examples/extensions/model-status.ts", mode: 0o644,
+           sha256: "b6c073c0bdf26ac17e2fed01d02b6447fd4e2763b7b6ca2f2b493574ced25247" },
+        #{ source: "main/pi/examples/extensions/notify.ts", target: "lib/pi/examples/extensions/notify.ts", mode: 0o644,
+           sha256: "70e4333e09ce00d546c116fd2e918abf7616c70b5da6e88ba8ee21a326afd483" },
+        #{ source: "main/pi/examples/extensions/overlay-qa-tests.ts", target: "lib/pi/examples/extensions/overlay-qa-tests.ts", mode: 0o644,
+           sha256: "4b1778e9e247c9eb24fe48e13fff0272f6f78b8102b4ed085d03598c3b98773f" },
+        #{ source: "main/pi/examples/extensions/overlay-test.ts", target: "lib/pi/examples/extensions/overlay-test.ts", mode: 0o644,
+           sha256: "801b7c2eeec57c3569187b4b4d851f2159223ec6e9772e406ec65ed728ca6db9" },
+        #{ source: "main/pi/examples/extensions/permission-gate.ts", target: "lib/pi/examples/extensions/permission-gate.ts", mode: 0o644,
+           sha256: "e32086ba9dd9b4ba0fd308b65241d9affa0b5ecd3f90ef7ea1b9f2b30cab8cc1" },
+        #{ source: "main/pi/examples/extensions/pirate.ts", target: "lib/pi/examples/extensions/pirate.ts", mode: 0o644,
+           sha256: "dd6ce684bbe7630e4a749fe133ef8b8b875adbc7e31284b17fe0b8157d51e013" },
+        #{ source: "main/pi/examples/extensions/plan-mode/README.md", target: "lib/pi/examples/extensions/plan-mode/README.md", mode: 0o644,
+           sha256: "1ff8d611b8fbafef4ca1e3dbc72136fbcc166461b69f859b5e961b15147bff39" },
+        #{ source: "main/pi/examples/extensions/plan-mode/index.ts", target: "lib/pi/examples/extensions/plan-mode/index.ts", mode: 0o644,
+           sha256: "89d73196ee20a71c1e43fd4a75f1e2fc4c3e1a5942e3cd2853977d411545e190" },
+        #{ source: "main/pi/examples/extensions/plan-mode/utils.ts", target: "lib/pi/examples/extensions/plan-mode/utils.ts", mode: 0o644,
+           sha256: "142458bf1fce6848b248987a183d2311096291bc0a8ea6141e31ff3ca050e48e" },
+        #{ source: "main/pi/examples/extensions/preset.ts", target: "lib/pi/examples/extensions/preset.ts", mode: 0o644,
+           sha256: "ccb374df6efb6dc677774dc480018ab12006f7f346e603a9bc17ca6fed85e900" },
+        #{ source: "main/pi/examples/extensions/project-trust.ts", target: "lib/pi/examples/extensions/project-trust.ts", mode: 0o644,
+           sha256: "78781c1f2a1613cf31c02a29ff6a6abd86b60bdf34343465e46cd85c01491578" },
+        #{ source: "main/pi/examples/extensions/prompt-customizer.ts", target: "lib/pi/examples/extensions/prompt-customizer.ts", mode: 0o644,
+           sha256: "429546f46795bccda4078deace5729b8230f6103807d424eaf71817c6e07da0a" },
+        #{ source: "main/pi/examples/extensions/protected-paths.ts", target: "lib/pi/examples/extensions/protected-paths.ts", mode: 0o644,
+           sha256: "9ca66b1f3b1b9a61cc5ddc660f92cca2ea66c4264a1bdb6b00e0da5844399fe2" },
+        #{ source: "main/pi/examples/extensions/provider-payload.ts", target: "lib/pi/examples/extensions/provider-payload.ts", mode: 0o644,
+           sha256: "e0016077798098f528b1129954c30a28809a1513924d9c2e0efda9328d503a49" },
+        #{ source: "main/pi/examples/extensions/qna.ts", target: "lib/pi/examples/extensions/qna.ts", mode: 0o644,
+           sha256: "a639a65a486fd05a42afcf14aa59dc32e505e41ada43869167ddfd789a3c7da6" },
+        #{ source: "main/pi/examples/extensions/question.ts", target: "lib/pi/examples/extensions/question.ts", mode: 0o644,
+           sha256: "a1625d2c72a65d859154a7e66bef222d48ca9e3654a8bb910829ad350378a4c4" },
+        #{ source: "main/pi/examples/extensions/questionnaire.ts", target: "lib/pi/examples/extensions/questionnaire.ts", mode: 0o644,
+           sha256: "3f1f719d81152ff013f5d36a97cc3976388d43f2d89bff0f19827d3443d903e6" },
+        #{ source: "main/pi/examples/extensions/rainbow-editor.ts", target: "lib/pi/examples/extensions/rainbow-editor.ts", mode: 0o644,
+           sha256: "f95f17ba8a0376180bd23510c20151e83aadc74142e989f14227bf5c4196883f" },
+        #{ source: "main/pi/examples/extensions/reload-runtime.ts", target: "lib/pi/examples/extensions/reload-runtime.ts", mode: 0o644,
+           sha256: "fcb575daf86cc0943215ce83b44f320eb257845b88e8b3d3b29798c7942f893f" },
+        #{ source: "main/pi/examples/extensions/rpc-demo.ts", target: "lib/pi/examples/extensions/rpc-demo.ts", mode: 0o644,
+           sha256: "3d54a396eee12eb04ea12d0ea03716a6edd3e8743502b6a529e3b8d429ae640d" },
+        #{ source: "main/pi/examples/extensions/send-user-message.ts", target: "lib/pi/examples/extensions/send-user-message.ts", mode: 0o644,
+           sha256: "9261e433c782f354530105e1c9723a19798868f72fd1f5d68af3a4624ad7e446" },
+        #{ source: "main/pi/examples/extensions/session-name.ts", target: "lib/pi/examples/extensions/session-name.ts", mode: 0o644,
+           sha256: "a0b9fd94e2cc827931150cc409238b473da635ab1a1cddce633cae5937a3ae24" },
+        #{ source: "main/pi/examples/extensions/shutdown-command.ts", target: "lib/pi/examples/extensions/shutdown-command.ts", mode: 0o644,
+           sha256: "68dc7f9561aa9b1c0f39cae19c0f41d56171a99875972e5998de3caa75f96e09" },
+        #{ source: "main/pi/examples/extensions/snake.ts", target: "lib/pi/examples/extensions/snake.ts", mode: 0o644,
+           sha256: "3ef506ab52927e866fad096f83b7cbfd0eb50e1504dcabf1b1eb28a06745c937" },
+        #{ source: "main/pi/examples/extensions/space-invaders.ts", target: "lib/pi/examples/extensions/space-invaders.ts", mode: 0o644,
+           sha256: "43281ae25bea645d44db01234f24df80e2f866771d02de0b416ab32fb3883a1f" },
+        #{ source: "main/pi/examples/extensions/ssh.ts", target: "lib/pi/examples/extensions/ssh.ts", mode: 0o644,
+           sha256: "c03bdef919457013e3798d10250f34255742fd3dc79885ac3d321b34f6a1149d" },
+        #{ source: "main/pi/examples/extensions/status-line.ts", target: "lib/pi/examples/extensions/status-line.ts", mode: 0o644,
+           sha256: "26e27b1158e980551f63f46e55dad055ac613779c2b8c39df4cddc11be26103d" },
+        #{ source: "main/pi/examples/extensions/structured-output.ts", target: "lib/pi/examples/extensions/structured-output.ts", mode: 0o644,
+           sha256: "72a3a665ce3de1419c837db6eb8a0e7a890310c6e02e4d59c454e5c9514c15ec" },
+        #{ source: "main/pi/examples/extensions/subagent/README.md", target: "lib/pi/examples/extensions/subagent/README.md", mode: 0o644,
+           sha256: "f911b3a0d74675f2c6daa44e00ad91d92ae0254ed3053fb82eccc637330e1283" },
+        #{ source: "main/pi/examples/extensions/subagent/agents.ts", target: "lib/pi/examples/extensions/subagent/agents.ts", mode: 0o644,
+           sha256: "cc85ecd33b89aa575bea3d2a9a9da7654a6305da4de02e5041aa5342a1de29b4" },
+        #{ source: "main/pi/examples/extensions/subagent/agents/planner.md", target: "lib/pi/examples/extensions/subagent/agents/planner.md", mode: 0o644,
+           sha256: "452f21f65957753cec3b0772004209c108071be168e627fffd7191234c0ce64e" },
+        #{ source: "main/pi/examples/extensions/subagent/agents/reviewer.md", target: "lib/pi/examples/extensions/subagent/agents/reviewer.md", mode: 0o644,
+           sha256: "b5c3f13b67207e8e32de631f8cd52a373d9b956028e2f8c1fd8b737b5f239265" },
+        #{ source: "main/pi/examples/extensions/subagent/agents/scout.md", target: "lib/pi/examples/extensions/subagent/agents/scout.md", mode: 0o644,
+           sha256: "3b84e8e01c6e05c8dfbff1c845c0c6371f4f16350735d4d1dbd02bfa98b1d4e6" },
+        #{ source: "main/pi/examples/extensions/subagent/agents/worker.md", target: "lib/pi/examples/extensions/subagent/agents/worker.md", mode: 0o644,
+           sha256: "ca2b2298fcbd8bfafcfe61977dc8075001a64b9c4d8c289c3b5eaa896efe6238" },
+        #{ source: "main/pi/examples/extensions/subagent/index.ts", target: "lib/pi/examples/extensions/subagent/index.ts", mode: 0o644,
+           sha256: "3b738fd10c1aaadfb5f96d0c683481faad916cd88544677efd7280eb38f425fe" },
+        #{ source: "main/pi/examples/extensions/subagent/prompts/implement-and-review.md", target: "lib/pi/examples/extensions/subagent/prompts/implement-and-review.md", mode: 0o644,
+           sha256: "019ba4bf42d596ea03fc4564be5b2cc55a06227c95db19a4d5a5bb96697a75f9" },
+        #{ source: "main/pi/examples/extensions/subagent/prompts/implement.md", target: "lib/pi/examples/extensions/subagent/prompts/implement.md", mode: 0o644,
+           sha256: "65462de33c97ac1372cfed270dad9af164605b05028c069dd4c013ff9792675b" },
+        #{ source: "main/pi/examples/extensions/subagent/prompts/scout-and-plan.md", target: "lib/pi/examples/extensions/subagent/prompts/scout-and-plan.md", mode: 0o644,
+           sha256: "9506399391e0d2c71826c45f26cc332175dd964465f99a8bb880e109f8ed89f4" },
+        #{ source: "main/pi/examples/extensions/summarize.ts", target: "lib/pi/examples/extensions/summarize.ts", mode: 0o644,
+           sha256: "9c75e838071773d5bacce27ac8c5305160c56958018884f960c3db96b3d09368" },
+        #{ source: "main/pi/examples/extensions/system-prompt-header.ts", target: "lib/pi/examples/extensions/system-prompt-header.ts", mode: 0o644,
+           sha256: "aa97f1add4fe347b3fc37cd3709950a105b0db5d6cdaf19325b58a9fbfd05223" },
+        #{ source: "main/pi/examples/extensions/tic-tac-toe.ts", target: "lib/pi/examples/extensions/tic-tac-toe.ts", mode: 0o644,
+           sha256: "479597f4e76ef1eae3dae71ec9d5c26978c5b9221f950e3e134078c5b532314b" },
+        #{ source: "main/pi/examples/extensions/timed-confirm.ts", target: "lib/pi/examples/extensions/timed-confirm.ts", mode: 0o644,
+           sha256: "c35304599e6f07238ef5472efe9c3f2fef2a022f801750ed792ef9061c7de10f" },
+        #{ source: "main/pi/examples/extensions/titlebar-spinner.ts", target: "lib/pi/examples/extensions/titlebar-spinner.ts", mode: 0o644,
+           sha256: "ec56e7edf954966b5991bcad63141be1a09d17753cdd0c59efca1b9e649dadf2" },
+        #{ source: "main/pi/examples/extensions/todo.ts", target: "lib/pi/examples/extensions/todo.ts", mode: 0o644,
+           sha256: "b6e4d370c2b76daa1aab077dbb9437043bdb03666518354434623afc0db57166" },
+        #{ source: "main/pi/examples/extensions/tool-override.ts", target: "lib/pi/examples/extensions/tool-override.ts", mode: 0o644,
+           sha256: "5d3cc796311a16132db810fcd9e437c16abd46978b723b9120734e57cc545726" },
+        #{ source: "main/pi/examples/extensions/tools.ts", target: "lib/pi/examples/extensions/tools.ts", mode: 0o644,
+           sha256: "4dd3951d0673aeea540ea8f46635047ca1ea9c92be56dc747650bce20eb160c0" },
+        #{ source: "main/pi/examples/extensions/trigger-compact.ts", target: "lib/pi/examples/extensions/trigger-compact.ts", mode: 0o644,
+           sha256: "92c3b831f9f7bf01a3e0a2df11f4e404f5ac5843000b94e8340a5d78f3cb3add" },
+        #{ source: "main/pi/examples/extensions/truncated-tool.ts", target: "lib/pi/examples/extensions/truncated-tool.ts", mode: 0o644,
+           sha256: "4ed5fbeb6da53eab8d1e04721d77961b8d1b3bf5e11d1512a17fc5a3f58f9955" },
+        #{ source: "main/pi/examples/extensions/widget-placement.ts", target: "lib/pi/examples/extensions/widget-placement.ts", mode: 0o644,
+           sha256: "ffabd33cf58efb908de2025aac4cb41daf13dbeee24b5ad8dcd0361b43eff6d7" },
+        #{ source: "main/pi/examples/extensions/with-deps/.gitignore", target: "lib/pi/examples/extensions/with-deps/.gitignore", mode: 0o644,
+           sha256: "4d56952b0fb13bf8f9b6c13a6d4c34a075bac3af447636a1df4335d7576e2f97" },
+        #{ source: "main/pi/examples/extensions/with-deps/index.ts", target: "lib/pi/examples/extensions/with-deps/index.ts", mode: 0o644,
+           sha256: "8d4dbc7028c891eac7f0386d25eecea3e9ac0de7fd841b5bb08137e2ec5ab443" },
+        #{ source: "main/pi/examples/extensions/with-deps/package-lock.json", target: "lib/pi/examples/extensions/with-deps/package-lock.json", mode: 0o644,
+           sha256: "66e3532857c9145a29d74021f13bfd515b464775e3f84096747189e46f1dfe97" },
+        #{ source: "main/pi/examples/extensions/with-deps/package.json", target: "lib/pi/examples/extensions/with-deps/package.json", mode: 0o644,
+           sha256: "255941730277396b0546a152b64c9be8dc8616e9113202ff81ba617ad15e91c4" },
+        #{ source: "main/pi/examples/extensions/working-indicator.ts", target: "lib/pi/examples/extensions/working-indicator.ts", mode: 0o644,
+           sha256: "e88295d765b78fd6aac0e93db92b183ee9b7103dc21577e3c5a42665dfad032c" },
+        #{ source: "main/pi/examples/extensions/working-message-test.ts", target: "lib/pi/examples/extensions/working-message-test.ts", mode: 0o644,
+           sha256: "91ee09378f13cce142a4314bec1bfe9784e10484c33463c4fe3139c391c117a0" },
+        #{ source: "main/pi/examples/rpc-client.ts", target: "lib/pi/examples/rpc-client.ts", mode: 0o644,
+           sha256: "b46b19c291fbcb59f8f9c539c2dbe12a43eae25e4d7528084844bbb79d27b6f7" },
+        #{ source: "main/pi/examples/rpc-extension-ui.ts", target: "lib/pi/examples/rpc-extension-ui.ts", mode: 0o644,
+           sha256: "09bc33c28fdc9032e3752a487d659ac21c6776c6f589c5b1ae0967ef4ee5f127" },
+        #{ source: "main/pi/examples/sdk/01-minimal.ts", target: "lib/pi/examples/sdk/01-minimal.ts", mode: 0o644,
+           sha256: "ffe5215e36f750f5ca7146cc7dfa5be36461292036d55b8db652b4d26331f351" },
+        #{ source: "main/pi/examples/sdk/02-custom-model.ts", target: "lib/pi/examples/sdk/02-custom-model.ts", mode: 0o644,
+           sha256: "dccc8dbdb1742ea00beeed87d302b8a23ac7f7e36a0b6a4c43b283c21be0ee55" },
+        #{ source: "main/pi/examples/sdk/03-custom-prompt.ts", target: "lib/pi/examples/sdk/03-custom-prompt.ts", mode: 0o644,
+           sha256: "d6db1f36a8e04466d9cbcc24ffb6fe0697858aa6c0e5013d5d90f12798314ef5" },
+        #{ source: "main/pi/examples/sdk/04-skills.ts", target: "lib/pi/examples/sdk/04-skills.ts", mode: 0o644,
+           sha256: "4cbf189bf88d14155281349d4d39cc236066d98095aae2d184d4ba7267ab5e42" },
+        #{ source: "main/pi/examples/sdk/05-tools.ts", target: "lib/pi/examples/sdk/05-tools.ts", mode: 0o644,
+           sha256: "5df5f9577b343d22d072d839341916536299c8191dc66c6c801a8bbddda23544" },
+        #{ source: "main/pi/examples/sdk/06-extensions.ts", target: "lib/pi/examples/sdk/06-extensions.ts", mode: 0o644,
+           sha256: "8e01ee409200b6516e9a6a0d9f3b3f61d2ad78aaaa18bd2ef9a8f77820d149b2" },
+        #{ source: "main/pi/examples/sdk/07-context-files.ts", target: "lib/pi/examples/sdk/07-context-files.ts", mode: 0o644,
+           sha256: "37bd18a284e961903d646e0cd1abdeda72cd968dbe4f40892e8d345a66916b36" },
+        #{ source: "main/pi/examples/sdk/08-prompt-templates.ts", target: "lib/pi/examples/sdk/08-prompt-templates.ts", mode: 0o644,
+           sha256: "a1b314988f1f5b2e61c80c19c79b68630a2f3c443008a200376286710a2744ed" },
+        #{ source: "main/pi/examples/sdk/09-api-keys-and-oauth.ts", target: "lib/pi/examples/sdk/09-api-keys-and-oauth.ts", mode: 0o644,
+           sha256: "d1d2b1bd4e57a3b2ab6f910068e8382759d12a94fbecf1332e96a9ebe4683eb4" },
+        #{ source: "main/pi/examples/sdk/10-settings.ts", target: "lib/pi/examples/sdk/10-settings.ts", mode: 0o644,
+           sha256: "558f82b9d0655935e6a28ec09f6c35f0f9593f8b034f25d45400c02bc77a778a" },
+        #{ source: "main/pi/examples/sdk/11-sessions.ts", target: "lib/pi/examples/sdk/11-sessions.ts", mode: 0o644,
+           sha256: "538c7028bf6823c84be930eb6745731f2c87ba05a45df2d86d93e66f01674576" },
+        #{ source: "main/pi/examples/sdk/12-full-control.ts", target: "lib/pi/examples/sdk/12-full-control.ts", mode: 0o644,
+           sha256: "3cf794d470ddbde4504ae965d24a23c42378d1ac86033522e46907ac05518343" },
+        #{ source: "main/pi/examples/sdk/13-session-runtime.ts", target: "lib/pi/examples/sdk/13-session-runtime.ts", mode: 0o644,
+           sha256: "0e9f408720a561a62b2630eccb18ece49f9dba567dc65494757da0a91608827a" },
+        #{ source: "main/pi/examples/sdk/14-codemode-mcp.ts", target: "lib/pi/examples/sdk/14-codemode-mcp.ts", mode: 0o644,
+           sha256: "02ae7714e22753a76b0f44033366d43529185b325b92d47bb5d1d0eb5ae34f5e" },
+        #{ source: "main/pi/examples/sdk/README.md", target: "lib/pi/examples/sdk/README.md", mode: 0o644,
+           sha256: "c1f9d8f58c300195d03a420222d2d5370d2884a18a4190a1d8c8ea9371c016ff" },
+        #{ source: "main/pi/examples/tsconfig.json", target: "lib/pi/examples/tsconfig.json", mode: 0o644,
+           sha256: "ac332e4faab53d196a632677f97396e5dabb2bf44e7e42d4d462c7eb1457ca61" },
+        #{ source: "main/pi/export-html/ansi-to-html.d.ts", target: "lib/pi/export-html/ansi-to-html.d.ts", mode: 0o644,
+           sha256: "57d23f45aef05ba2b1a52a8e6b0e1f1ba51b55ab0b54e8d42938a438b088977a" },
+        #{ source: "main/pi/export-html/ansi-to-html.d.ts.map", target: "lib/pi/export-html/ansi-to-html.d.ts.map", mode: 0o644,
+           sha256: "2847dc4f48c9ec5c8cd7aeacf1a6083ab4fc44f4b7e6667547b1549215c68576" },
+        #{ source: "main/pi/export-html/ansi-to-html.js", target: "lib/pi/export-html/ansi-to-html.js", mode: 0o644,
+           sha256: "44e5fd3585104e5e8cc0c7bea91a10efa7cb7e3b5bc5e2fb9090d5be4419df14" },
+        #{ source: "main/pi/export-html/ansi-to-html.js.map", target: "lib/pi/export-html/ansi-to-html.js.map", mode: 0o644,
+           sha256: "d24d23d27ad31a21a4fb133c6e7ba2dc2c876f28656ff1254b1af3da234dc51c" },
+        #{ source: "main/pi/export-html/index.d.ts", target: "lib/pi/export-html/index.d.ts", mode: 0o644,
+           sha256: "cd83b5d85e893b8ca18742b28038883dd7cf06c98a203e00d74040f78a6a656d" },
+        #{ source: "main/pi/export-html/index.d.ts.map", target: "lib/pi/export-html/index.d.ts.map", mode: 0o644,
+           sha256: "1c31d2cbab7deb811274f473316e1fed48bc2a93707f2f964db86ba2f200d522" },
+        #{ source: "main/pi/export-html/index.js", target: "lib/pi/export-html/index.js", mode: 0o644,
+           sha256: "9b7a893c46341d2557ba79dd88307797054577c8789665281d1dfb4134d347a3" },
+        #{ source: "main/pi/export-html/index.js.map", target: "lib/pi/export-html/index.js.map", mode: 0o644,
+           sha256: "f2bf1920c337f74e83454665e5a1af9621cd9e67fbcca9aade7231eb624bf9a7" },
+        #{ source: "main/pi/export-html/template.css", target: "lib/pi/export-html/template.css", mode: 0o644,
+           sha256: "c9d26cc314336192021d604c0f1a4a63115172b24d03500571379f9172c06fc9" },
+        #{ source: "main/pi/export-html/template.html", target: "lib/pi/export-html/template.html", mode: 0o644,
+           sha256: "47d208235b066c856dae69c60281a3b99d164b99be9b81153d880375c9327105" },
+        #{ source: "main/pi/export-html/template.js", target: "lib/pi/export-html/template.js", mode: 0o644,
+           sha256: "14fbe96123a82ee0f3efdd9f9634dd316c59810509fdbd8c5a5f41f3918c07a4" },
+        #{ source: "main/pi/export-html/tool-renderer.d.ts", target: "lib/pi/export-html/tool-renderer.d.ts", mode: 0o644,
+           sha256: "ea982244e87c3568ad7bbb28427b83a19506136b5a498c7b496454338483ffd4" },
+        #{ source: "main/pi/export-html/tool-renderer.d.ts.map", target: "lib/pi/export-html/tool-renderer.d.ts.map", mode: 0o644,
+           sha256: "8242378bb54d07feecaedf6587e85c0bca1bb9e1d8898004d2abdd04882e3798" },
+        #{ source: "main/pi/export-html/tool-renderer.js", target: "lib/pi/export-html/tool-renderer.js", mode: 0o644,
+           sha256: "447a90e3ba59d0a661635c74faddb8547f2d7c0ddf1f688f7ff6c09c2c8480b9" },
+        #{ source: "main/pi/export-html/tool-renderer.js.map", target: "lib/pi/export-html/tool-renderer.js.map", mode: 0o644,
+           sha256: "6153bac896d876a0dec6cd8257cf245961f1811e8c4933d39bdda431e9a227db" },
+        #{ source: "main/pi/export-html/vendor/highlight.min.js", target: "lib/pi/export-html/vendor/highlight.min.js", mode: 0o644,
+           sha256: "837a6fa5b0c736b52bbde2b2b6190f305da3fc9ed41681db5321507057b5c846" },
+        #{ source: "main/pi/export-html/vendor/marked-cjk-friendly.min.js", target: "lib/pi/export-html/vendor/marked-cjk-friendly.min.js", mode: 0o644,
+           sha256: "93d2c938754cb24eef5b9ffecc268a98ef6beeb75dad614b0e874176aeeba565" },
+        #{ source: "main/pi/export-html/vendor/marked.min.js", target: "lib/pi/export-html/vendor/marked.min.js", mode: 0o644,
+           sha256: "438eedfcf932a414d0d0bfeea32dc365c063563b8ca713b4687fc8f8b501e5e4" },
+        #{ source: "main/pi/native/linux/prebuilds/linux-x64/linux-platform-x11.node", target: "lib/pi/native/linux/prebuilds/linux-x64/linux-platform-x11.node", mode: 0o644,
+           sha256: "522d2550f7fa5d0d5bd204f45983f786ce2be9cf80f27f00179640d31d0689d6" },
+        #{ source: "main/pi/package.json", target: "lib/pi/package.json", mode: 0o644,
+           sha256: "18b422b7d80f2caa2551d253c0a8409e1caa54b954bfb7d18252e507bb8a0318" },
+        #{ source: "main/pi/photon_rs_bg.wasm", target: "lib/pi/photon_rs_bg.wasm", mode: 0o644,
+           sha256: "10468181565c56004c867f3a4af96f89a0ef5a63a72f2b5fb12c1f1992a3615c" },
+        #{ source: "main/pi/pi", target: "lib/pi/pi", mode: 0o755,
+           sha256: "6a2ac1c5b0d08b91ce6095591c1960b469d0665c7fc5f32812960a4a17ca0c57" },
+        #{ source: "main/pi/theme/dark.json", target: "lib/pi/theme/dark.json", mode: 0o644,
+           sha256: "e1f96982f8cb7d2a48eca7db03c9cb282cb1e14a243680cd855638ecd6a251b6" },
+        #{ source: "main/pi/theme/light.json", target: "lib/pi/theme/light.json", mode: 0o644,
+           sha256: "2dee6a4be7f765e7fd7728166b7ebf8c29e4ce313f8ec6b38ae50699e3abc2f3" },
+    ],
+};
+ctx.downloads = join_path(RUNTIME.paths.build, "downloads");
+
+fn is_acquired(ctx) {
+    for source in ctx.sources {
+        let path = join_path(ctx.downloads, source.archive);
+        if !is_file(path) { return needs_work(ctx, "download " + source.archive); }
+        verify_sha256(path, source.sha256);
+    }
+    ready(ctx)
+}
+
+fn acquire(ctx) {
+    mkdir(ctx.downloads);
+    for source in ctx.sources {
+        download(source.url, join_path(ctx.downloads, source.archive), source.sha256);
+    }
+    ctx
+}
+
+fn is_built(ctx) {
+    for file in ctx.files {
+        let path = join_path(ctx.unpacked, file.source);
+        if !is_file(path) { return needs_work(ctx, "unpack " + ctx.name + " " + ctx.version); }
+        verify_sha256(path, file.sha256);
+    }
+    ready(ctx)
+}
+
+fn build(ctx) {
+    if exists(ctx.unpacked) { rm(ctx.unpacked); }
+    mkdir(ctx.unpacked);
+    for source in ctx.sources {
+        let archive = join_path(ctx.downloads, source.archive);
+        verify_sha256(archive, source.sha256);
+        let destination = join_path(ctx.unpacked, source.destination);
+        if source.unpack {
+            mkdir(destination);
+            extract(archive, destination);
+        } else {
+            mkdir(dirname(destination));
+            copy_file(archive, destination);
+        }
+    }
+    ctx
+}
+
+fn is_installed(ctx) {
+    for file in ctx.files {
+        let path = join_path(ctx.package_root, file.target);
+        if !is_file(path) { return needs_work(ctx, "install " + ctx.name + " " + ctx.version); }
+        verify_sha256(path, file.sha256);
+    }
+    let launcher = join_path(ctx.package_root, "bin/pi");
+    if !is_file(launcher) { return needs_work(ctx, "install " + ctx.name + " " + ctx.version); }
+    verify_sha256(launcher, LAUNCHER_SHA256);
+    ctx.outputs["package"] = ctx.package_root;
+    ready(ctx)
+}
+
+fn install(ctx) {
+    if exists(ctx.package_root) { rm(ctx.package_root); }
+    for file in ctx.files {
+        let path = join_path(ctx.package_root, file.target);
+        mkdir(dirname(path));
+        copy_file(join_path(ctx.unpacked, file.source), path);
+        chmod(path, file.mode);
+    }
+    let launcher = join_path(ctx.package_root, "bin/pi");
+    mkdir(dirname(launcher));
+    write_file(launcher, LAUNCHER);
+    chmod(launcher, 0o755);
+    ctx.outputs["package"] = ctx.package_root;
+    ctx
+}
+
+fn remove(ctx) {
+    if exists(ctx.package_root) { rm(ctx.package_root); }
+    ctx.outputs = #{};
+    ctx
+}
