@@ -1,5 +1,5 @@
 {
-  "commit": "0530995697d4d9f06dce9b3b540b912760240b08",
+  "commit": "69b295c0783770458fed85b35199f840aaa6ab07",
   "recipes": [
     {
       "about": {
@@ -12,10 +12,14 @@
           ]
         },
         "category": "development",
-        "details": "For LevitateOS only: this is a glibc build and AcornOS (musl) is not supported. Runs Antigravity, Google's agent-first desktop application for software development. It needs a Google account and network access to Google's services. It carries the desktop runtime (GTK, NSS, X11, GLib and the C library) inside its own package instead of using the host's, so the desktop image does not have to ship them; the package is about 600 MB. Its sandbox uses unprivileged user namespaces, since the setuid helper is not installed; a kernel without them stops it with an error. The program can check for newer versions through its bundled updater; updates are made by Recipe (recipe update antigravity), and the program's own update setting can be set to manual or none. The package is proprietary Google software.",
+        "details": "Runs Antigravity, Google's agent-first desktop application for software development. It needs a Google account and network access to Google's services. Its build is linked against glibc, and it was made and tried on LevitateOS. It carries the desktop runtime (GTK, NSS, X11, GLib and the C library) inside its own package instead of using the host's, so the desktop image does not have to ship them; the package is about 600 MB. Its sandbox uses unprivileged user namespaces, since the setuid helper is not installed; a kernel without them stops it with an error. The program can check for newer versions through its bundled updater; updates are made by Recipe (recipe update antigravity), and the program's own update setting can be set to manual or none. The package is proprietary Google software.",
         "homepage": "https://antigravity.google",
         "keeps": [],
         "kind": "app",
+        "libc": [
+          "glibc"
+        ],
+        "libc_carried": true,
         "license": "proprietary (Google terms; bundles Electron MIT, Chromium and Apache-2.0 parts)",
         "steps": {
           "acquire": "Downloads the pinned Antigravity tarball from Google's storage. Google publishes no checksum for it; the digest is of the bytes first downloaded.",
@@ -30,9 +34,9 @@
       "description": "Antigravity agent-first desktop application",
       "files": [
         {
-          "bytes": 104798,
+          "bytes": 104764,
           "path": "antigravity.rhai",
-          "sha256": "a744241fd7f7e2af96457b68fd3ab1abb9845ce77f8e5552ec92ddff14bafc63"
+          "sha256": "3ee35a6597dfb748e2e498e34a0a0da06907eb6d467c46a12e194824b6eabf7f"
         }
       ],
       "hooks": [
@@ -175,10 +179,13 @@
           ]
         },
         "category": "development",
-        "details": "Runs Anthropic's Claude Code coding agent in the terminal. Needs a Claude account or API key and network access to Anthropic. Proprietary software under Anthropic's Commercial Terms. Upstream updates itself; Recipe manages updates here, so set DISABLE_AUTOUPDATER=1 in your environment. This recipe does not change user environment. This build needs glibc.",
+        "details": "Runs Anthropic's Claude Code coding agent in the terminal. Needs a Claude account or API key and network access to Anthropic. Proprietary software under Anthropic's Commercial Terms. Upstream updates itself; Recipe manages updates here, so set DISABLE_AUTOUPDATER=1 in your environment. This recipe does not change user environment. Its build is linked against glibc, as LevitateOS has.",
         "homepage": "https://claude.com/product/claude-code",
         "keeps": [],
         "kind": "tool",
+        "libc": [
+          "glibc"
+        ],
         "license": "proprietary (Anthropic Commercial Terms, all rights reserved)",
         "steps": {
           "acquire": "Downloads the pinned file from Anthropic and checks it against the digest in Anthropic's signed release manifest.",
@@ -193,7 +200,7 @@
         {
           "bytes": 4816,
           "path": "claude-code.rhai",
-          "sha256": "518412d8e465b213e27bc4d2fbae46bf6c599fe25bf1e957a594626f28cd5a35"
+          "sha256": "96ebac1f40da797ba377fc9a40fd39e2b036549365e601617302edb26692d484"
         }
       ],
       "hooks": [
@@ -377,9 +384,13 @@
     {
       "about": {
         "category": "development",
-        "details": "The runtime upstream desktop builds carry: GTK 3, GLib, Pango, Cairo, HarfBuzz, fontconfig and FreeType, NSS and NSPR, X11 and xcb, xkbcommon, GBM and DRM, CUPS, ALSA, AT-SPI, D-Bus, libsecret and libnotify with the glibc they were built for, from a pinned Fedora package set. It adds the loader, iconv modules, one UTF-8 locale, compiled GSettings schemas and glycin's image loaders. Electron, Chromium and Zed packages name it under build_deps and carry what they load.",
+        "details": "The runtime upstream desktop builds carry: GTK 3, GLib, Pango, Cairo, HarfBuzz, fontconfig and FreeType, NSS and NSPR, X11 and xcb, xkbcommon, GBM and DRM, CUPS, ALSA, AT-SPI, D-Bus, libsecret and libnotify with the glibc they were built for, from a pinned Fedora package set. Its build is linked against glibc, as LevitateOS has. It adds the loader, iconv modules, one UTF-8 locale, compiled GSettings schemas and glycin's image loaders. Electron, Chromium and Zed packages name it under build_deps and carry what they load.",
         "homepage": "https://fedoraproject.org",
         "kind": "library",
+        "libc": [
+          "glibc"
+        ],
+        "libc_carried": true,
         "license": "LGPL-2.1-or-later AND LGPL-3.0-or-later AND GPL-2.0-or-later AND MPL-2.0 AND MIT AND BSD-3-Clause AND Apache-2.0",
         "steps": {
           "acquire": "Downloads each pinned Fedora RPM and checks its SHA-256.",
@@ -392,9 +403,9 @@
       "description": "Libraries and data carried by upstream desktop builds",
       "files": [
         {
-          "bytes": 41785,
+          "bytes": 41884,
           "path": "desktop-runtime.rhai",
-          "sha256": "9999efab4edf00b4ea44e7fe70155c34a22f4bdf7edfdcea00862373a00bcd69"
+          "sha256": "b8532c7fb68e24f9dbe03f42dcc4531d898c6b549919ad5f0cc3d80e00e2bf87"
         }
       ],
       "hooks": [
@@ -950,10 +961,13 @@
           ]
         },
         "category": "development",
-        "details": "Runs the opencode coding agent in the terminal, with the model provider of your choice. Needs network access to that provider, and fetches a model catalogue and may download language servers. Upstream can update itself; Recipe manages updates here, so set \"update\": \"disable\" in opencode's global config. This recipe does not write user configuration. This build needs glibc.",
+        "details": "Runs the opencode coding agent in the terminal, with the model provider of your choice. Needs network access to that provider, and fetches a model catalogue and may download language servers. Upstream can update itself; Recipe manages updates here, so set \"update\": \"disable\" in opencode's global config. This recipe does not write user configuration. Its build is linked against glibc, as LevitateOS has.",
         "homepage": "https://opencode.ai",
         "keeps": [],
         "kind": "tool",
+        "libc": [
+          "glibc"
+        ],
         "license": "MIT",
         "steps": {
           "acquire": "Downloads the pinned upstream release archive and checks it against the digest GitHub publishes for it.",
@@ -968,7 +982,7 @@
         {
           "bytes": 4748,
           "path": "opencode.rhai",
-          "sha256": "ba0648089b2fad5483b23805136c8cc213327620f1123394b08030fc1851170f"
+          "sha256": "f4c28a5e9cc3bf6598d3af5ceab07d9405c40d3586509d4ad5a6291938d4d80f"
         }
       ],
       "hooks": [
@@ -1004,10 +1018,13 @@
           ]
         },
         "category": "development",
-        "details": "Runs pi, a minimal terminal coding agent, with the model provider of your choice. Needs network access to that provider. pi checks for newer versions and can update itself; Recipe manages updates here, so set PI_SKIP_VERSION_CHECK=1 in your environment. This recipe does not change user environment. This build needs glibc.",
+        "details": "Runs pi, a minimal terminal coding agent, with the model provider of your choice. Needs network access to that provider. pi checks for newer versions and can update itself; Recipe manages updates here, so set PI_SKIP_VERSION_CHECK=1 in your environment. This recipe does not change user environment. Its build is linked against glibc, as LevitateOS has; upstream publishes a glibc build only.",
         "homepage": "https://pi.dev",
         "keeps": [],
         "kind": "tool",
+        "libc": [
+          "glibc"
+        ],
         "license": "MIT",
         "steps": {
           "acquire": "Downloads the pinned upstream release archive and checks it against the digest in upstream's SHA256SUMS.",
@@ -1020,9 +1037,9 @@
       "description": "pi terminal coding agent",
       "files": [
         {
-          "bytes": 50480,
+          "bytes": 50542,
           "path": "pi.rhai",
-          "sha256": "76dfb36960f0ad09a5e53c0f46c0f7fe63ea70d47fe7e194fd158a48ec04bf02"
+          "sha256": "303d6acfa40fb67a1b60ee2bac3f302992a7cab7792423f9b69ce70a24e71662"
         }
       ],
       "hooks": [
