@@ -55,6 +55,10 @@ committed. A push whose index is behind the recipes fails the Index check.
 - Files beside a recipe that share its name belong to it and are fetched with
   it: `NAME.svg` is its icon.
 - [`repo.toml`](repo.toml) is what this source says about itself.
+- [`generators/`](generators) holds scripts that write pinned parts of a
+  recipe, not recipes: `desktop-runtime-pins.py` regenerates the Fedora pins
+  of [desktop-runtime](desktop-runtime.rhai) (`--check` only reports), and
+  `check-closure.sh` checks a published sdk with the host's `readelf`.
 - A recipe runs without defines the OS builder would have to pass. The recipes
   that build the OS images are not here; they are in the builder.
 
