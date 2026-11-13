@@ -1,5 +1,5 @@
 {
-  "commit": "08a1149899d75ab3e9561204bdafc2f1c003b07c",
+  "commit": "f0716fdb5059ad4de0ef206128477a54cd9a7dea",
   "recipes": [
     {
       "about": {
@@ -111,6 +111,59 @@
     },
     {
       "about": {
+        "adds": {
+          "menu": [],
+          "programs": [
+            "claude"
+          ]
+        },
+        "category": "development",
+        "details": "Runs Anthropic's Claude Code coding agent in the terminal. Needs a Claude account or API key and network access to Anthropic. Proprietary software under Anthropic's Commercial Terms. Upstream updates itself; Recipe manages updates here, so set DISABLE_AUTOUPDATER=1 in your environment. This recipe does not change user environment. This build needs glibc.",
+        "homepage": "https://claude.com/product/claude-code",
+        "keeps": [],
+        "kind": "tool",
+        "license": "proprietary (Anthropic Commercial Terms, all rights reserved)",
+        "steps": {
+          "acquire": "Downloads the pinned file from Anthropic and checks it against the digest in Anthropic's signed release manifest.",
+          "build": "Copies the file into place and checks it against its digest; nothing is compiled.",
+          "install": "Puts the claude command in bin."
+        }
+      },
+      "build_deps": [],
+      "deps": [],
+      "description": "Claude Code terminal coding agent",
+      "files": [
+        {
+          "bytes": 4816,
+          "path": "claude-code.rhai",
+          "sha256": "518412d8e465b213e27bc4d2fbae46bf6c599fe25bf1e957a594626f28cd5a35"
+        }
+      ],
+      "hooks": [
+        "acquire",
+        "build",
+        "install",
+        "remove"
+      ],
+      "name": "claude-code",
+      "needs": {
+        "inputs": {},
+        "memory_mib": 2048,
+        "network": [
+          "downloads.claude.ai:443"
+        ],
+        "network_max_bytes": 398458880,
+        "outputs": {
+          "package": "directory"
+        },
+        "storage_max_bytes": null,
+        "storage_max_objects": 16384,
+        "timeout_secs": 3600
+      },
+      "version": "2.1.323"
+    },
+    {
+      "about": {
         "category": "development",
         "details": "Configures projects and generates build rules inside the Recipe sandbox. This upstream Linux build uses the shared build image C library.",
         "homepage": "https://cmake.org",
@@ -155,6 +208,60 @@
         "timeout_secs": 1800
       },
       "version": "4.4.5"
+    },
+    {
+      "about": {
+        "adds": {
+          "menu": [],
+          "programs": [
+            "codex"
+          ]
+        },
+        "category": "development",
+        "details": "Runs OpenAI's Codex coding agent in the terminal: it reads and edits the files of a project and runs commands on request. It needs an OpenAI or ChatGPT account and network access to OpenAI. Upstream can check for a newer release at startup; Recipe manages updates here, so set check_for_update_on_startup = false in ~/.codex/config.toml. This recipe does not write user configuration.",
+        "homepage": "https://github.com/openai/codex",
+        "keeps": [],
+        "kind": "tool",
+        "license": "Apache-2.0",
+        "steps": {
+          "acquire": "Downloads the pinned upstream musl release archive and checks it against the digest GitHub publishes for it.",
+          "build": "Unpacks the static binary and checks it against its own digest; nothing is compiled.",
+          "install": "Puts the codex command in bin."
+        }
+      },
+      "build_deps": [],
+      "deps": [],
+      "description": "OpenAI Codex terminal coding agent",
+      "files": [
+        {
+          "bytes": 4533,
+          "path": "codex.rhai",
+          "sha256": "83cb80d45c7daa333dc1f05600fd0959b7ef43a1cf28425cc11ca2b4f7721359"
+        }
+      ],
+      "hooks": [
+        "acquire",
+        "build",
+        "install",
+        "remove"
+      ],
+      "name": "codex",
+      "needs": {
+        "inputs": {},
+        "memory_mib": 2048,
+        "network": [
+          "github.com:443",
+          "release-assets.githubusercontent.com:443"
+        ],
+        "network_max_bytes": 125829120,
+        "outputs": {
+          "package": "directory"
+        },
+        "storage_max_bytes": null,
+        "storage_max_objects": 16384,
+        "timeout_secs": 3600
+      },
+      "version": "0.167.2"
     },
     {
       "about": {
@@ -632,6 +739,59 @@
     },
     {
       "about": {
+        "adds": {
+          "menu": [],
+          "programs": [
+            "muse"
+          ]
+        },
+        "category": "development",
+        "details": "Runs Meta's Muse coding agent in the terminal. Needs a Meta account and network access to Meta. Upstream's launcher updates itself; Recipe manages updates here, so set MUSE_NO_AUTO_UPDATE=1 in your environment. This recipe does not change user environment.",
+        "homepage": "https://dev.meta.ai",
+        "keeps": [],
+        "kind": "tool",
+        "license": "proprietary (Meta terms)",
+        "steps": {
+          "acquire": "Downloads the pinned file from Meta and checks it against the digest in Meta's release manifest.",
+          "build": "Copies the file into place and checks it against its digest; nothing is compiled.",
+          "install": "Puts the muse command in bin."
+        }
+      },
+      "build_deps": [],
+      "deps": [],
+      "description": "Meta Muse terminal coding agent",
+      "files": [
+        {
+          "bytes": 4525,
+          "path": "muse.rhai",
+          "sha256": "17c8874fee930059c77ef76f3e9aa3040f926169c375d0674cabb5360bc6fcbf"
+        }
+      ],
+      "hooks": [
+        "acquire",
+        "build",
+        "install",
+        "remove"
+      ],
+      "name": "muse",
+      "needs": {
+        "inputs": {},
+        "memory_mib": 2048,
+        "network": [
+          "lookaside.facebook.com:443"
+        ],
+        "network_max_bytes": 503316480,
+        "outputs": {
+          "package": "directory"
+        },
+        "storage_max_bytes": null,
+        "storage_max_objects": 16384,
+        "timeout_secs": 3600
+      },
+      "version": "1.4.18-R8587.1"
+    },
+    {
+      "about": {
         "category": "development",
         "details": "Runs build rules generated by CMake and other build configuration tools inside the Recipe sandbox. This upstream Linux build uses the shared build image C and C++ libraries.",
         "homepage": "https://ninja-build.org",
@@ -677,6 +837,114 @@
         "timeout_secs": 600
       },
       "version": "1.13.2"
+    },
+    {
+      "about": {
+        "adds": {
+          "menu": [],
+          "programs": [
+            "opencode"
+          ]
+        },
+        "category": "development",
+        "details": "Runs the opencode coding agent in the terminal, with the model provider of your choice. Needs network access to that provider, and fetches a model catalogue and may download language servers. Upstream can update itself; Recipe manages updates here, so set \"update\": \"disable\" in opencode's global config. This recipe does not write user configuration. This build needs glibc.",
+        "homepage": "https://opencode.ai",
+        "keeps": [],
+        "kind": "tool",
+        "license": "MIT",
+        "steps": {
+          "acquire": "Downloads the pinned upstream release archive and checks it against the digest GitHub publishes for it.",
+          "build": "Unpacks the binary and checks it against its own digest; nothing is compiled.",
+          "install": "Puts the opencode command in bin."
+        }
+      },
+      "build_deps": [],
+      "deps": [],
+      "description": "opencode terminal coding agent",
+      "files": [
+        {
+          "bytes": 4748,
+          "path": "opencode.rhai",
+          "sha256": "ba0648089b2fad5483b23805136c8cc213327620f1123394b08030fc1851170f"
+        }
+      ],
+      "hooks": [
+        "acquire",
+        "build",
+        "install",
+        "remove"
+      ],
+      "name": "opencode",
+      "needs": {
+        "inputs": {},
+        "memory_mib": 2048,
+        "network": [
+          "github.com:443",
+          "release-assets.githubusercontent.com:443"
+        ],
+        "network_max_bytes": 83886080,
+        "outputs": {
+          "package": "directory"
+        },
+        "storage_max_bytes": null,
+        "storage_max_objects": 16384,
+        "timeout_secs": 3600
+      },
+      "version": "1.19.5"
+    },
+    {
+      "about": {
+        "adds": {
+          "menu": [],
+          "programs": [
+            "pi"
+          ]
+        },
+        "category": "development",
+        "details": "Runs pi, a minimal terminal coding agent, with the model provider of your choice. Needs network access to that provider. pi checks for newer versions and can update itself; Recipe manages updates here, so set PI_SKIP_VERSION_CHECK=1 in your environment. This recipe does not change user environment. This build needs glibc.",
+        "homepage": "https://pi.dev",
+        "keeps": [],
+        "kind": "tool",
+        "license": "MIT",
+        "steps": {
+          "acquire": "Downloads the pinned upstream release archive and checks it against the digest in upstream's SHA256SUMS.",
+          "build": "Unpacks the release and checks every file against its own digest; nothing is compiled.",
+          "install": "Puts the program and its support files under lib/pi and a launcher in bin."
+        }
+      },
+      "build_deps": [],
+      "deps": [],
+      "description": "pi terminal coding agent",
+      "files": [
+        {
+          "bytes": 50480,
+          "path": "pi.rhai",
+          "sha256": "76dfb36960f0ad09a5e53c0f46c0f7fe63ea70d47fe7e194fd158a48ec04bf02"
+        }
+      ],
+      "hooks": [
+        "acquire",
+        "build",
+        "install",
+        "remove"
+      ],
+      "name": "pi",
+      "needs": {
+        "inputs": {},
+        "memory_mib": 2048,
+        "network": [
+          "github.com:443",
+          "release-assets.githubusercontent.com:443"
+        ],
+        "network_max_bytes": 62914560,
+        "outputs": {
+          "package": "directory"
+        },
+        "storage_max_bytes": null,
+        "storage_max_objects": 16384,
+        "timeout_secs": 3600
+      },
+      "version": "1.5.2"
     },
     {
       "about": {
