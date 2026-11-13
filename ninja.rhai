@@ -56,7 +56,12 @@ fn check_payload(ctx, root) {
         return needs_work(ctx, "missing " + ctx.name + " toolchain");
     }
     verify_sha256(ctx.manifest, ctx.manifest_sha256);
-    exec_checked("sha256sum", ["--check", "--status", ctx.manifest], #{ cwd: root });
+    for line in read_file(ctx.manifest).split("\n") {
+        if line.trim() == "" { continue; }
+        let hex = line.sub_string(0, 64);
+        let path = line.sub_string(66);
+        verify_sha256(join_path(root, path), hex);
+    }
     ready(ctx)
 }
 
