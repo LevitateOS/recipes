@@ -8,7 +8,7 @@
 // `cargo xtask base groups levitate` (glibc: Fedora RPMs) and
 // `cargo xtask base groups acorn` (musl: Alpine APKs) from the seeds below. A
 // package more than one group needs belongs to desktop-libs.
-const RECIPE_API = 2;
+const RECIPE_API = 3;
 const NEEDS = #{
     outputs: #{ system: "directory" },
     network: ["dl.fedoraproject.org:443", "dl-cdn.alpinelinux.org:443"],
@@ -22,7 +22,7 @@ const ABOUT = #{
     kind: "system",
     category: "utilities",
     libc: ["glibc", "musl"],
-    systems: ["levitate", "acorn"],
+    systems: ["levitateos", "acornos"],
     details: "The desktop's network applet and settings (Plasma's on LevitateOS, nm-applet on AcornOS) and NetworkManager's OpenVPN support.",
     homepage: "https://networkmanager.dev",
     license: "GPL-2.0-or-later AND LGPL-2.1-or-later",
@@ -63,15 +63,15 @@ let ctx = #{
 // 2026-11-10): 7 packages, 3585759 bytes. Licences are each package's own.
 const RPM_PINNED_ON = "2026-11-10";
 const RPM_PINNED_BYTES = 3585759;
-// [name, file, URL, SHA-256, bytes, licence]
+// [name, file, URL, SHA-256, bytes, licence, var/ kept as state seeds]
 const RPM_PINS = [
-    ["NetworkManager-openvpn", "NetworkManager-openvpn-1.12.5-5.fc45.x86_64.rpm", "https://dl.fedoraproject.org/pub/fedora/linux/releases/45/Everything/x86_64/os/Packages/n/NetworkManager-openvpn-1.12.5-5.fc45.x86_64.rpm", "aa4e21e1573d96425c9bc3e90a04419eeeb4840794d8bdebc286d5f2d47c44ad", 318926, "GPL-2.0-or-later"],
-    ["kf6-modemmanager-qt", "kf6-modemmanager-qt-6.31.0-1.fc45.x86_64.rpm", "https://dl.fedoraproject.org/pub/fedora/linux/releases/45/Everything/x86_64/os/Packages/k/kf6-modemmanager-qt-6.31.0-1.fc45.x86_64.rpm", "7f6748ba8e71f28e2baeaf9702dc4fe69c071c2ac79b8334754cc9a0957916af", 273432, "GPL-2.0-only AND GPL-3.0-only AND LGPL-2.1-only AND LGPL-3.0-only AND (GPL-2.0-only OR GPL-3.0-only) AND (LGPL-2.1-only OR LGPL-3.0-only)"],
-    ["openvpn", "openvpn-2.7.9-1.fc45.x86_64.rpm", "https://dl.fedoraproject.org/pub/fedora/linux/updates/45/Everything/x86_64/Packages/o/openvpn-2.7.9-1.fc45.x86_64.rpm", "ba38ed093cc75518e1219fc6ac74d7aea179bea2b88b747910b27ecbbd6cea8d", 749439, "GPL-2.0-only"],
-    ["pkcs11-helper", "pkcs11-helper-1.30.0-8.fc45.x86_64.rpm", "https://dl.fedoraproject.org/pub/fedora/linux/releases/45/Everything/x86_64/os/Packages/p/pkcs11-helper-1.30.0-8.fc45.x86_64.rpm", "ebf52773737eb613c0fa58db2725cfa6b0b09bec764c3fd776a666d74778c9d7", 70967, "GPL-2.0-only OR BSD-3-Clause"],
-    ["plasma-nm", "plasma-nm-6.8.2-2.fc45.x86_64.rpm", "https://dl.fedoraproject.org/pub/fedora/linux/updates/45/Everything/x86_64/Packages/p/plasma-nm-6.8.2-2.fc45.x86_64.rpm", "068c41a84c8a735002e704186b7d6f5fe84f3b410458a3cae56ccd4bec93b38d", 1815364, "BSD-3-Clause AND CC0-1.0 AND GPL-2.0-only AND GPL-2.0-or-later AND GPL-3.0-only AND LGPL-2.0-or-later AND LGPL-2.1-only AND LGPL-3.0-only AND (GPL-2.0-only OR GPL-3.0-only) AND (LGPL-2.1-only OR LGPL-3.0-only)"],
-    ["plasma-nm-openvpn", "plasma-nm-openvpn-6.8.2-2.fc45.x86_64.rpm", "https://dl.fedoraproject.org/pub/fedora/linux/updates/45/Everything/x86_64/Packages/p/plasma-nm-openvpn-6.8.2-2.fc45.x86_64.rpm", "1689cbcee1a76397432e85990e49abe5508bf5ef938fd25533cde877fd59af6a", 276040, "BSD-3-Clause AND CC0-1.0 AND GPL-2.0-only AND GPL-2.0-or-later AND GPL-3.0-only AND LGPL-2.0-or-later AND LGPL-2.1-only AND LGPL-3.0-only AND (GPL-2.0-only OR GPL-3.0-only) AND (LGPL-2.1-only OR LGPL-3.0-only)"],
-    ["qtkeychain-qt6", "qtkeychain-qt6-0.17.0-1.fc45.x86_64.rpm", "https://dl.fedoraproject.org/pub/fedora/linux/releases/45/Everything/x86_64/os/Packages/q/qtkeychain-qt6-0.17.0-1.fc45.x86_64.rpm", "69fd8af41d0e683e538a8f5d1467271c2248960249d81ecabd29bdf90a35d7ad", 81591, "BSD-3-Clause"],
+    ["NetworkManager-openvpn", "NetworkManager-openvpn-1.12.5-5.fc45.x86_64.rpm", "https://dl.fedoraproject.org/pub/fedora/linux/releases/45/Everything/x86_64/os/Packages/n/NetworkManager-openvpn-1.12.5-5.fc45.x86_64.rpm", "aa4e21e1573d96425c9bc3e90a04419eeeb4840794d8bdebc286d5f2d47c44ad", 318926, "GPL-2.0-or-later", false],
+    ["kf6-modemmanager-qt", "kf6-modemmanager-qt-6.31.0-1.fc45.x86_64.rpm", "https://dl.fedoraproject.org/pub/fedora/linux/releases/45/Everything/x86_64/os/Packages/k/kf6-modemmanager-qt-6.31.0-1.fc45.x86_64.rpm", "7f6748ba8e71f28e2baeaf9702dc4fe69c071c2ac79b8334754cc9a0957916af", 273432, "GPL-2.0-only AND GPL-3.0-only AND LGPL-2.1-only AND LGPL-3.0-only AND (GPL-2.0-only OR GPL-3.0-only) AND (LGPL-2.1-only OR LGPL-3.0-only)", false],
+    ["openvpn", "openvpn-2.7.9-1.fc45.x86_64.rpm", "https://dl.fedoraproject.org/pub/fedora/linux/updates/45/Everything/x86_64/Packages/o/openvpn-2.7.9-1.fc45.x86_64.rpm", "ba38ed093cc75518e1219fc6ac74d7aea179bea2b88b747910b27ecbbd6cea8d", 749439, "GPL-2.0-only", false],
+    ["pkcs11-helper", "pkcs11-helper-1.30.0-8.fc45.x86_64.rpm", "https://dl.fedoraproject.org/pub/fedora/linux/releases/45/Everything/x86_64/os/Packages/p/pkcs11-helper-1.30.0-8.fc45.x86_64.rpm", "ebf52773737eb613c0fa58db2725cfa6b0b09bec764c3fd776a666d74778c9d7", 70967, "GPL-2.0-only OR BSD-3-Clause", false],
+    ["plasma-nm", "plasma-nm-6.8.2-2.fc45.x86_64.rpm", "https://dl.fedoraproject.org/pub/fedora/linux/updates/45/Everything/x86_64/Packages/p/plasma-nm-6.8.2-2.fc45.x86_64.rpm", "068c41a84c8a735002e704186b7d6f5fe84f3b410458a3cae56ccd4bec93b38d", 1815364, "BSD-3-Clause AND CC0-1.0 AND GPL-2.0-only AND GPL-2.0-or-later AND GPL-3.0-only AND LGPL-2.0-or-later AND LGPL-2.1-only AND LGPL-3.0-only AND (GPL-2.0-only OR GPL-3.0-only) AND (LGPL-2.1-only OR LGPL-3.0-only)", false],
+    ["plasma-nm-openvpn", "plasma-nm-openvpn-6.8.2-2.fc45.x86_64.rpm", "https://dl.fedoraproject.org/pub/fedora/linux/updates/45/Everything/x86_64/Packages/p/plasma-nm-openvpn-6.8.2-2.fc45.x86_64.rpm", "1689cbcee1a76397432e85990e49abe5508bf5ef938fd25533cde877fd59af6a", 276040, "BSD-3-Clause AND CC0-1.0 AND GPL-2.0-only AND GPL-2.0-or-later AND GPL-3.0-only AND LGPL-2.0-or-later AND LGPL-2.1-only AND LGPL-3.0-only AND (GPL-2.0-only OR GPL-3.0-only) AND (LGPL-2.1-only OR LGPL-3.0-only)", false],
+    ["qtkeychain-qt6", "qtkeychain-qt6-0.17.0-1.fc45.x86_64.rpm", "https://dl.fedoraproject.org/pub/fedora/linux/releases/45/Everything/x86_64/os/Packages/q/qtkeychain-qt6-0.17.0-1.fc45.x86_64.rpm", "69fd8af41d0e683e538a8f5d1467271c2248960249d81ecabd29bdf90a35d7ad", 81591, "BSD-3-Clause", false],
 ];
 // END GENERATED PINS glibc
 
@@ -81,18 +81,18 @@ const RPM_PINS = [
 // 2026-11-13): 10 packages, 723638 bytes. Licences are each package's own.
 const APK_PINNED_ON = "2026-11-13";
 const APK_PINNED_BYTES = 723638;
-// [name, file, URL, SHA-256, bytes, licence]
+// [name, file, URL, SHA-256, bytes, licence, var/ kept as state seeds]
 const APK_PINS = [
-    ["ayatana-ido", "ayatana-ido-0.10.4-r1.apk", "https://dl-cdn.alpinelinux.org/alpine/v3.24/community/x86_64/ayatana-ido-0.10.4-r1.apk", "31aa6e860c6b02a96de17899eadfbd7c75634b6cc77b3b19c69b92fbc5587406", 59658, "LGPL-2.1-only AND LGPL-3.0-only AND GPL-3.0-only"],
-    ["libayatana-appindicator", "libayatana-appindicator-0.5.94-r0.apk", "https://dl-cdn.alpinelinux.org/alpine/v3.24/community/x86_64/libayatana-appindicator-0.5.94-r0.apk", "897f0b08b318b2820f340a85c6ce3a8b030c58ddee32b25581a1bc3695c2b91d", 23112, "LGPL-3.0-only"],
-    ["libayatana-indicator", "libayatana-indicator-0.9.4-r2.apk", "https://dl-cdn.alpinelinux.org/alpine/v3.24/community/x86_64/libayatana-indicator-0.9.4-r2.apk", "cc3f5ead925e2691ebf7fb6c8bf45ebe94bb63c4b13372229c40f6d5d15e23b5", 35435, "GPL-3.0-only"],
-    ["libdbusmenu-glib", "libdbusmenu-glib-16.04.0-r6.apk", "https://dl-cdn.alpinelinux.org/alpine/v3.24/community/x86_64/libdbusmenu-glib-16.04.0-r6.apk", "be1d19fbdbc5080951dc751d5e51add7e164e48d0a462ade0672407f9320c082", 52031, "GPL-3.0-or-later AND LGPL-2.1-or-later AND LGPL-3.0-or-later"],
-    ["libdbusmenu-gtk3", "libdbusmenu-gtk3-16.04.0-r6.apk", "https://dl-cdn.alpinelinux.org/alpine/v3.24/community/x86_64/libdbusmenu-gtk3-16.04.0-r6.apk", "f6982f2f5fa8ba689a56428c4f44de41c7a42d58e7559f2663b3c1c19e2d22ba", 27394, "GPL-3.0-or-later AND LGPL-2.1-or-later AND LGPL-3.0-or-later"],
-    ["libnma", "libnma-1.10.6-r4.apk", "https://dl-cdn.alpinelinux.org/alpine/v3.24/community/x86_64/libnma-1.10.6-r4.apk", "e4f895876a739bc43a50d49ad45f040310c844b474b8a7166482672a424a8172", 94986, "LGPL-2.1-or-later"],
-    ["libnma-common", "libnma-common-1.10.6-r4.apk", "https://dl-cdn.alpinelinux.org/alpine/v3.24/community/x86_64/libnma-common-1.10.6-r4.apk", "3ae8e61379953f9bc99e00f6540a41f8444bf698ade5ba97ddf3ded9c64cddd4", 1915, "LGPL-2.1-or-later"],
-    ["mobile-broadband-provider-info", "mobile-broadband-provider-info-20251101-r1.apk", "https://dl-cdn.alpinelinux.org/alpine/v3.24/community/x86_64/mobile-broadband-provider-info-20251101-r1.apk", "cb1a23045086f251afb7e166a004419cd93b69baf31c6c48ac780b1517a289a7", 79086, "CC-PDDC"],
-    ["network-manager-applet", "network-manager-applet-1.36.0-r0.apk", "https://dl-cdn.alpinelinux.org/alpine/v3.24/community/x86_64/network-manager-applet-1.36.0-r0.apk", "84e230ac6867a618fa54a66cce2cdfd322508c7387fc3859f95d7fe21edeeb03", 348716, "GPL-2.0-or-later"],
-    ["networkmanager-openvpn", "networkmanager-openvpn-1.12.2-r1.apk", "https://dl-cdn.alpinelinux.org/alpine/v3.24/community/x86_64/networkmanager-openvpn-1.12.2-r1.apk", "ad0e6a120ae51052d7347188714281e4cd6c9a90efad9cabbdcd4a67b7ca8ce5", 1305, "GPL-2.0-or-later"],
+    ["ayatana-ido", "ayatana-ido-0.10.4-r1.apk", "https://dl-cdn.alpinelinux.org/alpine/v3.24/community/x86_64/ayatana-ido-0.10.4-r1.apk", "31aa6e860c6b02a96de17899eadfbd7c75634b6cc77b3b19c69b92fbc5587406", 59658, "LGPL-2.1-only AND LGPL-3.0-only AND GPL-3.0-only", false],
+    ["libayatana-appindicator", "libayatana-appindicator-0.5.94-r0.apk", "https://dl-cdn.alpinelinux.org/alpine/v3.24/community/x86_64/libayatana-appindicator-0.5.94-r0.apk", "897f0b08b318b2820f340a85c6ce3a8b030c58ddee32b25581a1bc3695c2b91d", 23112, "LGPL-3.0-only", false],
+    ["libayatana-indicator", "libayatana-indicator-0.9.4-r2.apk", "https://dl-cdn.alpinelinux.org/alpine/v3.24/community/x86_64/libayatana-indicator-0.9.4-r2.apk", "cc3f5ead925e2691ebf7fb6c8bf45ebe94bb63c4b13372229c40f6d5d15e23b5", 35435, "GPL-3.0-only", false],
+    ["libdbusmenu-glib", "libdbusmenu-glib-16.04.0-r6.apk", "https://dl-cdn.alpinelinux.org/alpine/v3.24/community/x86_64/libdbusmenu-glib-16.04.0-r6.apk", "be1d19fbdbc5080951dc751d5e51add7e164e48d0a462ade0672407f9320c082", 52031, "GPL-3.0-or-later AND LGPL-2.1-or-later AND LGPL-3.0-or-later", false],
+    ["libdbusmenu-gtk3", "libdbusmenu-gtk3-16.04.0-r6.apk", "https://dl-cdn.alpinelinux.org/alpine/v3.24/community/x86_64/libdbusmenu-gtk3-16.04.0-r6.apk", "f6982f2f5fa8ba689a56428c4f44de41c7a42d58e7559f2663b3c1c19e2d22ba", 27394, "GPL-3.0-or-later AND LGPL-2.1-or-later AND LGPL-3.0-or-later", false],
+    ["libnma", "libnma-1.10.6-r4.apk", "https://dl-cdn.alpinelinux.org/alpine/v3.24/community/x86_64/libnma-1.10.6-r4.apk", "e4f895876a739bc43a50d49ad45f040310c844b474b8a7166482672a424a8172", 94986, "LGPL-2.1-or-later", false],
+    ["libnma-common", "libnma-common-1.10.6-r4.apk", "https://dl-cdn.alpinelinux.org/alpine/v3.24/community/x86_64/libnma-common-1.10.6-r4.apk", "3ae8e61379953f9bc99e00f6540a41f8444bf698ade5ba97ddf3ded9c64cddd4", 1915, "LGPL-2.1-or-later", false],
+    ["mobile-broadband-provider-info", "mobile-broadband-provider-info-20251101-r1.apk", "https://dl-cdn.alpinelinux.org/alpine/v3.24/community/x86_64/mobile-broadband-provider-info-20251101-r1.apk", "cb1a23045086f251afb7e166a004419cd93b69baf31c6c48ac780b1517a289a7", 79086, "CC-PDDC", false],
+    ["network-manager-applet", "network-manager-applet-1.36.0-r0.apk", "https://dl-cdn.alpinelinux.org/alpine/v3.24/community/x86_64/network-manager-applet-1.36.0-r0.apk", "84e230ac6867a618fa54a66cce2cdfd322508c7387fc3859f95d7fe21edeeb03", 348716, "GPL-2.0-or-later", false],
+    ["networkmanager-openvpn", "networkmanager-openvpn-1.12.2-r1.apk", "https://dl-cdn.alpinelinux.org/alpine/v3.24/community/x86_64/networkmanager-openvpn-1.12.2-r1.apk", "ad0e6a120ae51052d7347188714281e4cd6c9a90efad9cabbdcd4a67b7ca8ce5", 1305, "GPL-2.0-or-later", false],
 ];
 // END GENERATED PINS musl
 
@@ -179,9 +179,11 @@ fn is_built(ctx) {
 }
 
 // Unpacks every package into one system tree, natively, without running any
-// of its scripts. Paths a system package does not own (per-machine and
-// run-time data: var, run, tmp and the like) are left out; the system makes
-// them at boot. Owners stay names, resolved in the root the group is written
+// of its scripts. Paths a system package does not own (run-time data: run,
+// tmp and the like) are left out. Under var/, only what a package needs and
+// nothing at boot makes (pin[6]: it ships no tmpfiles.d, and AcornOS runs
+// none) is kept, as state seeds: created where missing, never owned or
+// removed. Owners stay names, resolved in the root the group is written
 // into, after the accounts it needs are made there: those in its own
 // usr/lib/sysusers.d (Fedora packages ship them) and ACCOUNTS_* above.
 fn build(ctx) {
@@ -190,23 +192,30 @@ fn build(ctx) {
     if exists(ctx.system) { rm(ctx.system); }
     mkdir(ctx.system);
     let done = 0;
-    for pin in ctx.pins {
-        progress(done, ctx.pins.len(), "packages");
-        let archive = archive_of(ctx, pin);
-        verify_sha256(archive, pin[3]);
-        if ctx.format == "apk" {
-            target_extract_apk(archive, ctx.system);
-        } else {
-            target_extract_rpm(archive, ctx.system);
+    // Packages whose var/ is not kept first, then the var/ they left, then
+    // the packages whose var/ is kept.
+    for seeds in [false, true] {
+        for pin in ctx.pins {
+            if pin[6] != seeds { continue; }
+            progress(done, ctx.pins.len(), "packages");
+            let archive = archive_of(ctx, pin);
+            verify_sha256(archive, pin[3]);
+            if ctx.format == "apk" {
+                target_extract_apk(archive, ctx.system);
+            } else {
+                target_extract_rpm(archive, ctx.system);
+            }
+            done += 1;
         }
-        done += 1;
+        let state = join_path(ctx.system, "var");
+        if !seeds && exists(state) { rm(state); }
     }
     progress(done, ctx.pins.len(), "packages");
-    for dir in ["var", "run", "tmp", "boot", "home", "root", "proc", "sys", "dev", "lost+found"] {
+    for dir in ["run", "tmp", "boot", "home", "root", "proc", "sys", "dev", "lost+found", "var/run", "var/tmp", "var/lock"] {
         let path = join_path(ctx.system, dir);
         if exists(path) { rm(path); }
     }
-    target_finalize(ctx.system, #{ owners: "apply", accounts: ctx.accounts });
+    target_finalize(ctx.system, #{ owners: "apply", seed: "var", accounts: ctx.accounts });
     write_file(ctx.record, ctx.pins_record);
     ctx
 }

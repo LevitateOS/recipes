@@ -8,7 +8,7 @@
 // `cargo xtask base groups levitate` (glibc: Fedora RPMs) and
 // `cargo xtask base groups acorn` (musl: Alpine APKs) from the seeds below. A
 // package more than one group needs belongs to desktop-libs.
-const RECIPE_API = 2;
+const RECIPE_API = 3;
 const NEEDS = #{
     outputs: #{ system: "directory" },
     network: ["dl.fedoraproject.org:443", "dl-cdn.alpinelinux.org:443"],
@@ -22,7 +22,7 @@ const ABOUT = #{
     kind: "app",
     category: "utilities",
     libc: ["musl"],
-    systems: ["acorn"],
+    systems: ["acornos"],
     details: "LXQt Archiver opens, makes and unpacks archives, with unzip and 7-Zip, which this group brings.",
     homepage: "https://github.com/lxqt/lxqt-archiver",
     license: "GPL-2.0-or-later",
@@ -70,11 +70,11 @@ const RPM_PINS = [];
 // 2026-11-13): 3 packages, 1229989 bytes. Licences are each package's own.
 const APK_PINNED_ON = "2026-11-13";
 const APK_PINNED_BYTES = 1229989;
-// [name, file, URL, SHA-256, bytes, licence]
+// [name, file, URL, SHA-256, bytes, licence, var/ kept as state seeds]
 const APK_PINS = [
-    ["7zip", "7zip-26.01-r0.apk", "https://dl-cdn.alpinelinux.org/alpine/v3.24/main/x86_64/7zip-26.01-r0.apk", "dbc049b4b2eb1f6651f10b8814ce62f3d7e5cebb7560746d20aa038e1c60b0e4", 917978, "LGPL-2.0-only"],
-    ["lxqt-archiver", "lxqt-archiver-1.4.0-r0.apk", "https://dl-cdn.alpinelinux.org/alpine/v3.24/community/x86_64/lxqt-archiver-1.4.0-r0.apk", "1bf7b46a64b5b3aeb4dde64ae02041f5f10f083450031817cec635cbad02d113", 196179, "LGPL-2.0-or-later"],
-    ["unzip", "unzip-6.0-r16.apk", "https://dl-cdn.alpinelinux.org/alpine/v3.24/main/x86_64/unzip-6.0-r16.apk", "e05e00290af872b3c8a313d6490ef53697f8b9921ef9eea999ff7d93643caf28", 115832, "custom"],
+    ["7zip", "7zip-26.01-r0.apk", "https://dl-cdn.alpinelinux.org/alpine/v3.24/main/x86_64/7zip-26.01-r0.apk", "dbc049b4b2eb1f6651f10b8814ce62f3d7e5cebb7560746d20aa038e1c60b0e4", 917978, "LGPL-2.0-only", false],
+    ["lxqt-archiver", "lxqt-archiver-1.4.0-r0.apk", "https://dl-cdn.alpinelinux.org/alpine/v3.24/community/x86_64/lxqt-archiver-1.4.0-r0.apk", "1bf7b46a64b5b3aeb4dde64ae02041f5f10f083450031817cec635cbad02d113", 196179, "LGPL-2.0-or-later", false],
+    ["unzip", "unzip-6.0-r16.apk", "https://dl-cdn.alpinelinux.org/alpine/v3.24/main/x86_64/unzip-6.0-r16.apk", "e05e00290af872b3c8a313d6490ef53697f8b9921ef9eea999ff7d93643caf28", 115832, "custom", false],
 ];
 // END GENERATED PINS musl
 
@@ -161,9 +161,11 @@ fn is_built(ctx) {
 }
 
 // Unpacks every package into one system tree, natively, without running any
-// of its scripts. Paths a system package does not own (per-machine and
-// run-time data: var, run, tmp and the like) are left out; the system makes
-// them at boot. Owners stay names, resolved in the root the group is written
+// of its scripts. Paths a system package does not own (run-time data: run,
+// tmp and the like) are left out. Under var/, only what a package needs and
+// nothing at boot makes (pin[6]: it ships no tmpfiles.d, and AcornOS runs
+// none) is kept, as state seeds: created where missing, never owned or
+// removed. Owners stay names, resolved in the root the group is written
 // into, after the accounts it needs are made there: those in its own
 // usr/lib/sysusers.d (Fedora packages ship them) and ACCOUNTS_* above.
 fn build(ctx) {
@@ -172,23 +174,30 @@ fn build(ctx) {
     if exists(ctx.system) { rm(ctx.system); }
     mkdir(ctx.system);
     let done = 0;
-    for pin in ctx.pins {
-        progress(done, ctx.pins.len(), "packages");
-        let archive = archive_of(ctx, pin);
-        verify_sha256(archive, pin[3]);
-        if ctx.format == "apk" {
-            target_extract_apk(archive, ctx.system);
-        } else {
-            target_extract_rpm(archive, ctx.system);
+    // Packages whose var/ is not kept first, then the var/ they left, then
+    // the packages whose var/ is kept.
+    for seeds in [false, true] {
+        for pin in ctx.pins {
+            if pin[6] != seeds { continue; }
+            progress(done, ctx.pins.len(), "packages");
+            let archive = archive_of(ctx, pin);
+            verify_sha256(archive, pin[3]);
+            if ctx.format == "apk" {
+                target_extract_apk(archive, ctx.system);
+            } else {
+                target_extract_rpm(archive, ctx.system);
+            }
+            done += 1;
         }
-        done += 1;
+        let state = join_path(ctx.system, "var");
+        if !seeds && exists(state) { rm(state); }
     }
     progress(done, ctx.pins.len(), "packages");
-    for dir in ["var", "run", "tmp", "boot", "home", "root", "proc", "sys", "dev", "lost+found"] {
+    for dir in ["run", "tmp", "boot", "home", "root", "proc", "sys", "dev", "lost+found", "var/run", "var/tmp", "var/lock"] {
         let path = join_path(ctx.system, dir);
         if exists(path) { rm(path); }
     }
-    target_finalize(ctx.system, #{ owners: "apply", accounts: ctx.accounts });
+    target_finalize(ctx.system, #{ owners: "apply", seed: "var", accounts: ctx.accounts });
     write_file(ctx.record, ctx.pins_record);
     ctx
 }

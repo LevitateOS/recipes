@@ -8,7 +8,7 @@
 // `cargo xtask base groups levitate` (glibc: Fedora RPMs) and
 // `cargo xtask base groups acorn` (musl: Alpine APKs) from the seeds below. A
 // package more than one group needs belongs to desktop-libs.
-const RECIPE_API = 2;
+const RECIPE_API = 3;
 const NEEDS = #{
     outputs: #{ system: "directory" },
     network: ["dl.fedoraproject.org:443", "dl-cdn.alpinelinux.org:443"],
@@ -22,7 +22,7 @@ const ABOUT = #{
     kind: "app",
     category: "graphics",
     libc: ["glibc"],
-    systems: ["levitate"],
+    systems: ["levitateos"],
     details: "Spectacle takes screenshots and screen recordings of the whole screen, a window or a region.",
     homepage: "https://apps.kde.org/spectacle/",
     license: "GPL-2.0-or-later",
@@ -62,12 +62,12 @@ let ctx = #{
 // 2026-11-10): 4 packages, 3779435 bytes. Licences are each package's own.
 const RPM_PINNED_ON = "2026-11-10";
 const RPM_PINNED_BYTES = 3779435;
-// [name, file, URL, SHA-256, bytes, licence]
+// [name, file, URL, SHA-256, bytes, licence, var/ kept as state seeds]
 const RPM_PINS = [
-    ["accounts-qml-module-qt6", "accounts-qml-module-qt6-0.7^20231216.05e79eb-9.fc45.x86_64.rpm", "https://dl.fedoraproject.org/pub/fedora/linux/releases/45/Everything/x86_64/os/Packages/a/accounts-qml-module-qt6-0.7^20231216.05e79eb-9.fc45.x86_64.rpm", "8d013b57c8237a0f51a48722a490234c7d3e2cda32d8ffd93e1d7c38efd3f568", 91067, "LGPL-2.1-only"],
-    ["kf6-purpose", "kf6-purpose-6.31.0-1.fc45.x86_64.rpm", "https://dl.fedoraproject.org/pub/fedora/linux/releases/45/Everything/x86_64/os/Packages/k/kf6-purpose-6.31.0-1.fc45.x86_64.rpm", "73e5bc16adeccf25747d948663744c1c0ae51afeec17efb97a75c0d79ea8d0d6", 766564, "CC0-1.0 AND GPL-2.0-or-later AND LGPL-2.0-or-later AND LGPL-2.1-or-later"],
-    ["kquickimageeditor-qt6", "kquickimageeditor-qt6-0.7.0-2.fc45.x86_64.rpm", "https://dl.fedoraproject.org/pub/fedora/linux/releases/45/Everything/x86_64/os/Packages/k/kquickimageeditor-qt6-0.7.0-2.fc45.x86_64.rpm", "4abd06816f9b7b53762b7cb1f8e12232a15571b7a3acdd9532ad430cc212ae50", 557312, "BSD-2-Clause AND CC0-1.0 AND LGPL-2.0-or-later AND LGPL-2.1-only AND LGPL-2.1-or-later AND LGPL-3.0-only"],
-    ["spectacle", "spectacle-6.8.2-1.fc45.x86_64.rpm", "https://dl.fedoraproject.org/pub/fedora/linux/updates/45/Everything/x86_64/Packages/s/spectacle-6.8.2-1.fc45.x86_64.rpm", "90f7c4e4ec85a0623986eae19aa070c010d6ff82a8407588651ee4e3104c98dd", 2364492, "GPL-2.0-only"],
+    ["accounts-qml-module-qt6", "accounts-qml-module-qt6-0.7^20231216.05e79eb-9.fc45.x86_64.rpm", "https://dl.fedoraproject.org/pub/fedora/linux/releases/45/Everything/x86_64/os/Packages/a/accounts-qml-module-qt6-0.7^20231216.05e79eb-9.fc45.x86_64.rpm", "8d013b57c8237a0f51a48722a490234c7d3e2cda32d8ffd93e1d7c38efd3f568", 91067, "LGPL-2.1-only", false],
+    ["kf6-purpose", "kf6-purpose-6.31.0-1.fc45.x86_64.rpm", "https://dl.fedoraproject.org/pub/fedora/linux/releases/45/Everything/x86_64/os/Packages/k/kf6-purpose-6.31.0-1.fc45.x86_64.rpm", "73e5bc16adeccf25747d948663744c1c0ae51afeec17efb97a75c0d79ea8d0d6", 766564, "CC0-1.0 AND GPL-2.0-or-later AND LGPL-2.0-or-later AND LGPL-2.1-or-later", false],
+    ["kquickimageeditor-qt6", "kquickimageeditor-qt6-0.7.0-2.fc45.x86_64.rpm", "https://dl.fedoraproject.org/pub/fedora/linux/releases/45/Everything/x86_64/os/Packages/k/kquickimageeditor-qt6-0.7.0-2.fc45.x86_64.rpm", "4abd06816f9b7b53762b7cb1f8e12232a15571b7a3acdd9532ad430cc212ae50", 557312, "BSD-2-Clause AND CC0-1.0 AND LGPL-2.0-or-later AND LGPL-2.1-only AND LGPL-2.1-or-later AND LGPL-3.0-only", false],
+    ["spectacle", "spectacle-6.8.2-1.fc45.x86_64.rpm", "https://dl.fedoraproject.org/pub/fedora/linux/updates/45/Everything/x86_64/Packages/s/spectacle-6.8.2-1.fc45.x86_64.rpm", "90f7c4e4ec85a0623986eae19aa070c010d6ff82a8407588651ee4e3104c98dd", 2364492, "GPL-2.0-only", false],
 ];
 // END GENERATED PINS glibc
 
@@ -162,9 +162,11 @@ fn is_built(ctx) {
 }
 
 // Unpacks every package into one system tree, natively, without running any
-// of its scripts. Paths a system package does not own (per-machine and
-// run-time data: var, run, tmp and the like) are left out; the system makes
-// them at boot. Owners stay names, resolved in the root the group is written
+// of its scripts. Paths a system package does not own (run-time data: run,
+// tmp and the like) are left out. Under var/, only what a package needs and
+// nothing at boot makes (pin[6]: it ships no tmpfiles.d, and AcornOS runs
+// none) is kept, as state seeds: created where missing, never owned or
+// removed. Owners stay names, resolved in the root the group is written
 // into, after the accounts it needs are made there: those in its own
 // usr/lib/sysusers.d (Fedora packages ship them) and ACCOUNTS_* above.
 fn build(ctx) {
@@ -173,23 +175,30 @@ fn build(ctx) {
     if exists(ctx.system) { rm(ctx.system); }
     mkdir(ctx.system);
     let done = 0;
-    for pin in ctx.pins {
-        progress(done, ctx.pins.len(), "packages");
-        let archive = archive_of(ctx, pin);
-        verify_sha256(archive, pin[3]);
-        if ctx.format == "apk" {
-            target_extract_apk(archive, ctx.system);
-        } else {
-            target_extract_rpm(archive, ctx.system);
+    // Packages whose var/ is not kept first, then the var/ they left, then
+    // the packages whose var/ is kept.
+    for seeds in [false, true] {
+        for pin in ctx.pins {
+            if pin[6] != seeds { continue; }
+            progress(done, ctx.pins.len(), "packages");
+            let archive = archive_of(ctx, pin);
+            verify_sha256(archive, pin[3]);
+            if ctx.format == "apk" {
+                target_extract_apk(archive, ctx.system);
+            } else {
+                target_extract_rpm(archive, ctx.system);
+            }
+            done += 1;
         }
-        done += 1;
+        let state = join_path(ctx.system, "var");
+        if !seeds && exists(state) { rm(state); }
     }
     progress(done, ctx.pins.len(), "packages");
-    for dir in ["var", "run", "tmp", "boot", "home", "root", "proc", "sys", "dev", "lost+found"] {
+    for dir in ["run", "tmp", "boot", "home", "root", "proc", "sys", "dev", "lost+found", "var/run", "var/tmp", "var/lock"] {
         let path = join_path(ctx.system, dir);
         if exists(path) { rm(path); }
     }
-    target_finalize(ctx.system, #{ owners: "apply", accounts: ctx.accounts });
+    target_finalize(ctx.system, #{ owners: "apply", seed: "var", accounts: ctx.accounts });
     write_file(ctx.record, ctx.pins_record);
     ctx
 }

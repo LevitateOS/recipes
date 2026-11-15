@@ -8,7 +8,7 @@
 // `cargo xtask base groups levitate` (glibc: Fedora RPMs) and
 // `cargo xtask base groups acorn` (musl: Alpine APKs) from the seeds below. A
 // package more than one group needs belongs to desktop-libs.
-const RECIPE_API = 2;
+const RECIPE_API = 3;
 const NEEDS = #{
     outputs: #{ system: "directory" },
     network: ["dl.fedoraproject.org:443", "dl-cdn.alpinelinux.org:443"],
@@ -22,7 +22,7 @@ const ABOUT = #{
     kind: "system",
     category: "utilities",
     libc: ["glibc", "musl"],
-    systems: ["levitate", "acorn"],
+    systems: ["levitateos", "acornos"],
     details: "Hunspell and its English dictionaries, for spell checking in the programs that use it.",
     homepage: "https://hunspell.github.io",
     license: "LGPL-2.1-or-later",
@@ -63,11 +63,11 @@ let ctx = #{
 // 2026-11-10): 3 packages, 658702 bytes. Licences are each package's own.
 const RPM_PINNED_ON = "2026-11-10";
 const RPM_PINNED_BYTES = 658702;
-// [name, file, URL, SHA-256, bytes, licence]
+// [name, file, URL, SHA-256, bytes, licence, var/ kept as state seeds]
 const RPM_PINS = [
-    ["hunspell", "hunspell-1.7.6-1.fc45.x86_64.rpm", "https://dl.fedoraproject.org/pub/fedora/linux/updates/45/Everything/x86_64/Packages/h/hunspell-1.7.6-1.fc45.x86_64.rpm", "d0aef462490b0f533872e1c4906b108c026e5b6d8443a38f39272f110a324972", 475372, "LGPL-2.1-or-later OR GPL-2.0-or-later OR MPL-1.1"],
-    ["hunspell-en-US", "hunspell-en-US-0.20260225-3.fc45.noarch.rpm", "https://dl.fedoraproject.org/pub/fedora/linux/releases/45/Everything/x86_64/os/Packages/h/hunspell-en-US-0.20260225-3.fc45.noarch.rpm", "efb6564e75afab50bc1615565e2add0647516a46e67c4fd07f0276303d5a62ea", 175270, "LGPL-2.1-or-later AND LGPL-2.1-only AND BSD-3-Clause-Modification"],
-    ["hunspell-filesystem", "hunspell-filesystem-1.7.6-1.fc45.x86_64.rpm", "https://dl.fedoraproject.org/pub/fedora/linux/updates/45/Everything/x86_64/Packages/h/hunspell-filesystem-1.7.6-1.fc45.x86_64.rpm", "7882079824d8775dc603aca10081390fc7ee5225579c82b50e97c5b75a54b6e0", 8060, "LGPL-2.1-or-later OR GPL-2.0-or-later OR MPL-1.1"],
+    ["hunspell", "hunspell-1.7.6-1.fc45.x86_64.rpm", "https://dl.fedoraproject.org/pub/fedora/linux/updates/45/Everything/x86_64/Packages/h/hunspell-1.7.6-1.fc45.x86_64.rpm", "d0aef462490b0f533872e1c4906b108c026e5b6d8443a38f39272f110a324972", 475372, "LGPL-2.1-or-later OR GPL-2.0-or-later OR MPL-1.1", false],
+    ["hunspell-en-US", "hunspell-en-US-0.20260225-3.fc45.noarch.rpm", "https://dl.fedoraproject.org/pub/fedora/linux/releases/45/Everything/x86_64/os/Packages/h/hunspell-en-US-0.20260225-3.fc45.noarch.rpm", "efb6564e75afab50bc1615565e2add0647516a46e67c4fd07f0276303d5a62ea", 175270, "LGPL-2.1-or-later AND LGPL-2.1-only AND BSD-3-Clause-Modification", false],
+    ["hunspell-filesystem", "hunspell-filesystem-1.7.6-1.fc45.x86_64.rpm", "https://dl.fedoraproject.org/pub/fedora/linux/updates/45/Everything/x86_64/Packages/h/hunspell-filesystem-1.7.6-1.fc45.x86_64.rpm", "7882079824d8775dc603aca10081390fc7ee5225579c82b50e97c5b75a54b6e0", 8060, "LGPL-2.1-or-later OR GPL-2.0-or-later OR MPL-1.1", false],
 ];
 // END GENERATED PINS glibc
 
@@ -77,33 +77,33 @@ const RPM_PINS = [
 // 2026-11-13): 25 packages, 1362448 bytes. Licences are each package's own.
 const APK_PINNED_ON = "2026-11-13";
 const APK_PINNED_BYTES = 1362448;
-// [name, file, URL, SHA-256, bytes, licence]
+// [name, file, URL, SHA-256, bytes, licence, var/ kept as state seeds]
 const APK_PINS = [
-    ["hunspell", "hunspell-1.7.3-r0.apk", "https://dl-cdn.alpinelinux.org/alpine/v3.24/main/x86_64/hunspell-1.7.3-r0.apk", "bd98c4e5f93c07e491396dcd8b8a78840272f3064a7383659b8dbe207ecd48c0", 84238, "GPL-2.0-or-later OR LGPL-2.1-or-later OR MPL-1.1"],
-    ["hunspell-en", "hunspell-en-2020.12.07-r4.apk", "https://dl-cdn.alpinelinux.org/alpine/v3.24/main/x86_64/hunspell-en-2020.12.07-r4.apk", "7469bf74b34bdb13d5005bb1fe63668ba16bb0ed1347a4d70d832c390acda62e", 1365, "custom"],
-    ["hunspell-en-ag", "hunspell-en-ag-2020.12.07-r4.apk", "https://dl-cdn.alpinelinux.org/alpine/v3.24/main/x86_64/hunspell-en-ag-2020.12.07-r4.apk", "3fc00dcecf42682eaa3a1f7dca9ae8f402e9c3477ceeb24588941b3d88972334", 1673, "custom"],
-    ["hunspell-en-au", "hunspell-en-au-2020.12.07-r4.apk", "https://dl-cdn.alpinelinux.org/alpine/v3.24/main/x86_64/hunspell-en-au-2020.12.07-r4.apk", "aecef7fe7197e7d5e9c13b2f863a120e99552e5f9f29501a3a296c46e4eb6745", 194708, "custom"],
-    ["hunspell-en-bs", "hunspell-en-bs-2020.12.07-r4.apk", "https://dl-cdn.alpinelinux.org/alpine/v3.24/main/x86_64/hunspell-en-bs-2020.12.07-r4.apk", "9631e046d773d28fac992353d493b21c6ba9c28cccca8a5efa4fc2eadf876807", 1670, "custom"],
-    ["hunspell-en-bw", "hunspell-en-bw-2020.12.07-r4.apk", "https://dl-cdn.alpinelinux.org/alpine/v3.24/main/x86_64/hunspell-en-bw-2020.12.07-r4.apk", "d7e0f6de818b10c019511c679b11534bc979a8dfc38c5ace5d556a56e39ac235", 1673, "custom"],
-    ["hunspell-en-bz", "hunspell-en-bz-2020.12.07-r4.apk", "https://dl-cdn.alpinelinux.org/alpine/v3.24/main/x86_64/hunspell-en-bz-2020.12.07-r4.apk", "fdf1c8a37adbcdf0917f78f8596cae03a090fc80be2fa7124d1e607c01808b6a", 1673, "custom"],
-    ["hunspell-en-ca", "hunspell-en-ca-2020.12.07-r4.apk", "https://dl-cdn.alpinelinux.org/alpine/v3.24/main/x86_64/hunspell-en-ca-2020.12.07-r4.apk", "e012aa6b33f1dc5c838a8326581e4643cc69d933fd3bb1935c45b3807185e1e9", 193804, "custom"],
-    ["hunspell-en-dk", "hunspell-en-dk-2020.12.07-r4.apk", "https://dl-cdn.alpinelinux.org/alpine/v3.24/main/x86_64/hunspell-en-dk-2020.12.07-r4.apk", "5bfc28bd842e0efd5e48b824045c5a7b8fc4df94a00b37de52c5572d07f33a86", 1678, "custom"],
-    ["hunspell-en-gb", "hunspell-en-gb-2020.12.07-r4.apk", "https://dl-cdn.alpinelinux.org/alpine/v3.24/main/x86_64/hunspell-en-gb-2020.12.07-r4.apk", "07a6ae9f23e4dc1273da24e6e0e47d2275e8b437f3543fb4225434b7911ba0b3", 311672, "custom"],
-    ["hunspell-en-gh", "hunspell-en-gh-2020.12.07-r4.apk", "https://dl-cdn.alpinelinux.org/alpine/v3.24/main/x86_64/hunspell-en-gh-2020.12.07-r4.apk", "3caf0f181156994233dbb6eba0e05a0acddcb1cd83d27a2b1d956c0f328375b9", 1674, "custom"],
-    ["hunspell-en-hk", "hunspell-en-hk-2020.12.07-r4.apk", "https://dl-cdn.alpinelinux.org/alpine/v3.24/main/x86_64/hunspell-en-hk-2020.12.07-r4.apk", "0edb758cdc3a82a12404956dc7fc99a57e8e3c888cd3f91400d34ca54e855fa9", 1675, "custom"],
-    ["hunspell-en-ie", "hunspell-en-ie-2020.12.07-r4.apk", "https://dl-cdn.alpinelinux.org/alpine/v3.24/main/x86_64/hunspell-en-ie-2020.12.07-r4.apk", "4fc39ad86e3c70f388750118cce33bc916408bb147d7a707c0b51a7bc774687f", 1672, "custom"],
-    ["hunspell-en-in", "hunspell-en-in-2020.12.07-r4.apk", "https://dl-cdn.alpinelinux.org/alpine/v3.24/main/x86_64/hunspell-en-in-2020.12.07-r4.apk", "71da9963c377a2e39daa7a6074705a967417b45ad6530c6d594e4851e7c4239b", 1677, "custom"],
-    ["hunspell-en-jm", "hunspell-en-jm-2020.12.07-r4.apk", "https://dl-cdn.alpinelinux.org/alpine/v3.24/main/x86_64/hunspell-en-jm-2020.12.07-r4.apk", "e43239679113bc09803b093f885d5f662f0ff639a03ac487054ce53451e2ca7a", 1678, "custom"],
-    ["hunspell-en-na", "hunspell-en-na-2020.12.07-r4.apk", "https://dl-cdn.alpinelinux.org/alpine/v3.24/main/x86_64/hunspell-en-na-2020.12.07-r4.apk", "e44d42cb5bd2abdf0fac26f082667bcc8956f77f3fbd3585f44b37506d9d0ad9", 1673, "custom"],
-    ["hunspell-en-ng", "hunspell-en-ng-2020.12.07-r4.apk", "https://dl-cdn.alpinelinux.org/alpine/v3.24/main/x86_64/hunspell-en-ng-2020.12.07-r4.apk", "85f8f435fe79e9068adcb421c1d84e5b9762519aca27f82c7d1f3f35fa2edee2", 1669, "custom"],
-    ["hunspell-en-nz", "hunspell-en-nz-2020.12.07-r4.apk", "https://dl-cdn.alpinelinux.org/alpine/v3.24/main/x86_64/hunspell-en-nz-2020.12.07-r4.apk", "7a9da838de9e2a9e703ea1568ed74ceb511f9092a2ade3713ff6982079febf74", 1676, "custom"],
-    ["hunspell-en-ph", "hunspell-en-ph-2020.12.07-r4.apk", "https://dl-cdn.alpinelinux.org/alpine/v3.24/main/x86_64/hunspell-en-ph-2020.12.07-r4.apk", "db44406fe0c9475d1f825331befd808d752bc44936dd4c59f8d463a22e433a76", 1670, "custom"],
-    ["hunspell-en-sg", "hunspell-en-sg-2020.12.07-r4.apk", "https://dl-cdn.alpinelinux.org/alpine/v3.24/main/x86_64/hunspell-en-sg-2020.12.07-r4.apk", "f91f18cdf2d8f63e59344e781839039412d76839dbc1a5792f89520e0d57918e", 1674, "custom"],
-    ["hunspell-en-tt", "hunspell-en-tt-2020.12.07-r4.apk", "https://dl-cdn.alpinelinux.org/alpine/v3.24/main/x86_64/hunspell-en-tt-2020.12.07-r4.apk", "a1c7e683f3388257bb7f9cc40d27ed1c57cbc67fd9f6bee881f1dfa44badd307", 1669, "custom"],
-    ["hunspell-en-us", "hunspell-en-us-2020.12.07-r4.apk", "https://dl-cdn.alpinelinux.org/alpine/v3.24/main/x86_64/hunspell-en-us-2020.12.07-r4.apk", "70184eb80a7aadacdd4f0c6127b46404632d66e6e4ab89c82ffdba7ea4f0d5d1", 193914, "custom"],
-    ["hunspell-en-za", "hunspell-en-za-2020.12.07-r4.apk", "https://dl-cdn.alpinelinux.org/alpine/v3.24/main/x86_64/hunspell-en-za-2020.12.07-r4.apk", "a15eee71065cc37fa2b9d4b373a7d3cc645378888f190caddac83d17550e4487", 1677, "custom"],
-    ["hunspell-en-zw", "hunspell-en-zw-2020.12.07-r4.apk", "https://dl-cdn.alpinelinux.org/alpine/v3.24/main/x86_64/hunspell-en-zw-2020.12.07-r4.apk", "2c1b759b0caaa210c314c495882c249e944f644980d611eec1483de98fe49d92", 1679, "custom"],
-    ["libhunspell", "libhunspell-1.7.3-r0.apk", "https://dl-cdn.alpinelinux.org/alpine/v3.24/main/x86_64/libhunspell-1.7.3-r0.apk", "2063f6fdac221ff1ed97e5914c75f6551d462c6034b501782ae9f4d1d2a1e58e", 352617, "GPL-2.0-or-later OR LGPL-2.1-or-later OR MPL-1.1"],
+    ["hunspell", "hunspell-1.7.3-r0.apk", "https://dl-cdn.alpinelinux.org/alpine/v3.24/main/x86_64/hunspell-1.7.3-r0.apk", "bd98c4e5f93c07e491396dcd8b8a78840272f3064a7383659b8dbe207ecd48c0", 84238, "GPL-2.0-or-later OR LGPL-2.1-or-later OR MPL-1.1", false],
+    ["hunspell-en", "hunspell-en-2020.12.07-r4.apk", "https://dl-cdn.alpinelinux.org/alpine/v3.24/main/x86_64/hunspell-en-2020.12.07-r4.apk", "7469bf74b34bdb13d5005bb1fe63668ba16bb0ed1347a4d70d832c390acda62e", 1365, "custom", false],
+    ["hunspell-en-ag", "hunspell-en-ag-2020.12.07-r4.apk", "https://dl-cdn.alpinelinux.org/alpine/v3.24/main/x86_64/hunspell-en-ag-2020.12.07-r4.apk", "3fc00dcecf42682eaa3a1f7dca9ae8f402e9c3477ceeb24588941b3d88972334", 1673, "custom", false],
+    ["hunspell-en-au", "hunspell-en-au-2020.12.07-r4.apk", "https://dl-cdn.alpinelinux.org/alpine/v3.24/main/x86_64/hunspell-en-au-2020.12.07-r4.apk", "aecef7fe7197e7d5e9c13b2f863a120e99552e5f9f29501a3a296c46e4eb6745", 194708, "custom", false],
+    ["hunspell-en-bs", "hunspell-en-bs-2020.12.07-r4.apk", "https://dl-cdn.alpinelinux.org/alpine/v3.24/main/x86_64/hunspell-en-bs-2020.12.07-r4.apk", "9631e046d773d28fac992353d493b21c6ba9c28cccca8a5efa4fc2eadf876807", 1670, "custom", false],
+    ["hunspell-en-bw", "hunspell-en-bw-2020.12.07-r4.apk", "https://dl-cdn.alpinelinux.org/alpine/v3.24/main/x86_64/hunspell-en-bw-2020.12.07-r4.apk", "d7e0f6de818b10c019511c679b11534bc979a8dfc38c5ace5d556a56e39ac235", 1673, "custom", false],
+    ["hunspell-en-bz", "hunspell-en-bz-2020.12.07-r4.apk", "https://dl-cdn.alpinelinux.org/alpine/v3.24/main/x86_64/hunspell-en-bz-2020.12.07-r4.apk", "fdf1c8a37adbcdf0917f78f8596cae03a090fc80be2fa7124d1e607c01808b6a", 1673, "custom", false],
+    ["hunspell-en-ca", "hunspell-en-ca-2020.12.07-r4.apk", "https://dl-cdn.alpinelinux.org/alpine/v3.24/main/x86_64/hunspell-en-ca-2020.12.07-r4.apk", "e012aa6b33f1dc5c838a8326581e4643cc69d933fd3bb1935c45b3807185e1e9", 193804, "custom", false],
+    ["hunspell-en-dk", "hunspell-en-dk-2020.12.07-r4.apk", "https://dl-cdn.alpinelinux.org/alpine/v3.24/main/x86_64/hunspell-en-dk-2020.12.07-r4.apk", "5bfc28bd842e0efd5e48b824045c5a7b8fc4df94a00b37de52c5572d07f33a86", 1678, "custom", false],
+    ["hunspell-en-gb", "hunspell-en-gb-2020.12.07-r4.apk", "https://dl-cdn.alpinelinux.org/alpine/v3.24/main/x86_64/hunspell-en-gb-2020.12.07-r4.apk", "07a6ae9f23e4dc1273da24e6e0e47d2275e8b437f3543fb4225434b7911ba0b3", 311672, "custom", false],
+    ["hunspell-en-gh", "hunspell-en-gh-2020.12.07-r4.apk", "https://dl-cdn.alpinelinux.org/alpine/v3.24/main/x86_64/hunspell-en-gh-2020.12.07-r4.apk", "3caf0f181156994233dbb6eba0e05a0acddcb1cd83d27a2b1d956c0f328375b9", 1674, "custom", false],
+    ["hunspell-en-hk", "hunspell-en-hk-2020.12.07-r4.apk", "https://dl-cdn.alpinelinux.org/alpine/v3.24/main/x86_64/hunspell-en-hk-2020.12.07-r4.apk", "0edb758cdc3a82a12404956dc7fc99a57e8e3c888cd3f91400d34ca54e855fa9", 1675, "custom", false],
+    ["hunspell-en-ie", "hunspell-en-ie-2020.12.07-r4.apk", "https://dl-cdn.alpinelinux.org/alpine/v3.24/main/x86_64/hunspell-en-ie-2020.12.07-r4.apk", "4fc39ad86e3c70f388750118cce33bc916408bb147d7a707c0b51a7bc774687f", 1672, "custom", false],
+    ["hunspell-en-in", "hunspell-en-in-2020.12.07-r4.apk", "https://dl-cdn.alpinelinux.org/alpine/v3.24/main/x86_64/hunspell-en-in-2020.12.07-r4.apk", "71da9963c377a2e39daa7a6074705a967417b45ad6530c6d594e4851e7c4239b", 1677, "custom", false],
+    ["hunspell-en-jm", "hunspell-en-jm-2020.12.07-r4.apk", "https://dl-cdn.alpinelinux.org/alpine/v3.24/main/x86_64/hunspell-en-jm-2020.12.07-r4.apk", "e43239679113bc09803b093f885d5f662f0ff639a03ac487054ce53451e2ca7a", 1678, "custom", false],
+    ["hunspell-en-na", "hunspell-en-na-2020.12.07-r4.apk", "https://dl-cdn.alpinelinux.org/alpine/v3.24/main/x86_64/hunspell-en-na-2020.12.07-r4.apk", "e44d42cb5bd2abdf0fac26f082667bcc8956f77f3fbd3585f44b37506d9d0ad9", 1673, "custom", false],
+    ["hunspell-en-ng", "hunspell-en-ng-2020.12.07-r4.apk", "https://dl-cdn.alpinelinux.org/alpine/v3.24/main/x86_64/hunspell-en-ng-2020.12.07-r4.apk", "85f8f435fe79e9068adcb421c1d84e5b9762519aca27f82c7d1f3f35fa2edee2", 1669, "custom", false],
+    ["hunspell-en-nz", "hunspell-en-nz-2020.12.07-r4.apk", "https://dl-cdn.alpinelinux.org/alpine/v3.24/main/x86_64/hunspell-en-nz-2020.12.07-r4.apk", "7a9da838de9e2a9e703ea1568ed74ceb511f9092a2ade3713ff6982079febf74", 1676, "custom", false],
+    ["hunspell-en-ph", "hunspell-en-ph-2020.12.07-r4.apk", "https://dl-cdn.alpinelinux.org/alpine/v3.24/main/x86_64/hunspell-en-ph-2020.12.07-r4.apk", "db44406fe0c9475d1f825331befd808d752bc44936dd4c59f8d463a22e433a76", 1670, "custom", false],
+    ["hunspell-en-sg", "hunspell-en-sg-2020.12.07-r4.apk", "https://dl-cdn.alpinelinux.org/alpine/v3.24/main/x86_64/hunspell-en-sg-2020.12.07-r4.apk", "f91f18cdf2d8f63e59344e781839039412d76839dbc1a5792f89520e0d57918e", 1674, "custom", false],
+    ["hunspell-en-tt", "hunspell-en-tt-2020.12.07-r4.apk", "https://dl-cdn.alpinelinux.org/alpine/v3.24/main/x86_64/hunspell-en-tt-2020.12.07-r4.apk", "a1c7e683f3388257bb7f9cc40d27ed1c57cbc67fd9f6bee881f1dfa44badd307", 1669, "custom", false],
+    ["hunspell-en-us", "hunspell-en-us-2020.12.07-r4.apk", "https://dl-cdn.alpinelinux.org/alpine/v3.24/main/x86_64/hunspell-en-us-2020.12.07-r4.apk", "70184eb80a7aadacdd4f0c6127b46404632d66e6e4ab89c82ffdba7ea4f0d5d1", 193914, "custom", false],
+    ["hunspell-en-za", "hunspell-en-za-2020.12.07-r4.apk", "https://dl-cdn.alpinelinux.org/alpine/v3.24/main/x86_64/hunspell-en-za-2020.12.07-r4.apk", "a15eee71065cc37fa2b9d4b373a7d3cc645378888f190caddac83d17550e4487", 1677, "custom", false],
+    ["hunspell-en-zw", "hunspell-en-zw-2020.12.07-r4.apk", "https://dl-cdn.alpinelinux.org/alpine/v3.24/main/x86_64/hunspell-en-zw-2020.12.07-r4.apk", "2c1b759b0caaa210c314c495882c249e944f644980d611eec1483de98fe49d92", 1679, "custom", false],
+    ["libhunspell", "libhunspell-1.7.3-r0.apk", "https://dl-cdn.alpinelinux.org/alpine/v3.24/main/x86_64/libhunspell-1.7.3-r0.apk", "2063f6fdac221ff1ed97e5914c75f6551d462c6034b501782ae9f4d1d2a1e58e", 352617, "GPL-2.0-or-later OR LGPL-2.1-or-later OR MPL-1.1", false],
 ];
 // END GENERATED PINS musl
 
@@ -190,9 +190,11 @@ fn is_built(ctx) {
 }
 
 // Unpacks every package into one system tree, natively, without running any
-// of its scripts. Paths a system package does not own (per-machine and
-// run-time data: var, run, tmp and the like) are left out; the system makes
-// them at boot. Owners stay names, resolved in the root the group is written
+// of its scripts. Paths a system package does not own (run-time data: run,
+// tmp and the like) are left out. Under var/, only what a package needs and
+// nothing at boot makes (pin[6]: it ships no tmpfiles.d, and AcornOS runs
+// none) is kept, as state seeds: created where missing, never owned or
+// removed. Owners stay names, resolved in the root the group is written
 // into, after the accounts it needs are made there: those in its own
 // usr/lib/sysusers.d (Fedora packages ship them) and ACCOUNTS_* above.
 fn build(ctx) {
@@ -201,23 +203,30 @@ fn build(ctx) {
     if exists(ctx.system) { rm(ctx.system); }
     mkdir(ctx.system);
     let done = 0;
-    for pin in ctx.pins {
-        progress(done, ctx.pins.len(), "packages");
-        let archive = archive_of(ctx, pin);
-        verify_sha256(archive, pin[3]);
-        if ctx.format == "apk" {
-            target_extract_apk(archive, ctx.system);
-        } else {
-            target_extract_rpm(archive, ctx.system);
+    // Packages whose var/ is not kept first, then the var/ they left, then
+    // the packages whose var/ is kept.
+    for seeds in [false, true] {
+        for pin in ctx.pins {
+            if pin[6] != seeds { continue; }
+            progress(done, ctx.pins.len(), "packages");
+            let archive = archive_of(ctx, pin);
+            verify_sha256(archive, pin[3]);
+            if ctx.format == "apk" {
+                target_extract_apk(archive, ctx.system);
+            } else {
+                target_extract_rpm(archive, ctx.system);
+            }
+            done += 1;
         }
-        done += 1;
+        let state = join_path(ctx.system, "var");
+        if !seeds && exists(state) { rm(state); }
     }
     progress(done, ctx.pins.len(), "packages");
-    for dir in ["var", "run", "tmp", "boot", "home", "root", "proc", "sys", "dev", "lost+found"] {
+    for dir in ["run", "tmp", "boot", "home", "root", "proc", "sys", "dev", "lost+found", "var/run", "var/tmp", "var/lock"] {
         let path = join_path(ctx.system, dir);
         if exists(path) { rm(path); }
     }
-    target_finalize(ctx.system, #{ owners: "apply", accounts: ctx.accounts });
+    target_finalize(ctx.system, #{ owners: "apply", seed: "var", accounts: ctx.accounts });
     write_file(ctx.record, ctx.pins_record);
     ctx
 }

@@ -8,7 +8,7 @@
 // `cargo xtask base groups levitate` (glibc: Fedora RPMs) and
 // `cargo xtask base groups acorn` (musl: Alpine APKs) from the seeds below. A
 // package more than one group needs belongs to desktop-libs.
-const RECIPE_API = 2;
+const RECIPE_API = 3;
 const NEEDS = #{
     outputs: #{ system: "directory" },
     network: ["dl.fedoraproject.org:443", "dl-cdn.alpinelinux.org:443"],
@@ -22,7 +22,7 @@ const ABOUT = #{
     kind: "system",
     category: "drivers-codecs",
     libc: ["musl"],
-    systems: ["acorn"],
+    systems: ["acornos"],
     details: "What the XLibre X server and its libinput driver load at run time: the keymap compiler and keymaps, the cursor and fixed fonts, Mesa's EGL and GBM for glamor and the libraries the server links. The server itself is built from pinned source by the OS builder today; moving it into this recipe is a later step.",
     homepage: "https://github.com/X11Libre",
     license: "MIT AND X11 AND LGPL-2.1-or-later",
@@ -69,15 +69,15 @@ const RPM_PINS = [];
 // 2026-11-13): 7 packages, 3913476 bytes. Licences are each package's own.
 const APK_PINNED_ON = "2026-11-13";
 const APK_PINNED_BYTES = 3913476;
-// [name, file, URL, SHA-256, bytes, licence]
+// [name, file, URL, SHA-256, bytes, licence, var/ kept as state seeds]
 const APK_PINS = [
-    ["font-alias", "font-alias-1.0.6-r0.apk", "https://dl-cdn.alpinelinux.org/alpine/v3.24/main/x86_64/font-alias-1.0.6-r0.apk", "754e5c1d19c2c69d5a2c3c02c7340cad7df3c26e63789516372ea164b564b927", 3949, "custom"],
-    ["font-cursor-misc", "font-cursor-misc-1.0.4-r1.apk", "https://dl-cdn.alpinelinux.org/alpine/v3.24/main/x86_64/font-cursor-misc-1.0.4-r1.apk", "a1a0c0659a9a48e24b4cc4b35583f4e57da9d2a0ae2cc8adb9be1143b66911b4", 7013, "Public Domain"],
-    ["font-misc-misc", "font-misc-misc-1.1.3-r1.apk", "https://dl-cdn.alpinelinux.org/alpine/v3.24/main/x86_64/font-misc-misc-1.1.3-r1.apk", "2c48f2a8529ac63243a0bdd5e7ab2329e0a8b8f996ffe95faed8b79fb05b4a52", 3688045, "Public Domain"],
-    ["libxcvt", "libxcvt-0.1.3-r0.apk", "https://dl-cdn.alpinelinux.org/alpine/v3.24/community/x86_64/libxcvt-0.1.3-r0.apk", "809b454981887c1d1d835c909c46a80650ca72a73a92268a2cf8a666ad82b6b7", 6870, "custom"],
-    ["libxfont2", "libxfont2-2.0.8-r0.apk", "https://dl-cdn.alpinelinux.org/alpine/v3.24/community/x86_64/libxfont2-2.0.8-r0.apk", "f8bf87b9ce835cb307eb8a3d270e226c4437757478c52ba3ad384cecc2ac6fef", 102320, "MIT"],
-    ["util-macros", "util-macros-1.20.2-r0.apk", "https://dl-cdn.alpinelinux.org/alpine/v3.24/main/x86_64/util-macros-1.20.2-r0.apk", "7c129d085b646b13ccef3738e93038221aec840c1a6764279c5adc9950ba1bdc", 24899, "MIT"],
-    ["xkbcomp", "xkbcomp-1.5.0-r0.apk", "https://dl-cdn.alpinelinux.org/alpine/v3.24/main/x86_64/xkbcomp-1.5.0-r0.apk", "8bfbd3c8ce7180e8cf599d5a0b791993b61fa98f3a19c47aaf5fcbe30c12d0ba", 80380, "MIT"],
+    ["font-alias", "font-alias-1.0.6-r0.apk", "https://dl-cdn.alpinelinux.org/alpine/v3.24/main/x86_64/font-alias-1.0.6-r0.apk", "754e5c1d19c2c69d5a2c3c02c7340cad7df3c26e63789516372ea164b564b927", 3949, "custom", false],
+    ["font-cursor-misc", "font-cursor-misc-1.0.4-r1.apk", "https://dl-cdn.alpinelinux.org/alpine/v3.24/main/x86_64/font-cursor-misc-1.0.4-r1.apk", "a1a0c0659a9a48e24b4cc4b35583f4e57da9d2a0ae2cc8adb9be1143b66911b4", 7013, "Public Domain", false],
+    ["font-misc-misc", "font-misc-misc-1.1.3-r1.apk", "https://dl-cdn.alpinelinux.org/alpine/v3.24/main/x86_64/font-misc-misc-1.1.3-r1.apk", "2c48f2a8529ac63243a0bdd5e7ab2329e0a8b8f996ffe95faed8b79fb05b4a52", 3688045, "Public Domain", false],
+    ["libxcvt", "libxcvt-0.1.3-r0.apk", "https://dl-cdn.alpinelinux.org/alpine/v3.24/community/x86_64/libxcvt-0.1.3-r0.apk", "809b454981887c1d1d835c909c46a80650ca72a73a92268a2cf8a666ad82b6b7", 6870, "custom", false],
+    ["libxfont2", "libxfont2-2.0.8-r0.apk", "https://dl-cdn.alpinelinux.org/alpine/v3.24/community/x86_64/libxfont2-2.0.8-r0.apk", "f8bf87b9ce835cb307eb8a3d270e226c4437757478c52ba3ad384cecc2ac6fef", 102320, "MIT", false],
+    ["util-macros", "util-macros-1.20.2-r0.apk", "https://dl-cdn.alpinelinux.org/alpine/v3.24/main/x86_64/util-macros-1.20.2-r0.apk", "7c129d085b646b13ccef3738e93038221aec840c1a6764279c5adc9950ba1bdc", 24899, "MIT", false],
+    ["xkbcomp", "xkbcomp-1.5.0-r0.apk", "https://dl-cdn.alpinelinux.org/alpine/v3.24/main/x86_64/xkbcomp-1.5.0-r0.apk", "8bfbd3c8ce7180e8cf599d5a0b791993b61fa98f3a19c47aaf5fcbe30c12d0ba", 80380, "MIT", false],
 ];
 // END GENERATED PINS musl
 
@@ -164,9 +164,11 @@ fn is_built(ctx) {
 }
 
 // Unpacks every package into one system tree, natively, without running any
-// of its scripts. Paths a system package does not own (per-machine and
-// run-time data: var, run, tmp and the like) are left out; the system makes
-// them at boot. Owners stay names, resolved in the root the group is written
+// of its scripts. Paths a system package does not own (run-time data: run,
+// tmp and the like) are left out. Under var/, only what a package needs and
+// nothing at boot makes (pin[6]: it ships no tmpfiles.d, and AcornOS runs
+// none) is kept, as state seeds: created where missing, never owned or
+// removed. Owners stay names, resolved in the root the group is written
 // into, after the accounts it needs are made there: those in its own
 // usr/lib/sysusers.d (Fedora packages ship them) and ACCOUNTS_* above.
 fn build(ctx) {
@@ -175,23 +177,30 @@ fn build(ctx) {
     if exists(ctx.system) { rm(ctx.system); }
     mkdir(ctx.system);
     let done = 0;
-    for pin in ctx.pins {
-        progress(done, ctx.pins.len(), "packages");
-        let archive = archive_of(ctx, pin);
-        verify_sha256(archive, pin[3]);
-        if ctx.format == "apk" {
-            target_extract_apk(archive, ctx.system);
-        } else {
-            target_extract_rpm(archive, ctx.system);
+    // Packages whose var/ is not kept first, then the var/ they left, then
+    // the packages whose var/ is kept.
+    for seeds in [false, true] {
+        for pin in ctx.pins {
+            if pin[6] != seeds { continue; }
+            progress(done, ctx.pins.len(), "packages");
+            let archive = archive_of(ctx, pin);
+            verify_sha256(archive, pin[3]);
+            if ctx.format == "apk" {
+                target_extract_apk(archive, ctx.system);
+            } else {
+                target_extract_rpm(archive, ctx.system);
+            }
+            done += 1;
         }
-        done += 1;
+        let state = join_path(ctx.system, "var");
+        if !seeds && exists(state) { rm(state); }
     }
     progress(done, ctx.pins.len(), "packages");
-    for dir in ["var", "run", "tmp", "boot", "home", "root", "proc", "sys", "dev", "lost+found"] {
+    for dir in ["run", "tmp", "boot", "home", "root", "proc", "sys", "dev", "lost+found", "var/run", "var/tmp", "var/lock"] {
         let path = join_path(ctx.system, dir);
         if exists(path) { rm(path); }
     }
-    target_finalize(ctx.system, #{ owners: "apply", accounts: ctx.accounts });
+    target_finalize(ctx.system, #{ owners: "apply", seed: "var", accounts: ctx.accounts });
     write_file(ctx.record, ctx.pins_record);
     ctx
 }

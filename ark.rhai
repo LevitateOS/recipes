@@ -8,7 +8,7 @@
 // `cargo xtask base groups levitate` (glibc: Fedora RPMs) and
 // `cargo xtask base groups acorn` (musl: Alpine APKs) from the seeds below. A
 // package more than one group needs belongs to desktop-libs.
-const RECIPE_API = 2;
+const RECIPE_API = 3;
 const NEEDS = #{
     outputs: #{ system: "directory" },
     network: ["dl.fedoraproject.org:443", "dl-cdn.alpinelinux.org:443"],
@@ -22,7 +22,7 @@ const ABOUT = #{
     kind: "app",
     category: "utilities",
     libc: ["glibc"],
-    systems: ["levitate"],
+    systems: ["levitateos"],
     details: "Ark opens, makes and unpacks archives (zip, tar, 7z and others) from Dolphin or on its own.",
     homepage: "https://apps.kde.org/ark/",
     license: "GPL-2.0-or-later",
@@ -62,14 +62,14 @@ let ctx = #{
 // 2026-11-10): 6 packages, 3465911 bytes. Licences are each package's own.
 const RPM_PINNED_ON = "2026-11-10";
 const RPM_PINNED_BYTES = 3465911;
-// [name, file, URL, SHA-256, bytes, licence]
+// [name, file, URL, SHA-256, bytes, licence, var/ kept as state seeds]
 const RPM_PINS = [
-    ["7zip", "7zip-26.04-1.fc45.x86_64.rpm", "https://dl.fedoraproject.org/pub/fedora/linux/updates/45/Everything/x86_64/Packages/7/7zip-26.04-1.fc45.x86_64.rpm", "699901f624fc01b32f410bd3f7079647ada1d0ea16096afab1640e29a4be8bd7", 1359084, "LGPL-2.1-or-later AND BSD-3-Clause AND BSD-2-Clause AND LicenseRef-Fedora-Public-Domain"],
-    ["ark", "ark-26.08.2-1.fc45.x86_64.rpm", "https://dl.fedoraproject.org/pub/fedora/linux/releases/45/Everything/x86_64/os/Packages/a/ark-26.08.2-1.fc45.x86_64.rpm", "91a6197110ebf2631b9089c2ae42c92c28eb9996e4b933d8539855b7d04d275b", 1230334, "GPL-2.0-or-later AND LGPL-3.0-only"],
-    ["ark-libs", "ark-libs-26.08.2-1.fc45.x86_64.rpm", "https://dl.fedoraproject.org/pub/fedora/linux/releases/45/Everything/x86_64/os/Packages/a/ark-libs-26.08.2-1.fc45.x86_64.rpm", "1013185b664715a37c3e8a31f8713f563d6485c77e191efa4da46bedff742ca2", 539282, "BSD-2-Clause AND GPL-2.0-or-later AND MIT"],
-    ["bzip2", "bzip2-1.0.8-24.fc45.x86_64.rpm", "https://dl.fedoraproject.org/pub/fedora/linux/releases/45/Everything/x86_64/os/Packages/b/bzip2-1.0.8-24.fc45.x86_64.rpm", "3ccf5b4b033119a91a68049cce27868ce2832284746c390a9611a79e5462af0f", 53508, "BSD-4-Clause"],
-    ["libzip", "libzip-1.12.1-1.fc45.x86_64.rpm", "https://dl.fedoraproject.org/pub/fedora/linux/updates/45/Everything/x86_64/Packages/l/libzip-1.12.1-1.fc45.x86_64.rpm", "402d47cfea209d8d5b2c40ec265f9b3f81ef5440a8a5cd582e4dc652e518810d", 79337, "BSD-3-Clause"],
-    ["unzip", "unzip-6.0-71.fc45.x86_64.rpm", "https://dl.fedoraproject.org/pub/fedora/linux/releases/45/Everything/x86_64/os/Packages/u/unzip-6.0-71.fc45.x86_64.rpm", "bcc959eb44aad1c77760ea27a217f559f2f0271a786206ca33a48da654bc1e2b", 204366, "Info-ZIP"],
+    ["7zip", "7zip-26.04-1.fc45.x86_64.rpm", "https://dl.fedoraproject.org/pub/fedora/linux/updates/45/Everything/x86_64/Packages/7/7zip-26.04-1.fc45.x86_64.rpm", "699901f624fc01b32f410bd3f7079647ada1d0ea16096afab1640e29a4be8bd7", 1359084, "LGPL-2.1-or-later AND BSD-3-Clause AND BSD-2-Clause AND LicenseRef-Fedora-Public-Domain", false],
+    ["ark", "ark-26.08.2-1.fc45.x86_64.rpm", "https://dl.fedoraproject.org/pub/fedora/linux/releases/45/Everything/x86_64/os/Packages/a/ark-26.08.2-1.fc45.x86_64.rpm", "91a6197110ebf2631b9089c2ae42c92c28eb9996e4b933d8539855b7d04d275b", 1230334, "GPL-2.0-or-later AND LGPL-3.0-only", false],
+    ["ark-libs", "ark-libs-26.08.2-1.fc45.x86_64.rpm", "https://dl.fedoraproject.org/pub/fedora/linux/releases/45/Everything/x86_64/os/Packages/a/ark-libs-26.08.2-1.fc45.x86_64.rpm", "1013185b664715a37c3e8a31f8713f563d6485c77e191efa4da46bedff742ca2", 539282, "BSD-2-Clause AND GPL-2.0-or-later AND MIT", false],
+    ["bzip2", "bzip2-1.0.8-24.fc45.x86_64.rpm", "https://dl.fedoraproject.org/pub/fedora/linux/releases/45/Everything/x86_64/os/Packages/b/bzip2-1.0.8-24.fc45.x86_64.rpm", "3ccf5b4b033119a91a68049cce27868ce2832284746c390a9611a79e5462af0f", 53508, "BSD-4-Clause", false],
+    ["libzip", "libzip-1.12.1-1.fc45.x86_64.rpm", "https://dl.fedoraproject.org/pub/fedora/linux/updates/45/Everything/x86_64/Packages/l/libzip-1.12.1-1.fc45.x86_64.rpm", "402d47cfea209d8d5b2c40ec265f9b3f81ef5440a8a5cd582e4dc652e518810d", 79337, "BSD-3-Clause", false],
+    ["unzip", "unzip-6.0-71.fc45.x86_64.rpm", "https://dl.fedoraproject.org/pub/fedora/linux/releases/45/Everything/x86_64/os/Packages/u/unzip-6.0-71.fc45.x86_64.rpm", "bcc959eb44aad1c77760ea27a217f559f2f0271a786206ca33a48da654bc1e2b", 204366, "Info-ZIP", false],
 ];
 // END GENERATED PINS glibc
 
@@ -164,9 +164,11 @@ fn is_built(ctx) {
 }
 
 // Unpacks every package into one system tree, natively, without running any
-// of its scripts. Paths a system package does not own (per-machine and
-// run-time data: var, run, tmp and the like) are left out; the system makes
-// them at boot. Owners stay names, resolved in the root the group is written
+// of its scripts. Paths a system package does not own (run-time data: run,
+// tmp and the like) are left out. Under var/, only what a package needs and
+// nothing at boot makes (pin[6]: it ships no tmpfiles.d, and AcornOS runs
+// none) is kept, as state seeds: created where missing, never owned or
+// removed. Owners stay names, resolved in the root the group is written
 // into, after the accounts it needs are made there: those in its own
 // usr/lib/sysusers.d (Fedora packages ship them) and ACCOUNTS_* above.
 fn build(ctx) {
@@ -175,23 +177,30 @@ fn build(ctx) {
     if exists(ctx.system) { rm(ctx.system); }
     mkdir(ctx.system);
     let done = 0;
-    for pin in ctx.pins {
-        progress(done, ctx.pins.len(), "packages");
-        let archive = archive_of(ctx, pin);
-        verify_sha256(archive, pin[3]);
-        if ctx.format == "apk" {
-            target_extract_apk(archive, ctx.system);
-        } else {
-            target_extract_rpm(archive, ctx.system);
+    // Packages whose var/ is not kept first, then the var/ they left, then
+    // the packages whose var/ is kept.
+    for seeds in [false, true] {
+        for pin in ctx.pins {
+            if pin[6] != seeds { continue; }
+            progress(done, ctx.pins.len(), "packages");
+            let archive = archive_of(ctx, pin);
+            verify_sha256(archive, pin[3]);
+            if ctx.format == "apk" {
+                target_extract_apk(archive, ctx.system);
+            } else {
+                target_extract_rpm(archive, ctx.system);
+            }
+            done += 1;
         }
-        done += 1;
+        let state = join_path(ctx.system, "var");
+        if !seeds && exists(state) { rm(state); }
     }
     progress(done, ctx.pins.len(), "packages");
-    for dir in ["var", "run", "tmp", "boot", "home", "root", "proc", "sys", "dev", "lost+found"] {
+    for dir in ["run", "tmp", "boot", "home", "root", "proc", "sys", "dev", "lost+found", "var/run", "var/tmp", "var/lock"] {
         let path = join_path(ctx.system, dir);
         if exists(path) { rm(path); }
     }
-    target_finalize(ctx.system, #{ owners: "apply", accounts: ctx.accounts });
+    target_finalize(ctx.system, #{ owners: "apply", seed: "var", accounts: ctx.accounts });
     write_file(ctx.record, ctx.pins_record);
     ctx
 }

@@ -8,7 +8,7 @@
 // `cargo xtask base groups levitate` (glibc: Fedora RPMs) and
 // `cargo xtask base groups acorn` (musl: Alpine APKs) from the seeds below. A
 // package more than one group needs belongs to desktop-libs.
-const RECIPE_API = 2;
+const RECIPE_API = 3;
 const NEEDS = #{
     outputs: #{ system: "directory" },
     network: ["dl.fedoraproject.org:443", "dl-cdn.alpinelinux.org:443"],
@@ -22,7 +22,7 @@ const ABOUT = #{
     kind: "app",
     category: "utilities",
     libc: ["glibc"],
-    systems: ["levitate"],
+    systems: ["levitateos"],
     details: "DrKonqi shows what happened when a KDE program crashes and helps report it. Fedora's build needs Konsole.",
     homepage: "https://invent.kde.org/plasma/drkonqi",
     license: "GPL-2.0-or-later",
@@ -62,19 +62,19 @@ let ctx = #{
 // 2026-11-10): 11 packages, 4008698 bytes. Licences are each package's own.
 const RPM_PINNED_ON = "2026-11-10";
 const RPM_PINNED_BYTES = 4008698;
-// [name, file, URL, SHA-256, bytes, licence]
+// [name, file, URL, SHA-256, bytes, licence, var/ kept as state seeds]
 const RPM_PINS = [
-    ["elfutils", "elfutils-0.197-1.fc45.x86_64.rpm", "https://dl.fedoraproject.org/pub/fedora/linux/updates/45/Everything/x86_64/Packages/e/elfutils-0.197-1.fc45.x86_64.rpm", "46c498fc255dada98dfb250cfde0cd9c46b0e3e3855df643879db3b04ed23c64", 640402, "GPL-3.0-or-later AND (GPL-2.0-or-later OR LGPL-3.0-or-later) AND GFDL-1.3-no-invariants-or-later"],
-    ["elfutils-debuginfod-client", "elfutils-debuginfod-client-0.197-1.fc45.x86_64.rpm", "https://dl.fedoraproject.org/pub/fedora/linux/updates/45/Everything/x86_64/Packages/e/elfutils-debuginfod-client-0.197-1.fc45.x86_64.rpm", "86ca56dc35a1ca90a60ae458f627dbb3f440425ac8d80fa185bb6ebb8ce249df", 48496, "GPL-3.0-or-later AND (GPL-2.0-or-later OR LGPL-3.0-or-later)"],
-    ["elfutils-libs", "elfutils-libs-0.197-1.fc45.x86_64.rpm", "https://dl.fedoraproject.org/pub/fedora/linux/updates/45/Everything/x86_64/Packages/e/elfutils-libs-0.197-1.fc45.x86_64.rpm", "4a1196bc36a8ddae162d17d8158c52c137a027e7811d643b31da64ab04354bda", 292441, "GPL-2.0-or-later OR LGPL-3.0-or-later"],
-    ["libpfm", "libpfm-4.14.1-2.fc45.x86_64.rpm", "https://dl.fedoraproject.org/pub/fedora/linux/updates/45/Everything/x86_64/Packages/l/libpfm-4.14.1-2.fc45.x86_64.rpm", "5b35a8b4eb160b8551459cea06ff87c9f8dbb16f873bb55785988e06a295385d", 284586, "MIT"],
-    ["plasma-drkonqi", "plasma-drkonqi-6.8.2-1.fc45.x86_64.rpm", "https://dl.fedoraproject.org/pub/fedora/linux/updates/45/Everything/x86_64/Packages/p/plasma-drkonqi-6.8.2-1.fc45.x86_64.rpm", "b7a69e7d81bbd4d5534f46913d74b2502463f012304612fe4e52d3ae243ee93a", 1012209, "BSD-2-Clause AND BSD-3-Clause AND CC0-1.0 AND GPL-2.0-only AND GPL-2.0-or-later AND GPL-3.0-only AND LGPL-2.1-only AND LGPL-3.0-only AND LGPL-3.0-or-later AND (GPL-2.0-only OR GPL-3.0-only) AND (LGPL-2.1-only OR LGPL-3.0-only)"],
-    ["python3-certifi", "python3-certifi-2026.01.04-3.fc45.noarch.rpm", "https://dl.fedoraproject.org/pub/fedora/linux/releases/45/Everything/x86_64/os/Packages/p/python3-certifi-2026.01.04-3.fc45.noarch.rpm", "3050fe041977d3eb415ff596a1e3d00ecd2e316de9a5cb80edca974655f7b706", 15442, "MPL-2.0"],
-    ["python3-idna", "python3-idna-3.18-2.fc45.noarch.rpm", "https://dl.fedoraproject.org/pub/fedora/linux/releases/45/Everything/x86_64/os/Packages/p/python3-idna-3.18-2.fc45.noarch.rpm", "cece41068e2c7ce6e2b1054b16ee1e99cbfdd9df6151c824944540f2cb70b890", 107001, "BSD-3-Clause"],
-    ["python3-psutil", "python3-psutil-7.2.2-10.fc45.x86_64.rpm", "https://dl.fedoraproject.org/pub/fedora/linux/releases/45/Everything/x86_64/os/Packages/p/python3-psutil-7.2.2-10.fc45.x86_64.rpm", "0f6f5e4b7123bf4229153b763f8d5a10da69593d260f7133e69942649e14c784", 275995, "BSD-3-Clause"],
-    ["python3-pygdbmi", "python3-pygdbmi-0.11.0.0-14.fc45.noarch.rpm", "https://dl.fedoraproject.org/pub/fedora/linux/releases/45/Everything/x86_64/os/Packages/p/python3-pygdbmi-0.11.0.0-14.fc45.noarch.rpm", "fabfd8ef39c1ec9b50d98dfb81c6aa429df6d64ca6bf1aff0324227c3bb7030d", 52917, "MIT"],
-    ["python3-sentry-sdk", "python3-sentry-sdk-2.48.0-6.fc45.noarch.rpm", "https://dl.fedoraproject.org/pub/fedora/linux/releases/45/Everything/x86_64/os/Packages/p/python3-sentry-sdk-2.48.0-6.fc45.noarch.rpm", "3faf5bb99bb3cd61009f983bc88645a74b68c01e0745af1c0962447e9e5717b7", 959425, "MIT"],
-    ["python3-urllib3", "python3-urllib3-2.8.0-3.fc45.noarch.rpm", "https://dl.fedoraproject.org/pub/fedora/linux/updates/45/Everything/x86_64/Packages/p/python3-urllib3-2.8.0-3.fc45.noarch.rpm", "66c188d2c3444bf2b4a60b37bb3ec33710032857cc3ce67794088bc2f8c52d6d", 319784, "MIT"],
+    ["elfutils", "elfutils-0.197-1.fc45.x86_64.rpm", "https://dl.fedoraproject.org/pub/fedora/linux/updates/45/Everything/x86_64/Packages/e/elfutils-0.197-1.fc45.x86_64.rpm", "46c498fc255dada98dfb250cfde0cd9c46b0e3e3855df643879db3b04ed23c64", 640402, "GPL-3.0-or-later AND (GPL-2.0-or-later OR LGPL-3.0-or-later) AND GFDL-1.3-no-invariants-or-later", false],
+    ["elfutils-debuginfod-client", "elfutils-debuginfod-client-0.197-1.fc45.x86_64.rpm", "https://dl.fedoraproject.org/pub/fedora/linux/updates/45/Everything/x86_64/Packages/e/elfutils-debuginfod-client-0.197-1.fc45.x86_64.rpm", "86ca56dc35a1ca90a60ae458f627dbb3f440425ac8d80fa185bb6ebb8ce249df", 48496, "GPL-3.0-or-later AND (GPL-2.0-or-later OR LGPL-3.0-or-later)", false],
+    ["elfutils-libs", "elfutils-libs-0.197-1.fc45.x86_64.rpm", "https://dl.fedoraproject.org/pub/fedora/linux/updates/45/Everything/x86_64/Packages/e/elfutils-libs-0.197-1.fc45.x86_64.rpm", "4a1196bc36a8ddae162d17d8158c52c137a027e7811d643b31da64ab04354bda", 292441, "GPL-2.0-or-later OR LGPL-3.0-or-later", false],
+    ["libpfm", "libpfm-4.14.1-2.fc45.x86_64.rpm", "https://dl.fedoraproject.org/pub/fedora/linux/updates/45/Everything/x86_64/Packages/l/libpfm-4.14.1-2.fc45.x86_64.rpm", "5b35a8b4eb160b8551459cea06ff87c9f8dbb16f873bb55785988e06a295385d", 284586, "MIT", false],
+    ["plasma-drkonqi", "plasma-drkonqi-6.8.2-1.fc45.x86_64.rpm", "https://dl.fedoraproject.org/pub/fedora/linux/updates/45/Everything/x86_64/Packages/p/plasma-drkonqi-6.8.2-1.fc45.x86_64.rpm", "b7a69e7d81bbd4d5534f46913d74b2502463f012304612fe4e52d3ae243ee93a", 1012209, "BSD-2-Clause AND BSD-3-Clause AND CC0-1.0 AND GPL-2.0-only AND GPL-2.0-or-later AND GPL-3.0-only AND LGPL-2.1-only AND LGPL-3.0-only AND LGPL-3.0-or-later AND (GPL-2.0-only OR GPL-3.0-only) AND (LGPL-2.1-only OR LGPL-3.0-only)", false],
+    ["python3-certifi", "python3-certifi-2026.01.04-3.fc45.noarch.rpm", "https://dl.fedoraproject.org/pub/fedora/linux/releases/45/Everything/x86_64/os/Packages/p/python3-certifi-2026.01.04-3.fc45.noarch.rpm", "3050fe041977d3eb415ff596a1e3d00ecd2e316de9a5cb80edca974655f7b706", 15442, "MPL-2.0", false],
+    ["python3-idna", "python3-idna-3.18-2.fc45.noarch.rpm", "https://dl.fedoraproject.org/pub/fedora/linux/releases/45/Everything/x86_64/os/Packages/p/python3-idna-3.18-2.fc45.noarch.rpm", "cece41068e2c7ce6e2b1054b16ee1e99cbfdd9df6151c824944540f2cb70b890", 107001, "BSD-3-Clause", false],
+    ["python3-psutil", "python3-psutil-7.2.2-10.fc45.x86_64.rpm", "https://dl.fedoraproject.org/pub/fedora/linux/releases/45/Everything/x86_64/os/Packages/p/python3-psutil-7.2.2-10.fc45.x86_64.rpm", "0f6f5e4b7123bf4229153b763f8d5a10da69593d260f7133e69942649e14c784", 275995, "BSD-3-Clause", false],
+    ["python3-pygdbmi", "python3-pygdbmi-0.11.0.0-14.fc45.noarch.rpm", "https://dl.fedoraproject.org/pub/fedora/linux/releases/45/Everything/x86_64/os/Packages/p/python3-pygdbmi-0.11.0.0-14.fc45.noarch.rpm", "fabfd8ef39c1ec9b50d98dfb81c6aa429df6d64ca6bf1aff0324227c3bb7030d", 52917, "MIT", false],
+    ["python3-sentry-sdk", "python3-sentry-sdk-2.48.0-6.fc45.noarch.rpm", "https://dl.fedoraproject.org/pub/fedora/linux/releases/45/Everything/x86_64/os/Packages/p/python3-sentry-sdk-2.48.0-6.fc45.noarch.rpm", "3faf5bb99bb3cd61009f983bc88645a74b68c01e0745af1c0962447e9e5717b7", 959425, "MIT", false],
+    ["python3-urllib3", "python3-urllib3-2.8.0-3.fc45.noarch.rpm", "https://dl.fedoraproject.org/pub/fedora/linux/updates/45/Everything/x86_64/Packages/p/python3-urllib3-2.8.0-3.fc45.noarch.rpm", "66c188d2c3444bf2b4a60b37bb3ec33710032857cc3ce67794088bc2f8c52d6d", 319784, "MIT", false],
 ];
 // END GENERATED PINS glibc
 
@@ -169,9 +169,11 @@ fn is_built(ctx) {
 }
 
 // Unpacks every package into one system tree, natively, without running any
-// of its scripts. Paths a system package does not own (per-machine and
-// run-time data: var, run, tmp and the like) are left out; the system makes
-// them at boot. Owners stay names, resolved in the root the group is written
+// of its scripts. Paths a system package does not own (run-time data: run,
+// tmp and the like) are left out. Under var/, only what a package needs and
+// nothing at boot makes (pin[6]: it ships no tmpfiles.d, and AcornOS runs
+// none) is kept, as state seeds: created where missing, never owned or
+// removed. Owners stay names, resolved in the root the group is written
 // into, after the accounts it needs are made there: those in its own
 // usr/lib/sysusers.d (Fedora packages ship them) and ACCOUNTS_* above.
 fn build(ctx) {
@@ -180,23 +182,30 @@ fn build(ctx) {
     if exists(ctx.system) { rm(ctx.system); }
     mkdir(ctx.system);
     let done = 0;
-    for pin in ctx.pins {
-        progress(done, ctx.pins.len(), "packages");
-        let archive = archive_of(ctx, pin);
-        verify_sha256(archive, pin[3]);
-        if ctx.format == "apk" {
-            target_extract_apk(archive, ctx.system);
-        } else {
-            target_extract_rpm(archive, ctx.system);
+    // Packages whose var/ is not kept first, then the var/ they left, then
+    // the packages whose var/ is kept.
+    for seeds in [false, true] {
+        for pin in ctx.pins {
+            if pin[6] != seeds { continue; }
+            progress(done, ctx.pins.len(), "packages");
+            let archive = archive_of(ctx, pin);
+            verify_sha256(archive, pin[3]);
+            if ctx.format == "apk" {
+                target_extract_apk(archive, ctx.system);
+            } else {
+                target_extract_rpm(archive, ctx.system);
+            }
+            done += 1;
         }
-        done += 1;
+        let state = join_path(ctx.system, "var");
+        if !seeds && exists(state) { rm(state); }
     }
     progress(done, ctx.pins.len(), "packages");
-    for dir in ["var", "run", "tmp", "boot", "home", "root", "proc", "sys", "dev", "lost+found"] {
+    for dir in ["run", "tmp", "boot", "home", "root", "proc", "sys", "dev", "lost+found", "var/run", "var/tmp", "var/lock"] {
         let path = join_path(ctx.system, dir);
         if exists(path) { rm(path); }
     }
-    target_finalize(ctx.system, #{ owners: "apply", accounts: ctx.accounts });
+    target_finalize(ctx.system, #{ owners: "apply", seed: "var", accounts: ctx.accounts });
     write_file(ctx.record, ctx.pins_record);
     ctx
 }

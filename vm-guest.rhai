@@ -8,7 +8,7 @@
 // `cargo xtask base groups levitate` (glibc: Fedora RPMs) and
 // `cargo xtask base groups acorn` (musl: Alpine APKs) from the seeds below. A
 // package more than one group needs belongs to desktop-libs.
-const RECIPE_API = 2;
+const RECIPE_API = 3;
 const NEEDS = #{
     outputs: #{ system: "directory" },
     network: ["dl.fedoraproject.org:443", "dl-cdn.alpinelinux.org:443"],
@@ -22,7 +22,7 @@ const ABOUT = #{
     kind: "system",
     category: "utilities",
     libc: ["glibc", "musl"],
-    systems: ["levitate", "acorn"],
+    systems: ["levitateos", "acornos"],
     details: "spice-vdagent: clipboard sharing and display resizing in a SPICE (libvirt) virtual machine.",
     homepage: "https://www.spice-space.org",
     license: "GPL-3.0-or-later",
@@ -63,9 +63,9 @@ let ctx = #{
 // 2026-11-10): 1 packages, 93161 bytes. Licences are each package's own.
 const RPM_PINNED_ON = "2026-11-10";
 const RPM_PINNED_BYTES = 93161;
-// [name, file, URL, SHA-256, bytes, licence]
+// [name, file, URL, SHA-256, bytes, licence, var/ kept as state seeds]
 const RPM_PINS = [
-    ["spice-vdagent", "spice-vdagent-0.23.0-3.fc45.x86_64.rpm", "https://dl.fedoraproject.org/pub/fedora/linux/releases/45/Everything/x86_64/os/Packages/s/spice-vdagent-0.23.0-3.fc45.x86_64.rpm", "68f160cab0635557966ab402a498c72f6a2abcd9cf12bd8bff92566f632161cd", 93161, "GPL-3.0-or-later"],
+    ["spice-vdagent", "spice-vdagent-0.23.0-3.fc45.x86_64.rpm", "https://dl.fedoraproject.org/pub/fedora/linux/releases/45/Everything/x86_64/os/Packages/s/spice-vdagent-0.23.0-3.fc45.x86_64.rpm", "68f160cab0635557966ab402a498c72f6a2abcd9cf12bd8bff92566f632161cd", 93161, "GPL-3.0-or-later", false],
 ];
 // END GENERATED PINS glibc
 
@@ -75,10 +75,10 @@ const RPM_PINS = [
 // 2026-11-13): 2 packages, 57150 bytes. Licences are each package's own.
 const APK_PINNED_ON = "2026-11-13";
 const APK_PINNED_BYTES = 57150;
-// [name, file, URL, SHA-256, bytes, licence]
+// [name, file, URL, SHA-256, bytes, licence, var/ kept as state seeds]
 const APK_PINS = [
-    ["spice-vdagent", "spice-vdagent-0.23.0-r1.apk", "https://dl-cdn.alpinelinux.org/alpine/v3.24/community/x86_64/spice-vdagent-0.23.0-r1.apk", "d18147d155db782c7d63565d959c79d28340cfbbb4d50fab9dacb68d44a72a8d", 55428, "GPL-3.0-or-later"],
-    ["spice-vdagent-openrc", "spice-vdagent-openrc-0.23.0-r1.apk", "https://dl-cdn.alpinelinux.org/alpine/v3.24/community/x86_64/spice-vdagent-openrc-0.23.0-r1.apk", "e094e1bb7eca294e3c2088f7042b8ca2021c68ba1926adf0c35fbeaafe73bf53", 1722, "GPL-3.0-or-later"],
+    ["spice-vdagent", "spice-vdagent-0.23.0-r1.apk", "https://dl-cdn.alpinelinux.org/alpine/v3.24/community/x86_64/spice-vdagent-0.23.0-r1.apk", "d18147d155db782c7d63565d959c79d28340cfbbb4d50fab9dacb68d44a72a8d", 55428, "GPL-3.0-or-later", false],
+    ["spice-vdagent-openrc", "spice-vdagent-openrc-0.23.0-r1.apk", "https://dl-cdn.alpinelinux.org/alpine/v3.24/community/x86_64/spice-vdagent-openrc-0.23.0-r1.apk", "e094e1bb7eca294e3c2088f7042b8ca2021c68ba1926adf0c35fbeaafe73bf53", 1722, "GPL-3.0-or-later", false],
 ];
 // END GENERATED PINS musl
 
@@ -165,9 +165,11 @@ fn is_built(ctx) {
 }
 
 // Unpacks every package into one system tree, natively, without running any
-// of its scripts. Paths a system package does not own (per-machine and
-// run-time data: var, run, tmp and the like) are left out; the system makes
-// them at boot. Owners stay names, resolved in the root the group is written
+// of its scripts. Paths a system package does not own (run-time data: run,
+// tmp and the like) are left out. Under var/, only what a package needs and
+// nothing at boot makes (pin[6]: it ships no tmpfiles.d, and AcornOS runs
+// none) is kept, as state seeds: created where missing, never owned or
+// removed. Owners stay names, resolved in the root the group is written
 // into, after the accounts it needs are made there: those in its own
 // usr/lib/sysusers.d (Fedora packages ship them) and ACCOUNTS_* above.
 fn build(ctx) {
@@ -176,23 +178,30 @@ fn build(ctx) {
     if exists(ctx.system) { rm(ctx.system); }
     mkdir(ctx.system);
     let done = 0;
-    for pin in ctx.pins {
-        progress(done, ctx.pins.len(), "packages");
-        let archive = archive_of(ctx, pin);
-        verify_sha256(archive, pin[3]);
-        if ctx.format == "apk" {
-            target_extract_apk(archive, ctx.system);
-        } else {
-            target_extract_rpm(archive, ctx.system);
+    // Packages whose var/ is not kept first, then the var/ they left, then
+    // the packages whose var/ is kept.
+    for seeds in [false, true] {
+        for pin in ctx.pins {
+            if pin[6] != seeds { continue; }
+            progress(done, ctx.pins.len(), "packages");
+            let archive = archive_of(ctx, pin);
+            verify_sha256(archive, pin[3]);
+            if ctx.format == "apk" {
+                target_extract_apk(archive, ctx.system);
+            } else {
+                target_extract_rpm(archive, ctx.system);
+            }
+            done += 1;
         }
-        done += 1;
+        let state = join_path(ctx.system, "var");
+        if !seeds && exists(state) { rm(state); }
     }
     progress(done, ctx.pins.len(), "packages");
-    for dir in ["var", "run", "tmp", "boot", "home", "root", "proc", "sys", "dev", "lost+found"] {
+    for dir in ["run", "tmp", "boot", "home", "root", "proc", "sys", "dev", "lost+found", "var/run", "var/tmp", "var/lock"] {
         let path = join_path(ctx.system, dir);
         if exists(path) { rm(path); }
     }
-    target_finalize(ctx.system, #{ owners: "apply", accounts: ctx.accounts });
+    target_finalize(ctx.system, #{ owners: "apply", seed: "var", accounts: ctx.accounts });
     write_file(ctx.record, ctx.pins_record);
     ctx
 }

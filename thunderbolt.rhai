@@ -8,7 +8,7 @@
 // `cargo xtask base groups levitate` (glibc: Fedora RPMs) and
 // `cargo xtask base groups acorn` (musl: Alpine APKs) from the seeds below. A
 // package more than one group needs belongs to desktop-libs.
-const RECIPE_API = 2;
+const RECIPE_API = 3;
 const NEEDS = #{
     outputs: #{ system: "directory" },
     network: ["dl.fedoraproject.org:443", "dl-cdn.alpinelinux.org:443"],
@@ -22,7 +22,7 @@ const ABOUT = #{
     kind: "system",
     category: "drivers-codecs",
     libc: ["glibc", "musl"],
-    systems: ["levitate", "acorn"],
+    systems: ["levitateos", "acornos"],
     details: "bolt, which authorises Thunderbolt devices; Plasma's settings page for it on LevitateOS.",
     homepage: "https://gitlab.freedesktop.org/bolt/bolt",
     license: "LGPL-2.1-or-later",
@@ -63,10 +63,10 @@ let ctx = #{
 // 2026-11-10): 2 packages, 423304 bytes. Licences are each package's own.
 const RPM_PINNED_ON = "2026-11-10";
 const RPM_PINNED_BYTES = 423304;
-// [name, file, URL, SHA-256, bytes, licence]
+// [name, file, URL, SHA-256, bytes, licence, var/ kept as state seeds]
 const RPM_PINS = [
-    ["bolt", "bolt-0.9.11-2.fc45.x86_64.rpm", "https://dl.fedoraproject.org/pub/fedora/linux/releases/45/Everything/x86_64/os/Packages/b/bolt-0.9.11-2.fc45.x86_64.rpm", "85a8bee9e51477ae08703b43049998f22e2ba31f5b87c00aa3d0905350887ac8", 195746, "LGPL-2.1-or-later"],
-    ["plasma-thunderbolt", "plasma-thunderbolt-6.8.2-1.fc45.x86_64.rpm", "https://dl.fedoraproject.org/pub/fedora/linux/updates/45/Everything/x86_64/Packages/p/plasma-thunderbolt-6.8.2-1.fc45.x86_64.rpm", "3818138b1bb10eb65df44d90b9cd149e02f4b2fa01f1c2f6001a9cf4a17496ae", 227558, "BSD-3-Clause AND CC0-1.0 AND GPL-2.0-only AND GPL-3.0-only AND (GPL-2.0-only OR GPL-3.0-only)"],
+    ["bolt", "bolt-0.9.11-2.fc45.x86_64.rpm", "https://dl.fedoraproject.org/pub/fedora/linux/releases/45/Everything/x86_64/os/Packages/b/bolt-0.9.11-2.fc45.x86_64.rpm", "85a8bee9e51477ae08703b43049998f22e2ba31f5b87c00aa3d0905350887ac8", 195746, "LGPL-2.1-or-later", true],
+    ["plasma-thunderbolt", "plasma-thunderbolt-6.8.2-1.fc45.x86_64.rpm", "https://dl.fedoraproject.org/pub/fedora/linux/updates/45/Everything/x86_64/Packages/p/plasma-thunderbolt-6.8.2-1.fc45.x86_64.rpm", "3818138b1bb10eb65df44d90b9cd149e02f4b2fa01f1c2f6001a9cf4a17496ae", 227558, "BSD-3-Clause AND CC0-1.0 AND GPL-2.0-only AND GPL-3.0-only AND (GPL-2.0-only OR GPL-3.0-only)", false],
 ];
 // END GENERATED PINS glibc
 
@@ -76,9 +76,9 @@ const RPM_PINS = [
 // 2026-11-13): 1 packages, 137115 bytes. Licences are each package's own.
 const APK_PINNED_ON = "2026-11-13";
 const APK_PINNED_BYTES = 137115;
-// [name, file, URL, SHA-256, bytes, licence]
+// [name, file, URL, SHA-256, bytes, licence, var/ kept as state seeds]
 const APK_PINS = [
-    ["bolt", "bolt-0.9.11-r0.apk", "https://dl-cdn.alpinelinux.org/alpine/v3.24/community/x86_64/bolt-0.9.11-r0.apk", "141ad42c933e23f7e1d260f84a20a5e319b311ab5b0e430327ecf1f60091b4e5", 137115, "LGPL-2.1-or-later"],
+    ["bolt", "bolt-0.9.11-r0.apk", "https://dl-cdn.alpinelinux.org/alpine/v3.24/community/x86_64/bolt-0.9.11-r0.apk", "141ad42c933e23f7e1d260f84a20a5e319b311ab5b0e430327ecf1f60091b4e5", 137115, "LGPL-2.1-or-later", true],
 ];
 // END GENERATED PINS musl
 
@@ -165,9 +165,11 @@ fn is_built(ctx) {
 }
 
 // Unpacks every package into one system tree, natively, without running any
-// of its scripts. Paths a system package does not own (per-machine and
-// run-time data: var, run, tmp and the like) are left out; the system makes
-// them at boot. Owners stay names, resolved in the root the group is written
+// of its scripts. Paths a system package does not own (run-time data: run,
+// tmp and the like) are left out. Under var/, only what a package needs and
+// nothing at boot makes (pin[6]: it ships no tmpfiles.d, and AcornOS runs
+// none) is kept, as state seeds: created where missing, never owned or
+// removed. Owners stay names, resolved in the root the group is written
 // into, after the accounts it needs are made there: those in its own
 // usr/lib/sysusers.d (Fedora packages ship them) and ACCOUNTS_* above.
 fn build(ctx) {
@@ -176,23 +178,30 @@ fn build(ctx) {
     if exists(ctx.system) { rm(ctx.system); }
     mkdir(ctx.system);
     let done = 0;
-    for pin in ctx.pins {
-        progress(done, ctx.pins.len(), "packages");
-        let archive = archive_of(ctx, pin);
-        verify_sha256(archive, pin[3]);
-        if ctx.format == "apk" {
-            target_extract_apk(archive, ctx.system);
-        } else {
-            target_extract_rpm(archive, ctx.system);
+    // Packages whose var/ is not kept first, then the var/ they left, then
+    // the packages whose var/ is kept.
+    for seeds in [false, true] {
+        for pin in ctx.pins {
+            if pin[6] != seeds { continue; }
+            progress(done, ctx.pins.len(), "packages");
+            let archive = archive_of(ctx, pin);
+            verify_sha256(archive, pin[3]);
+            if ctx.format == "apk" {
+                target_extract_apk(archive, ctx.system);
+            } else {
+                target_extract_rpm(archive, ctx.system);
+            }
+            done += 1;
         }
-        done += 1;
+        let state = join_path(ctx.system, "var");
+        if !seeds && exists(state) { rm(state); }
     }
     progress(done, ctx.pins.len(), "packages");
-    for dir in ["var", "run", "tmp", "boot", "home", "root", "proc", "sys", "dev", "lost+found"] {
+    for dir in ["run", "tmp", "boot", "home", "root", "proc", "sys", "dev", "lost+found", "var/run", "var/tmp", "var/lock"] {
         let path = join_path(ctx.system, dir);
         if exists(path) { rm(path); }
     }
-    target_finalize(ctx.system, #{ owners: "apply", accounts: ctx.accounts });
+    target_finalize(ctx.system, #{ owners: "apply", seed: "var", accounts: ctx.accounts });
     write_file(ctx.record, ctx.pins_record);
     ctx
 }

@@ -8,7 +8,7 @@
 // `cargo xtask base groups levitate` (glibc: Fedora RPMs) and
 // `cargo xtask base groups acorn` (musl: Alpine APKs) from the seeds below. A
 // package more than one group needs belongs to desktop-libs.
-const RECIPE_API = 2;
+const RECIPE_API = 3;
 const NEEDS = #{
     outputs: #{ system: "directory" },
     network: ["dl.fedoraproject.org:443", "dl-cdn.alpinelinux.org:443"],
@@ -22,7 +22,7 @@ const ABOUT = #{
     kind: "app",
     category: "utilities",
     libc: ["musl"],
-    systems: ["acorn"],
+    systems: ["acornos"],
     details: "Qalculate! (Qt), a calculator with units, currencies and functions.",
     homepage: "https://qalculate.github.io",
     license: "GPL-2.0-or-later",
@@ -70,15 +70,15 @@ const RPM_PINS = [];
 // 2026-11-13): 7 packages, 5343315 bytes. Licences are each package's own.
 const APK_PINNED_ON = "2026-11-13";
 const APK_PINNED_BYTES = 5343315;
-// [name, file, URL, SHA-256, bytes, licence]
+// [name, file, URL, SHA-256, bytes, licence, var/ kept as state seeds]
 const APK_PINS = [
-    ["gnuplot", "gnuplot-6.0.4-r2.apk", "https://dl-cdn.alpinelinux.org/alpine/v3.24/community/x86_64/gnuplot-6.0.4-r2.apk", "0fcc03c8f7df5469fbc9ecd859a0e56984979f4c6008de27dd62adb872755cf7", 1064127, "MIT"],
-    ["libavif", "libavif-1.4.1-r0.apk", "https://dl-cdn.alpinelinux.org/alpine/v3.24/main/x86_64/libavif-1.4.1-r0.apk", "f7086bf6e2d1ad1b265038d94ae8d66eccefbead5eac013f455c6763cb50a481", 121307, "BSD-2-Clause"],
-    ["libcerf", "libcerf-3.3-r1.apk", "https://dl-cdn.alpinelinux.org/alpine/v3.24/community/x86_64/libcerf-3.3-r1.apk", "498f19ad725c771ae8f4d7df731fd8c93f76ec0116e225235638273faa5787d4", 53644, "MIT"],
-    ["libgd", "libgd-2.3.3-r10.apk", "https://dl-cdn.alpinelinux.org/alpine/v3.24/main/x86_64/libgd-2.3.3-r10.apk", "6ebd23c64bfb7e195fe99b49bb2f82c61407b4994ff5c4290a5d32b5cfe1c6fb", 115705, "GD"],
-    ["libqalculate", "libqalculate-5.11.0-r0.apk", "https://dl-cdn.alpinelinux.org/alpine/v3.24/community/x86_64/libqalculate-5.11.0-r0.apk", "cc89d4527e253c79ddb94e9e940a7913782149e7684953957756418be634c388", 2133549, "GPL-2.0-or-later"],
-    ["libxpm", "libxpm-3.5.20-r0.apk", "https://dl-cdn.alpinelinux.org/alpine/v3.24/main/x86_64/libxpm-3.5.20-r0.apk", "1ed312a00abac5a5840c1f3721921ea8183e664566c19763ed00aa9f35bb2178", 43390, "X11"],
-    ["qalculate-qt", "qalculate-qt-5.11.0-r0.apk", "https://dl-cdn.alpinelinux.org/alpine/v3.24/community/x86_64/qalculate-qt-5.11.0-r0.apk", "4f3e9695fafecf99e97fd441189592631a0e11599272a63668e6423ad38cf39b", 1811593, "GPL-2.0-or-later"],
+    ["gnuplot", "gnuplot-6.0.4-r2.apk", "https://dl-cdn.alpinelinux.org/alpine/v3.24/community/x86_64/gnuplot-6.0.4-r2.apk", "0fcc03c8f7df5469fbc9ecd859a0e56984979f4c6008de27dd62adb872755cf7", 1064127, "MIT", false],
+    ["libavif", "libavif-1.4.1-r0.apk", "https://dl-cdn.alpinelinux.org/alpine/v3.24/main/x86_64/libavif-1.4.1-r0.apk", "f7086bf6e2d1ad1b265038d94ae8d66eccefbead5eac013f455c6763cb50a481", 121307, "BSD-2-Clause", false],
+    ["libcerf", "libcerf-3.3-r1.apk", "https://dl-cdn.alpinelinux.org/alpine/v3.24/community/x86_64/libcerf-3.3-r1.apk", "498f19ad725c771ae8f4d7df731fd8c93f76ec0116e225235638273faa5787d4", 53644, "MIT", false],
+    ["libgd", "libgd-2.3.3-r10.apk", "https://dl-cdn.alpinelinux.org/alpine/v3.24/main/x86_64/libgd-2.3.3-r10.apk", "6ebd23c64bfb7e195fe99b49bb2f82c61407b4994ff5c4290a5d32b5cfe1c6fb", 115705, "GD", false],
+    ["libqalculate", "libqalculate-5.11.0-r0.apk", "https://dl-cdn.alpinelinux.org/alpine/v3.24/community/x86_64/libqalculate-5.11.0-r0.apk", "cc89d4527e253c79ddb94e9e940a7913782149e7684953957756418be634c388", 2133549, "GPL-2.0-or-later", false],
+    ["libxpm", "libxpm-3.5.20-r0.apk", "https://dl-cdn.alpinelinux.org/alpine/v3.24/main/x86_64/libxpm-3.5.20-r0.apk", "1ed312a00abac5a5840c1f3721921ea8183e664566c19763ed00aa9f35bb2178", 43390, "X11", false],
+    ["qalculate-qt", "qalculate-qt-5.11.0-r0.apk", "https://dl-cdn.alpinelinux.org/alpine/v3.24/community/x86_64/qalculate-qt-5.11.0-r0.apk", "4f3e9695fafecf99e97fd441189592631a0e11599272a63668e6423ad38cf39b", 1811593, "GPL-2.0-or-later", false],
 ];
 // END GENERATED PINS musl
 
@@ -165,9 +165,11 @@ fn is_built(ctx) {
 }
 
 // Unpacks every package into one system tree, natively, without running any
-// of its scripts. Paths a system package does not own (per-machine and
-// run-time data: var, run, tmp and the like) are left out; the system makes
-// them at boot. Owners stay names, resolved in the root the group is written
+// of its scripts. Paths a system package does not own (run-time data: run,
+// tmp and the like) are left out. Under var/, only what a package needs and
+// nothing at boot makes (pin[6]: it ships no tmpfiles.d, and AcornOS runs
+// none) is kept, as state seeds: created where missing, never owned or
+// removed. Owners stay names, resolved in the root the group is written
 // into, after the accounts it needs are made there: those in its own
 // usr/lib/sysusers.d (Fedora packages ship them) and ACCOUNTS_* above.
 fn build(ctx) {
@@ -176,23 +178,30 @@ fn build(ctx) {
     if exists(ctx.system) { rm(ctx.system); }
     mkdir(ctx.system);
     let done = 0;
-    for pin in ctx.pins {
-        progress(done, ctx.pins.len(), "packages");
-        let archive = archive_of(ctx, pin);
-        verify_sha256(archive, pin[3]);
-        if ctx.format == "apk" {
-            target_extract_apk(archive, ctx.system);
-        } else {
-            target_extract_rpm(archive, ctx.system);
+    // Packages whose var/ is not kept first, then the var/ they left, then
+    // the packages whose var/ is kept.
+    for seeds in [false, true] {
+        for pin in ctx.pins {
+            if pin[6] != seeds { continue; }
+            progress(done, ctx.pins.len(), "packages");
+            let archive = archive_of(ctx, pin);
+            verify_sha256(archive, pin[3]);
+            if ctx.format == "apk" {
+                target_extract_apk(archive, ctx.system);
+            } else {
+                target_extract_rpm(archive, ctx.system);
+            }
+            done += 1;
         }
-        done += 1;
+        let state = join_path(ctx.system, "var");
+        if !seeds && exists(state) { rm(state); }
     }
     progress(done, ctx.pins.len(), "packages");
-    for dir in ["var", "run", "tmp", "boot", "home", "root", "proc", "sys", "dev", "lost+found"] {
+    for dir in ["run", "tmp", "boot", "home", "root", "proc", "sys", "dev", "lost+found", "var/run", "var/tmp", "var/lock"] {
         let path = join_path(ctx.system, dir);
         if exists(path) { rm(path); }
     }
-    target_finalize(ctx.system, #{ owners: "apply", accounts: ctx.accounts });
+    target_finalize(ctx.system, #{ owners: "apply", seed: "var", accounts: ctx.accounts });
     write_file(ctx.record, ctx.pins_record);
     ctx
 }

@@ -8,7 +8,7 @@
 // `cargo xtask base groups levitate` (glibc: Fedora RPMs) and
 // `cargo xtask base groups acorn` (musl: Alpine APKs) from the seeds below. A
 // package more than one group needs belongs to desktop-libs.
-const RECIPE_API = 2;
+const RECIPE_API = 3;
 const NEEDS = #{
     outputs: #{ system: "directory" },
     network: ["dl.fedoraproject.org:443", "dl-cdn.alpinelinux.org:443"],
@@ -22,7 +22,7 @@ const ABOUT = #{
     kind: "system",
     category: "utilities",
     libc: ["glibc", "musl"],
-    systems: ["levitate", "acorn"],
+    systems: ["levitateos", "acornos"],
     details: "The man command (man-db on LevitateOS, mandoc with the Linux man-pages on AcornOS).",
     homepage: "https://man-db.gitlab.io/man-db/",
     license: "GPL-2.0-or-later AND BSD-3-Clause",
@@ -63,11 +63,11 @@ let ctx = #{
 // 2026-11-10): 3 packages, 2810812 bytes. Licences are each package's own.
 const RPM_PINNED_ON = "2026-11-10";
 const RPM_PINNED_BYTES = 2810812;
-// [name, file, URL, SHA-256, bytes, licence]
+// [name, file, URL, SHA-256, bytes, licence, var/ kept as state seeds]
 const RPM_PINS = [
-    ["groff-base", "groff-base-1.24.1-2.fc45.x86_64.rpm", "https://dl.fedoraproject.org/pub/fedora/linux/releases/45/Everything/x86_64/os/Packages/g/groff-base-1.24.1-2.fc45.x86_64.rpm", "17993c1509f0a525cae73c824d3b2507c6df58e7701a9629e61340711e6774bd", 1286768, "GPL-3.0-or-later AND GFDL-1.3-or-later AND BSD-4-Clause-UC AND MIT AND X11 AND LicenseRef-Fedora-Public-Domain"],
-    ["libpipeline", "libpipeline-1.5.8-5.fc45.x86_64.rpm", "https://dl.fedoraproject.org/pub/fedora/linux/releases/45/Everything/x86_64/os/Packages/l/libpipeline-1.5.8-5.fc45.x86_64.rpm", "08bbb96dbf3edeec805e30117c443bffafd6bdfc3684c08db602edb9bfc3cb20", 61355, "GPL-3.0-or-later"],
-    ["man-db", "man-db-2.13.1-4.fc45.x86_64.rpm", "https://dl.fedoraproject.org/pub/fedora/linux/releases/45/Everything/x86_64/os/Packages/m/man-db-2.13.1-4.fc45.x86_64.rpm", "f92b70d844133e7e1722ad8ddc003867ca1cd1fac831060eb483fd6bd2d79e71", 1462689, "GPL-2.0-or-later AND GPL-3.0-or-later"],
+    ["groff-base", "groff-base-1.24.1-2.fc45.x86_64.rpm", "https://dl.fedoraproject.org/pub/fedora/linux/releases/45/Everything/x86_64/os/Packages/g/groff-base-1.24.1-2.fc45.x86_64.rpm", "17993c1509f0a525cae73c824d3b2507c6df58e7701a9629e61340711e6774bd", 1286768, "GPL-3.0-or-later AND GFDL-1.3-or-later AND BSD-4-Clause-UC AND MIT AND X11 AND LicenseRef-Fedora-Public-Domain", false],
+    ["libpipeline", "libpipeline-1.5.8-5.fc45.x86_64.rpm", "https://dl.fedoraproject.org/pub/fedora/linux/releases/45/Everything/x86_64/os/Packages/l/libpipeline-1.5.8-5.fc45.x86_64.rpm", "08bbb96dbf3edeec805e30117c443bffafd6bdfc3684c08db602edb9bfc3cb20", 61355, "GPL-3.0-or-later", false],
+    ["man-db", "man-db-2.13.1-4.fc45.x86_64.rpm", "https://dl.fedoraproject.org/pub/fedora/linux/releases/45/Everything/x86_64/os/Packages/m/man-db-2.13.1-4.fc45.x86_64.rpm", "f92b70d844133e7e1722ad8ddc003867ca1cd1fac831060eb483fd6bd2d79e71", 1462689, "GPL-2.0-or-later AND GPL-3.0-or-later", false],
 ];
 // END GENERATED PINS glibc
 
@@ -77,10 +77,10 @@ const RPM_PINS = [
 // 2026-11-13): 2 packages, 3439322 bytes. Licences are each package's own.
 const APK_PINNED_ON = "2026-11-13";
 const APK_PINNED_BYTES = 3439322;
-// [name, file, URL, SHA-256, bytes, licence]
+// [name, file, URL, SHA-256, bytes, licence, var/ kept as state seeds]
 const APK_PINS = [
-    ["man-pages", "man-pages-6.18-r0.apk", "https://dl-cdn.alpinelinux.org/alpine/v3.24/main/x86_64/man-pages-6.18-r0.apk", "2ba1a7a9f579495cdb084fab1bc3efc72266402b172f94279549affb30506916", 3237674, "GPL-2.0-or-later"],
-    ["mandoc", "mandoc-1.14.6-r15.apk", "https://dl-cdn.alpinelinux.org/alpine/v3.24/main/x86_64/mandoc-1.14.6-r15.apk", "fdd4d65d53da83bcc09b5861a4addc53b0783c289637958a235e0018866e0d9b", 201648, "ISC"],
+    ["man-pages", "man-pages-6.18-r0.apk", "https://dl-cdn.alpinelinux.org/alpine/v3.24/main/x86_64/man-pages-6.18-r0.apk", "2ba1a7a9f579495cdb084fab1bc3efc72266402b172f94279549affb30506916", 3237674, "GPL-2.0-or-later", false],
+    ["mandoc", "mandoc-1.14.6-r15.apk", "https://dl-cdn.alpinelinux.org/alpine/v3.24/main/x86_64/mandoc-1.14.6-r15.apk", "fdd4d65d53da83bcc09b5861a4addc53b0783c289637958a235e0018866e0d9b", 201648, "ISC", false],
 ];
 // END GENERATED PINS musl
 
@@ -167,9 +167,11 @@ fn is_built(ctx) {
 }
 
 // Unpacks every package into one system tree, natively, without running any
-// of its scripts. Paths a system package does not own (per-machine and
-// run-time data: var, run, tmp and the like) are left out; the system makes
-// them at boot. Owners stay names, resolved in the root the group is written
+// of its scripts. Paths a system package does not own (run-time data: run,
+// tmp and the like) are left out. Under var/, only what a package needs and
+// nothing at boot makes (pin[6]: it ships no tmpfiles.d, and AcornOS runs
+// none) is kept, as state seeds: created where missing, never owned or
+// removed. Owners stay names, resolved in the root the group is written
 // into, after the accounts it needs are made there: those in its own
 // usr/lib/sysusers.d (Fedora packages ship them) and ACCOUNTS_* above.
 fn build(ctx) {
@@ -178,23 +180,30 @@ fn build(ctx) {
     if exists(ctx.system) { rm(ctx.system); }
     mkdir(ctx.system);
     let done = 0;
-    for pin in ctx.pins {
-        progress(done, ctx.pins.len(), "packages");
-        let archive = archive_of(ctx, pin);
-        verify_sha256(archive, pin[3]);
-        if ctx.format == "apk" {
-            target_extract_apk(archive, ctx.system);
-        } else {
-            target_extract_rpm(archive, ctx.system);
+    // Packages whose var/ is not kept first, then the var/ they left, then
+    // the packages whose var/ is kept.
+    for seeds in [false, true] {
+        for pin in ctx.pins {
+            if pin[6] != seeds { continue; }
+            progress(done, ctx.pins.len(), "packages");
+            let archive = archive_of(ctx, pin);
+            verify_sha256(archive, pin[3]);
+            if ctx.format == "apk" {
+                target_extract_apk(archive, ctx.system);
+            } else {
+                target_extract_rpm(archive, ctx.system);
+            }
+            done += 1;
         }
-        done += 1;
+        let state = join_path(ctx.system, "var");
+        if !seeds && exists(state) { rm(state); }
     }
     progress(done, ctx.pins.len(), "packages");
-    for dir in ["var", "run", "tmp", "boot", "home", "root", "proc", "sys", "dev", "lost+found"] {
+    for dir in ["run", "tmp", "boot", "home", "root", "proc", "sys", "dev", "lost+found", "var/run", "var/tmp", "var/lock"] {
         let path = join_path(ctx.system, dir);
         if exists(path) { rm(path); }
     }
-    target_finalize(ctx.system, #{ owners: "apply", accounts: ctx.accounts });
+    target_finalize(ctx.system, #{ owners: "apply", seed: "var", accounts: ctx.accounts });
     write_file(ctx.record, ctx.pins_record);
     ctx
 }

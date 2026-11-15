@@ -8,7 +8,7 @@
 // `cargo xtask base groups levitate` (glibc: Fedora RPMs) and
 // `cargo xtask base groups acorn` (musl: Alpine APKs) from the seeds below. A
 // package more than one group needs belongs to desktop-libs.
-const RECIPE_API = 2;
+const RECIPE_API = 3;
 const NEEDS = #{
     outputs: #{ system: "directory" },
     network: ["dl.fedoraproject.org:443", "dl-cdn.alpinelinux.org:443"],
@@ -22,7 +22,7 @@ const ABOUT = #{
     kind: "app",
     category: "utilities",
     libc: ["glibc"],
-    systems: ["levitate"],
+    systems: ["levitateos"],
     details: "Plasma's printer settings page and print queue applet, over CUPS. It needs both the Plasma desktop and the printing stack.",
     homepage: "https://invent.kde.org/plasma/print-manager",
     license: "GPL-2.0-or-later",
@@ -62,12 +62,12 @@ let ctx = #{
 // 2026-11-10): 4 packages, 2181864 bytes. Licences are each package's own.
 const RPM_PINNED_ON = "2026-11-10";
 const RPM_PINNED_BYTES = 2181864;
-// [name, file, URL, SHA-256, bytes, licence]
+// [name, file, URL, SHA-256, bytes, licence, var/ kept as state seeds]
 const RPM_PINS = [
-    ["plasma-print-manager", "plasma-print-manager-6.8.2-1.fc45.x86_64.rpm", "https://dl.fedoraproject.org/pub/fedora/linux/updates/45/Everything/x86_64/Packages/p/plasma-print-manager-6.8.2-1.fc45.x86_64.rpm", "26c2b3f8a6a95840f2ba228db0b38d340091dd23f0281704dc05d938db8ca738", 537611, "BSD-3-Clause AND GPL-2.0-or-later AND LGPL-2.0-or-later AND LGPL-2.1-only AND LGPL-3.0-only AND (LGPL-2.1-only OR LGPL-3.0-only)"],
-    ["plasma-print-manager-libs", "plasma-print-manager-libs-6.8.2-1.fc45.x86_64.rpm", "https://dl.fedoraproject.org/pub/fedora/linux/updates/45/Everything/x86_64/Packages/p/plasma-print-manager-libs-6.8.2-1.fc45.x86_64.rpm", "517be52542c7c93968752c54d571c520b6825f0ce00bd85f988afe3daf7d9404", 269872, "BSD-3-Clause AND GPL-2.0-or-later AND LGPL-2.0-or-later AND LGPL-2.1-only AND LGPL-3.0-only AND (LGPL-2.1-only OR LGPL-3.0-only)"],
-    ["python3-cups", "python3-cups-2.0.4-11.fc45.x86_64.rpm", "https://dl.fedoraproject.org/pub/fedora/linux/releases/45/Everything/x86_64/os/Packages/p/python3-cups-2.0.4-11.fc45.x86_64.rpm", "3eba927025e176cb62a66abcd02692a7e910265c9f408e7a2ba07ad884ffd1ae", 86869, "GPL-2.0-or-later"],
-    ["system-config-printer-libs", "system-config-printer-libs-1.5.18-20.fc45.noarch.rpm", "https://dl.fedoraproject.org/pub/fedora/linux/releases/45/Everything/x86_64/os/Packages/s/system-config-printer-libs-1.5.18-20.fc45.noarch.rpm", "5ce54c04a54b68a5537e6ec27b8bf0a74b9f7a8ae2a07d034096a4f2969a12a0", 1287512, "GPL-2.0-or-later"],
+    ["plasma-print-manager", "plasma-print-manager-6.8.2-1.fc45.x86_64.rpm", "https://dl.fedoraproject.org/pub/fedora/linux/updates/45/Everything/x86_64/Packages/p/plasma-print-manager-6.8.2-1.fc45.x86_64.rpm", "26c2b3f8a6a95840f2ba228db0b38d340091dd23f0281704dc05d938db8ca738", 537611, "BSD-3-Clause AND GPL-2.0-or-later AND LGPL-2.0-or-later AND LGPL-2.1-only AND LGPL-3.0-only AND (LGPL-2.1-only OR LGPL-3.0-only)", false],
+    ["plasma-print-manager-libs", "plasma-print-manager-libs-6.8.2-1.fc45.x86_64.rpm", "https://dl.fedoraproject.org/pub/fedora/linux/updates/45/Everything/x86_64/Packages/p/plasma-print-manager-libs-6.8.2-1.fc45.x86_64.rpm", "517be52542c7c93968752c54d571c520b6825f0ce00bd85f988afe3daf7d9404", 269872, "BSD-3-Clause AND GPL-2.0-or-later AND LGPL-2.0-or-later AND LGPL-2.1-only AND LGPL-3.0-only AND (LGPL-2.1-only OR LGPL-3.0-only)", false],
+    ["python3-cups", "python3-cups-2.0.4-11.fc45.x86_64.rpm", "https://dl.fedoraproject.org/pub/fedora/linux/releases/45/Everything/x86_64/os/Packages/p/python3-cups-2.0.4-11.fc45.x86_64.rpm", "3eba927025e176cb62a66abcd02692a7e910265c9f408e7a2ba07ad884ffd1ae", 86869, "GPL-2.0-or-later", false],
+    ["system-config-printer-libs", "system-config-printer-libs-1.5.18-20.fc45.noarch.rpm", "https://dl.fedoraproject.org/pub/fedora/linux/releases/45/Everything/x86_64/os/Packages/s/system-config-printer-libs-1.5.18-20.fc45.noarch.rpm", "5ce54c04a54b68a5537e6ec27b8bf0a74b9f7a8ae2a07d034096a4f2969a12a0", 1287512, "GPL-2.0-or-later", false],
 ];
 // END GENERATED PINS glibc
 
@@ -162,9 +162,11 @@ fn is_built(ctx) {
 }
 
 // Unpacks every package into one system tree, natively, without running any
-// of its scripts. Paths a system package does not own (per-machine and
-// run-time data: var, run, tmp and the like) are left out; the system makes
-// them at boot. Owners stay names, resolved in the root the group is written
+// of its scripts. Paths a system package does not own (run-time data: run,
+// tmp and the like) are left out. Under var/, only what a package needs and
+// nothing at boot makes (pin[6]: it ships no tmpfiles.d, and AcornOS runs
+// none) is kept, as state seeds: created where missing, never owned or
+// removed. Owners stay names, resolved in the root the group is written
 // into, after the accounts it needs are made there: those in its own
 // usr/lib/sysusers.d (Fedora packages ship them) and ACCOUNTS_* above.
 fn build(ctx) {
@@ -173,23 +175,30 @@ fn build(ctx) {
     if exists(ctx.system) { rm(ctx.system); }
     mkdir(ctx.system);
     let done = 0;
-    for pin in ctx.pins {
-        progress(done, ctx.pins.len(), "packages");
-        let archive = archive_of(ctx, pin);
-        verify_sha256(archive, pin[3]);
-        if ctx.format == "apk" {
-            target_extract_apk(archive, ctx.system);
-        } else {
-            target_extract_rpm(archive, ctx.system);
+    // Packages whose var/ is not kept first, then the var/ they left, then
+    // the packages whose var/ is kept.
+    for seeds in [false, true] {
+        for pin in ctx.pins {
+            if pin[6] != seeds { continue; }
+            progress(done, ctx.pins.len(), "packages");
+            let archive = archive_of(ctx, pin);
+            verify_sha256(archive, pin[3]);
+            if ctx.format == "apk" {
+                target_extract_apk(archive, ctx.system);
+            } else {
+                target_extract_rpm(archive, ctx.system);
+            }
+            done += 1;
         }
-        done += 1;
+        let state = join_path(ctx.system, "var");
+        if !seeds && exists(state) { rm(state); }
     }
     progress(done, ctx.pins.len(), "packages");
-    for dir in ["var", "run", "tmp", "boot", "home", "root", "proc", "sys", "dev", "lost+found"] {
+    for dir in ["run", "tmp", "boot", "home", "root", "proc", "sys", "dev", "lost+found", "var/run", "var/tmp", "var/lock"] {
         let path = join_path(ctx.system, dir);
         if exists(path) { rm(path); }
     }
-    target_finalize(ctx.system, #{ owners: "apply", accounts: ctx.accounts });
+    target_finalize(ctx.system, #{ owners: "apply", seed: "var", accounts: ctx.accounts });
     write_file(ctx.record, ctx.pins_record);
     ctx
 }

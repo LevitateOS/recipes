@@ -8,7 +8,7 @@
 // `cargo xtask base groups levitate` (glibc: Fedora RPMs) and
 // `cargo xtask base groups acorn` (musl: Alpine APKs) from the seeds below. A
 // package more than one group needs belongs to desktop-libs.
-const RECIPE_API = 2;
+const RECIPE_API = 3;
 const NEEDS = #{
     outputs: #{ system: "directory" },
     network: ["dl.fedoraproject.org:443", "dl-cdn.alpinelinux.org:443"],
@@ -22,7 +22,7 @@ const ABOUT = #{
     kind: "app",
     category: "graphics",
     libc: ["glibc"],
-    systems: ["levitate"],
+    systems: ["levitateos"],
     details: "Skanlite scans images and documents, over SANE and its scanner drivers, which this group brings.",
     homepage: "https://apps.kde.org/skanlite/",
     license: "GPL-2.0-or-later",
@@ -62,17 +62,17 @@ let ctx = #{
 // 2026-11-10): 9 packages, 7242882 bytes. Licences are each package's own.
 const RPM_PINNED_ON = "2026-11-10";
 const RPM_PINNED_BYTES = 7242882;
-// [name, file, URL, SHA-256, bytes, licence]
+// [name, file, URL, SHA-256, bytes, licence, var/ kept as state seeds]
 const RPM_PINS = [
-    ["ksanecore", "ksanecore-26.08.2-1.fc45.x86_64.rpm", "https://dl.fedoraproject.org/pub/fedora/linux/releases/45/Everything/x86_64/os/Packages/k/ksanecore-26.08.2-1.fc45.x86_64.rpm", "7bd90973743842ae10c9940dc6848016114a4f1dbcd62cdd240582c57b11b246", 143282, "BSD and LGPLv2.1-only and LGPLv3.0-only"],
-    ["libieee1284", "libieee1284-0.2.11-50.fc45.x86_64.rpm", "https://dl.fedoraproject.org/pub/fedora/linux/releases/45/Everything/x86_64/os/Packages/l/libieee1284-0.2.11-50.fc45.x86_64.rpm", "3e75e9a8ebf3d9f135bb54309ef4d26161dbe4a3b734d874901e1cc1ce581888", 43158, "GPL-2.0-or-later"],
-    ["libksane", "libksane-26.08.2-1.fc45.x86_64.rpm", "https://dl.fedoraproject.org/pub/fedora/linux/releases/45/Everything/x86_64/os/Packages/l/libksane-26.08.2-1.fc45.x86_64.rpm", "0a1ff04d7462bb05ce4688b7cf15f7d0402d3ae409049d8368dfc38a21a6ff27", 216749, "CC0-1.0 AND LGPL-2.1-only AND LGPL-3.0-only"],
-    ["libsane-airscan", "libsane-airscan-0.99.38-1.fc45.x86_64.rpm", "https://dl.fedoraproject.org/pub/fedora/linux/updates/45/Everything/x86_64/Packages/l/libsane-airscan-0.99.38-1.fc45.x86_64.rpm", "62be7422a2332f5f6b418df429dc61f09a4790c8d4be987807b1488c2e1c7f33", 142925, "GPL-2.0-or-later WITH SANE-exception AND MIT"],
-    ["sane-airscan", "sane-airscan-0.99.38-1.fc45.x86_64.rpm", "https://dl.fedoraproject.org/pub/fedora/linux/updates/45/Everything/x86_64/Packages/s/sane-airscan-0.99.38-1.fc45.x86_64.rpm", "a3b9ea10a712e7c15f06f5d34bfb4d0e875adaae9665cd5d2a24a4555b706ef7", 89179, "GPL-2.0-or-later WITH SANE-exception AND MIT"],
-    ["sane-backends", "sane-backends-1.4.0-9.fc45.x86_64.rpm", "https://dl.fedoraproject.org/pub/fedora/linux/releases/45/Everything/x86_64/os/Packages/s/sane-backends-1.4.0-9.fc45.x86_64.rpm", "612c31ba4f7d3e7ad09672c9c5fc706f7dccda50894b1580e86c6f432ff9c2b9", 916971, "GPL-2.0-or-later WITH SANE-exception AND GPL-2.0-or-later AND GPL-2.0-only AND LGPL-2.0-or-later AND LGPL-2.1-or-later AND LicenseRef-Fedora-Public-Domain AND IJG AND MIT"],
-    ["sane-backends-drivers-scanners", "sane-backends-drivers-scanners-1.4.0-9.fc45.x86_64.rpm", "https://dl.fedoraproject.org/pub/fedora/linux/releases/45/Everything/x86_64/os/Packages/s/sane-backends-drivers-scanners-1.4.0-9.fc45.x86_64.rpm", "751bf6bc74ea49e23b305f71505d743a55dd9f648b28d792e99a5354823fd1f5", 3064409, "GPL-2.0-or-later WITH SANE-exception AND GPL-2.0-or-later AND GPL-2.0-only AND LGPL-2.0-or-later AND LGPL-2.1-or-later AND LicenseRef-Fedora-Public-Domain AND IJG AND MIT"],
-    ["sane-backends-libs", "sane-backends-libs-1.4.0-9.fc45.x86_64.rpm", "https://dl.fedoraproject.org/pub/fedora/linux/releases/45/Everything/x86_64/os/Packages/s/sane-backends-libs-1.4.0-9.fc45.x86_64.rpm", "2e8068ef321f17b491e1f4021fdbc814bd3a06f15464f0124162a38a3b4195b1", 49207, "GPL-2.0-or-later WITH SANE-exception AND GPL-2.0-or-later AND GPL-2.0-only AND LGPL-2.0-or-later AND LGPL-2.1-or-later AND LicenseRef-Fedora-Public-Domain AND IJG AND MIT"],
-    ["skanlite", "skanlite-26.08.2-1.fc45.x86_64.rpm", "https://dl.fedoraproject.org/pub/fedora/linux/releases/45/Everything/x86_64/os/Packages/s/skanlite-26.08.2-1.fc45.x86_64.rpm", "8bc5e5cbdee8c603b4821a3e01318501ba770fc3f0e3c078067293b1eb81819f", 2577002, "GPL-2.0-only OR GPL-3.0-only"],
+    ["ksanecore", "ksanecore-26.08.2-1.fc45.x86_64.rpm", "https://dl.fedoraproject.org/pub/fedora/linux/releases/45/Everything/x86_64/os/Packages/k/ksanecore-26.08.2-1.fc45.x86_64.rpm", "7bd90973743842ae10c9940dc6848016114a4f1dbcd62cdd240582c57b11b246", 143282, "BSD and LGPLv2.1-only and LGPLv3.0-only", false],
+    ["libieee1284", "libieee1284-0.2.11-50.fc45.x86_64.rpm", "https://dl.fedoraproject.org/pub/fedora/linux/releases/45/Everything/x86_64/os/Packages/l/libieee1284-0.2.11-50.fc45.x86_64.rpm", "3e75e9a8ebf3d9f135bb54309ef4d26161dbe4a3b734d874901e1cc1ce581888", 43158, "GPL-2.0-or-later", false],
+    ["libksane", "libksane-26.08.2-1.fc45.x86_64.rpm", "https://dl.fedoraproject.org/pub/fedora/linux/releases/45/Everything/x86_64/os/Packages/l/libksane-26.08.2-1.fc45.x86_64.rpm", "0a1ff04d7462bb05ce4688b7cf15f7d0402d3ae409049d8368dfc38a21a6ff27", 216749, "CC0-1.0 AND LGPL-2.1-only AND LGPL-3.0-only", false],
+    ["libsane-airscan", "libsane-airscan-0.99.38-1.fc45.x86_64.rpm", "https://dl.fedoraproject.org/pub/fedora/linux/updates/45/Everything/x86_64/Packages/l/libsane-airscan-0.99.38-1.fc45.x86_64.rpm", "62be7422a2332f5f6b418df429dc61f09a4790c8d4be987807b1488c2e1c7f33", 142925, "GPL-2.0-or-later WITH SANE-exception AND MIT", false],
+    ["sane-airscan", "sane-airscan-0.99.38-1.fc45.x86_64.rpm", "https://dl.fedoraproject.org/pub/fedora/linux/updates/45/Everything/x86_64/Packages/s/sane-airscan-0.99.38-1.fc45.x86_64.rpm", "a3b9ea10a712e7c15f06f5d34bfb4d0e875adaae9665cd5d2a24a4555b706ef7", 89179, "GPL-2.0-or-later WITH SANE-exception AND MIT", false],
+    ["sane-backends", "sane-backends-1.4.0-9.fc45.x86_64.rpm", "https://dl.fedoraproject.org/pub/fedora/linux/releases/45/Everything/x86_64/os/Packages/s/sane-backends-1.4.0-9.fc45.x86_64.rpm", "612c31ba4f7d3e7ad09672c9c5fc706f7dccda50894b1580e86c6f432ff9c2b9", 916971, "GPL-2.0-or-later WITH SANE-exception AND GPL-2.0-or-later AND GPL-2.0-only AND LGPL-2.0-or-later AND LGPL-2.1-or-later AND LicenseRef-Fedora-Public-Domain AND IJG AND MIT", false],
+    ["sane-backends-drivers-scanners", "sane-backends-drivers-scanners-1.4.0-9.fc45.x86_64.rpm", "https://dl.fedoraproject.org/pub/fedora/linux/releases/45/Everything/x86_64/os/Packages/s/sane-backends-drivers-scanners-1.4.0-9.fc45.x86_64.rpm", "751bf6bc74ea49e23b305f71505d743a55dd9f648b28d792e99a5354823fd1f5", 3064409, "GPL-2.0-or-later WITH SANE-exception AND GPL-2.0-or-later AND GPL-2.0-only AND LGPL-2.0-or-later AND LGPL-2.1-or-later AND LicenseRef-Fedora-Public-Domain AND IJG AND MIT", false],
+    ["sane-backends-libs", "sane-backends-libs-1.4.0-9.fc45.x86_64.rpm", "https://dl.fedoraproject.org/pub/fedora/linux/releases/45/Everything/x86_64/os/Packages/s/sane-backends-libs-1.4.0-9.fc45.x86_64.rpm", "2e8068ef321f17b491e1f4021fdbc814bd3a06f15464f0124162a38a3b4195b1", 49207, "GPL-2.0-or-later WITH SANE-exception AND GPL-2.0-or-later AND GPL-2.0-only AND LGPL-2.0-or-later AND LGPL-2.1-or-later AND LicenseRef-Fedora-Public-Domain AND IJG AND MIT", false],
+    ["skanlite", "skanlite-26.08.2-1.fc45.x86_64.rpm", "https://dl.fedoraproject.org/pub/fedora/linux/releases/45/Everything/x86_64/os/Packages/s/skanlite-26.08.2-1.fc45.x86_64.rpm", "8bc5e5cbdee8c603b4821a3e01318501ba770fc3f0e3c078067293b1eb81819f", 2577002, "GPL-2.0-only OR GPL-3.0-only", false],
 ];
 // END GENERATED PINS glibc
 
@@ -167,9 +167,11 @@ fn is_built(ctx) {
 }
 
 // Unpacks every package into one system tree, natively, without running any
-// of its scripts. Paths a system package does not own (per-machine and
-// run-time data: var, run, tmp and the like) are left out; the system makes
-// them at boot. Owners stay names, resolved in the root the group is written
+// of its scripts. Paths a system package does not own (run-time data: run,
+// tmp and the like) are left out. Under var/, only what a package needs and
+// nothing at boot makes (pin[6]: it ships no tmpfiles.d, and AcornOS runs
+// none) is kept, as state seeds: created where missing, never owned or
+// removed. Owners stay names, resolved in the root the group is written
 // into, after the accounts it needs are made there: those in its own
 // usr/lib/sysusers.d (Fedora packages ship them) and ACCOUNTS_* above.
 fn build(ctx) {
@@ -178,23 +180,30 @@ fn build(ctx) {
     if exists(ctx.system) { rm(ctx.system); }
     mkdir(ctx.system);
     let done = 0;
-    for pin in ctx.pins {
-        progress(done, ctx.pins.len(), "packages");
-        let archive = archive_of(ctx, pin);
-        verify_sha256(archive, pin[3]);
-        if ctx.format == "apk" {
-            target_extract_apk(archive, ctx.system);
-        } else {
-            target_extract_rpm(archive, ctx.system);
+    // Packages whose var/ is not kept first, then the var/ they left, then
+    // the packages whose var/ is kept.
+    for seeds in [false, true] {
+        for pin in ctx.pins {
+            if pin[6] != seeds { continue; }
+            progress(done, ctx.pins.len(), "packages");
+            let archive = archive_of(ctx, pin);
+            verify_sha256(archive, pin[3]);
+            if ctx.format == "apk" {
+                target_extract_apk(archive, ctx.system);
+            } else {
+                target_extract_rpm(archive, ctx.system);
+            }
+            done += 1;
         }
-        done += 1;
+        let state = join_path(ctx.system, "var");
+        if !seeds && exists(state) { rm(state); }
     }
     progress(done, ctx.pins.len(), "packages");
-    for dir in ["var", "run", "tmp", "boot", "home", "root", "proc", "sys", "dev", "lost+found"] {
+    for dir in ["run", "tmp", "boot", "home", "root", "proc", "sys", "dev", "lost+found", "var/run", "var/tmp", "var/lock"] {
         let path = join_path(ctx.system, dir);
         if exists(path) { rm(path); }
     }
-    target_finalize(ctx.system, #{ owners: "apply", accounts: ctx.accounts });
+    target_finalize(ctx.system, #{ owners: "apply", seed: "var", accounts: ctx.accounts });
     write_file(ctx.record, ctx.pins_record);
     ctx
 }

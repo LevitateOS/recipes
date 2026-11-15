@@ -8,7 +8,7 @@
 // `cargo xtask base groups levitate` (glibc: Fedora RPMs) and
 // `cargo xtask base groups acorn` (musl: Alpine APKs) from the seeds below. A
 // package more than one group needs belongs to desktop-libs.
-const RECIPE_API = 2;
+const RECIPE_API = 3;
 const NEEDS = #{
     outputs: #{ system: "directory" },
     network: ["dl.fedoraproject.org:443", "dl-cdn.alpinelinux.org:443"],
@@ -22,7 +22,7 @@ const ABOUT = #{
     kind: "system",
     category: "utilities",
     libc: ["glibc", "musl"],
-    systems: ["levitate", "acorn"],
+    systems: ["levitateos", "acornos"],
     details: "NetworkManager and its WiFi support over wpa_supplicant, which bring wired and wireless networks up and keep them up; nmcli comes with it.",
     homepage: "https://networkmanager.dev",
     license: "GPL-2.0-or-later AND LGPL-2.1-or-later AND BSD-3-Clause",
@@ -65,14 +65,14 @@ let ctx = #{
 // 2026-11-10): 6 packages, 6997607 bytes. Licences are each package's own.
 const RPM_PINNED_ON = "2026-11-10";
 const RPM_PINNED_BYTES = 6997607;
-// [name, file, URL, SHA-256, bytes, licence]
+// [name, file, URL, SHA-256, bytes, licence, var/ kept as state seeds]
 const RPM_PINS = [
-    ["NetworkManager", "NetworkManager-1.58.1-3.fc45.x86_64.rpm", "https://dl.fedoraproject.org/pub/fedora/linux/releases/45/Everything/x86_64/os/Packages/n/NetworkManager-1.58.1-3.fc45.x86_64.rpm", "d671027360305dbedf54553eb37d49a9072c2ce291d29bc7c800d21f47cfeb47", 2440040, "GPL-2.0-or-later AND LGPL-2.1-or-later"],
-    ["NetworkManager-libnm", "NetworkManager-libnm-1.58.1-3.fc45.x86_64.rpm", "https://dl.fedoraproject.org/pub/fedora/linux/releases/45/Everything/x86_64/os/Packages/n/NetworkManager-libnm-1.58.1-3.fc45.x86_64.rpm", "2a678dcf3676c22ae0f4bcbf6635d7216a3eff34266f3b9f739527037aed85b0", 2293523, "LGPL-2.1-or-later"],
-    ["NetworkManager-wifi", "NetworkManager-wifi-1.58.1-3.fc45.x86_64.rpm", "https://dl.fedoraproject.org/pub/fedora/linux/releases/45/Everything/x86_64/os/Packages/n/NetworkManager-wifi-1.58.1-3.fc45.x86_64.rpm", "87fee075a32918648afe466f90b860575c63cad603697169cb11521d913f7515", 141477, "GPL-2.0-or-later AND LGPL-2.1-or-later"],
-    ["libndp", "libndp-1.9-6.fc45.x86_64.rpm", "https://dl.fedoraproject.org/pub/fedora/linux/releases/45/Everything/x86_64/os/Packages/l/libndp-1.9-6.fc45.x86_64.rpm", "0a7dda4e5c4c6249f7796b5c88ea3f19e0fc09cef346f2de6a88b51e5e6dcadb", 37961, "LGPL-2.1-or-later"],
-    ["pkcs11-provider", "pkcs11-provider-1.3.0-1.fc45.x86_64.rpm", "https://dl.fedoraproject.org/pub/fedora/linux/updates/45/Everything/x86_64/Packages/p/pkcs11-provider-1.3.0-1.fc45.x86_64.rpm", "c136e282fafec2b162401b14b6b62594e841be3f9bb0bad0f29d87dd7c0ebe94", 214078, "Apache-2.0"],
-    ["wpa_supplicant", "wpa_supplicant-2.11-13.fc45.x86_64.rpm", "https://dl.fedoraproject.org/pub/fedora/linux/releases/45/Everything/x86_64/os/Packages/w/wpa_supplicant-2.11-13.fc45.x86_64.rpm", "5aed14fde99c7473765ec32fceef7cee7112bee527726388fe80a2aacbb9fba0", 1870528, "BSD-3-Clause"],
+    ["NetworkManager", "NetworkManager-1.58.1-3.fc45.x86_64.rpm", "https://dl.fedoraproject.org/pub/fedora/linux/releases/45/Everything/x86_64/os/Packages/n/NetworkManager-1.58.1-3.fc45.x86_64.rpm", "d671027360305dbedf54553eb37d49a9072c2ce291d29bc7c800d21f47cfeb47", 2440040, "GPL-2.0-or-later AND LGPL-2.1-or-later", true],
+    ["NetworkManager-libnm", "NetworkManager-libnm-1.58.1-3.fc45.x86_64.rpm", "https://dl.fedoraproject.org/pub/fedora/linux/releases/45/Everything/x86_64/os/Packages/n/NetworkManager-libnm-1.58.1-3.fc45.x86_64.rpm", "2a678dcf3676c22ae0f4bcbf6635d7216a3eff34266f3b9f739527037aed85b0", 2293523, "LGPL-2.1-or-later", false],
+    ["NetworkManager-wifi", "NetworkManager-wifi-1.58.1-3.fc45.x86_64.rpm", "https://dl.fedoraproject.org/pub/fedora/linux/releases/45/Everything/x86_64/os/Packages/n/NetworkManager-wifi-1.58.1-3.fc45.x86_64.rpm", "87fee075a32918648afe466f90b860575c63cad603697169cb11521d913f7515", 141477, "GPL-2.0-or-later AND LGPL-2.1-or-later", false],
+    ["libndp", "libndp-1.9-6.fc45.x86_64.rpm", "https://dl.fedoraproject.org/pub/fedora/linux/releases/45/Everything/x86_64/os/Packages/l/libndp-1.9-6.fc45.x86_64.rpm", "0a7dda4e5c4c6249f7796b5c88ea3f19e0fc09cef346f2de6a88b51e5e6dcadb", 37961, "LGPL-2.1-or-later", false],
+    ["pkcs11-provider", "pkcs11-provider-1.3.0-1.fc45.x86_64.rpm", "https://dl.fedoraproject.org/pub/fedora/linux/updates/45/Everything/x86_64/Packages/p/pkcs11-provider-1.3.0-1.fc45.x86_64.rpm", "c136e282fafec2b162401b14b6b62594e841be3f9bb0bad0f29d87dd7c0ebe94", 214078, "Apache-2.0", false],
+    ["wpa_supplicant", "wpa_supplicant-2.11-13.fc45.x86_64.rpm", "https://dl.fedoraproject.org/pub/fedora/linux/releases/45/Everything/x86_64/os/Packages/w/wpa_supplicant-2.11-13.fc45.x86_64.rpm", "5aed14fde99c7473765ec32fceef7cee7112bee527726388fe80a2aacbb9fba0", 1870528, "BSD-3-Clause", false],
 ];
 // END GENERATED PINS glibc
 
@@ -82,20 +82,20 @@ const RPM_PINS = [
 // 2026-11-13): 12 packages, 4357247 bytes. Licences are each package's own.
 const APK_PINNED_ON = "2026-11-13";
 const APK_PINNED_BYTES = 4357247;
-// [name, file, URL, SHA-256, bytes, licence]
+// [name, file, URL, SHA-256, bytes, licence, var/ kept as state seeds]
 const APK_PINS = [
-    ["ifupdown-ng-wifi", "ifupdown-ng-wifi-0.13.0-r0.apk", "https://dl-cdn.alpinelinux.org/alpine/v3.24/main/x86_64/ifupdown-ng-wifi-0.13.0-r0.apk", "1e2ac354da99c601210a60d236938ec7e2325a9d8adc0fd04f4af4cceaff3af6", 3039, "ISC"],
-    ["libndp", "libndp-1.9-r1.apk", "https://dl-cdn.alpinelinux.org/alpine/v3.24/community/x86_64/libndp-1.9-r1.apk", "5249e4624947046729bfc2c48de77ff90a5ed59d934b9f9b1f099f899eea86d1", 16962, "LGPL-2.1-or-later"],
-    ["libnm", "libnm-1.52.2-r0.apk", "https://dl-cdn.alpinelinux.org/alpine/v3.24/community/x86_64/libnm-1.52.2-r0.apk", "4cf09c5edbf337138c7bafac0246977e4e0543846d844bd5c97e2d789ebf9491", 460235, "GPL-2.0-or-later"],
-    ["networkmanager", "networkmanager-1.52.2-r0.apk", "https://dl-cdn.alpinelinux.org/alpine/v3.24/community/x86_64/networkmanager-1.52.2-r0.apk", "e94d73bfaeceed7cbae6c10d7197ac7258a6b32b158117c84c2f91f32fcff92b", 1491034, "GPL-2.0-or-later"],
-    ["networkmanager-bash-completion", "networkmanager-bash-completion-1.52.2-r0.apk", "https://dl-cdn.alpinelinux.org/alpine/v3.24/community/x86_64/networkmanager-bash-completion-1.52.2-r0.apk", "4585b4804c60503d4dfa7d5a0f8d0a6d8ccd2f823d6624655435fc1fb0767bd8", 3188, "GPL-2.0-or-later"],
-    ["networkmanager-cli", "networkmanager-cli-1.52.2-r0.apk", "https://dl-cdn.alpinelinux.org/alpine/v3.24/community/x86_64/networkmanager-cli-1.52.2-r0.apk", "4de109d73f3632174933acdf1f6bacb3c3c167e32ca1185d7926a1e7404d8ccc", 257437, "GPL-2.0-or-later"],
-    ["networkmanager-openrc", "networkmanager-openrc-1.52.2-r0.apk", "https://dl-cdn.alpinelinux.org/alpine/v3.24/community/x86_64/networkmanager-openrc-1.52.2-r0.apk", "bb4cc3fa4b0bfe17cfc6ec80a20903eb60c2886fa3fc6d7e6fb92616a4ea407b", 1962, "GPL-2.0-or-later"],
-    ["networkmanager-wifi", "networkmanager-wifi-1.52.2-r0.apk", "https://dl-cdn.alpinelinux.org/alpine/v3.24/community/x86_64/networkmanager-wifi-1.52.2-r0.apk", "b67f197513616e1d8649c0f2bfb2139ae35017654d8598ef8cb6a4f9242675f4", 106123, "GPL-2.0-or-later"],
-    ["networkmanager-wwan", "networkmanager-wwan-1.52.2-r0.apk", "https://dl-cdn.alpinelinux.org/alpine/v3.24/community/x86_64/networkmanager-wwan-1.52.2-r0.apk", "871e3075cc9fac4dbd0ba6579ed8f64efd4559623bc9ce0edc411b0fbd1cf83a", 57692, "GPL-2.0-or-later"],
-    ["pcsc-lite-libs", "pcsc-lite-libs-2.4.0-r4.apk", "https://dl-cdn.alpinelinux.org/alpine/v3.24/main/x86_64/pcsc-lite-libs-2.4.0-r4.apk", "f01c9af6f32a01dc385e7959dd2215711ab1037afe45f0cbf34efb19c7cb39ac", 22767, "BSD-3-Clause AND BSD-2-Clause AND ISC"],
-    ["wpa_supplicant", "wpa_supplicant-2.11-r4.apk", "https://dl-cdn.alpinelinux.org/alpine/v3.24/main/x86_64/wpa_supplicant-2.11-r4.apk", "6b3dc3546634cebd64570162b6b399582a83d6d00635d7436804e39a7850a0ef", 1933646, "BSD-3-Clause"],
-    ["wpa_supplicant-openrc", "wpa_supplicant-openrc-2.11-r4.apk", "https://dl-cdn.alpinelinux.org/alpine/v3.24/main/x86_64/wpa_supplicant-openrc-2.11-r4.apk", "0241a61765f1ff2416b034f8f4a6fb225aafc43df06beaee4a6c9a711b95dfa4", 3162, "BSD-3-Clause"],
+    ["ifupdown-ng-wifi", "ifupdown-ng-wifi-0.13.0-r0.apk", "https://dl-cdn.alpinelinux.org/alpine/v3.24/main/x86_64/ifupdown-ng-wifi-0.13.0-r0.apk", "1e2ac354da99c601210a60d236938ec7e2325a9d8adc0fd04f4af4cceaff3af6", 3039, "ISC", false],
+    ["libndp", "libndp-1.9-r1.apk", "https://dl-cdn.alpinelinux.org/alpine/v3.24/community/x86_64/libndp-1.9-r1.apk", "5249e4624947046729bfc2c48de77ff90a5ed59d934b9f9b1f099f899eea86d1", 16962, "LGPL-2.1-or-later", false],
+    ["libnm", "libnm-1.52.2-r0.apk", "https://dl-cdn.alpinelinux.org/alpine/v3.24/community/x86_64/libnm-1.52.2-r0.apk", "4cf09c5edbf337138c7bafac0246977e4e0543846d844bd5c97e2d789ebf9491", 460235, "GPL-2.0-or-later", false],
+    ["networkmanager", "networkmanager-1.52.2-r0.apk", "https://dl-cdn.alpinelinux.org/alpine/v3.24/community/x86_64/networkmanager-1.52.2-r0.apk", "e94d73bfaeceed7cbae6c10d7197ac7258a6b32b158117c84c2f91f32fcff92b", 1491034, "GPL-2.0-or-later", true],
+    ["networkmanager-bash-completion", "networkmanager-bash-completion-1.52.2-r0.apk", "https://dl-cdn.alpinelinux.org/alpine/v3.24/community/x86_64/networkmanager-bash-completion-1.52.2-r0.apk", "4585b4804c60503d4dfa7d5a0f8d0a6d8ccd2f823d6624655435fc1fb0767bd8", 3188, "GPL-2.0-or-later", false],
+    ["networkmanager-cli", "networkmanager-cli-1.52.2-r0.apk", "https://dl-cdn.alpinelinux.org/alpine/v3.24/community/x86_64/networkmanager-cli-1.52.2-r0.apk", "4de109d73f3632174933acdf1f6bacb3c3c167e32ca1185d7926a1e7404d8ccc", 257437, "GPL-2.0-or-later", false],
+    ["networkmanager-openrc", "networkmanager-openrc-1.52.2-r0.apk", "https://dl-cdn.alpinelinux.org/alpine/v3.24/community/x86_64/networkmanager-openrc-1.52.2-r0.apk", "bb4cc3fa4b0bfe17cfc6ec80a20903eb60c2886fa3fc6d7e6fb92616a4ea407b", 1962, "GPL-2.0-or-later", false],
+    ["networkmanager-wifi", "networkmanager-wifi-1.52.2-r0.apk", "https://dl-cdn.alpinelinux.org/alpine/v3.24/community/x86_64/networkmanager-wifi-1.52.2-r0.apk", "b67f197513616e1d8649c0f2bfb2139ae35017654d8598ef8cb6a4f9242675f4", 106123, "GPL-2.0-or-later", false],
+    ["networkmanager-wwan", "networkmanager-wwan-1.52.2-r0.apk", "https://dl-cdn.alpinelinux.org/alpine/v3.24/community/x86_64/networkmanager-wwan-1.52.2-r0.apk", "871e3075cc9fac4dbd0ba6579ed8f64efd4559623bc9ce0edc411b0fbd1cf83a", 57692, "GPL-2.0-or-later", false],
+    ["pcsc-lite-libs", "pcsc-lite-libs-2.4.0-r4.apk", "https://dl-cdn.alpinelinux.org/alpine/v3.24/main/x86_64/pcsc-lite-libs-2.4.0-r4.apk", "f01c9af6f32a01dc385e7959dd2215711ab1037afe45f0cbf34efb19c7cb39ac", 22767, "BSD-3-Clause AND BSD-2-Clause AND ISC", false],
+    ["wpa_supplicant", "wpa_supplicant-2.11-r4.apk", "https://dl-cdn.alpinelinux.org/alpine/v3.24/main/x86_64/wpa_supplicant-2.11-r4.apk", "6b3dc3546634cebd64570162b6b399582a83d6d00635d7436804e39a7850a0ef", 1933646, "BSD-3-Clause", false],
+    ["wpa_supplicant-openrc", "wpa_supplicant-openrc-2.11-r4.apk", "https://dl-cdn.alpinelinux.org/alpine/v3.24/main/x86_64/wpa_supplicant-openrc-2.11-r4.apk", "0241a61765f1ff2416b034f8f4a6fb225aafc43df06beaee4a6c9a711b95dfa4", 3162, "BSD-3-Clause", false],
 ];
 // END GENERATED PINS musl
 
@@ -182,9 +182,11 @@ fn is_built(ctx) {
 }
 
 // Unpacks every package into one system tree, natively, without running any
-// of its scripts. Paths a system package does not own (per-machine and
-// run-time data: var, run, tmp and the like) are left out; the system makes
-// them at boot. Owners stay names, resolved in the root the group is written
+// of its scripts. Paths a system package does not own (run-time data: run,
+// tmp and the like) are left out. Under var/, only what a package needs and
+// nothing at boot makes (pin[6]: it ships no tmpfiles.d, and AcornOS runs
+// none) is kept, as state seeds: created where missing, never owned or
+// removed. Owners stay names, resolved in the root the group is written
 // into, after the accounts it needs are made there: those in its own
 // usr/lib/sysusers.d (Fedora packages ship them) and ACCOUNTS_* above.
 fn build(ctx) {
@@ -193,23 +195,30 @@ fn build(ctx) {
     if exists(ctx.system) { rm(ctx.system); }
     mkdir(ctx.system);
     let done = 0;
-    for pin in ctx.pins {
-        progress(done, ctx.pins.len(), "packages");
-        let archive = archive_of(ctx, pin);
-        verify_sha256(archive, pin[3]);
-        if ctx.format == "apk" {
-            target_extract_apk(archive, ctx.system);
-        } else {
-            target_extract_rpm(archive, ctx.system);
+    // Packages whose var/ is not kept first, then the var/ they left, then
+    // the packages whose var/ is kept.
+    for seeds in [false, true] {
+        for pin in ctx.pins {
+            if pin[6] != seeds { continue; }
+            progress(done, ctx.pins.len(), "packages");
+            let archive = archive_of(ctx, pin);
+            verify_sha256(archive, pin[3]);
+            if ctx.format == "apk" {
+                target_extract_apk(archive, ctx.system);
+            } else {
+                target_extract_rpm(archive, ctx.system);
+            }
+            done += 1;
         }
-        done += 1;
+        let state = join_path(ctx.system, "var");
+        if !seeds && exists(state) { rm(state); }
     }
     progress(done, ctx.pins.len(), "packages");
-    for dir in ["var", "run", "tmp", "boot", "home", "root", "proc", "sys", "dev", "lost+found"] {
+    for dir in ["run", "tmp", "boot", "home", "root", "proc", "sys", "dev", "lost+found", "var/run", "var/tmp", "var/lock"] {
         let path = join_path(ctx.system, dir);
         if exists(path) { rm(path); }
     }
-    target_finalize(ctx.system, #{ owners: "apply", accounts: ctx.accounts });
+    target_finalize(ctx.system, #{ owners: "apply", seed: "var", accounts: ctx.accounts });
     write_file(ctx.record, ctx.pins_record);
     ctx
 }

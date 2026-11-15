@@ -8,7 +8,7 @@
 // `cargo xtask base groups levitate` (glibc: Fedora RPMs) and
 // `cargo xtask base groups acorn` (musl: Alpine APKs) from the seeds below. A
 // package more than one group needs belongs to desktop-libs.
-const RECIPE_API = 2;
+const RECIPE_API = 3;
 const NEEDS = #{
     outputs: #{ system: "directory" },
     network: ["dl.fedoraproject.org:443", "dl-cdn.alpinelinux.org:443"],
@@ -22,7 +22,7 @@ const ABOUT = #{
     kind: "app",
     category: "utilities",
     libc: ["musl"],
-    systems: ["acorn"],
+    systems: ["acornos"],
     details: "Mousepad, a simple plain text editor.",
     homepage: "https://docs.xfce.org/apps/mousepad/start",
     license: "GPL-2.0-or-later",
@@ -70,19 +70,19 @@ const RPM_PINS = [];
 // 2026-11-13): 11 packages, 1263289 bytes. Licences are each package's own.
 const APK_PINNED_ON = "2026-11-13";
 const APK_PINNED_BYTES = 1263289;
-// [name, file, URL, SHA-256, bytes, licence]
+// [name, file, URL, SHA-256, bytes, licence, var/ kept as state seeds]
 const APK_PINS = [
-    ["enchant2-data", "enchant2-data-2.8.15-r0.apk", "https://dl-cdn.alpinelinux.org/alpine/v3.24/community/x86_64/enchant2-data-2.8.15-r0.apk", "1be5d65bf122c5c375728af9af52dde63412ef6d98c5089c99095b0d9c8ff869", 1697, "LGPL-2.1-or-later"],
-    ["enchant2-hunspell", "enchant2-hunspell-2.8.15-r0.apk", "https://dl-cdn.alpinelinux.org/alpine/v3.24/community/x86_64/enchant2-hunspell-2.8.15-r0.apk", "0c8cc525327dc6937aa8aea0af2cb341a6ba16b00858c1267b8a0c9a8c45233f", 12685, "LGPL-2.1-or-later"],
-    ["enchant2-libs", "enchant2-libs-2.8.15-r0.apk", "https://dl-cdn.alpinelinux.org/alpine/v3.24/community/x86_64/enchant2-libs-2.8.15-r0.apk", "34c7fdeb0b5313e362f0bd0fcd4d96ee636ac906770e67bb8fc5406d0ae3de5e", 26651, "LGPL-2.1-or-later"],
-    ["gspell", "gspell-1.14.4-r0.apk", "https://dl-cdn.alpinelinux.org/alpine/v3.24/community/x86_64/gspell-1.14.4-r0.apk", "27bc7825fdbe1660a22d1e1b624c60b29d67b371ef029077abbc0b6111275768", 117797, "LGPL-2.1-or-later"],
-    ["gtksourceview4", "gtksourceview4-4.8.4-r4.apk", "https://dl-cdn.alpinelinux.org/alpine/v3.24/community/x86_64/gtksourceview4-4.8.4-r4.apk", "fbc1905d4a5f7cbb1e33723ae1e9aef194da0878fde1134ec7840eea9afe843c", 587178, "GPL-2.0-or-later"],
-    ["libgtop", "libgtop-2.41.3-r1.apk", "https://dl-cdn.alpinelinux.org/alpine/v3.24/community/x86_64/libgtop-2.41.3-r1.apk", "810cfc7f4a50c2633ab6d022c63158b8512b788045a34524845d738301959f11", 44438, "LGPL-2.1-or-later"],
-    ["libxfce4ui", "libxfce4ui-4.20.1-r1.apk", "https://dl-cdn.alpinelinux.org/alpine/v3.24/community/x86_64/libxfce4ui-4.20.1-r1.apk", "19db529ac4d013e935470bbc2d3bc36278f9722bd7a5de234abf08e909ed4e70", 150199, "GPL-2.0-only"],
-    ["libxfce4util", "libxfce4util-4.20.1-r0.apk", "https://dl-cdn.alpinelinux.org/alpine/v3.24/community/x86_64/libxfce4util-4.20.1-r0.apk", "15e4802fe99771c93089080754a5f237221f6d5c7d676299aeccf19979a1e8e3", 37431, "GPL-2.0-only"],
-    ["mousepad", "mousepad-0.7.0-r0.apk", "https://dl-cdn.alpinelinux.org/alpine/v3.24/community/x86_64/mousepad-0.7.0-r0.apk", "1d18dde5eeefb5087f50382304889f2c81e4cd094a65a6454283c34ff7b74453", 188904, "GPL-2.0-or-later"],
-    ["xfconf", "xfconf-4.20.0-r2.apk", "https://dl-cdn.alpinelinux.org/alpine/v3.24/community/x86_64/xfconf-4.20.0-r2.apk", "c936df109484021fb9d903f77acdd1b5b6365127a654280e3d835b82aa93dfd1", 93660, "GPL-2.0-only"],
-    ["xfconf-bash-completion", "xfconf-bash-completion-4.20.0-r2.apk", "https://dl-cdn.alpinelinux.org/alpine/v3.24/community/x86_64/xfconf-bash-completion-4.20.0-r2.apk", "5693c2c21a2a78980cedf6220a455a49974015de7f765105e8095f4b6c411498", 2649, "GPL-2.0-only"],
+    ["enchant2-data", "enchant2-data-2.8.15-r0.apk", "https://dl-cdn.alpinelinux.org/alpine/v3.24/community/x86_64/enchant2-data-2.8.15-r0.apk", "1be5d65bf122c5c375728af9af52dde63412ef6d98c5089c99095b0d9c8ff869", 1697, "LGPL-2.1-or-later", false],
+    ["enchant2-hunspell", "enchant2-hunspell-2.8.15-r0.apk", "https://dl-cdn.alpinelinux.org/alpine/v3.24/community/x86_64/enchant2-hunspell-2.8.15-r0.apk", "0c8cc525327dc6937aa8aea0af2cb341a6ba16b00858c1267b8a0c9a8c45233f", 12685, "LGPL-2.1-or-later", false],
+    ["enchant2-libs", "enchant2-libs-2.8.15-r0.apk", "https://dl-cdn.alpinelinux.org/alpine/v3.24/community/x86_64/enchant2-libs-2.8.15-r0.apk", "34c7fdeb0b5313e362f0bd0fcd4d96ee636ac906770e67bb8fc5406d0ae3de5e", 26651, "LGPL-2.1-or-later", false],
+    ["gspell", "gspell-1.14.4-r0.apk", "https://dl-cdn.alpinelinux.org/alpine/v3.24/community/x86_64/gspell-1.14.4-r0.apk", "27bc7825fdbe1660a22d1e1b624c60b29d67b371ef029077abbc0b6111275768", 117797, "LGPL-2.1-or-later", false],
+    ["gtksourceview4", "gtksourceview4-4.8.4-r4.apk", "https://dl-cdn.alpinelinux.org/alpine/v3.24/community/x86_64/gtksourceview4-4.8.4-r4.apk", "fbc1905d4a5f7cbb1e33723ae1e9aef194da0878fde1134ec7840eea9afe843c", 587178, "GPL-2.0-or-later", false],
+    ["libgtop", "libgtop-2.41.3-r1.apk", "https://dl-cdn.alpinelinux.org/alpine/v3.24/community/x86_64/libgtop-2.41.3-r1.apk", "810cfc7f4a50c2633ab6d022c63158b8512b788045a34524845d738301959f11", 44438, "LGPL-2.1-or-later", false],
+    ["libxfce4ui", "libxfce4ui-4.20.1-r1.apk", "https://dl-cdn.alpinelinux.org/alpine/v3.24/community/x86_64/libxfce4ui-4.20.1-r1.apk", "19db529ac4d013e935470bbc2d3bc36278f9722bd7a5de234abf08e909ed4e70", 150199, "GPL-2.0-only", false],
+    ["libxfce4util", "libxfce4util-4.20.1-r0.apk", "https://dl-cdn.alpinelinux.org/alpine/v3.24/community/x86_64/libxfce4util-4.20.1-r0.apk", "15e4802fe99771c93089080754a5f237221f6d5c7d676299aeccf19979a1e8e3", 37431, "GPL-2.0-only", false],
+    ["mousepad", "mousepad-0.7.0-r0.apk", "https://dl-cdn.alpinelinux.org/alpine/v3.24/community/x86_64/mousepad-0.7.0-r0.apk", "1d18dde5eeefb5087f50382304889f2c81e4cd094a65a6454283c34ff7b74453", 188904, "GPL-2.0-or-later", false],
+    ["xfconf", "xfconf-4.20.0-r2.apk", "https://dl-cdn.alpinelinux.org/alpine/v3.24/community/x86_64/xfconf-4.20.0-r2.apk", "c936df109484021fb9d903f77acdd1b5b6365127a654280e3d835b82aa93dfd1", 93660, "GPL-2.0-only", false],
+    ["xfconf-bash-completion", "xfconf-bash-completion-4.20.0-r2.apk", "https://dl-cdn.alpinelinux.org/alpine/v3.24/community/x86_64/xfconf-bash-completion-4.20.0-r2.apk", "5693c2c21a2a78980cedf6220a455a49974015de7f765105e8095f4b6c411498", 2649, "GPL-2.0-only", false],
 ];
 // END GENERATED PINS musl
 
@@ -169,9 +169,11 @@ fn is_built(ctx) {
 }
 
 // Unpacks every package into one system tree, natively, without running any
-// of its scripts. Paths a system package does not own (per-machine and
-// run-time data: var, run, tmp and the like) are left out; the system makes
-// them at boot. Owners stay names, resolved in the root the group is written
+// of its scripts. Paths a system package does not own (run-time data: run,
+// tmp and the like) are left out. Under var/, only what a package needs and
+// nothing at boot makes (pin[6]: it ships no tmpfiles.d, and AcornOS runs
+// none) is kept, as state seeds: created where missing, never owned or
+// removed. Owners stay names, resolved in the root the group is written
 // into, after the accounts it needs are made there: those in its own
 // usr/lib/sysusers.d (Fedora packages ship them) and ACCOUNTS_* above.
 fn build(ctx) {
@@ -180,23 +182,30 @@ fn build(ctx) {
     if exists(ctx.system) { rm(ctx.system); }
     mkdir(ctx.system);
     let done = 0;
-    for pin in ctx.pins {
-        progress(done, ctx.pins.len(), "packages");
-        let archive = archive_of(ctx, pin);
-        verify_sha256(archive, pin[3]);
-        if ctx.format == "apk" {
-            target_extract_apk(archive, ctx.system);
-        } else {
-            target_extract_rpm(archive, ctx.system);
+    // Packages whose var/ is not kept first, then the var/ they left, then
+    // the packages whose var/ is kept.
+    for seeds in [false, true] {
+        for pin in ctx.pins {
+            if pin[6] != seeds { continue; }
+            progress(done, ctx.pins.len(), "packages");
+            let archive = archive_of(ctx, pin);
+            verify_sha256(archive, pin[3]);
+            if ctx.format == "apk" {
+                target_extract_apk(archive, ctx.system);
+            } else {
+                target_extract_rpm(archive, ctx.system);
+            }
+            done += 1;
         }
-        done += 1;
+        let state = join_path(ctx.system, "var");
+        if !seeds && exists(state) { rm(state); }
     }
     progress(done, ctx.pins.len(), "packages");
-    for dir in ["var", "run", "tmp", "boot", "home", "root", "proc", "sys", "dev", "lost+found"] {
+    for dir in ["run", "tmp", "boot", "home", "root", "proc", "sys", "dev", "lost+found", "var/run", "var/tmp", "var/lock"] {
         let path = join_path(ctx.system, dir);
         if exists(path) { rm(path); }
     }
-    target_finalize(ctx.system, #{ owners: "apply", accounts: ctx.accounts });
+    target_finalize(ctx.system, #{ owners: "apply", seed: "var", accounts: ctx.accounts });
     write_file(ctx.record, ctx.pins_record);
     ctx
 }

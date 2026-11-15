@@ -8,7 +8,7 @@
 // `cargo xtask base groups levitate` (glibc: Fedora RPMs) and
 // `cargo xtask base groups acorn` (musl: Alpine APKs) from the seeds below. A
 // package more than one group needs belongs to desktop-libs.
-const RECIPE_API = 2;
+const RECIPE_API = 3;
 const NEEDS = #{
     outputs: #{ system: "directory" },
     network: ["dl.fedoraproject.org:443", "dl-cdn.alpinelinux.org:443"],
@@ -22,7 +22,7 @@ const ABOUT = #{
     kind: "system",
     category: "utilities",
     libc: ["glibc", "musl"],
-    systems: ["levitate", "acorn"],
+    systems: ["levitateos", "acornos"],
     details: "Tools to check and format exFAT drives, and NTFS-3G to read and write NTFS drives.",
     homepage: "https://github.com/exfatprogs/exfatprogs",
     license: "GPL-2.0-or-later",
@@ -63,11 +63,11 @@ let ctx = #{
 // 2026-11-10): 3 packages, 478717 bytes. Licences are each package's own.
 const RPM_PINNED_ON = "2026-11-10";
 const RPM_PINNED_BYTES = 478717;
-// [name, file, URL, SHA-256, bytes, licence]
+// [name, file, URL, SHA-256, bytes, licence, var/ kept as state seeds]
 const RPM_PINS = [
-    ["exfatprogs", "exfatprogs-1.4.3-1.fc45.x86_64.rpm", "https://dl.fedoraproject.org/pub/fedora/linux/releases/45/Everything/x86_64/os/Packages/e/exfatprogs-1.4.3-1.fc45.x86_64.rpm", "9351813244b314f6638932836a5d71252290debb7d30d3a5c8109970b2a56b20", 153091, "GPL-2.0-only"],
-    ["ntfs-3g", "ntfs-3g-2026.2.25-3.fc45.x86_64.rpm", "https://dl.fedoraproject.org/pub/fedora/linux/releases/45/Everything/x86_64/os/Packages/n/ntfs-3g-2026.2.25-3.fc45.x86_64.rpm", "55f4485880d557fd74ceb44a7cb53dab6a58b3d51fedcecbba36af4c5be8030b", 136676, "GPL-2.0-or-later"],
-    ["ntfs-3g-libs", "ntfs-3g-libs-2026.2.25-3.fc45.x86_64.rpm", "https://dl.fedoraproject.org/pub/fedora/linux/releases/45/Everything/x86_64/os/Packages/n/ntfs-3g-libs-2026.2.25-3.fc45.x86_64.rpm", "ff325017b0a427cd575fcfe32e2d570ef03589cf9020acdf110ce0c03c2b4697", 188950, "GPL-2.0-or-later"],
+    ["exfatprogs", "exfatprogs-1.4.3-1.fc45.x86_64.rpm", "https://dl.fedoraproject.org/pub/fedora/linux/releases/45/Everything/x86_64/os/Packages/e/exfatprogs-1.4.3-1.fc45.x86_64.rpm", "9351813244b314f6638932836a5d71252290debb7d30d3a5c8109970b2a56b20", 153091, "GPL-2.0-only", false],
+    ["ntfs-3g", "ntfs-3g-2026.2.25-3.fc45.x86_64.rpm", "https://dl.fedoraproject.org/pub/fedora/linux/releases/45/Everything/x86_64/os/Packages/n/ntfs-3g-2026.2.25-3.fc45.x86_64.rpm", "55f4485880d557fd74ceb44a7cb53dab6a58b3d51fedcecbba36af4c5be8030b", 136676, "GPL-2.0-or-later", false],
+    ["ntfs-3g-libs", "ntfs-3g-libs-2026.2.25-3.fc45.x86_64.rpm", "https://dl.fedoraproject.org/pub/fedora/linux/releases/45/Everything/x86_64/os/Packages/n/ntfs-3g-libs-2026.2.25-3.fc45.x86_64.rpm", "ff325017b0a427cd575fcfe32e2d570ef03589cf9020acdf110ce0c03c2b4697", 188950, "GPL-2.0-or-later", false],
 ];
 // END GENERATED PINS glibc
 
@@ -77,11 +77,11 @@ const RPM_PINS = [
 // 2026-11-13): 3 packages, 399103 bytes. Licences are each package's own.
 const APK_PINNED_ON = "2026-11-13";
 const APK_PINNED_BYTES = 399103;
-// [name, file, URL, SHA-256, bytes, licence]
+// [name, file, URL, SHA-256, bytes, licence, var/ kept as state seeds]
 const APK_PINS = [
-    ["exfatprogs", "exfatprogs-1.4.1-r0.apk", "https://dl-cdn.alpinelinux.org/alpine/v3.24/community/x86_64/exfatprogs-1.4.1-r0.apk", "b3878aa3e2edb0e1ab88c38fe49e2996ba0ca5d6b83aa2c3dff1a4878e03c0b8", 163554, "GPL-2.0-or-later"],
-    ["ntfs-3g", "ntfs-3g-2026.2.25-r0.apk", "https://dl-cdn.alpinelinux.org/alpine/v3.24/main/x86_64/ntfs-3g-2026.2.25-r0.apk", "5ce9a3df2de103b2ecda773267b9f182bda8f68549e839fd523795faff963f31", 97027, "GPL-2.0-only"],
-    ["ntfs-3g-libs", "ntfs-3g-libs-2026.2.25-r0.apk", "https://dl-cdn.alpinelinux.org/alpine/v3.24/main/x86_64/ntfs-3g-libs-2026.2.25-r0.apk", "49a1bcce726057237048fc16745a24ce159979f897218f486d2cd03c5a3f92dc", 138522, "GPL-2.0-only"],
+    ["exfatprogs", "exfatprogs-1.4.1-r0.apk", "https://dl-cdn.alpinelinux.org/alpine/v3.24/community/x86_64/exfatprogs-1.4.1-r0.apk", "b3878aa3e2edb0e1ab88c38fe49e2996ba0ca5d6b83aa2c3dff1a4878e03c0b8", 163554, "GPL-2.0-or-later", false],
+    ["ntfs-3g", "ntfs-3g-2026.2.25-r0.apk", "https://dl-cdn.alpinelinux.org/alpine/v3.24/main/x86_64/ntfs-3g-2026.2.25-r0.apk", "5ce9a3df2de103b2ecda773267b9f182bda8f68549e839fd523795faff963f31", 97027, "GPL-2.0-only", false],
+    ["ntfs-3g-libs", "ntfs-3g-libs-2026.2.25-r0.apk", "https://dl-cdn.alpinelinux.org/alpine/v3.24/main/x86_64/ntfs-3g-libs-2026.2.25-r0.apk", "49a1bcce726057237048fc16745a24ce159979f897218f486d2cd03c5a3f92dc", 138522, "GPL-2.0-only", false],
 ];
 // END GENERATED PINS musl
 
@@ -168,9 +168,11 @@ fn is_built(ctx) {
 }
 
 // Unpacks every package into one system tree, natively, without running any
-// of its scripts. Paths a system package does not own (per-machine and
-// run-time data: var, run, tmp and the like) are left out; the system makes
-// them at boot. Owners stay names, resolved in the root the group is written
+// of its scripts. Paths a system package does not own (run-time data: run,
+// tmp and the like) are left out. Under var/, only what a package needs and
+// nothing at boot makes (pin[6]: it ships no tmpfiles.d, and AcornOS runs
+// none) is kept, as state seeds: created where missing, never owned or
+// removed. Owners stay names, resolved in the root the group is written
 // into, after the accounts it needs are made there: those in its own
 // usr/lib/sysusers.d (Fedora packages ship them) and ACCOUNTS_* above.
 fn build(ctx) {
@@ -179,23 +181,30 @@ fn build(ctx) {
     if exists(ctx.system) { rm(ctx.system); }
     mkdir(ctx.system);
     let done = 0;
-    for pin in ctx.pins {
-        progress(done, ctx.pins.len(), "packages");
-        let archive = archive_of(ctx, pin);
-        verify_sha256(archive, pin[3]);
-        if ctx.format == "apk" {
-            target_extract_apk(archive, ctx.system);
-        } else {
-            target_extract_rpm(archive, ctx.system);
+    // Packages whose var/ is not kept first, then the var/ they left, then
+    // the packages whose var/ is kept.
+    for seeds in [false, true] {
+        for pin in ctx.pins {
+            if pin[6] != seeds { continue; }
+            progress(done, ctx.pins.len(), "packages");
+            let archive = archive_of(ctx, pin);
+            verify_sha256(archive, pin[3]);
+            if ctx.format == "apk" {
+                target_extract_apk(archive, ctx.system);
+            } else {
+                target_extract_rpm(archive, ctx.system);
+            }
+            done += 1;
         }
-        done += 1;
+        let state = join_path(ctx.system, "var");
+        if !seeds && exists(state) { rm(state); }
     }
     progress(done, ctx.pins.len(), "packages");
-    for dir in ["var", "run", "tmp", "boot", "home", "root", "proc", "sys", "dev", "lost+found"] {
+    for dir in ["run", "tmp", "boot", "home", "root", "proc", "sys", "dev", "lost+found", "var/run", "var/tmp", "var/lock"] {
         let path = join_path(ctx.system, dir);
         if exists(path) { rm(path); }
     }
-    target_finalize(ctx.system, #{ owners: "apply", accounts: ctx.accounts });
+    target_finalize(ctx.system, #{ owners: "apply", seed: "var", accounts: ctx.accounts });
     write_file(ctx.record, ctx.pins_record);
     ctx
 }

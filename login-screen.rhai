@@ -8,7 +8,7 @@
 // `cargo xtask base groups levitate` (glibc: Fedora RPMs) and
 // `cargo xtask base groups acorn` (musl: Alpine APKs) from the seeds below. A
 // package more than one group needs belongs to desktop-libs.
-const RECIPE_API = 2;
+const RECIPE_API = 3;
 const NEEDS = #{
     outputs: #{ system: "directory" },
     network: ["dl.fedoraproject.org:443", "dl-cdn.alpinelinux.org:443"],
@@ -22,7 +22,7 @@ const ABOUT = #{
     kind: "system",
     category: "utilities",
     libc: ["musl"],
-    systems: ["acorn"],
+    systems: ["acornos"],
     details: "SDDM, the graphical login screen; on LevitateOS with Plasma's Breeze theme and Wayland greeter. It lists whatever sessions the installed desktops provide.",
     homepage: "https://github.com/sddm/sddm",
     license: "GPL-2.0-or-later",
@@ -47,7 +47,7 @@ const SEEDS_MUSL = [
 // never run, so the AcornOS lines are written here from those scripts.
 const ACCOUNTS_GLIBC = [];
 const ACCOUNTS_MUSL = [
-    "g sddm -", "u sddm - 'SDDM display manager' /var/lib/sddm /sbin/nologin"
+    "g sddm -", "u sddm - 'SDDM display manager' /var/lib/sddm /sbin/nologin", "m sddm video"
 ];
 let deps = ["desktop-libs"];
 
@@ -71,12 +71,12 @@ const RPM_PINS = [];
 // 2026-11-13): 4 packages, 3969110 bytes. Licences are each package's own.
 const APK_PINNED_ON = "2026-11-13";
 const APK_PINNED_BYTES = 3969110;
-// [name, file, URL, SHA-256, bytes, licence]
+// [name, file, URL, SHA-256, bytes, licence, var/ kept as state seeds]
 const APK_PINS = [
-    ["sddm", "sddm-0.21.0-r10.apk", "https://dl-cdn.alpinelinux.org/alpine/v3.24/community/x86_64/sddm-0.21.0-r10.apk", "632ee19ebeeb207dc98cf8575f3fabf8d911df3cfd8de52f903382d57e13f8cd", 3836964, "GPL-2.0-or-later"],
-    ["sddm-openrc", "sddm-openrc-0.21.0-r10.apk", "https://dl-cdn.alpinelinux.org/alpine/v3.24/community/x86_64/sddm-openrc-0.21.0-r10.apk", "56d6bf208dc3b8ef7da1c55f363263281ae84398235c76602f6b97a623e21368", 1889, "GPL-2.0-or-later"],
-    ["upower", "upower-1.91.0-r2.apk", "https://dl-cdn.alpinelinux.org/alpine/v3.24/community/x86_64/upower-1.91.0-r2.apk", "78761cf27cb5d4a516a11e5536ad2236eee6c1a811e720266ee3b81e9af06430", 126255, "GPL-2.0-or-later"],
-    ["upower-udev", "upower-udev-1.91.0-r2.apk", "https://dl-cdn.alpinelinux.org/alpine/v3.24/community/x86_64/upower-udev-1.91.0-r2.apk", "defc1d7faf6c795758a28cec57b96f82d6e23f0497d31aa6b9acb64d2b9d30a0", 4002, "GPL-2.0-or-later"],
+    ["sddm", "sddm-0.21.0-r10.apk", "https://dl-cdn.alpinelinux.org/alpine/v3.24/community/x86_64/sddm-0.21.0-r10.apk", "632ee19ebeeb207dc98cf8575f3fabf8d911df3cfd8de52f903382d57e13f8cd", 3836964, "GPL-2.0-or-later", false],
+    ["sddm-openrc", "sddm-openrc-0.21.0-r10.apk", "https://dl-cdn.alpinelinux.org/alpine/v3.24/community/x86_64/sddm-openrc-0.21.0-r10.apk", "56d6bf208dc3b8ef7da1c55f363263281ae84398235c76602f6b97a623e21368", 1889, "GPL-2.0-or-later", false],
+    ["upower", "upower-1.91.0-r2.apk", "https://dl-cdn.alpinelinux.org/alpine/v3.24/community/x86_64/upower-1.91.0-r2.apk", "78761cf27cb5d4a516a11e5536ad2236eee6c1a811e720266ee3b81e9af06430", 126255, "GPL-2.0-or-later", true],
+    ["upower-udev", "upower-udev-1.91.0-r2.apk", "https://dl-cdn.alpinelinux.org/alpine/v3.24/community/x86_64/upower-udev-1.91.0-r2.apk", "defc1d7faf6c795758a28cec57b96f82d6e23f0497d31aa6b9acb64d2b9d30a0", 4002, "GPL-2.0-or-later", false],
 ];
 // END GENERATED PINS musl
 
@@ -163,9 +163,11 @@ fn is_built(ctx) {
 }
 
 // Unpacks every package into one system tree, natively, without running any
-// of its scripts. Paths a system package does not own (per-machine and
-// run-time data: var, run, tmp and the like) are left out; the system makes
-// them at boot. Owners stay names, resolved in the root the group is written
+// of its scripts. Paths a system package does not own (run-time data: run,
+// tmp and the like) are left out. Under var/, only what a package needs and
+// nothing at boot makes (pin[6]: it ships no tmpfiles.d, and AcornOS runs
+// none) is kept, as state seeds: created where missing, never owned or
+// removed. Owners stay names, resolved in the root the group is written
 // into, after the accounts it needs are made there: those in its own
 // usr/lib/sysusers.d (Fedora packages ship them) and ACCOUNTS_* above.
 fn build(ctx) {
@@ -174,23 +176,30 @@ fn build(ctx) {
     if exists(ctx.system) { rm(ctx.system); }
     mkdir(ctx.system);
     let done = 0;
-    for pin in ctx.pins {
-        progress(done, ctx.pins.len(), "packages");
-        let archive = archive_of(ctx, pin);
-        verify_sha256(archive, pin[3]);
-        if ctx.format == "apk" {
-            target_extract_apk(archive, ctx.system);
-        } else {
-            target_extract_rpm(archive, ctx.system);
+    // Packages whose var/ is not kept first, then the var/ they left, then
+    // the packages whose var/ is kept.
+    for seeds in [false, true] {
+        for pin in ctx.pins {
+            if pin[6] != seeds { continue; }
+            progress(done, ctx.pins.len(), "packages");
+            let archive = archive_of(ctx, pin);
+            verify_sha256(archive, pin[3]);
+            if ctx.format == "apk" {
+                target_extract_apk(archive, ctx.system);
+            } else {
+                target_extract_rpm(archive, ctx.system);
+            }
+            done += 1;
         }
-        done += 1;
+        let state = join_path(ctx.system, "var");
+        if !seeds && exists(state) { rm(state); }
     }
     progress(done, ctx.pins.len(), "packages");
-    for dir in ["var", "run", "tmp", "boot", "home", "root", "proc", "sys", "dev", "lost+found"] {
+    for dir in ["run", "tmp", "boot", "home", "root", "proc", "sys", "dev", "lost+found", "var/run", "var/tmp", "var/lock"] {
         let path = join_path(ctx.system, dir);
         if exists(path) { rm(path); }
     }
-    target_finalize(ctx.system, #{ owners: "apply", accounts: ctx.accounts });
+    target_finalize(ctx.system, #{ owners: "apply", seed: "var", accounts: ctx.accounts });
     write_file(ctx.record, ctx.pins_record);
     ctx
 }

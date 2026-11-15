@@ -8,7 +8,7 @@
 // `cargo xtask base groups levitate` (glibc: Fedora RPMs) and
 // `cargo xtask base groups acorn` (musl: Alpine APKs) from the seeds below. A
 // package more than one group needs belongs to desktop-libs.
-const RECIPE_API = 2;
+const RECIPE_API = 3;
 const NEEDS = #{
     outputs: #{ system: "directory" },
     network: ["dl.fedoraproject.org:443", "dl-cdn.alpinelinux.org:443"],
@@ -22,7 +22,7 @@ const ABOUT = #{
     kind: "system",
     category: "media",
     libc: ["glibc", "musl"],
-    systems: ["levitate", "acorn"],
+    systems: ["levitateos", "acornos"],
     details: "Thumbnails of images, documents and videos in the file manager.",
     homepage: "https://kde.org",
     license: "GPL-2.0-or-later",
@@ -63,11 +63,11 @@ let ctx = #{
 // 2026-11-10): 3 packages, 185168 bytes. Licences are each package's own.
 const RPM_PINNED_ON = "2026-11-10";
 const RPM_PINNED_BYTES = 185168;
-// [name, file, URL, SHA-256, bytes, licence]
+// [name, file, URL, SHA-256, bytes, licence, var/ kept as state seeds]
 const RPM_PINS = [
-    ["ffmpegthumbs", "ffmpegthumbs-26.08.2-1.fc45.x86_64.rpm", "https://dl.fedoraproject.org/pub/fedora/linux/releases/45/Everything/x86_64/os/Packages/f/ffmpegthumbs-26.08.2-1.fc45.x86_64.rpm", "7db1864cbd4468e168484801485d26747b0bafd6898b8a40364c6c097dd3c7d2", 53816, "GPL-2.0-or-later"],
-    ["kdegraphics-thumbnailers", "kdegraphics-thumbnailers-26.08.2-1.fc45.x86_64.rpm", "https://dl.fedoraproject.org/pub/fedora/linux/releases/45/Everything/x86_64/os/Packages/k/kdegraphics-thumbnailers-26.08.2-1.fc45.x86_64.rpm", "31631c4aa7996e8b9670455e09daf80a94254bb5b5d5a3842edb31dba95ea34f", 78776, "GPL-2.0-or-later"],
-    ["libkdcraw", "libkdcraw-26.08.2-1.fc45.x86_64.rpm", "https://dl.fedoraproject.org/pub/fedora/linux/releases/45/Everything/x86_64/os/Packages/l/libkdcraw-26.08.2-1.fc45.x86_64.rpm", "61262c74ab1d67bb9ea2e88c31ecccfa15bdc254c7ec199f6365a25eefaa3641", 52576, "BSD-3-Clause AND CC0-1.0 AND GPL-2.0-or-later"],
+    ["ffmpegthumbs", "ffmpegthumbs-26.08.2-1.fc45.x86_64.rpm", "https://dl.fedoraproject.org/pub/fedora/linux/releases/45/Everything/x86_64/os/Packages/f/ffmpegthumbs-26.08.2-1.fc45.x86_64.rpm", "7db1864cbd4468e168484801485d26747b0bafd6898b8a40364c6c097dd3c7d2", 53816, "GPL-2.0-or-later", false],
+    ["kdegraphics-thumbnailers", "kdegraphics-thumbnailers-26.08.2-1.fc45.x86_64.rpm", "https://dl.fedoraproject.org/pub/fedora/linux/releases/45/Everything/x86_64/os/Packages/k/kdegraphics-thumbnailers-26.08.2-1.fc45.x86_64.rpm", "31631c4aa7996e8b9670455e09daf80a94254bb5b5d5a3842edb31dba95ea34f", 78776, "GPL-2.0-or-later", false],
+    ["libkdcraw", "libkdcraw-26.08.2-1.fc45.x86_64.rpm", "https://dl.fedoraproject.org/pub/fedora/linux/releases/45/Everything/x86_64/os/Packages/l/libkdcraw-26.08.2-1.fc45.x86_64.rpm", "61262c74ab1d67bb9ea2e88c31ecccfa15bdc254c7ec199f6365a25eefaa3641", 52576, "BSD-3-Clause AND CC0-1.0 AND GPL-2.0-or-later", false],
 ];
 // END GENERATED PINS glibc
 
@@ -77,30 +77,30 @@ const RPM_PINS = [
 // 2026-11-13): 22 packages, 8656062 bytes. Licences are each package's own.
 const APK_PINNED_ON = "2026-11-13";
 const APK_PINNED_BYTES = 8656062;
-// [name, file, URL, SHA-256, bytes, licence]
+// [name, file, URL, SHA-256, bytes, licence, var/ kept as state seeds]
 const APK_PINS = [
-    ["cjson", "cjson-1.7.19-r1.apk", "https://dl-cdn.alpinelinux.org/alpine/v3.24/main/x86_64/cjson-1.7.19-r1.apk", "b1aca971a5ba46e42169311ef7bcfa96eac40d39207b22dbd3af8d4f3103d1d8", 12866, "MIT"],
-    ["ffmpeg-libavfilter", "ffmpeg-libavfilter-8.1.3-r0.apk", "https://dl-cdn.alpinelinux.org/alpine/v3.24/community/x86_64/ffmpeg-libavfilter-8.1.3-r0.apk", "8d9d2d27fc7938cd111c8086202d486b4ab1eacaca51427265bd898276535755", 2595295, "GPL-2.0-or-later AND LGPL-2.1-or-later"],
-    ["ffmpeg-libavformat", "ffmpeg-libavformat-8.1.3-r0.apk", "https://dl-cdn.alpinelinux.org/alpine/v3.24/community/x86_64/ffmpeg-libavformat-8.1.3-r0.apk", "1caff4921405cf58423c368c47268309d772e0b9b9203f9c46fad7eea9096911", 1506381, "GPL-2.0-or-later AND LGPL-2.1-or-later"],
-    ["ffmpeg-libswscale", "ffmpeg-libswscale-8.1.3-r0.apk", "https://dl-cdn.alpinelinux.org/alpine/v3.24/community/x86_64/ffmpeg-libswscale-8.1.3-r0.apk", "ae2ef558edd6105bf6e4a30c34320de525e2fdf045c234fbd3d903bb1a50688c", 723880, "GPL-2.0-or-later AND LGPL-2.1-or-later"],
-    ["ffmpegthumbnailer", "ffmpegthumbnailer-2.2.4-r0.apk", "https://dl-cdn.alpinelinux.org/alpine/v3.24/community/x86_64/ffmpegthumbnailer-2.2.4-r0.apk", "aecc4c323c340dc2ea32347c29489e13de0a011bbe871144842a4b7e96b79df8", 86167, "GPL-2.0-or-later"],
-    ["glslang-libs", "glslang-libs-1.4.341.0-r0.apk", "https://dl-cdn.alpinelinux.org/alpine/v3.24/main/x86_64/glslang-libs-1.4.341.0-r0.apk", "a2c7450ac81c486d333c3a40072912a6a1dac9cc8a26136f48c7f1ae35d27257", 779435, "BSD-3-Clause AND BSD-2-Clause AND MIT AND Apache-2.0 AND GPL-3.0-or-later"],
-    ["libdovi", "libdovi-3.3.2-r0.apk", "https://dl-cdn.alpinelinux.org/alpine/v3.24/community/x86_64/libdovi-3.3.2-r0.apk", "3e1405d1da7bde37ae5672fc7e12b8bbf36357dd25b62ec6863a23535693e4fb", 214926, "MIT"],
-    ["libopenmpt", "libopenmpt-0.8.10-r0.apk", "https://dl-cdn.alpinelinux.org/alpine/v3.24/community/x86_64/libopenmpt-0.8.10-r0.apk", "77b18055ea24127458c647b8a9aa9480bdeb4dd2b8daf9fdc87a9ef18fcd41a8", 659311, "BSD-3-Clause"],
-    ["libplacebo", "libplacebo-7.360.1-r0.apk", "https://dl-cdn.alpinelinux.org/alpine/v3.24/community/x86_64/libplacebo-7.360.1-r0.apk", "fbd0f174d5e56b22b6bd7b335519b7eb7a32bf25e2c66baec38e8d57d40f541a", 464485, "LGPL-2.1-or-later"],
-    ["librist", "librist-0.2.15-r0.apk", "https://dl-cdn.alpinelinux.org/alpine/v3.24/community/x86_64/librist-0.2.15-r0.apk", "11d25fc6691b34002c8d3b65c8a0587660c3cbc5d843424c80196583edf8b80d", 72240, "BSD-2-Clause"],
-    ["libsodium", "libsodium-1.0.22-r0.apk", "https://dl-cdn.alpinelinux.org/alpine/v3.24/main/x86_64/libsodium-1.0.22-r0.apk", "9104e01a043d92f1f646e5750a6ba9d8a030f4d87f6c5690e8a015f0d9a4ab73", 199175, "ISC"],
-    ["libssh", "libssh-0.12.2-r0.apk", "https://dl-cdn.alpinelinux.org/alpine/v3.24/community/x86_64/libssh-0.12.2-r0.apk", "ad36fea448d82f3ed08fcd8eefeabb60f56ef94d1c8c66e1282443521fe72d01", 206002, "LGPL-2.1-or-later BSD-2-Clause"],
-    ["libzmq", "libzmq-4.3.5-r2.apk", "https://dl-cdn.alpinelinux.org/alpine/v3.24/main/x86_64/libzmq-4.3.5-r2.apk", "6bdc93b3ca98fea14a1fb29c6874fc8c460096d03b956f92632cbad58cdf444d", 261408, "MPL-2.0"],
-    ["lilv-libs", "lilv-libs-0.24.26-r1.apk", "https://dl-cdn.alpinelinux.org/alpine/v3.24/community/x86_64/lilv-libs-0.24.26-r1.apk", "f3b94634be78ac1f559d2931c3a5cf1980d1721cf21dae79068c861dc9a907f7", 35855, "ISC"],
-    ["mbedtls3", "mbedtls3-3.6.7-r0.apk", "https://dl-cdn.alpinelinux.org/alpine/v3.24/community/x86_64/mbedtls3-3.6.7-r0.apk", "d4ac9dec9efd61bb7cc72929eaf944279439068b0b07c7d2167bfab98dce9273", 413074, "Apache-2.0 OR GPL-2.0-or-later"],
-    ["serd-libs", "serd-libs-0.32.8-r0.apk", "https://dl-cdn.alpinelinux.org/alpine/v3.24/community/x86_64/serd-libs-0.32.8-r0.apk", "b26dd784ba24cb00acec0b850989dedd95ce47ca35abdb6c62e65b8fa612dae3", 30370, "ISC"],
-    ["shaderc", "shaderc-2026.1-r0.apk", "https://dl-cdn.alpinelinux.org/alpine/v3.24/community/x86_64/shaderc-2026.1-r0.apk", "8ffad05b20d790ea5b09f0d103376daea80941fffc020d698712179beab558dc", 90769, "Apache-2.0"],
-    ["sord-libs", "sord-libs-0.16.22-r0.apk", "https://dl-cdn.alpinelinux.org/alpine/v3.24/community/x86_64/sord-libs-0.16.22-r0.apk", "2ab4e710b606ac2514ab4a886dbe3b6191e493c6c71f9db61788531b6fb9380a", 11982, "ISC"],
-    ["sratom", "sratom-0.6.20-r0.apk", "https://dl-cdn.alpinelinux.org/alpine/v3.24/community/x86_64/sratom-0.6.20-r0.apk", "cf27a7eead059a191f6a511a2287fadaf83981386b02cb2049f3cb491b4f68aa", 12309, "ISC"],
-    ["vidstab", "vidstab-1.1.1-r0.apk", "https://dl-cdn.alpinelinux.org/alpine/v3.24/community/x86_64/vidstab-1.1.1-r0.apk", "810859baf5ba90b6012941a321025009fd2f45aaa45141ad682f57967e04fdec", 33373, "GPL-2.0-or-later"],
-    ["zimg", "zimg-3.0.6-r0.apk", "https://dl-cdn.alpinelinux.org/alpine/v3.24/community/x86_64/zimg-3.0.6-r0.apk", "e3ca9fe60ce24910956c2372ab92550daa41b9d8e8fb72ec9fbf108c6d83671b", 225722, "WTFPL"],
-    ["zix-libs", "zix-libs-0.8.0-r0.apk", "https://dl-cdn.alpinelinux.org/alpine/v3.24/community/x86_64/zix-libs-0.8.0-r0.apk", "3467af7fcaad89aeef62ed9d21a5e5b837465c02e685f4c006e939cdbfa382d9", 21037, "ISC"],
+    ["cjson", "cjson-1.7.19-r1.apk", "https://dl-cdn.alpinelinux.org/alpine/v3.24/main/x86_64/cjson-1.7.19-r1.apk", "b1aca971a5ba46e42169311ef7bcfa96eac40d39207b22dbd3af8d4f3103d1d8", 12866, "MIT", false],
+    ["ffmpeg-libavfilter", "ffmpeg-libavfilter-8.1.3-r0.apk", "https://dl-cdn.alpinelinux.org/alpine/v3.24/community/x86_64/ffmpeg-libavfilter-8.1.3-r0.apk", "8d9d2d27fc7938cd111c8086202d486b4ab1eacaca51427265bd898276535755", 2595295, "GPL-2.0-or-later AND LGPL-2.1-or-later", false],
+    ["ffmpeg-libavformat", "ffmpeg-libavformat-8.1.3-r0.apk", "https://dl-cdn.alpinelinux.org/alpine/v3.24/community/x86_64/ffmpeg-libavformat-8.1.3-r0.apk", "1caff4921405cf58423c368c47268309d772e0b9b9203f9c46fad7eea9096911", 1506381, "GPL-2.0-or-later AND LGPL-2.1-or-later", false],
+    ["ffmpeg-libswscale", "ffmpeg-libswscale-8.1.3-r0.apk", "https://dl-cdn.alpinelinux.org/alpine/v3.24/community/x86_64/ffmpeg-libswscale-8.1.3-r0.apk", "ae2ef558edd6105bf6e4a30c34320de525e2fdf045c234fbd3d903bb1a50688c", 723880, "GPL-2.0-or-later AND LGPL-2.1-or-later", false],
+    ["ffmpegthumbnailer", "ffmpegthumbnailer-2.2.4-r0.apk", "https://dl-cdn.alpinelinux.org/alpine/v3.24/community/x86_64/ffmpegthumbnailer-2.2.4-r0.apk", "aecc4c323c340dc2ea32347c29489e13de0a011bbe871144842a4b7e96b79df8", 86167, "GPL-2.0-or-later", false],
+    ["glslang-libs", "glslang-libs-1.4.341.0-r0.apk", "https://dl-cdn.alpinelinux.org/alpine/v3.24/main/x86_64/glslang-libs-1.4.341.0-r0.apk", "a2c7450ac81c486d333c3a40072912a6a1dac9cc8a26136f48c7f1ae35d27257", 779435, "BSD-3-Clause AND BSD-2-Clause AND MIT AND Apache-2.0 AND GPL-3.0-or-later", false],
+    ["libdovi", "libdovi-3.3.2-r0.apk", "https://dl-cdn.alpinelinux.org/alpine/v3.24/community/x86_64/libdovi-3.3.2-r0.apk", "3e1405d1da7bde37ae5672fc7e12b8bbf36357dd25b62ec6863a23535693e4fb", 214926, "MIT", false],
+    ["libopenmpt", "libopenmpt-0.8.10-r0.apk", "https://dl-cdn.alpinelinux.org/alpine/v3.24/community/x86_64/libopenmpt-0.8.10-r0.apk", "77b18055ea24127458c647b8a9aa9480bdeb4dd2b8daf9fdc87a9ef18fcd41a8", 659311, "BSD-3-Clause", false],
+    ["libplacebo", "libplacebo-7.360.1-r0.apk", "https://dl-cdn.alpinelinux.org/alpine/v3.24/community/x86_64/libplacebo-7.360.1-r0.apk", "fbd0f174d5e56b22b6bd7b335519b7eb7a32bf25e2c66baec38e8d57d40f541a", 464485, "LGPL-2.1-or-later", false],
+    ["librist", "librist-0.2.15-r0.apk", "https://dl-cdn.alpinelinux.org/alpine/v3.24/community/x86_64/librist-0.2.15-r0.apk", "11d25fc6691b34002c8d3b65c8a0587660c3cbc5d843424c80196583edf8b80d", 72240, "BSD-2-Clause", false],
+    ["libsodium", "libsodium-1.0.22-r0.apk", "https://dl-cdn.alpinelinux.org/alpine/v3.24/main/x86_64/libsodium-1.0.22-r0.apk", "9104e01a043d92f1f646e5750a6ba9d8a030f4d87f6c5690e8a015f0d9a4ab73", 199175, "ISC", false],
+    ["libssh", "libssh-0.12.2-r0.apk", "https://dl-cdn.alpinelinux.org/alpine/v3.24/community/x86_64/libssh-0.12.2-r0.apk", "ad36fea448d82f3ed08fcd8eefeabb60f56ef94d1c8c66e1282443521fe72d01", 206002, "LGPL-2.1-or-later BSD-2-Clause", false],
+    ["libzmq", "libzmq-4.3.5-r2.apk", "https://dl-cdn.alpinelinux.org/alpine/v3.24/main/x86_64/libzmq-4.3.5-r2.apk", "6bdc93b3ca98fea14a1fb29c6874fc8c460096d03b956f92632cbad58cdf444d", 261408, "MPL-2.0", false],
+    ["lilv-libs", "lilv-libs-0.24.26-r1.apk", "https://dl-cdn.alpinelinux.org/alpine/v3.24/community/x86_64/lilv-libs-0.24.26-r1.apk", "f3b94634be78ac1f559d2931c3a5cf1980d1721cf21dae79068c861dc9a907f7", 35855, "ISC", false],
+    ["mbedtls3", "mbedtls3-3.6.7-r0.apk", "https://dl-cdn.alpinelinux.org/alpine/v3.24/community/x86_64/mbedtls3-3.6.7-r0.apk", "d4ac9dec9efd61bb7cc72929eaf944279439068b0b07c7d2167bfab98dce9273", 413074, "Apache-2.0 OR GPL-2.0-or-later", false],
+    ["serd-libs", "serd-libs-0.32.8-r0.apk", "https://dl-cdn.alpinelinux.org/alpine/v3.24/community/x86_64/serd-libs-0.32.8-r0.apk", "b26dd784ba24cb00acec0b850989dedd95ce47ca35abdb6c62e65b8fa612dae3", 30370, "ISC", false],
+    ["shaderc", "shaderc-2026.1-r0.apk", "https://dl-cdn.alpinelinux.org/alpine/v3.24/community/x86_64/shaderc-2026.1-r0.apk", "8ffad05b20d790ea5b09f0d103376daea80941fffc020d698712179beab558dc", 90769, "Apache-2.0", false],
+    ["sord-libs", "sord-libs-0.16.22-r0.apk", "https://dl-cdn.alpinelinux.org/alpine/v3.24/community/x86_64/sord-libs-0.16.22-r0.apk", "2ab4e710b606ac2514ab4a886dbe3b6191e493c6c71f9db61788531b6fb9380a", 11982, "ISC", false],
+    ["sratom", "sratom-0.6.20-r0.apk", "https://dl-cdn.alpinelinux.org/alpine/v3.24/community/x86_64/sratom-0.6.20-r0.apk", "cf27a7eead059a191f6a511a2287fadaf83981386b02cb2049f3cb491b4f68aa", 12309, "ISC", false],
+    ["vidstab", "vidstab-1.1.1-r0.apk", "https://dl-cdn.alpinelinux.org/alpine/v3.24/community/x86_64/vidstab-1.1.1-r0.apk", "810859baf5ba90b6012941a321025009fd2f45aaa45141ad682f57967e04fdec", 33373, "GPL-2.0-or-later", false],
+    ["zimg", "zimg-3.0.6-r0.apk", "https://dl-cdn.alpinelinux.org/alpine/v3.24/community/x86_64/zimg-3.0.6-r0.apk", "e3ca9fe60ce24910956c2372ab92550daa41b9d8e8fb72ec9fbf108c6d83671b", 225722, "WTFPL", false],
+    ["zix-libs", "zix-libs-0.8.0-r0.apk", "https://dl-cdn.alpinelinux.org/alpine/v3.24/community/x86_64/zix-libs-0.8.0-r0.apk", "3467af7fcaad89aeef62ed9d21a5e5b837465c02e685f4c006e939cdbfa382d9", 21037, "ISC", false],
 ];
 // END GENERATED PINS musl
 
@@ -187,9 +187,11 @@ fn is_built(ctx) {
 }
 
 // Unpacks every package into one system tree, natively, without running any
-// of its scripts. Paths a system package does not own (per-machine and
-// run-time data: var, run, tmp and the like) are left out; the system makes
-// them at boot. Owners stay names, resolved in the root the group is written
+// of its scripts. Paths a system package does not own (run-time data: run,
+// tmp and the like) are left out. Under var/, only what a package needs and
+// nothing at boot makes (pin[6]: it ships no tmpfiles.d, and AcornOS runs
+// none) is kept, as state seeds: created where missing, never owned or
+// removed. Owners stay names, resolved in the root the group is written
 // into, after the accounts it needs are made there: those in its own
 // usr/lib/sysusers.d (Fedora packages ship them) and ACCOUNTS_* above.
 fn build(ctx) {
@@ -198,23 +200,30 @@ fn build(ctx) {
     if exists(ctx.system) { rm(ctx.system); }
     mkdir(ctx.system);
     let done = 0;
-    for pin in ctx.pins {
-        progress(done, ctx.pins.len(), "packages");
-        let archive = archive_of(ctx, pin);
-        verify_sha256(archive, pin[3]);
-        if ctx.format == "apk" {
-            target_extract_apk(archive, ctx.system);
-        } else {
-            target_extract_rpm(archive, ctx.system);
+    // Packages whose var/ is not kept first, then the var/ they left, then
+    // the packages whose var/ is kept.
+    for seeds in [false, true] {
+        for pin in ctx.pins {
+            if pin[6] != seeds { continue; }
+            progress(done, ctx.pins.len(), "packages");
+            let archive = archive_of(ctx, pin);
+            verify_sha256(archive, pin[3]);
+            if ctx.format == "apk" {
+                target_extract_apk(archive, ctx.system);
+            } else {
+                target_extract_rpm(archive, ctx.system);
+            }
+            done += 1;
         }
-        done += 1;
+        let state = join_path(ctx.system, "var");
+        if !seeds && exists(state) { rm(state); }
     }
     progress(done, ctx.pins.len(), "packages");
-    for dir in ["var", "run", "tmp", "boot", "home", "root", "proc", "sys", "dev", "lost+found"] {
+    for dir in ["run", "tmp", "boot", "home", "root", "proc", "sys", "dev", "lost+found", "var/run", "var/tmp", "var/lock"] {
         let path = join_path(ctx.system, dir);
         if exists(path) { rm(path); }
     }
-    target_finalize(ctx.system, #{ owners: "apply", accounts: ctx.accounts });
+    target_finalize(ctx.system, #{ owners: "apply", seed: "var", accounts: ctx.accounts });
     write_file(ctx.record, ctx.pins_record);
     ctx
 }
