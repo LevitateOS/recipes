@@ -77,6 +77,98 @@ const APK_PINS = [
 ];
 // END GENERATED PINS musl
 
+// BEGIN GENERATED OS FACTS glibc
+// Written by `cargo xtask base groups levitate` from distro/variants/levitate/distro.toml
+// (identity, profile, look); do not edit.
+const RPM_OS = #{
+    id: "levitateos",
+    name: "LevitateOS",
+    home_url: "https://levitateos.org",
+    desktop: "plasma",
+    appearance: "dark",
+    light: #{
+        surface: "#DDE2D2",
+        surface_raised: "#E8ECDF",
+        surface_sunken: "#CFD6C3",
+        text: "#14221A",
+        text_secondary: "#465047",
+        text_muted: "#5C6459",
+        rule: "#AEB8A4",
+        hairline: "#C6CDB9",
+        accent: "#214438",
+        highlight: "#644532",
+        band: "#214438",
+        on_band: "#F2EEE4",
+        ok: "#2F6B3F",
+        warn: "#7F5200",
+        bad: "#B22F27",
+    },
+    dark: #{
+        surface: "#14221A",
+        surface_raised: "#1D2D24",
+        surface_sunken: "#0D1711",
+        text: "#F2EEE4",
+        text_secondary: "#BAC5B7",
+        text_muted: "#9AA89D",
+        rule: "#3A4B40",
+        hairline: "#2A3B31",
+        accent: "#C7D9BA",
+        highlight: "#E4CBA6",
+        band: "#214438",
+        on_band: "#F2EEE4",
+        ok: "#A9CF9A",
+        warn: "#F0B866",
+        bad: "#F0A497",
+    },
+};
+// END GENERATED OS FACTS glibc
+
+// BEGIN GENERATED OS FACTS musl
+// Written by `cargo xtask base groups acorn` from distro/variants/acorn/distro.toml
+// (identity, profile, look); do not edit.
+const APK_OS = #{
+    id: "acornos",
+    name: "AcornOS",
+    home_url: "",
+    desktop: "lxqt",
+    appearance: "dark",
+    light: #{
+        surface: "#E6DFCF",
+        surface_raised: "#EFE9DB",
+        surface_sunken: "#D9D1BE",
+        text: "#241A12",
+        text_secondary: "#54483C",
+        text_muted: "#6B5D4F",
+        rule: "#C2B8A2",
+        hairline: "#D0C7B3",
+        accent: "#644532",
+        highlight: "#214438",
+        band: "#644532",
+        on_band: "#F2EEE4",
+        ok: "#2F6B3F",
+        warn: "#7F5200",
+        bad: "#B22F27",
+    },
+    dark: #{
+        surface: "#1F1711",
+        surface_raised: "#2B2019",
+        surface_sunken: "#150F0A",
+        text: "#F2EEE4",
+        text_secondary: "#CDBFAE",
+        text_muted: "#A89886",
+        rule: "#4D3D30",
+        hairline: "#382B21",
+        accent: "#E4CBA6",
+        highlight: "#C7D9BA",
+        band: "#644532",
+        on_band: "#F2EEE4",
+        ok: "#A9CF9A",
+        warn: "#F0B866",
+        bad: "#F0A497",
+    },
+};
+// END GENERATED OS FACTS musl
+
 // The rest is the same in every group recipe.
 //
 // Which build this system takes: the Fedora RPMs on glibc (LevitateOS), the
@@ -192,6 +284,9 @@ fn build(ctx) {
         if !seeds && exists(state) { rm(state); }
     }
     progress(done, ctx.pins.len(), "packages");
+    // This group's configuration (configure, above): files in its own tree,
+    // so the receipt owns them and removing the group removes them.
+    configure(ctx);
     for dir in ["run", "tmp", "boot", "home", "root", "proc", "sys", "dev", "lost+found", "var/run", "var/tmp", "var/lock"] {
         let path = join_path(ctx.system, dir);
         if exists(path) { rm(path); }
@@ -218,4 +313,242 @@ fn remove(ctx) {
     if exists(ctx.record) { rm(ctx.record); }
     ctx.outputs = #{};
     ctx
+}
+
+// ---------------------------------------------------------------------------
+// Configuration helpers: what a group adds to its own tree.
+// ---------------------------------------------------------------------------
+
+// `content` at `path` (relative to the tree) with `mode`, replacing what is there.
+fn put(ctx, path, content, mode) {
+    let dest = join_path(ctx.system, path);
+    mkdir(dirname(dest));
+    if exists(dest) { rm(dest); }
+    write_file(dest, content);
+    target_mode(ctx.system, path, mode);
+}
+// A symbolic link at `path` to `target`.
+fn put_link(ctx, path, target) {
+    let dest = join_path(ctx.system, path);
+    mkdir(dirname(dest));
+    ln_force(target, dest);
+}
+// The text of the packaged file `path`; the group's packages must ship it.
+fn tree_text(ctx, path) {
+    let file = join_path(ctx.system, path);
+    if !is_file(file) { throw ctx.name + ": its packages no longer ship /" + path; }
+    read_file(file)
+}
+// Start a system service at boot, in this system's init's own form: on
+// systemd (Fedora) the links `systemctl enable` makes, the unit's Alias=
+// names included (D-Bus activation finds dbus-org.* through them); on
+// OpenRC (Alpine) the service in its runlevel.
+fn enable_service(ctx, unit, service) {
+    if ctx.format == "rpm" {
+        let file = "usr/lib/systemd/system/" + unit;
+        let text = tree_text(ctx, file);
+        put_link(ctx, "etc/systemd/system/multi-user.target.wants/" + unit, "/" + file);
+        for line in text.split("\n") {
+            if line.starts_with("Alias=") {
+                for alias in trim(line.sub_string(6)).split(" ") {
+                    if alias != "" { put_link(ctx, "etc/systemd/system/" + alias, "/" + file); }
+                }
+            }
+        }
+    } else {
+        if !is_file(join_path(ctx.system, "etc/init.d/" + service)) { throw ctx.name + ": its packages no longer ship the OpenRC service " + service; }
+        put_link(ctx, "etc/runlevels/default/" + service, "/etc/init.d/" + service);
+    }
+}
+
+// ---------------------------------------------------------------------------
+// This group's configuration (hand-written).
+// ---------------------------------------------------------------------------
+
+// ---------------------------------------------------------------------------
+// The look, as the OS builder computed it (installed-system.rhai): the colour
+// schemes and settings derived from the OS's palettes (ctx.os, the generated
+// OS facts). Kept the same as the builder's functions.
+// ---------------------------------------------------------------------------
+
+// Mode `mode`'s palette: role -> "#RRGGBB".
+fn palette(os, mode) {
+    let p = os[mode];
+    if type_of(p) != "map" { throw "the OS facts have no " + mode + " palette"; }
+    p
+}
+// The palette roles (distro_contract::Palette).
+fn palette_roles() {
+    ["surface", "surface_raised", "surface_sunken", "text", "text_secondary", "text_muted", "rule", "hairline",
+     "accent", "highlight", "band", "on_band", "ok", "warn", "bad"]
+}
+// "#RRGGBB" as [r, g, b].
+fn rgb(hex) { [parse_int(hex.sub_string(1, 2), 16), parse_int(hex.sub_string(3, 2), 16), parse_int(hex.sub_string(5, 2), 16)] }
+
+// A palette's colours as [r, g, b] (0-255).
+fn rgb_palette(p) {
+    let out = #{};
+    for role in palette_roles() {
+        out[role] = rgb(p[role]);
+    }
+    out
+}
+// `a` moved towards `b` by `t` (0.0 to 1.0); both [r, g, b].
+fn mix(a, b, t) {
+    let out = [];
+    for i in 0..3 { out.push((a[i].to_float() * (1.0 - t) + b[i].to_float() * t).round().to_int()); }
+    out
+}
+// "r,g,b", as KDE and Konsole write a colour.
+fn kde(c) { "" + c[0] + "," + c[1] + "," + c[2] }
+// Whether a colour is dark (relative luminance under one half).
+fn is_dark(c) {
+    (0.2126 * c[0].to_float() + 0.7152 * c[1].to_float() + 0.0722 * c[2].to_float()) / 255.0 < 0.5
+}
+// The palette (as [r, g, b]) whose accent and status colours read on `bg`:
+// the dark mode's on a dark background, the light mode's on a light one.
+fn palette_on(os, bg) {
+    let mode = if is_dark(bg) { "dark" } else { "light" };
+    rgb_palette(palette(os, mode))
+}
+// The icon theme of the mode (Breeze on both desktops).
+fn icon_theme(mode) { if mode == "dark" { "breeze-dark" } else { "breeze" } }
+// The colour schemes' name for mode `mode`: the OS's name and the mode
+// ("LevitateOSLight"), the name of a KDE colour scheme and of a terminal scheme.
+fn scheme_name(os, mode) {
+    let name = os.name.replace(" ", "");
+    name + (if mode == "dark" { "Dark" } else { "Light" })
+}
+
+// `text` (an INI file) with `key` in `section` set to `value`: the line
+// replaced where the key is there, added at the end of the section where it
+// is not, and the section added at the end where the file lacks it.
+fn ini_set(text, section, key, value) {
+    if text.ends_with("\n") { text = text.sub_string(0, text.len() - 1); }
+    let out = "";
+    let current = "";
+    let seen = false;
+    let done = false;
+    for line in text.split("\n") {
+        let t = trim(line);
+        if t.starts_with("[") && t.ends_with("]") {
+            if current == section && !done { out += key + "=" + value + "\n"; done = true; }
+            current = t.sub_string(1, t.len() - 2);
+            if current == section { seen = true; }
+        } else if current == section && t.starts_with(key + "=") {
+            if !done { out += key + "=" + value + "\n"; done = true; }
+            continue;
+        }
+        out += line + "\n";
+    }
+    if !done {
+        if !seen { out += "\n[" + section + "]\n"; }
+        out += key + "=" + value + "\n";
+    }
+    out
+}
+
+// One group of a KDE colour scheme: backgrounds `bg` and `alt`, text `fg`,
+// `inactive` text, the `active`, link and focus colour `active`, `visited`
+// links, and `status`'s ok, warn and bad as positive, neutral and negative.
+fn kde_group(name, bg, alt, fg, inactive, active, visited, status) {
+    let t = "[" + name + "]\n";
+    t += "BackgroundAlternate=" + kde(alt) + "\nBackgroundNormal=" + kde(bg) + "\n";
+    t += "DecorationFocus=" + kde(active) + "\nDecorationHover=" + kde(active) + "\n";
+    t += "ForegroundActive=" + kde(active) + "\nForegroundInactive=" + kde(inactive) + "\n";
+    t += "ForegroundLink=" + kde(active) + "\nForegroundNegative=" + kde(status.bad) + "\n";
+    t += "ForegroundNeutral=" + kde(status.warn) + "\nForegroundNormal=" + kde(fg) + "\n";
+    t += "ForegroundPositive=" + kde(status.ok) + "\nForegroundVisited=" + kde(visited) + "\n\n";
+    t
+}
+// The colour groups of mode `mode`'s KDE colour scheme, from its palette:
+// window surface, views raised with sunken alternate rows, the accent for
+// selection (with surface text), focus, hover and links, the highlight for
+// visited links, ok/warn/bad for positive/neutral/negative, and the band
+// (with on_band text) for headers, title bars and the complementary areas
+// (login and lock screens, OSDs). The effects are Breeze's.
+fn kde_colour_groups(os, mode) {
+    let p = rgb_palette(palette(os, mode));
+    let s = palette_on(os, p.accent);
+    let b = palette_on(os, p.band);
+    let t = "[ColorEffects:Disabled]\nColor=56,56,56\nColorAmount=0\nColorEffect=0\nContrastAmount=0.65\nContrastEffect=1\nIntensityAmount=0.1\nIntensityEffect=2\n\n";
+    t += "[ColorEffects:Inactive]\nChangeSelectionColor=true\nColor=112,111,110\nColorAmount=0.025\nColorEffect=2\nContrastAmount=0.1\nContrastEffect=2\nEnable=false\nIntensityAmount=0\nIntensityEffect=0\n\n";
+    t += kde_group("Colors:Button", p.surface_raised, mix(p.surface_raised, p.accent, 0.25), p.text, p.text_muted, p.accent, p.highlight, p);
+    t += kde_group("Colors:Complementary", p.band, mix(p.band, p.on_band, 0.1), p.on_band, mix(p.on_band, p.band, 0.35), b.accent, b.highlight, b);
+    t += kde_group("Colors:Header", p.band, mix(p.band, p.on_band, 0.1), p.on_band, mix(p.on_band, p.band, 0.35), b.accent, b.highlight, b);
+    t += kde_group("Colors:Header][Inactive", p.surface, p.surface_sunken, p.text, p.text_muted, p.accent, p.highlight, p);
+    t += kde_group("Colors:Selection", p.accent, mix(p.accent, p.surface, 0.5), p.surface, mix(p.surface, p.accent, 0.3), p.surface, p.surface, s);
+    t += kde_group("Colors:Tooltip", p.surface_raised, p.surface, p.text, p.text_muted, p.accent, p.highlight, p);
+    t += kde_group("Colors:View", p.surface_raised, p.surface_sunken, p.text, p.text_muted, p.accent, p.highlight, p);
+    t += kde_group("Colors:Window", p.surface, p.surface_sunken, p.text, p.text_muted, p.accent, p.highlight, p);
+    t += "[WM]\nactiveBackground=" + kde(p.band) + "\nactiveBlend=" + kde(p.band) + "\nactiveForeground=" + kde(p.on_band) + "\n";
+    t += "inactiveBackground=" + kde(p.surface_sunken) + "\ninactiveBlend=" + kde(p.surface_sunken) + "\ninactiveForeground=" + kde(p.text_muted) + "\n\n";
+    t
+}
+// Mode `mode`'s whole KDE colour scheme file.
+fn kde_colour_scheme(os, mode) {
+    let t = kde_colour_groups(os, mode);
+    t += "[General]\nColorScheme=" + scheme_name(os, mode) + "\nName=" + os.name + (if mode == "dark" { " Dark" } else { " Light" }) + "\nshadeSortColumn=true\n\n";
+    t += "[KDE]\ncontrast=4\n";
+    t
+}
+
+// The terminal's blue, magenta and cyan for mode `mode` (the same on both
+// distros): the look palette has no such hues, and its accent and highlight
+// sit too close to green and yellow to tell apart in `ls`, diffs and
+// compiler output.
+fn terminal_hues(mode) {
+    if mode == "dark" { #{ blue: "#9BB8D9", magenta: "#D4A5C9", cyan: "#9ACFC4" } }
+    else { #{ blue: "#2A5C8A", magenta: "#7A3F6E", cyan: "#1F6F6B" } }
+}
+
+// Mode `mode`'s terminal colour scheme (Konsole's and QTermWidget's format):
+// the palette's surface behind its text, and a 16-colour set at least 3:1 on
+// that surface: black the text on light (on dark, the muted text dimmed
+// towards the surface, which still reads), bright black the muted text,
+// white the secondary text and bright white the text; red, green, yellow
+// bad, ok, warn; blue, magenta, cyan terminal_hues. Bright colours lean
+// towards the text, faint ones towards the surface.
+fn terminal_scheme(os, mode) {
+    let p = rgb_palette(palette(os, mode));
+    let hues = terminal_hues(mode);
+    let blue = rgb(hues.blue);
+    let magenta = rgb(hues.magenta);
+    let cyan = rgb(hues.cyan);
+    let black = if mode == "dark" { mix(p.text_muted, p.surface, 0.35) } else { p.text };
+    let colours = [
+        [black, p.text_muted],
+        [p.bad, mix(p.bad, p.text, 0.25)],
+        [p.ok, mix(p.ok, p.text, 0.25)],
+        [p.warn, mix(p.warn, p.text, 0.25)],
+        [blue, mix(blue, p.text, 0.25)],
+        [magenta, mix(magenta, p.text, 0.25)],
+        [cyan, mix(cyan, p.text, 0.25)],
+        [p.text_secondary, p.text],
+    ];
+    let t = "[Background]\nColor=" + kde(p.surface) + "\n\n[BackgroundFaint]\nColor=" + kde(p.surface) + "\n\n[BackgroundIntense]\nColor=" + kde(p.surface) + "\n\n";
+    for i in 0..8 {
+        let c = colours[i];
+        t += "[Color" + i + "]\nColor=" + kde(c[0]) + "\n\n";
+        t += "[Color" + i + "Faint]\nColor=" + kde(mix(c[0], p.surface, 0.5)) + "\n\n";
+        t += "[Color" + i + "Intense]\nColor=" + kde(c[1]) + "\n\n";
+    }
+    t += "[Foreground]\nColor=" + kde(p.text) + "\n\n[ForegroundFaint]\nColor=" + kde(p.text_secondary) + "\n\n[ForegroundIntense]\nColor=" + kde(p.text) + "\n\n";
+    t += "[General]\nBlur=false\nColorRandomization=false\nDescription=" + os.name + (if mode == "dark" { " Dark" } else { " Light" }) + "\nOpacity=1\nWallpaper=\n";
+    t
+}
+
+
+// QTerminal's colours: the OS's terminal schemes in both modes in
+// QTermWidget's folder, and the dark one as the default (a terminal is dark
+// on both distros).
+ctx.os = APK_OS;
+fn configure(ctx) {
+    let os = ctx.os;
+    let schemes = "usr/share/qtermwidget6/color-schemes/";
+    if !is_dir(join_path(ctx.system, schemes)) { throw "qterminal: QTermWidget's colour schemes are missing"; }
+    for m in ["light", "dark"] {
+        put(ctx, schemes + scheme_name(os, m) + ".colorscheme", terminal_scheme(os, m), 0o644);
+    }
+    put(ctx, "etc/xdg/qterminal.org/qterminal.ini", "[General]\ncolorScheme=" + scheme_name(os, "dark") + "\n", 0o644);
 }

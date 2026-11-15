@@ -226,6 +226,9 @@ fn build(ctx) {
         if !seeds && exists(state) { rm(state); }
     }
     progress(done, ctx.pins.len(), "packages");
+    // This group's configuration (configure, above): files in its own tree,
+    // so the receipt owns them and removing the group removes them.
+    configure(ctx);
     for dir in ["run", "tmp", "boot", "home", "root", "proc", "sys", "dev", "lost+found", "var/run", "var/tmp", "var/lock"] {
         let path = join_path(ctx.system, dir);
         if exists(path) { rm(path); }
@@ -252,4 +255,68 @@ fn remove(ctx) {
     if exists(ctx.record) { rm(ctx.record); }
     ctx.outputs = #{};
     ctx
+}
+
+// ---------------------------------------------------------------------------
+// Configuration helpers: what a group adds to its own tree.
+// ---------------------------------------------------------------------------
+
+// `content` at `path` (relative to the tree) with `mode`, replacing what is there.
+fn put(ctx, path, content, mode) {
+    let dest = join_path(ctx.system, path);
+    mkdir(dirname(dest));
+    if exists(dest) { rm(dest); }
+    write_file(dest, content);
+    target_mode(ctx.system, path, mode);
+}
+// A symbolic link at `path` to `target`.
+fn put_link(ctx, path, target) {
+    let dest = join_path(ctx.system, path);
+    mkdir(dirname(dest));
+    ln_force(target, dest);
+}
+// The text of the packaged file `path`; the group's packages must ship it.
+fn tree_text(ctx, path) {
+    let file = join_path(ctx.system, path);
+    if !is_file(file) { throw ctx.name + ": its packages no longer ship /" + path; }
+    read_file(file)
+}
+// Start a system service at boot, in this system's init's own form: on
+// systemd (Fedora) the links `systemctl enable` makes, the unit's Alias=
+// names included (D-Bus activation finds dbus-org.* through them); on
+// OpenRC (Alpine) the service in its runlevel.
+fn enable_service(ctx, unit, service) {
+    if ctx.format == "rpm" {
+        let file = "usr/lib/systemd/system/" + unit;
+        let text = tree_text(ctx, file);
+        put_link(ctx, "etc/systemd/system/multi-user.target.wants/" + unit, "/" + file);
+        for line in text.split("\n") {
+            if line.starts_with("Alias=") {
+                for alias in trim(line.sub_string(6)).split(" ") {
+                    if alias != "" { put_link(ctx, "etc/systemd/system/" + alias, "/" + file); }
+                }
+            }
+        }
+    } else {
+        if !is_file(join_path(ctx.system, "etc/init.d/" + service)) { throw ctx.name + ": its packages no longer ship the OpenRC service " + service; }
+        put_link(ctx, "etc/runlevels/default/" + service, "/etc/init.d/" + service);
+    }
+}
+
+// ---------------------------------------------------------------------------
+// This group's configuration (hand-written).
+// ---------------------------------------------------------------------------
+
+// PipeWire and WirePlumber start with each user's session: on systemd as the
+// user units their presets enable for every user (`systemctl --global
+// enable`); OpenRC has no user services, and PipeWire starts from its XDG
+// autostart entry.
+fn configure(ctx) {
+    if ctx.format != "rpm" { return; }
+    let units = "/usr/lib/systemd/user/";
+    for unit in ["pipewire.socket", "pipewire-pulse.socket", "wireplumber.service"] { tree_text(ctx, units.sub_string(1) + unit); }
+    put_link(ctx, "etc/systemd/user/sockets.target.wants/pipewire.socket", units + "pipewire.socket");
+    put_link(ctx, "etc/systemd/user/sockets.target.wants/pipewire-pulse.socket", units + "pipewire-pulse.socket");
+    put_link(ctx, "etc/systemd/user/pipewire.service.wants/wireplumber.service", units + "wireplumber.service");
+    put_link(ctx, "etc/systemd/user/pipewire-session-manager.service", units + "wireplumber.service");
 }

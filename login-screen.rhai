@@ -80,6 +80,98 @@ const APK_PINS = [
 ];
 // END GENERATED PINS musl
 
+// BEGIN GENERATED OS FACTS glibc
+// Written by `cargo xtask base groups levitate` from distro/variants/levitate/distro.toml
+// (identity, profile, look); do not edit.
+const RPM_OS = #{
+    id: "levitateos",
+    name: "LevitateOS",
+    home_url: "https://levitateos.org",
+    desktop: "plasma",
+    appearance: "dark",
+    light: #{
+        surface: "#DDE2D2",
+        surface_raised: "#E8ECDF",
+        surface_sunken: "#CFD6C3",
+        text: "#14221A",
+        text_secondary: "#465047",
+        text_muted: "#5C6459",
+        rule: "#AEB8A4",
+        hairline: "#C6CDB9",
+        accent: "#214438",
+        highlight: "#644532",
+        band: "#214438",
+        on_band: "#F2EEE4",
+        ok: "#2F6B3F",
+        warn: "#7F5200",
+        bad: "#B22F27",
+    },
+    dark: #{
+        surface: "#14221A",
+        surface_raised: "#1D2D24",
+        surface_sunken: "#0D1711",
+        text: "#F2EEE4",
+        text_secondary: "#BAC5B7",
+        text_muted: "#9AA89D",
+        rule: "#3A4B40",
+        hairline: "#2A3B31",
+        accent: "#C7D9BA",
+        highlight: "#E4CBA6",
+        band: "#214438",
+        on_band: "#F2EEE4",
+        ok: "#A9CF9A",
+        warn: "#F0B866",
+        bad: "#F0A497",
+    },
+};
+// END GENERATED OS FACTS glibc
+
+// BEGIN GENERATED OS FACTS musl
+// Written by `cargo xtask base groups acorn` from distro/variants/acorn/distro.toml
+// (identity, profile, look); do not edit.
+const APK_OS = #{
+    id: "acornos",
+    name: "AcornOS",
+    home_url: "",
+    desktop: "lxqt",
+    appearance: "dark",
+    light: #{
+        surface: "#E6DFCF",
+        surface_raised: "#EFE9DB",
+        surface_sunken: "#D9D1BE",
+        text: "#241A12",
+        text_secondary: "#54483C",
+        text_muted: "#6B5D4F",
+        rule: "#C2B8A2",
+        hairline: "#D0C7B3",
+        accent: "#644532",
+        highlight: "#214438",
+        band: "#644532",
+        on_band: "#F2EEE4",
+        ok: "#2F6B3F",
+        warn: "#7F5200",
+        bad: "#B22F27",
+    },
+    dark: #{
+        surface: "#1F1711",
+        surface_raised: "#2B2019",
+        surface_sunken: "#150F0A",
+        text: "#F2EEE4",
+        text_secondary: "#CDBFAE",
+        text_muted: "#A89886",
+        rule: "#4D3D30",
+        hairline: "#382B21",
+        accent: "#E4CBA6",
+        highlight: "#C7D9BA",
+        band: "#644532",
+        on_band: "#F2EEE4",
+        ok: "#A9CF9A",
+        warn: "#F0B866",
+        bad: "#F0A497",
+    },
+};
+// END GENERATED OS FACTS musl
+
 // The rest is the same in every group recipe.
 //
 // Which build this system takes: the Fedora RPMs on glibc (LevitateOS), the
@@ -195,6 +287,9 @@ fn build(ctx) {
         if !seeds && exists(state) { rm(state); }
     }
     progress(done, ctx.pins.len(), "packages");
+    // This group's configuration (configure, above): files in its own tree,
+    // so the receipt owns them and removing the group removes them.
+    configure(ctx);
     for dir in ["run", "tmp", "boot", "home", "root", "proc", "sys", "dev", "lost+found", "var/run", "var/tmp", "var/lock"] {
         let path = join_path(ctx.system, dir);
         if exists(path) { rm(path); }
@@ -221,4 +316,94 @@ fn remove(ctx) {
     if exists(ctx.record) { rm(ctx.record); }
     ctx.outputs = #{};
     ctx
+}
+
+// ---------------------------------------------------------------------------
+// Configuration helpers: what a group adds to its own tree.
+// ---------------------------------------------------------------------------
+
+// `content` at `path` (relative to the tree) with `mode`, replacing what is there.
+fn put(ctx, path, content, mode) {
+    let dest = join_path(ctx.system, path);
+    mkdir(dirname(dest));
+    if exists(dest) { rm(dest); }
+    write_file(dest, content);
+    target_mode(ctx.system, path, mode);
+}
+// A symbolic link at `path` to `target`.
+fn put_link(ctx, path, target) {
+    let dest = join_path(ctx.system, path);
+    mkdir(dirname(dest));
+    ln_force(target, dest);
+}
+// The text of the packaged file `path`; the group's packages must ship it.
+fn tree_text(ctx, path) {
+    let file = join_path(ctx.system, path);
+    if !is_file(file) { throw ctx.name + ": its packages no longer ship /" + path; }
+    read_file(file)
+}
+// Start a system service at boot, in this system's init's own form: on
+// systemd (Fedora) the links `systemctl enable` makes, the unit's Alias=
+// names included (D-Bus activation finds dbus-org.* through them); on
+// OpenRC (Alpine) the service in its runlevel.
+fn enable_service(ctx, unit, service) {
+    if ctx.format == "rpm" {
+        let file = "usr/lib/systemd/system/" + unit;
+        let text = tree_text(ctx, file);
+        put_link(ctx, "etc/systemd/system/multi-user.target.wants/" + unit, "/" + file);
+        for line in text.split("\n") {
+            if line.starts_with("Alias=") {
+                for alias in trim(line.sub_string(6)).split(" ") {
+                    if alias != "" { put_link(ctx, "etc/systemd/system/" + alias, "/" + file); }
+                }
+            }
+        }
+    } else {
+        if !is_file(join_path(ctx.system, "etc/init.d/" + service)) { throw ctx.name + ": its packages no longer ship the OpenRC service " + service; }
+        put_link(ctx, "etc/runlevels/default/" + service, "/etc/init.d/" + service);
+    }
+}
+
+// ---------------------------------------------------------------------------
+// This group's configuration (hand-written).
+// ---------------------------------------------------------------------------
+
+// The login screen on AcornOS (on LevitateOS SDDM is part of plasma): SDDM
+// starts at boot after dbus and elogind; SDDM's own Maldives theme under the
+// OS's name (Alpine's copy does not say it is for the Qt 6 greeter, the only
+// one Alpine has) with the starting mode's wallpaper (the base's file) and
+// the Adwaita cursor. Alpine's sddm service waits in start_post for the
+// greeter's runtime directory, which an autologin never makes; its conf.d,
+// sourced before the service script, makes that wait succeed.
+ctx.os = APK_OS;
+fn configure(ctx) {
+    let os = ctx.os;
+    let background = "/usr/share/wallpapers/" + os.name + (if os.appearance == "dark" { "/contents/images_dark/3840x2160.jpg" } else { "/contents/images/3840x2160.jpg" });
+    let themes = "usr/share/sddm/themes/";
+    let theme = os.id;
+    let packaged = themes + "maldives/";
+    let meta = tree_text(ctx, packaged + "metadata.desktop");
+    for file in ["Main.qml", "angle-down.png", "rectangle.png"] {
+        mkdir(join_path(ctx.system, themes + theme));
+        copy_file(join_path(ctx.system, packaged + file), join_path(ctx.system, themes + theme + "/" + file));
+        target_mode(ctx.system, themes + theme + "/" + file, 0o644);
+    }
+    let metadata = "";
+    for line in meta.split("\n") {
+        if line.starts_with("Name=") { line = "Name=" + os.name; }
+        else if line.starts_with("Theme-Id=") { line = "Theme-Id=" + theme; }
+        else if line.starts_with("Screenshot=") || line.starts_with("QtVersion=") || line == "" { continue; }
+        metadata += line + "\n";
+    }
+    put(ctx, themes + theme + "/metadata.desktop", metadata + "QtVersion=6\n", 0o644);
+    put(ctx, themes + theme + "/theme.conf", "[General]\nbackground=" + background + "\n", 0o644);
+    put(ctx, "etc/sddm.conf.d/10-theme.conf", "[Theme]\nCurrent=" + theme + "\nCursorTheme=Adwaita\n", 0o644);
+    let conf = "etc/conf.d/sddm";
+    let text = read_file_or_empty(join_path(ctx.system, conf));
+    if text != "" && !text.ends_with("\n") { text += "\n"; }
+    text += "# The desktop system (installed-system.rhai): start_post's wait for the\n";
+    text += "# greeter's runtime directory succeeds, since an autologin starts no greeter.\n";
+    text += "ewaitfile() { return 0; }\n";
+    put(ctx, conf, text, 0o644);
+    enable_service(ctx, "", "sddm");
 }

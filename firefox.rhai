@@ -84,6 +84,98 @@ const APK_PINS = [
 ];
 // END GENERATED PINS musl
 
+// BEGIN GENERATED OS FACTS glibc
+// Written by `cargo xtask base groups levitate` from distro/variants/levitate/distro.toml
+// (identity, profile, look); do not edit.
+const RPM_OS = #{
+    id: "levitateos",
+    name: "LevitateOS",
+    home_url: "https://levitateos.org",
+    desktop: "plasma",
+    appearance: "dark",
+    light: #{
+        surface: "#DDE2D2",
+        surface_raised: "#E8ECDF",
+        surface_sunken: "#CFD6C3",
+        text: "#14221A",
+        text_secondary: "#465047",
+        text_muted: "#5C6459",
+        rule: "#AEB8A4",
+        hairline: "#C6CDB9",
+        accent: "#214438",
+        highlight: "#644532",
+        band: "#214438",
+        on_band: "#F2EEE4",
+        ok: "#2F6B3F",
+        warn: "#7F5200",
+        bad: "#B22F27",
+    },
+    dark: #{
+        surface: "#14221A",
+        surface_raised: "#1D2D24",
+        surface_sunken: "#0D1711",
+        text: "#F2EEE4",
+        text_secondary: "#BAC5B7",
+        text_muted: "#9AA89D",
+        rule: "#3A4B40",
+        hairline: "#2A3B31",
+        accent: "#C7D9BA",
+        highlight: "#E4CBA6",
+        band: "#214438",
+        on_band: "#F2EEE4",
+        ok: "#A9CF9A",
+        warn: "#F0B866",
+        bad: "#F0A497",
+    },
+};
+// END GENERATED OS FACTS glibc
+
+// BEGIN GENERATED OS FACTS musl
+// Written by `cargo xtask base groups acorn` from distro/variants/acorn/distro.toml
+// (identity, profile, look); do not edit.
+const APK_OS = #{
+    id: "acornos",
+    name: "AcornOS",
+    home_url: "",
+    desktop: "lxqt",
+    appearance: "dark",
+    light: #{
+        surface: "#E6DFCF",
+        surface_raised: "#EFE9DB",
+        surface_sunken: "#D9D1BE",
+        text: "#241A12",
+        text_secondary: "#54483C",
+        text_muted: "#6B5D4F",
+        rule: "#C2B8A2",
+        hairline: "#D0C7B3",
+        accent: "#644532",
+        highlight: "#214438",
+        band: "#644532",
+        on_band: "#F2EEE4",
+        ok: "#2F6B3F",
+        warn: "#7F5200",
+        bad: "#B22F27",
+    },
+    dark: #{
+        surface: "#1F1711",
+        surface_raised: "#2B2019",
+        surface_sunken: "#150F0A",
+        text: "#F2EEE4",
+        text_secondary: "#CDBFAE",
+        text_muted: "#A89886",
+        rule: "#4D3D30",
+        hairline: "#382B21",
+        accent: "#E4CBA6",
+        highlight: "#C7D9BA",
+        band: "#644532",
+        on_band: "#F2EEE4",
+        ok: "#A9CF9A",
+        warn: "#F0B866",
+        bad: "#F0A497",
+    },
+};
+// END GENERATED OS FACTS musl
+
 // The rest is the same in every group recipe.
 //
 // Which build this system takes: the Fedora RPMs on glibc (LevitateOS), the
@@ -199,6 +291,9 @@ fn build(ctx) {
         if !seeds && exists(state) { rm(state); }
     }
     progress(done, ctx.pins.len(), "packages");
+    // This group's configuration (configure, above): files in its own tree,
+    // so the receipt owns them and removing the group removes them.
+    configure(ctx);
     for dir in ["run", "tmp", "boot", "home", "root", "proc", "sys", "dev", "lost+found", "var/run", "var/tmp", "var/lock"] {
         let path = join_path(ctx.system, dir);
         if exists(path) { rm(path); }
@@ -225,4 +320,91 @@ fn remove(ctx) {
     if exists(ctx.record) { rm(ctx.record); }
     ctx.outputs = #{};
     ctx
+}
+
+// ---------------------------------------------------------------------------
+// Configuration helpers: what a group adds to its own tree.
+// ---------------------------------------------------------------------------
+
+// `content` at `path` (relative to the tree) with `mode`, replacing what is there.
+fn put(ctx, path, content, mode) {
+    let dest = join_path(ctx.system, path);
+    mkdir(dirname(dest));
+    if exists(dest) { rm(dest); }
+    write_file(dest, content);
+    target_mode(ctx.system, path, mode);
+}
+// A symbolic link at `path` to `target`.
+fn put_link(ctx, path, target) {
+    let dest = join_path(ctx.system, path);
+    mkdir(dirname(dest));
+    ln_force(target, dest);
+}
+// The text of the packaged file `path`; the group's packages must ship it.
+fn tree_text(ctx, path) {
+    let file = join_path(ctx.system, path);
+    if !is_file(file) { throw ctx.name + ": its packages no longer ship /" + path; }
+    read_file(file)
+}
+// Start a system service at boot, in this system's init's own form: on
+// systemd (Fedora) the links `systemctl enable` makes, the unit's Alias=
+// names included (D-Bus activation finds dbus-org.* through them); on
+// OpenRC (Alpine) the service in its runlevel.
+fn enable_service(ctx, unit, service) {
+    if ctx.format == "rpm" {
+        let file = "usr/lib/systemd/system/" + unit;
+        let text = tree_text(ctx, file);
+        put_link(ctx, "etc/systemd/system/multi-user.target.wants/" + unit, "/" + file);
+        for line in text.split("\n") {
+            if line.starts_with("Alias=") {
+                for alias in trim(line.sub_string(6)).split(" ") {
+                    if alias != "" { put_link(ctx, "etc/systemd/system/" + alias, "/" + file); }
+                }
+            }
+        }
+    } else {
+        if !is_file(join_path(ctx.system, "etc/init.d/" + service)) { throw ctx.name + ": its packages no longer ship the OpenRC service " + service; }
+        put_link(ctx, "etc/runlevels/default/" + service, "/etc/init.d/" + service);
+    }
+}
+
+// ---------------------------------------------------------------------------
+// This group's configuration (hand-written).
+// ---------------------------------------------------------------------------
+
+// Firefox as the OS's browser (the OS builder's `browser`, moved here): the
+// distribution it names is the OS (distribution.ini), the packaged default
+// preferences keep everything but the distribution's start page and pinned
+// new-tab sites (renamed for the OS), and a policy turns off telemetry,
+// studies, the first-run and what's-new pages and the browser's own updater
+// (Recipe updates it), opens the OS's website at start where it has one, and
+// gives one bookmark: levitateos.org, on the toolbar.
+ctx.os = if ctx.format == "apk" { APK_OS } else { RPM_OS };
+fn configure(ctx) {
+    let os = ctx.os;
+    let dir = if ctx.format == "rpm" { "usr/lib64/firefox/" } else { "usr/lib/firefox/" };
+    tree_text(ctx, dir + "distribution/distribution.ini");
+    put(ctx, dir + "distribution/distribution.ini",
+        "[Global]\nid=" + os.id + "\nversion=1.0\nabout=Mozilla Firefox for " + os.name + "\n\n[Preferences]\napp.distributor=" + os.id + "\napp.distributor.channel=" + os.id + "\n",
+        0o644);
+    let prefs = dir + "browser/defaults/preferences/";
+    let packaged = if ctx.format == "rpm" { "firefox-redhat-default-prefs.js" } else { "vendor.js" };
+    let text = "";
+    for line in tree_text(ctx, prefs + packaged).split("\n") {
+        if line.contains("browser.startup.homepage") || line.contains("browser.newtabpage.pinned") { continue; }
+        text += line + "\n";
+    }
+    rm(join_path(ctx.system, prefs + packaged));
+    put(ctx, prefs + os.id + "-default-prefs.js", text, 0o644);
+    let policies = "{\n  \"policies\": {\n";
+    policies += "    \"DisableTelemetry\": true,\n    \"DisableFirefoxStudies\": true,\n    \"DisableAppUpdate\": true,\n";
+    policies += "    \"DontCheckDefaultBrowser\": true,\n    \"OverrideFirstRunPage\": \"\",\n    \"OverridePostUpdatePage\": \"\",\n";
+    if os.home_url != "" {
+        policies += "    \"Homepage\": {\"URL\": \"" + os.home_url + "\", \"StartPage\": \"homepage\"},\n";
+    }
+    policies += "    \"NoDefaultBookmarks\": true,\n";
+    policies += "    \"Bookmarks\": [{\"Title\": \"LevitateOS\", \"URL\": \"https://levitateos.org\", \"Placement\": \"toolbar\"}],\n";
+    policies += "    \"UserMessaging\": {\"ExtensionRecommendations\": false, \"FeatureRecommendations\": false, \"MoreFromMozilla\": false, \"SkipOnboarding\": true}\n";
+    policies += "  }\n}\n";
+    put(ctx, dir + "distribution/policies.json", policies, 0o644);
 }

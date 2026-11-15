@@ -266,6 +266,9 @@ fn build(ctx) {
         if !seeds && exists(state) { rm(state); }
     }
     progress(done, ctx.pins.len(), "packages");
+    // This group's configuration (configure, above): files in its own tree,
+    // so the receipt owns them and removing the group removes them.
+    configure(ctx);
     for dir in ["run", "tmp", "boot", "home", "root", "proc", "sys", "dev", "lost+found", "var/run", "var/tmp", "var/lock"] {
         let path = join_path(ctx.system, dir);
         if exists(path) { rm(path); }
@@ -292,4 +295,85 @@ fn remove(ctx) {
     if exists(ctx.record) { rm(ctx.record); }
     ctx.outputs = #{};
     ctx
+}
+
+// ---------------------------------------------------------------------------
+// Configuration helpers: what a group adds to its own tree.
+// ---------------------------------------------------------------------------
+
+// `content` at `path` (relative to the tree) with `mode`, replacing what is there.
+fn put(ctx, path, content, mode) {
+    let dest = join_path(ctx.system, path);
+    mkdir(dirname(dest));
+    if exists(dest) { rm(dest); }
+    write_file(dest, content);
+    target_mode(ctx.system, path, mode);
+}
+// A symbolic link at `path` to `target`.
+fn put_link(ctx, path, target) {
+    let dest = join_path(ctx.system, path);
+    mkdir(dirname(dest));
+    ln_force(target, dest);
+}
+// The text of the packaged file `path`; the group's packages must ship it.
+fn tree_text(ctx, path) {
+    let file = join_path(ctx.system, path);
+    if !is_file(file) { throw ctx.name + ": its packages no longer ship /" + path; }
+    read_file(file)
+}
+// Start a system service at boot, in this system's init's own form: on
+// systemd (Fedora) the links `systemctl enable` makes, the unit's Alias=
+// names included (D-Bus activation finds dbus-org.* through them); on
+// OpenRC (Alpine) the service in its runlevel.
+fn enable_service(ctx, unit, service) {
+    if ctx.format == "rpm" {
+        let file = "usr/lib/systemd/system/" + unit;
+        let text = tree_text(ctx, file);
+        put_link(ctx, "etc/systemd/system/multi-user.target.wants/" + unit, "/" + file);
+        for line in text.split("\n") {
+            if line.starts_with("Alias=") {
+                for alias in trim(line.sub_string(6)).split(" ") {
+                    if alias != "" { put_link(ctx, "etc/systemd/system/" + alias, "/" + file); }
+                }
+            }
+        }
+    } else {
+        if !is_file(join_path(ctx.system, "etc/init.d/" + service)) { throw ctx.name + ": its packages no longer ship the OpenRC service " + service; }
+        put_link(ctx, "etc/runlevels/default/" + service, "/etc/init.d/" + service);
+    }
+}
+
+// ---------------------------------------------------------------------------
+// This group's configuration (hand-written).
+// ---------------------------------------------------------------------------
+
+// CUPS and the Avahi discovery that driverless printing uses start at boot
+// (Avahi also as dbus-org.freedesktop.Avahi on systemd). On Fedora the print
+// commands are the links `alternatives` would make (lpr, lp, lpq, lprm,
+// lpstat, cancel, lpc and their manual pages) to CUPS's. On AcornOS the menu
+// hides CUPS's web page (the printer settings program does the job).
+//
+// /etc/cups itself is cups-filesystem's (root:lp), which is in desktop-libs;
+// this tree only has it as the parent of CUPS's files, and Recipe gives the
+// directory the owner and mode desktop-libs states.
+fn configure(ctx) {
+    if ctx.format == "rpm" {
+        enable_service(ctx, "cups.service", "");
+        enable_service(ctx, "avahi-daemon.service", "");
+        for pair in [["usr/bin/lpr", "lpr.cups"], ["usr/bin/lp", "lp.cups"], ["usr/bin/lpq", "lpq.cups"], ["usr/bin/lprm", "lprm.cups"],
+                     ["usr/bin/lpstat", "lpstat.cups"], ["usr/bin/cancel", "cancel.cups"], ["usr/bin/lpc", "lpc.cups"],
+                     ["usr/share/man/man1/cancel.1.gz", "cancel-cups.1.gz"], ["usr/share/man/man1/lp.1.gz", "lp-cups.1.gz"],
+                     ["usr/share/man/man8/lpc.8.gz", "lpc-cups.8.gz"], ["usr/share/man/man1/lpq.1.gz", "lpq-cups.1.gz"],
+                     ["usr/share/man/man1/lpr.1.gz", "lpr-cups.1.gz"], ["usr/share/man/man1/lprm.1.gz", "lprm-cups.1.gz"],
+                     ["usr/share/man/man1/lpstat.1.gz", "lpstat-cups.1.gz"]] {
+            if !exists(join_path(ctx.system, dirname(pair[0]) + "/" + pair[1])) { throw "printing: cups-client no longer ships /" + dirname(pair[0]) + "/" + pair[1]; }
+            put_link(ctx, pair[0], pair[1]);
+        }
+    } else {
+        enable_service(ctx, "", "cupsd");
+        enable_service(ctx, "", "avahi-daemon");
+        let entry = "usr/share/applications/cups.desktop";
+        let text = tree_text(ctx, entry);
+        if !text.contains("\nNoDisplay=") { put(ctx, entry, text.replace("[Desktop Entry]\n", "[Desktop Entry]\nNoDisplay=true\n"), 0o644); }
+    }
 }
