@@ -1,5 +1,5 @@
 {
-  "commit": "ee989ac6e0b1b66e36fcbd3f1d1c9c2416bd248b",
+  "commit": "1c2ead4cf12d285129341e2b95574f174235b25b",
   "recipes": [
     {
       "about": {
@@ -65,6 +65,128 @@
     {
       "about": {
         "adds": {
+          "menu": [
+            "Ark"
+          ],
+          "programs": [
+            "ark"
+          ]
+        },
+        "category": "utilities",
+        "details": "Ark opens, makes and unpacks archives (zip, tar, 7z and others) from Dolphin or on its own.",
+        "homepage": "https://apps.kde.org/ark/",
+        "keeps": [],
+        "kind": "app",
+        "libc": [
+          "glibc"
+        ],
+        "license": "GPL-2.0-or-later",
+        "steps": {
+          "acquire": "Takes each pinned package by its SHA-256, from the install medium's cache or the distribution's mirror.",
+          "build": "Unpacks the packages natively into one system tree, without running their scripts.",
+          "install": "Publishes the system tree for Recipe to write into the system root, with a receipt."
+        },
+        "systems": [
+          "levitateos"
+        ]
+      },
+      "build_deps": [],
+      "deps": [
+        "desktop-libs"
+      ],
+      "description": "KDE's archive manager",
+      "files": [
+        {
+          "bytes": 12427,
+          "path": "ark.rhai",
+          "sha256": "c3cf4ffe939c87c00ea17b30dea6cb5c7a667140b23a44adee7890fb149ed185"
+        }
+      ],
+      "hooks": [
+        "acquire",
+        "build",
+        "install",
+        "remove"
+      ],
+      "name": "ark",
+      "needs": {
+        "inputs": {},
+        "memory_mib": 4096,
+        "network": [
+          "dl-cdn.alpinelinux.org:443",
+          "dl.fedoraproject.org:443"
+        ],
+        "network_max_bytes": 4194304,
+        "outputs": {
+          "system": "directory"
+        },
+        "storage_max_bytes": null,
+        "storage_max_objects": 262144,
+        "timeout_secs": 7200
+      },
+      "version": "2026.11.15"
+    },
+    {
+      "about": {
+        "category": "media",
+        "details": "PipeWire with WirePlumber as its session manager, and the PulseAudio and ALSA routes into it, so every program's sound plays.",
+        "homepage": "https://pipewire.org",
+        "keeps": [],
+        "kind": "system",
+        "libc": [
+          "glibc",
+          "musl"
+        ],
+        "license": "MIT AND LGPL-2.1-or-later",
+        "steps": {
+          "acquire": "Takes each pinned package by its SHA-256, from the install medium's cache or the distribution's mirror.",
+          "build": "Unpacks the packages natively into one system tree, without running their scripts.",
+          "install": "Publishes the system tree for Recipe to write into the system root, with a receipt."
+        },
+        "systems": [
+          "levitateos",
+          "acornos"
+        ]
+      },
+      "build_deps": [],
+      "deps": [
+        "desktop-libs"
+      ],
+      "description": "Sound: PipeWire and WirePlumber",
+      "files": [
+        {
+          "bytes": 19546,
+          "path": "audio.rhai",
+          "sha256": "55dde10f7252a750d5643ef3fec242161c7c1a5ae89ff0864e2af6e62b545184"
+        }
+      ],
+      "hooks": [
+        "acquire",
+        "build",
+        "install",
+        "remove"
+      ],
+      "name": "audio",
+      "needs": {
+        "inputs": {},
+        "memory_mib": 4096,
+        "network": [
+          "dl-cdn.alpinelinux.org:443",
+          "dl.fedoraproject.org:443"
+        ],
+        "network_max_bytes": 4194304,
+        "outputs": {
+          "system": "directory"
+        },
+        "storage_max_bytes": null,
+        "storage_max_objects": 262144,
+        "timeout_secs": 7200
+      },
+      "version": "2026.11.15"
+    },
+    {
+      "about": {
+        "adds": {
           "menu": [],
           "programs": [
             "bat"
@@ -115,6 +237,66 @@
         "timeout_secs": 300
       },
       "version": "0.26.1"
+    },
+    {
+      "about": {
+        "category": "utilities",
+        "details": "BlueZ and the desktop's Bluetooth settings and applet (BlueDevil on LevitateOS, Blueman on AcornOS).",
+        "homepage": "https://www.bluez.org",
+        "keeps": [],
+        "kind": "system",
+        "libc": [
+          "glibc",
+          "musl"
+        ],
+        "license": "GPL-2.0-or-later AND LGPL-2.1-or-later",
+        "steps": {
+          "acquire": "Takes each pinned package by its SHA-256, from the install medium's cache or the distribution's mirror.",
+          "build": "Unpacks the packages natively into one system tree, without running their scripts.",
+          "install": "Publishes the system tree for Recipe to write into the system root, with a receipt."
+        },
+        "systems": [
+          "levitateos",
+          "acornos"
+        ]
+      },
+      "build_deps": [],
+      "deps": [
+        "desktop-libs",
+        "audio",
+        "network"
+      ],
+      "description": "Bluetooth",
+      "files": [
+        {
+          "bytes": 13687,
+          "path": "bluetooth.rhai",
+          "sha256": "6da5dc79d6a68851fd855e99ba0e1e8cab4889fdbf245bb21174ba2453670b58"
+        }
+      ],
+      "hooks": [
+        "acquire",
+        "build",
+        "install",
+        "remove"
+      ],
+      "name": "bluetooth",
+      "needs": {
+        "inputs": {},
+        "memory_mib": 4096,
+        "network": [
+          "dl-cdn.alpinelinux.org:443",
+          "dl.fedoraproject.org:443"
+        ],
+        "network_max_bytes": 3145728,
+        "outputs": {
+          "system": "directory"
+        },
+        "storage_max_bytes": null,
+        "storage_max_objects": 262144,
+        "timeout_secs": 7200
+      },
+      "version": "2026.11.15"
     },
     {
       "about": {
@@ -383,6 +565,61 @@
     },
     {
       "about": {
+        "details": "What two or more of the desktop groups need, kept in one place so each group can be removed without taking another's libraries with it: Qt, the KDE Frameworks on LevitateOS, GTK, Mesa's libraries, codecs and the like. Its packages are chosen by the generator, not named by hand: every package more than one group's closure needs.",
+        "homepage": "https://levitateos.org",
+        "keeps": [],
+        "kind": "library",
+        "libc": [
+          "glibc",
+          "musl"
+        ],
+        "license": "LGPL-2.1-or-later AND LGPL-3.0-only AND GPL-2.0-or-later AND MIT AND BSD-3-Clause",
+        "steps": {
+          "acquire": "Takes each pinned package by its SHA-256, from the install medium's cache or the distribution's mirror.",
+          "build": "Unpacks the packages natively into one system tree, without running their scripts.",
+          "install": "Publishes the system tree for Recipe to write into the system root, with a receipt."
+        },
+        "systems": [
+          "levitateos",
+          "acornos"
+        ]
+      },
+      "build_deps": [],
+      "deps": [],
+      "description": "Libraries more than one desktop group needs",
+      "files": [
+        {
+          "bytes": 212301,
+          "path": "desktop-libs.rhai",
+          "sha256": "e48277d355be72c6bd0ea3b932d734e0f70b3c3d10c98b922c7111621ebc267a"
+        }
+      ],
+      "hooks": [
+        "acquire",
+        "build",
+        "install",
+        "remove"
+      ],
+      "name": "desktop-libs",
+      "needs": {
+        "inputs": {},
+        "memory_mib": 4096,
+        "network": [
+          "dl-cdn.alpinelinux.org:443",
+          "dl.fedoraproject.org:443"
+        ],
+        "network_max_bytes": 312475648,
+        "outputs": {
+          "system": "directory"
+        },
+        "storage_max_bytes": null,
+        "storage_max_objects": 262144,
+        "timeout_secs": 7200
+      },
+      "version": "2026.11.15"
+    },
+    {
+      "about": {
         "category": "development",
         "details": "The runtime upstream desktop builds carry: GTK 3, GLib, Pango, Cairo, HarfBuzz, fontconfig and FreeType, NSS and NSPR, X11 and xcb, xkbcommon, GBM and DRM, CUPS, ALSA, AT-SPI, D-Bus, libsecret and libnotify with the glibc they were built for, from a pinned Fedora package set. Its build is linked against glibc, as LevitateOS has. It adds the loader, iconv modules, one UTF-8 locale, compiled GSettings schemas and glycin's image loaders. Electron, Chromium and Zed packages name it under build_deps and carry what they load.",
         "homepage": "https://fedoraproject.org",
@@ -430,6 +667,134 @@
         "timeout_secs": 3600
       },
       "version": "45.20261113"
+    },
+    {
+      "about": {
+        "adds": {
+          "menu": [
+            "Dolphin"
+          ],
+          "programs": [
+            "dolphin"
+          ]
+        },
+        "category": "utilities",
+        "details": "Dolphin, the file manager of the Plasma desktop.",
+        "homepage": "https://apps.kde.org/dolphin/",
+        "keeps": [],
+        "kind": "app",
+        "libc": [
+          "glibc"
+        ],
+        "license": "GPL-2.0-or-later",
+        "steps": {
+          "acquire": "Takes each pinned package by its SHA-256, from the install medium's cache or the distribution's mirror.",
+          "build": "Unpacks the packages natively into one system tree, without running their scripts.",
+          "install": "Publishes the system tree for Recipe to write into the system root, with a receipt."
+        },
+        "systems": [
+          "levitateos"
+        ]
+      },
+      "build_deps": [],
+      "deps": [
+        "desktop-libs"
+      ],
+      "description": "KDE's file manager",
+      "files": [
+        {
+          "bytes": 11990,
+          "path": "dolphin.rhai",
+          "sha256": "0c3b6a100a9813bfd864718ba862495dc9e6163cd756b70387858a05d2b3bd19"
+        }
+      ],
+      "hooks": [
+        "acquire",
+        "build",
+        "install",
+        "remove"
+      ],
+      "name": "dolphin",
+      "needs": {
+        "inputs": {},
+        "memory_mib": 4096,
+        "network": [
+          "dl-cdn.alpinelinux.org:443",
+          "dl.fedoraproject.org:443"
+        ],
+        "network_max_bytes": 6291456,
+        "outputs": {
+          "system": "directory"
+        },
+        "storage_max_bytes": null,
+        "storage_max_objects": 262144,
+        "timeout_secs": 7200
+      },
+      "version": "2026.11.15"
+    },
+    {
+      "about": {
+        "adds": {
+          "menu": [],
+          "programs": [
+            "drkonqi"
+          ]
+        },
+        "category": "utilities",
+        "details": "DrKonqi shows what happened when a KDE program crashes and helps report it. Fedora's build needs Konsole.",
+        "homepage": "https://invent.kde.org/plasma/drkonqi",
+        "keeps": [],
+        "kind": "app",
+        "libc": [
+          "glibc"
+        ],
+        "license": "GPL-2.0-or-later",
+        "steps": {
+          "acquire": "Takes each pinned package by its SHA-256, from the install medium's cache or the distribution's mirror.",
+          "build": "Unpacks the packages natively into one system tree, without running their scripts.",
+          "install": "Publishes the system tree for Recipe to write into the system root, with a receipt."
+        },
+        "systems": [
+          "levitateos"
+        ]
+      },
+      "build_deps": [],
+      "deps": [
+        "desktop-libs",
+        "plasma",
+        "konsole"
+      ],
+      "description": "KDE's crash handler",
+      "files": [
+        {
+          "bytes": 14355,
+          "path": "drkonqi.rhai",
+          "sha256": "80a4c00d2ce77ee79cb012f21e4bf13fcc868ce99d00d14edd63ae7b0640307a"
+        }
+      ],
+      "hooks": [
+        "acquire",
+        "build",
+        "install",
+        "remove"
+      ],
+      "name": "drkonqi",
+      "needs": {
+        "inputs": {},
+        "memory_mib": 4096,
+        "network": [
+          "dl-cdn.alpinelinux.org:443",
+          "dl.fedoraproject.org:443"
+        ],
+        "network_max_bytes": 4194304,
+        "outputs": {
+          "system": "directory"
+        },
+        "storage_max_bytes": null,
+        "storage_max_objects": 262144,
+        "timeout_secs": 7200
+      },
+      "version": "2026.11.15"
     },
     {
       "about": {
@@ -539,6 +904,416 @@
         "timeout_secs": 300
       },
       "version": "10.5.2"
+    },
+    {
+      "about": {
+        "category": "utilities",
+        "details": "Tools to check and format exFAT drives, and NTFS-3G to read and write NTFS drives.",
+        "homepage": "https://github.com/exfatprogs/exfatprogs",
+        "keeps": [],
+        "kind": "system",
+        "libc": [
+          "glibc",
+          "musl"
+        ],
+        "license": "GPL-2.0-or-later",
+        "steps": {
+          "acquire": "Takes each pinned package by its SHA-256, from the install medium's cache or the distribution's mirror.",
+          "build": "Unpacks the packages natively into one system tree, without running their scripts.",
+          "install": "Publishes the system tree for Recipe to write into the system root, with a receipt."
+        },
+        "systems": [
+          "levitateos",
+          "acornos"
+        ]
+      },
+      "build_deps": [],
+      "deps": [],
+      "description": "exFAT and NTFS drives",
+      "files": [
+        {
+          "bytes": 12518,
+          "path": "filesystems.rhai",
+          "sha256": "32756ab3dfe0bd01a50c1b2761834b77f6f3433ed1a63fa44c42bd8c69c895b9"
+        }
+      ],
+      "hooks": [
+        "acquire",
+        "build",
+        "install",
+        "remove"
+      ],
+      "name": "filesystems",
+      "needs": {
+        "inputs": {},
+        "memory_mib": 4096,
+        "network": [
+          "dl-cdn.alpinelinux.org:443",
+          "dl.fedoraproject.org:443"
+        ],
+        "network_max_bytes": 1048576,
+        "outputs": {
+          "system": "directory"
+        },
+        "storage_max_bytes": null,
+        "storage_max_objects": 262144,
+        "timeout_secs": 7200
+      },
+      "version": "2026.11.15"
+    },
+    {
+      "about": {
+        "adds": {
+          "menu": [
+            "Firefox"
+          ],
+          "programs": [
+            "firefox"
+          ]
+        },
+        "category": "web",
+        "details": "Firefox, Mozilla's web browser, as the distribution builds it: Fedora's build on LevitateOS, Alpine's on AcornOS.",
+        "homepage": "https://www.firefox.com",
+        "keeps": [],
+        "kind": "app",
+        "libc": [
+          "glibc",
+          "musl"
+        ],
+        "license": "MPL-2.0",
+        "steps": {
+          "acquire": "Takes each pinned package by its SHA-256, from the install medium's cache or the distribution's mirror.",
+          "build": "Unpacks the packages natively into one system tree, without running their scripts.",
+          "install": "Publishes the system tree for Recipe to write into the system root, with a receipt."
+        },
+        "systems": [
+          "levitateos",
+          "acornos"
+        ]
+      },
+      "build_deps": [],
+      "deps": [
+        "desktop-libs"
+      ],
+      "description": "The Firefox web browser",
+      "files": [
+        {
+          "bytes": 16952,
+          "path": "firefox.rhai",
+          "sha256": "1362092e4220beaa7254f1b24a34a1686e0bee27b83e340e2255238971df2f3f"
+        }
+      ],
+      "hooks": [
+        "acquire",
+        "build",
+        "install",
+        "remove"
+      ],
+      "name": "firefox",
+      "needs": {
+        "inputs": {},
+        "memory_mib": 4096,
+        "network": [
+          "dl-cdn.alpinelinux.org:443",
+          "dl.fedoraproject.org:443"
+        ],
+        "network_max_bytes": 98566144,
+        "outputs": {
+          "system": "directory"
+        },
+        "storage_max_bytes": null,
+        "storage_max_objects": 262144,
+        "timeout_secs": 7200
+      },
+      "version": "2026.11.15"
+    },
+    {
+      "about": {
+        "category": "utilities",
+        "details": "firewalld and its graphical settings (Plasma's firewall page on LevitateOS, firewall-config on AcornOS).",
+        "homepage": "https://firewalld.org",
+        "keeps": [],
+        "kind": "system",
+        "libc": [
+          "glibc",
+          "musl"
+        ],
+        "license": "GPL-2.0-or-later",
+        "steps": {
+          "acquire": "Takes each pinned package by its SHA-256, from the install medium's cache or the distribution's mirror.",
+          "build": "Unpacks the packages natively into one system tree, without running their scripts.",
+          "install": "Publishes the system tree for Recipe to write into the system root, with a receipt."
+        },
+        "systems": [
+          "levitateos",
+          "acornos"
+        ]
+      },
+      "build_deps": [],
+      "deps": [
+        "desktop-libs"
+      ],
+      "description": "The firewalld firewall, with its settings",
+      "files": [
+        {
+          "bytes": 18142,
+          "path": "firewall.rhai",
+          "sha256": "ea89fbf7793feb9047327d315ac24af6249a81fc4191d2aeb1494666402de877"
+        }
+      ],
+      "hooks": [
+        "acquire",
+        "build",
+        "install",
+        "remove"
+      ],
+      "name": "firewall",
+      "needs": {
+        "inputs": {},
+        "memory_mib": 4096,
+        "network": [
+          "dl-cdn.alpinelinux.org:443",
+          "dl.fedoraproject.org:443"
+        ],
+        "network_max_bytes": 3145728,
+        "outputs": {
+          "system": "directory"
+        },
+        "storage_max_bytes": null,
+        "storage_max_objects": 262144,
+        "timeout_secs": 7200
+      },
+      "version": "2026.11.15"
+    },
+    {
+      "about": {
+        "category": "drivers-codecs",
+        "details": "fwupd, which reads and applies firmware updates published to the Linux Vendor Firmware Service.",
+        "homepage": "https://fwupd.org",
+        "keeps": [],
+        "kind": "system",
+        "libc": [
+          "musl"
+        ],
+        "license": "LGPL-2.1-or-later",
+        "steps": {
+          "acquire": "Takes each pinned package by its SHA-256, from the install medium's cache or the distribution's mirror.",
+          "build": "Unpacks the packages natively into one system tree, without running their scripts.",
+          "install": "Publishes the system tree for Recipe to write into the system root, with a receipt."
+        },
+        "systems": [
+          "acornos"
+        ]
+      },
+      "build_deps": [],
+      "deps": [
+        "desktop-libs"
+      ],
+      "description": "Firmware updates through fwupd",
+      "files": [
+        {
+          "bytes": 15939,
+          "path": "firmware-updates.rhai",
+          "sha256": "760da5d9e3ebcca4b7feac9d9687c93ad78acb3bf4fd203b1ea903396c5cd6c6"
+        }
+      ],
+      "hooks": [
+        "acquire",
+        "build",
+        "install",
+        "remove"
+      ],
+      "name": "firmware-updates",
+      "needs": {
+        "inputs": {},
+        "memory_mib": 4096,
+        "network": [
+          "dl-cdn.alpinelinux.org:443",
+          "dl.fedoraproject.org:443"
+        ],
+        "network_max_bytes": 8388608,
+        "outputs": {
+          "system": "directory"
+        },
+        "storage_max_bytes": null,
+        "storage_max_objects": 262144,
+        "timeout_secs": 7200
+      },
+      "version": "2026.11.15"
+    },
+    {
+      "about": {
+        "category": "utilities",
+        "details": "Noto Sans CJK, for Chinese, Japanese and Korean text.",
+        "homepage": "https://fonts.google.com/noto",
+        "keeps": [],
+        "kind": "system",
+        "libc": [
+          "glibc",
+          "musl"
+        ],
+        "license": "OFL-1.1",
+        "steps": {
+          "acquire": "Takes each pinned package by its SHA-256, from the install medium's cache or the distribution's mirror.",
+          "build": "Unpacks the packages natively into one system tree, without running their scripts.",
+          "install": "Publishes the system tree for Recipe to write into the system root, with a receipt."
+        },
+        "systems": [
+          "levitateos",
+          "acornos"
+        ]
+      },
+      "build_deps": [],
+      "deps": [
+        "desktop-libs"
+      ],
+      "description": "Fonts for Chinese, Japanese and Korean",
+      "files": [
+        {
+          "bytes": 11508,
+          "path": "fonts-cjk.rhai",
+          "sha256": "7cbab2ed1468c974b83d94972438d14328faa88b56f3ce22c4c57a3f09c5b660"
+        }
+      ],
+      "hooks": [
+        "acquire",
+        "build",
+        "install",
+        "remove"
+      ],
+      "name": "fonts-cjk",
+      "needs": {
+        "inputs": {},
+        "memory_mib": 4096,
+        "network": [
+          "dl-cdn.alpinelinux.org:443",
+          "dl.fedoraproject.org:443"
+        ],
+        "network_max_bytes": 84934656,
+        "outputs": {
+          "system": "directory"
+        },
+        "storage_max_bytes": null,
+        "storage_max_objects": 262144,
+        "timeout_secs": 7200
+      },
+      "version": "2026.11.15"
+    },
+    {
+      "about": {
+        "category": "utilities",
+        "details": "The Liberation fonts, metric-compatible with Arial, Times New Roman and Courier New, so documents keep their layout; Noto Serif too on LevitateOS.",
+        "homepage": "https://github.com/liberationfonts",
+        "keeps": [],
+        "kind": "system",
+        "libc": [
+          "glibc",
+          "musl"
+        ],
+        "license": "OFL-1.1",
+        "steps": {
+          "acquire": "Takes each pinned package by its SHA-256, from the install medium's cache or the distribution's mirror.",
+          "build": "Unpacks the packages natively into one system tree, without running their scripts.",
+          "install": "Publishes the system tree for Recipe to write into the system root, with a receipt."
+        },
+        "systems": [
+          "levitateos",
+          "acornos"
+        ]
+      },
+      "build_deps": [],
+      "deps": [
+        "desktop-libs"
+      ],
+      "description": "Fonts for documents",
+      "files": [
+        {
+          "bytes": 12612,
+          "path": "fonts-office.rhai",
+          "sha256": "a58484a3d12641acb6fc4688e8e0e98df7be16e97b6b99ad85d0df58613b41c4"
+        }
+      ],
+      "hooks": [
+        "acquire",
+        "build",
+        "install",
+        "remove"
+      ],
+      "name": "fonts-office",
+      "needs": {
+        "inputs": {},
+        "memory_mib": 4096,
+        "network": [
+          "dl-cdn.alpinelinux.org:443",
+          "dl.fedoraproject.org:443"
+        ],
+        "network_max_bytes": 15728640,
+        "outputs": {
+          "system": "directory"
+        },
+        "storage_max_bytes": null,
+        "storage_max_objects": 262144,
+        "timeout_secs": 7200
+      },
+      "version": "2026.11.15"
+    },
+    {
+      "about": {
+        "category": "utilities",
+        "details": "Google's Noto fonts: sans, monospace and colour emoji on LevitateOS, the Noto set on AcornOS.",
+        "homepage": "https://fonts.google.com/noto",
+        "keeps": [],
+        "kind": "system",
+        "libc": [
+          "glibc",
+          "musl"
+        ],
+        "license": "OFL-1.1",
+        "steps": {
+          "acquire": "Takes each pinned package by its SHA-256, from the install medium's cache or the distribution's mirror.",
+          "build": "Unpacks the packages natively into one system tree, without running their scripts.",
+          "install": "Publishes the system tree for Recipe to write into the system root, with a receipt."
+        },
+        "systems": [
+          "levitateos",
+          "acornos"
+        ]
+      },
+      "build_deps": [],
+      "deps": [
+        "desktop-libs"
+      ],
+      "description": "The Noto fonts the desktop uses",
+      "files": [
+        {
+          "bytes": 13020,
+          "path": "fonts.rhai",
+          "sha256": "a72d1441f900261e2c99213d3fa6bff892766c983b22a9cd889a6759caeaa0a3"
+        }
+      ],
+      "hooks": [
+        "acquire",
+        "build",
+        "install",
+        "remove"
+      ],
+      "name": "fonts",
+      "needs": {
+        "inputs": {},
+        "memory_mib": 4096,
+        "network": [
+          "dl-cdn.alpinelinux.org:443",
+          "dl.fedoraproject.org:443"
+        ],
+        "network_max_bytes": 19922944,
+        "outputs": {
+          "system": "directory"
+        },
+        "storage_max_bytes": null,
+        "storage_max_objects": 262144,
+        "timeout_secs": 7200
+      },
+      "version": "2026.11.15"
     },
     {
       "about": {
@@ -698,6 +1473,64 @@
     },
     {
       "about": {
+        "category": "drivers-codecs",
+        "details": "Mesa's open drivers for OpenGL and Vulkan, its VA-API video decoding, and Intel's media driver.",
+        "homepage": "https://mesa3d.org",
+        "keeps": [],
+        "kind": "system",
+        "libc": [
+          "glibc",
+          "musl"
+        ],
+        "license": "MIT AND BSD-3-Clause",
+        "steps": {
+          "acquire": "Takes each pinned package by its SHA-256, from the install medium's cache or the distribution's mirror.",
+          "build": "Unpacks the packages natively into one system tree, without running their scripts.",
+          "install": "Publishes the system tree for Recipe to write into the system root, with a receipt."
+        },
+        "systems": [
+          "levitateos",
+          "acornos"
+        ]
+      },
+      "build_deps": [],
+      "deps": [
+        "desktop-libs"
+      ],
+      "description": "Mesa's OpenGL, Vulkan and video decoding drivers",
+      "files": [
+        {
+          "bytes": 13870,
+          "path": "graphics-drivers.rhai",
+          "sha256": "45d8592bc4457c67d98d99b2b88cb54dd3c316378193a4fc8f4ca090487ff98d"
+        }
+      ],
+      "hooks": [
+        "acquire",
+        "build",
+        "install",
+        "remove"
+      ],
+      "name": "graphics-drivers",
+      "needs": {
+        "inputs": {},
+        "memory_mib": 4096,
+        "network": [
+          "dl-cdn.alpinelinux.org:443",
+          "dl.fedoraproject.org:443"
+        ],
+        "network_max_bytes": 33554432,
+        "outputs": {
+          "system": "directory"
+        },
+        "storage_max_bytes": null,
+        "storage_max_objects": 262144,
+        "timeout_secs": 7200
+      },
+      "version": "2026.11.15"
+    },
+    {
+      "about": {
         "category": "development",
         "details": "Adds the matching Rocky GCC C++ frontend, standard library and headers to the shared Recipe build image. It requires that image to provide GCC 14.3.1, its C headers and linker.",
         "homepage": "https://gcc.gnu.org",
@@ -800,6 +1633,552 @@
     {
       "about": {
         "adds": {
+          "menu": [
+            "KCalc"
+          ],
+          "programs": [
+            "kcalc"
+          ]
+        },
+        "category": "utilities",
+        "details": "KCalc, a scientific calculator.",
+        "homepage": "https://apps.kde.org/kcalc/",
+        "keeps": [],
+        "kind": "app",
+        "libc": [
+          "glibc"
+        ],
+        "license": "GPL-2.0-or-later",
+        "steps": {
+          "acquire": "Takes each pinned package by its SHA-256, from the install medium's cache or the distribution's mirror.",
+          "build": "Unpacks the packages natively into one system tree, without running their scripts.",
+          "install": "Publishes the system tree for Recipe to write into the system root, with a receipt."
+        },
+        "systems": [
+          "levitateos"
+        ]
+      },
+      "build_deps": [],
+      "deps": [
+        "desktop-libs"
+      ],
+      "description": "KDE's calculator",
+      "files": [
+        {
+          "bytes": 11196,
+          "path": "kcalc.rhai",
+          "sha256": "f3c5c649de27785eb320f9be74ec1270a8ea0627d6070cf412b2a0204277d2e8"
+        }
+      ],
+      "hooks": [
+        "acquire",
+        "build",
+        "install",
+        "remove"
+      ],
+      "name": "kcalc",
+      "needs": {
+        "inputs": {},
+        "memory_mib": 4096,
+        "network": [
+          "dl-cdn.alpinelinux.org:443",
+          "dl.fedoraproject.org:443"
+        ],
+        "network_max_bytes": 1048576,
+        "outputs": {
+          "system": "directory"
+        },
+        "storage_max_bytes": null,
+        "storage_max_objects": 262144,
+        "timeout_secs": 7200
+      },
+      "version": "2026.11.15"
+    },
+    {
+      "about": {
+        "adds": {
+          "menu": [
+            "Konsole"
+          ],
+          "programs": [
+            "konsole"
+          ]
+        },
+        "category": "utilities",
+        "details": "Konsole, the terminal of the Plasma desktop, with tabs, split views and profiles.",
+        "homepage": "https://konsole.kde.org",
+        "keeps": [],
+        "kind": "app",
+        "libc": [
+          "glibc"
+        ],
+        "license": "GPL-2.0-or-later",
+        "steps": {
+          "acquire": "Takes each pinned package by its SHA-256, from the install medium's cache or the distribution's mirror.",
+          "build": "Unpacks the packages natively into one system tree, without running their scripts.",
+          "install": "Publishes the system tree for Recipe to write into the system root, with a receipt."
+        },
+        "systems": [
+          "levitateos"
+        ]
+      },
+      "build_deps": [],
+      "deps": [
+        "desktop-libs"
+      ],
+      "description": "KDE's terminal",
+      "files": [
+        {
+          "bytes": 24717,
+          "path": "konsole.rhai",
+          "sha256": "dd16b6e81fc3dcb6536fc5dabb91cd5e60fd2c667675ffa2319937080da3144a"
+        }
+      ],
+      "hooks": [
+        "acquire",
+        "build",
+        "install",
+        "remove"
+      ],
+      "name": "konsole",
+      "needs": {
+        "inputs": {},
+        "memory_mib": 4096,
+        "network": [
+          "dl-cdn.alpinelinux.org:443",
+          "dl.fedoraproject.org:443"
+        ],
+        "network_max_bytes": 3145728,
+        "outputs": {
+          "system": "directory"
+        },
+        "storage_max_bytes": null,
+        "storage_max_objects": 262144,
+        "timeout_secs": 7200
+      },
+      "version": "2026.11.15"
+    },
+    {
+      "about": {
+        "adds": {
+          "menu": [
+            "KWrite"
+          ],
+          "programs": [
+            "kwrite"
+          ]
+        },
+        "category": "utilities",
+        "details": "KWrite, a plain text editor built on KDE's editor component.",
+        "homepage": "https://apps.kde.org/kwrite/",
+        "keeps": [],
+        "kind": "app",
+        "libc": [
+          "glibc"
+        ],
+        "license": "LGPL-2.0-or-later",
+        "steps": {
+          "acquire": "Takes each pinned package by its SHA-256, from the install medium's cache or the distribution's mirror.",
+          "build": "Unpacks the packages natively into one system tree, without running their scripts.",
+          "install": "Publishes the system tree for Recipe to write into the system root, with a receipt."
+        },
+        "systems": [
+          "levitateos"
+        ]
+      },
+      "build_deps": [],
+      "deps": [
+        "desktop-libs"
+      ],
+      "description": "KDE's text editor",
+      "files": [
+        {
+          "bytes": 11279,
+          "path": "kwrite.rhai",
+          "sha256": "518ee0fd819c0991404022c626d60f41ac835e0b3f4beb6153a864c6e5cff6d8"
+        }
+      ],
+      "hooks": [
+        "acquire",
+        "build",
+        "install",
+        "remove"
+      ],
+      "name": "kwrite",
+      "needs": {
+        "inputs": {},
+        "memory_mib": 4096,
+        "network": [
+          "dl-cdn.alpinelinux.org:443",
+          "dl.fedoraproject.org:443"
+        ],
+        "network_max_bytes": 2097152,
+        "outputs": {
+          "system": "directory"
+        },
+        "storage_max_bytes": null,
+        "storage_max_objects": 262144,
+        "timeout_secs": 7200
+      },
+      "version": "2026.11.15"
+    },
+    {
+      "about": {
+        "details": "The 32-bit (i686) libraries 32-bit programs and Steam's runtime load on LevitateOS: the 32-bit C library and its loader, the C++ and GCC runtimes, Mesa's OpenGL, EGL and Vulkan drivers with the GL dispatch and Vulkan loader, VA-API and VDPAU, X11 and Wayland client libraries, PipeWire, PulseAudio and ALSA clients, OpenAL, SDL3, NSS and NetworkManager's client library, all from Fedora 45 at the versions of the system's own 64-bit builds. It also brings the 64-bit builds of the few of these libraries the system lacks. 32-bit programs and directories only: the 64-bit system already has the configuration, data and commands these packages share with their 64-bit builds, so those parts are left out. NVIDIA's proprietary driver is not here; its 32-bit libraries come with that driver.",
+        "homepage": "https://fedoraproject.org/wiki/Multilib",
+        "keeps": [],
+        "kind": "library",
+        "libc": [
+          "glibc"
+        ],
+        "license": "LGPL-2.1-or-later AND GPL-2.0-or-later AND MIT AND BSD-3-Clause AND MPL-2.0",
+        "steps": {
+          "acquire": "Takes each pinned package by its SHA-256, from the install medium's cache or the distribution's mirror.",
+          "build": "Unpacks the packages natively into one system tree, without running their scripts, keeping only the 32-bit libraries of the i686 packages.",
+          "install": "Publishes the system tree for Recipe to write into the system root, with a receipt."
+        },
+        "systems": [
+          "levitateos"
+        ]
+      },
+      "build_deps": [],
+      "deps": [
+        "desktop-libs"
+      ],
+      "description": "32-bit libraries for 32-bit programs and Steam",
+      "files": [
+        {
+          "bytes": 57194,
+          "path": "lib32.rhai",
+          "sha256": "e042cb1378f4278d7811e5817223cd020e22788f5a8d7fe9320a0088d87cc930"
+        }
+      ],
+      "hooks": [
+        "acquire",
+        "build",
+        "install",
+        "remove"
+      ],
+      "name": "lib32",
+      "needs": {
+        "inputs": {},
+        "memory_mib": 4096,
+        "network": [
+          "dl.fedoraproject.org:443"
+        ],
+        "network_max_bytes": 128974848,
+        "outputs": {
+          "system": "directory"
+        },
+        "storage_max_bytes": null,
+        "storage_max_objects": 262144,
+        "timeout_secs": 7200
+      },
+      "version": "2026.11.15"
+    },
+    {
+      "about": {
+        "category": "utilities",
+        "details": "SDDM, the graphical login screen; on LevitateOS with Plasma's Breeze theme and Wayland greeter. It lists whatever sessions the installed desktops provide.",
+        "homepage": "https://github.com/sddm/sddm",
+        "keeps": [],
+        "kind": "system",
+        "libc": [
+          "musl"
+        ],
+        "license": "GPL-2.0-or-later",
+        "steps": {
+          "acquire": "Takes each pinned package by its SHA-256, from the install medium's cache or the distribution's mirror.",
+          "build": "Unpacks the packages natively into one system tree, without running their scripts.",
+          "install": "Publishes the system tree for Recipe to write into the system root, with a receipt."
+        },
+        "systems": [
+          "acornos"
+        ]
+      },
+      "build_deps": [],
+      "deps": [
+        "desktop-libs"
+      ],
+      "description": "The SDDM login screen",
+      "files": [
+        {
+          "bytes": 16478,
+          "path": "login-screen.rhai",
+          "sha256": "d9d9e652dc9d95bd6a544de0e5d566fce73f19c6909a57fdaa9c7cdfe74acdb1"
+        }
+      ],
+      "hooks": [
+        "acquire",
+        "build",
+        "install",
+        "remove"
+      ],
+      "name": "login-screen",
+      "needs": {
+        "inputs": {},
+        "memory_mib": 4096,
+        "network": [
+          "dl-cdn.alpinelinux.org:443",
+          "dl.fedoraproject.org:443"
+        ],
+        "network_max_bytes": 4194304,
+        "outputs": {
+          "system": "directory"
+        },
+        "storage_max_bytes": null,
+        "storage_max_objects": 262144,
+        "timeout_secs": 7200
+      },
+      "version": "2026.11.15"
+    },
+    {
+      "about": {
+        "adds": {
+          "menu": [
+            "LXImage-Qt"
+          ],
+          "programs": [
+            "lximage-qt"
+          ]
+        },
+        "category": "graphics",
+        "details": "LXImage-Qt shows images and takes simple screenshots.",
+        "homepage": "https://github.com/lxqt/lximage-qt",
+        "keeps": [],
+        "kind": "app",
+        "libc": [
+          "musl"
+        ],
+        "license": "GPL-2.0-or-later",
+        "steps": {
+          "acquire": "Takes each pinned package by its SHA-256, from the install medium's cache or the distribution's mirror.",
+          "build": "Unpacks the packages natively into one system tree, without running their scripts.",
+          "install": "Publishes the system tree for Recipe to write into the system root, with a receipt."
+        },
+        "systems": [
+          "acornos"
+        ]
+      },
+      "build_deps": [],
+      "deps": [
+        "desktop-libs"
+      ],
+      "description": "LXQt's image viewer",
+      "files": [
+        {
+          "bytes": 10930,
+          "path": "lximage-qt.rhai",
+          "sha256": "d7e208464292f4eb60af1f310d931693fe242d17d18e9c6ea81fc031d4ea663b"
+        }
+      ],
+      "hooks": [
+        "acquire",
+        "build",
+        "install",
+        "remove"
+      ],
+      "name": "lximage-qt",
+      "needs": {
+        "inputs": {},
+        "memory_mib": 4096,
+        "network": [
+          "dl-cdn.alpinelinux.org:443",
+          "dl.fedoraproject.org:443"
+        ],
+        "network_max_bytes": 1048576,
+        "outputs": {
+          "system": "directory"
+        },
+        "storage_max_bytes": null,
+        "storage_max_objects": 262144,
+        "timeout_secs": 7200
+      },
+      "version": "2026.11.15"
+    },
+    {
+      "about": {
+        "adds": {
+          "menu": [
+            "LXQt Archiver"
+          ],
+          "programs": [
+            "lxqt-archiver"
+          ]
+        },
+        "category": "utilities",
+        "details": "LXQt Archiver opens, makes and unpacks archives, with unzip and 7-Zip, which this group brings.",
+        "homepage": "https://github.com/lxqt/lxqt-archiver",
+        "keeps": [],
+        "kind": "app",
+        "libc": [
+          "musl"
+        ],
+        "license": "GPL-2.0-or-later",
+        "steps": {
+          "acquire": "Takes each pinned package by its SHA-256, from the install medium's cache or the distribution's mirror.",
+          "build": "Unpacks the packages natively into one system tree, without running their scripts.",
+          "install": "Publishes the system tree for Recipe to write into the system root, with a receipt."
+        },
+        "systems": [
+          "acornos"
+        ]
+      },
+      "build_deps": [],
+      "deps": [
+        "desktop-libs"
+      ],
+      "description": "LXQt's archive manager",
+      "files": [
+        {
+          "bytes": 11443,
+          "path": "lxqt-archiver.rhai",
+          "sha256": "ea793348e8ca4ea1c2f912257906297acafd400c189744da47de9871f5936fc1"
+        }
+      ],
+      "hooks": [
+        "acquire",
+        "build",
+        "install",
+        "remove"
+      ],
+      "name": "lxqt-archiver",
+      "needs": {
+        "inputs": {},
+        "memory_mib": 4096,
+        "network": [
+          "dl-cdn.alpinelinux.org:443",
+          "dl.fedoraproject.org:443"
+        ],
+        "network_max_bytes": 2097152,
+        "outputs": {
+          "system": "directory"
+        },
+        "storage_max_bytes": null,
+        "storage_max_objects": 262144,
+        "timeout_secs": 7200
+      },
+      "version": "2026.11.15"
+    },
+    {
+      "about": {
+        "category": "utilities",
+        "details": "LXQt on X11 (XLibre): the session, panel, runner, settings, notifications, power management, the polkit agent and Openbox, with the picom compositor, gvfs for removable drives, phones, cameras and network shares, the desktop portals, keyboard and monitor settings, notify-send and the Adwaita cursor theme. AcornOS's default desktop; removing it and installing another desktop is how desktops are changed.",
+        "homepage": "https://lxqt-project.org",
+        "keeps": [],
+        "kind": "system",
+        "libc": [
+          "musl"
+        ],
+        "license": "LGPL-2.1-or-later AND GPL-2.0-or-later AND GPL-3.0-or-later",
+        "steps": {
+          "acquire": "Takes each pinned package by its SHA-256, from the install medium's cache or the distribution's mirror.",
+          "build": "Unpacks the packages natively into one system tree, without running their scripts.",
+          "install": "Publishes the system tree for Recipe to write into the system root, with a receipt."
+        },
+        "systems": [
+          "acornos"
+        ]
+      },
+      "build_deps": [],
+      "deps": [
+        "desktop-libs",
+        "xlibre",
+        "qterminal",
+        "pcmanfm-qt",
+        "lxqt-archiver"
+      ],
+      "description": "The LXQt desktop on X11",
+      "files": [
+        {
+          "bytes": 57826,
+          "path": "lxqt.rhai",
+          "sha256": "700a299763de6000ef4350fab20217a702c369cd26443bd06356fd8302cabec6"
+        }
+      ],
+      "hooks": [
+        "acquire",
+        "build",
+        "install",
+        "remove"
+      ],
+      "name": "lxqt",
+      "needs": {
+        "inputs": {},
+        "memory_mib": 4096,
+        "network": [
+          "dl-cdn.alpinelinux.org:443",
+          "dl.fedoraproject.org:443"
+        ],
+        "network_max_bytes": 76546048,
+        "outputs": {
+          "system": "directory"
+        },
+        "storage_max_bytes": null,
+        "storage_max_objects": 262144,
+        "timeout_secs": 7200
+      },
+      "version": "2026.11.15"
+    },
+    {
+      "about": {
+        "category": "utilities",
+        "details": "The man command (man-db on LevitateOS, mandoc with the Linux man-pages on AcornOS).",
+        "homepage": "https://man-db.gitlab.io/man-db/",
+        "keeps": [],
+        "kind": "system",
+        "libc": [
+          "glibc",
+          "musl"
+        ],
+        "license": "GPL-2.0-or-later AND BSD-3-Clause",
+        "steps": {
+          "acquire": "Takes each pinned package by its SHA-256, from the install medium's cache or the distribution's mirror.",
+          "build": "Unpacks the packages natively into one system tree, without running their scripts.",
+          "install": "Publishes the system tree for Recipe to write into the system root, with a receipt."
+        },
+        "systems": [
+          "levitateos",
+          "acornos"
+        ]
+      },
+      "build_deps": [],
+      "deps": [],
+      "description": "Manual pages",
+      "files": [
+        {
+          "bytes": 13126,
+          "path": "manuals.rhai",
+          "sha256": "595b183327ab9397b83c1a13ca1eb48bea1f1f451687fb341392ce569d303978"
+        }
+      ],
+      "hooks": [
+        "acquire",
+        "build",
+        "install",
+        "remove"
+      ],
+      "name": "manuals",
+      "needs": {
+        "inputs": {},
+        "memory_mib": 4096,
+        "network": [
+          "dl-cdn.alpinelinux.org:443",
+          "dl.fedoraproject.org:443"
+        ],
+        "network_max_bytes": 4194304,
+        "outputs": {
+          "system": "directory"
+        },
+        "storage_max_bytes": null,
+        "storage_max_objects": 262144,
+        "timeout_secs": 7200
+      },
+      "version": "2026.11.15"
+    },
+    {
+      "about": {
+        "adds": {
           "menu": [],
           "programs": [
             "micro"
@@ -854,6 +2233,71 @@
     {
       "about": {
         "adds": {
+          "menu": [
+            "Mousepad"
+          ],
+          "programs": [
+            "mousepad"
+          ]
+        },
+        "category": "utilities",
+        "details": "Mousepad, a simple plain text editor.",
+        "homepage": "https://docs.xfce.org/apps/mousepad/start",
+        "keeps": [],
+        "kind": "app",
+        "libc": [
+          "musl"
+        ],
+        "license": "GPL-2.0-or-later",
+        "steps": {
+          "acquire": "Takes each pinned package by its SHA-256, from the install medium's cache or the distribution's mirror.",
+          "build": "Unpacks the packages natively into one system tree, without running their scripts.",
+          "install": "Publishes the system tree for Recipe to write into the system root, with a receipt."
+        },
+        "systems": [
+          "acornos"
+        ]
+      },
+      "build_deps": [],
+      "deps": [
+        "desktop-libs",
+        "spelling"
+      ],
+      "description": "A text editor",
+      "files": [
+        {
+          "bytes": 13350,
+          "path": "mousepad.rhai",
+          "sha256": "302cd3b4172d02d53ab6483414c31691858d7265b5179cfd48c85b9a6f22908d"
+        }
+      ],
+      "hooks": [
+        "acquire",
+        "build",
+        "install",
+        "remove"
+      ],
+      "name": "mousepad",
+      "needs": {
+        "inputs": {},
+        "memory_mib": 4096,
+        "network": [
+          "dl-cdn.alpinelinux.org:443",
+          "dl.fedoraproject.org:443"
+        ],
+        "network_max_bytes": 2097152,
+        "outputs": {
+          "system": "directory"
+        },
+        "storage_max_bytes": null,
+        "storage_max_objects": 262144,
+        "timeout_secs": 7200
+      },
+      "version": "2026.11.15"
+    },
+    {
+      "about": {
+        "adds": {
           "menu": [],
           "programs": [
             "muse"
@@ -903,6 +2347,123 @@
         "timeout_secs": 3600
       },
       "version": "1.4.18-R8587.1"
+    },
+    {
+      "about": {
+        "category": "utilities",
+        "details": "The desktop's network applet and settings (Plasma's on LevitateOS, nm-applet on AcornOS) and NetworkManager's OpenVPN support.",
+        "homepage": "https://networkmanager.dev",
+        "keeps": [],
+        "kind": "system",
+        "libc": [
+          "glibc",
+          "musl"
+        ],
+        "license": "GPL-2.0-or-later AND LGPL-2.1-or-later",
+        "steps": {
+          "acquire": "Takes each pinned package by its SHA-256, from the install medium's cache or the distribution's mirror.",
+          "build": "Unpacks the packages natively into one system tree, without running their scripts.",
+          "install": "Publishes the system tree for Recipe to write into the system root, with a receipt."
+        },
+        "systems": [
+          "levitateos",
+          "acornos"
+        ]
+      },
+      "build_deps": [],
+      "deps": [
+        "desktop-libs",
+        "network"
+      ],
+      "description": "Network settings in the desktop, with OpenVPN",
+      "files": [
+        {
+          "bytes": 16457,
+          "path": "network-ui.rhai",
+          "sha256": "bbbd560edcaa7e09a0bc1d4019880c7c4a757e0648c76024f797bae9ac7ae92e"
+        }
+      ],
+      "hooks": [
+        "acquire",
+        "build",
+        "install",
+        "remove"
+      ],
+      "name": "network-ui",
+      "needs": {
+        "inputs": {},
+        "memory_mib": 4096,
+        "network": [
+          "dl-cdn.alpinelinux.org:443",
+          "dl.fedoraproject.org:443"
+        ],
+        "network_max_bytes": 4194304,
+        "outputs": {
+          "system": "directory"
+        },
+        "storage_max_bytes": null,
+        "storage_max_objects": 262144,
+        "timeout_secs": 7200
+      },
+      "version": "2026.11.15"
+    },
+    {
+      "about": {
+        "category": "utilities",
+        "details": "NetworkManager and its WiFi support over wpa_supplicant, which bring wired and wireless networks up and keep them up; nmcli comes with it.",
+        "homepage": "https://networkmanager.dev",
+        "keeps": [],
+        "kind": "system",
+        "libc": [
+          "glibc",
+          "musl"
+        ],
+        "license": "GPL-2.0-or-later AND LGPL-2.1-or-later AND BSD-3-Clause",
+        "steps": {
+          "acquire": "Takes each pinned package by its SHA-256, from the install medium's cache or the distribution's mirror.",
+          "build": "Unpacks the packages natively into one system tree, without running their scripts.",
+          "install": "Publishes the system tree for Recipe to write into the system root, with a receipt."
+        },
+        "systems": [
+          "levitateos",
+          "acornos"
+        ]
+      },
+      "build_deps": [],
+      "deps": [
+        "desktop-libs"
+      ],
+      "description": "NetworkManager, with WiFi",
+      "files": [
+        {
+          "bytes": 16153,
+          "path": "network.rhai",
+          "sha256": "878d1af16ec86b2df424b65b186638e643e12ee7c3951a6b1bae1940611396d0"
+        }
+      ],
+      "hooks": [
+        "acquire",
+        "build",
+        "install",
+        "remove"
+      ],
+      "name": "network",
+      "needs": {
+        "inputs": {},
+        "memory_mib": 4096,
+        "network": [
+          "dl-cdn.alpinelinux.org:443",
+          "dl.fedoraproject.org:443"
+        ],
+        "network_max_bytes": 7340032,
+        "outputs": {
+          "system": "directory"
+        },
+        "storage_max_bytes": null,
+        "storage_max_objects": 262144,
+        "timeout_secs": 7200
+      },
+      "version": "2026.11.15"
     },
     {
       "about": {
@@ -1012,6 +2573,134 @@
     {
       "about": {
         "adds": {
+          "menu": [
+            "PulseAudio Volume Control"
+          ],
+          "programs": [
+            "pavucontrol-qt"
+          ]
+        },
+        "category": "media",
+        "details": "PulseAudio Volume Control (Qt) sets volumes and devices per program, over PipeWire.",
+        "homepage": "https://github.com/lxqt/pavucontrol-qt",
+        "keeps": [],
+        "kind": "app",
+        "libc": [
+          "musl"
+        ],
+        "license": "GPL-2.0-or-later",
+        "steps": {
+          "acquire": "Takes each pinned package by its SHA-256, from the install medium's cache or the distribution's mirror.",
+          "build": "Unpacks the packages natively into one system tree, without running their scripts.",
+          "install": "Publishes the system tree for Recipe to write into the system root, with a receipt."
+        },
+        "systems": [
+          "acornos"
+        ]
+      },
+      "build_deps": [],
+      "deps": [
+        "desktop-libs"
+      ],
+      "description": "Sound volume and device settings",
+      "files": [
+        {
+          "bytes": 11289,
+          "path": "pavucontrol-qt.rhai",
+          "sha256": "2cc8c2c7ab4d4fda714f97811fc637d3fdbacd151879edb7ed5c7fbfe4068119"
+        }
+      ],
+      "hooks": [
+        "acquire",
+        "build",
+        "install",
+        "remove"
+      ],
+      "name": "pavucontrol-qt",
+      "needs": {
+        "inputs": {},
+        "memory_mib": 4096,
+        "network": [
+          "dl-cdn.alpinelinux.org:443",
+          "dl.fedoraproject.org:443"
+        ],
+        "network_max_bytes": 1048576,
+        "outputs": {
+          "system": "directory"
+        },
+        "storage_max_bytes": null,
+        "storage_max_objects": 262144,
+        "timeout_secs": 7200
+      },
+      "version": "2026.11.15"
+    },
+    {
+      "about": {
+        "adds": {
+          "menu": [
+            "PCManFM-Qt File Manager"
+          ],
+          "programs": [
+            "pcmanfm-qt"
+          ]
+        },
+        "category": "utilities",
+        "details": "PCManFM-Qt, the file manager of LXQt, which also draws the desktop and its icons.",
+        "homepage": "https://github.com/lxqt/pcmanfm-qt",
+        "keeps": [],
+        "kind": "app",
+        "libc": [
+          "musl"
+        ],
+        "license": "GPL-2.0-or-later",
+        "steps": {
+          "acquire": "Takes each pinned package by its SHA-256, from the install medium's cache or the distribution's mirror.",
+          "build": "Unpacks the packages natively into one system tree, without running their scripts.",
+          "install": "Publishes the system tree for Recipe to write into the system root, with a receipt."
+        },
+        "systems": [
+          "acornos"
+        ]
+      },
+      "build_deps": [],
+      "deps": [
+        "desktop-libs"
+      ],
+      "description": "LXQt's file manager and desktop",
+      "files": [
+        {
+          "bytes": 23831,
+          "path": "pcmanfm-qt.rhai",
+          "sha256": "d870eb8c898d4dcf64030b5048896c82dcba886b115f34ddc7ada1651f23d8a0"
+        }
+      ],
+      "hooks": [
+        "acquire",
+        "build",
+        "install",
+        "remove"
+      ],
+      "name": "pcmanfm-qt",
+      "needs": {
+        "inputs": {},
+        "memory_mib": 4096,
+        "network": [
+          "dl-cdn.alpinelinux.org:443",
+          "dl.fedoraproject.org:443"
+        ],
+        "network_max_bytes": 1048576,
+        "outputs": {
+          "system": "directory"
+        },
+        "storage_max_bytes": null,
+        "storage_max_objects": 262144,
+        "timeout_secs": 7200
+      },
+      "version": "2026.11.15"
+    },
+    {
+      "about": {
+        "adds": {
           "menu": [],
           "programs": [
             "pi"
@@ -1068,6 +2757,249 @@
     },
     {
       "about": {
+        "adds": {
+          "menu": [
+            "System Monitor"
+          ],
+          "programs": [
+            "plasma-systemmonitor"
+          ]
+        },
+        "category": "utilities",
+        "details": "System Monitor shows processes, CPU, memory, disk and network use, and ends programs.",
+        "homepage": "https://apps.kde.org/plasma-systemmonitor/",
+        "keeps": [],
+        "kind": "app",
+        "libc": [
+          "glibc"
+        ],
+        "license": "GPL-2.0-or-later",
+        "steps": {
+          "acquire": "Takes each pinned package by its SHA-256, from the install medium's cache or the distribution's mirror.",
+          "build": "Unpacks the packages natively into one system tree, without running their scripts.",
+          "install": "Publishes the system tree for Recipe to write into the system root, with a receipt."
+        },
+        "systems": [
+          "levitateos"
+        ]
+      },
+      "build_deps": [],
+      "deps": [
+        "desktop-libs"
+      ],
+      "description": "KDE's system monitor",
+      "files": [
+        {
+          "bytes": 11301,
+          "path": "plasma-systemmonitor.rhai",
+          "sha256": "3f61c7bc0f0d871c2664c1467e1e41ac1ceef3293cdadcd0e3b7365421017460"
+        }
+      ],
+      "hooks": [
+        "acquire",
+        "build",
+        "install",
+        "remove"
+      ],
+      "name": "plasma-systemmonitor",
+      "needs": {
+        "inputs": {},
+        "memory_mib": 4096,
+        "network": [
+          "dl-cdn.alpinelinux.org:443",
+          "dl.fedoraproject.org:443"
+        ],
+        "network_max_bytes": 1048576,
+        "outputs": {
+          "system": "directory"
+        },
+        "storage_max_bytes": null,
+        "storage_max_objects": 262144,
+        "timeout_secs": 7200
+      },
+      "version": "2026.11.15"
+    },
+    {
+      "about": {
+        "category": "utilities",
+        "details": "KDE Plasma on Wayland: the workspace and panel, KWin with Xwayland for X11 programs, sound and screen settings, power management, the system information centre, GTK theming, the Breeze theme and icons, the desktop portal, the polkit agent, the wallet unlocked at login and the crash handler, with battery state, power profiles and mounting removable drives. LevitateOS's default desktop; removing it and installing another desktop is how desktops are changed.",
+        "homepage": "https://kde.org/plasma-desktop/",
+        "keeps": [],
+        "kind": "system",
+        "libc": [
+          "glibc"
+        ],
+        "license": "GPL-2.0-or-later AND LGPL-2.1-or-later AND GPL-3.0-or-later",
+        "steps": {
+          "acquire": "Takes each pinned package by its SHA-256, from the install medium's cache or the distribution's mirror.",
+          "build": "Unpacks the packages natively into one system tree, without running their scripts.",
+          "install": "Publishes the system tree for Recipe to write into the system root, with a receipt."
+        },
+        "systems": [
+          "levitateos"
+        ]
+      },
+      "build_deps": [],
+      "deps": [
+        "desktop-libs",
+        "audio",
+        "fonts",
+        "spelling"
+      ],
+      "description": "The KDE Plasma desktop on Wayland",
+      "files": [
+        {
+          "bytes": 96255,
+          "path": "plasma.rhai",
+          "sha256": "40855e56a5462535d5617bb05bee9d372d373388616743c52f63add15f2ad259"
+        }
+      ],
+      "hooks": [
+        "acquire",
+        "build",
+        "install",
+        "remove"
+      ],
+      "name": "plasma",
+      "needs": {
+        "inputs": {},
+        "memory_mib": 4096,
+        "network": [
+          "dl-cdn.alpinelinux.org:443",
+          "dl.fedoraproject.org:443"
+        ],
+        "network_max_bytes": 159383552,
+        "outputs": {
+          "system": "directory"
+        },
+        "storage_max_bytes": null,
+        "storage_max_objects": 262144,
+        "timeout_secs": 7200
+      },
+      "version": "2026.11.15"
+    },
+    {
+      "about": {
+        "adds": {
+          "menu": [],
+          "programs": []
+        },
+        "category": "utilities",
+        "details": "Plasma's printer settings page and print queue applet, over CUPS. It needs both the Plasma desktop and the printing stack.",
+        "homepage": "https://invent.kde.org/plasma/print-manager",
+        "keeps": [],
+        "kind": "app",
+        "libc": [
+          "glibc"
+        ],
+        "license": "GPL-2.0-or-later",
+        "steps": {
+          "acquire": "Takes each pinned package by its SHA-256, from the install medium's cache or the distribution's mirror.",
+          "build": "Unpacks the packages natively into one system tree, without running their scripts.",
+          "install": "Publishes the system tree for Recipe to write into the system root, with a receipt."
+        },
+        "systems": [
+          "levitateos"
+        ]
+      },
+      "build_deps": [],
+      "deps": [
+        "desktop-libs",
+        "plasma",
+        "printing"
+      ],
+      "description": "Plasma's printer settings",
+      "files": [
+        {
+          "bytes": 12307,
+          "path": "print-manager.rhai",
+          "sha256": "343de4b8ce328600c45c828ead185fa0789344357a77b19f10eedf26f0daf5bb"
+        }
+      ],
+      "hooks": [
+        "acquire",
+        "build",
+        "install",
+        "remove"
+      ],
+      "name": "print-manager",
+      "needs": {
+        "inputs": {},
+        "memory_mib": 4096,
+        "network": [
+          "dl-cdn.alpinelinux.org:443",
+          "dl.fedoraproject.org:443"
+        ],
+        "network_max_bytes": 3145728,
+        "outputs": {
+          "system": "directory"
+        },
+        "storage_max_bytes": null,
+        "storage_max_objects": 262144,
+        "timeout_secs": 7200
+      },
+      "version": "2026.11.15"
+    },
+    {
+      "about": {
+        "category": "utilities",
+        "details": "CUPS with its filters and driverless network printers found through Avahi; IPP over USB on LevitateOS, and the printer settings program system-config-printer on AcornOS. Plasma's printer settings are the print-manager recipe, which needs both this and Plasma.",
+        "homepage": "https://openprinting.github.io/cups/",
+        "keeps": [],
+        "kind": "system",
+        "libc": [
+          "glibc",
+          "musl"
+        ],
+        "license": "Apache-2.0 WITH LLVM-exception AND GPL-2.0-or-later AND LGPL-2.1-or-later",
+        "steps": {
+          "acquire": "Takes each pinned package by its SHA-256, from the install medium's cache or the distribution's mirror.",
+          "build": "Unpacks the packages natively into one system tree, without running their scripts.",
+          "install": "Publishes the system tree for Recipe to write into the system root, with a receipt."
+        },
+        "systems": [
+          "levitateos",
+          "acornos"
+        ]
+      },
+      "build_deps": [],
+      "deps": [
+        "desktop-libs"
+      ],
+      "description": "Printing: CUPS with driverless printers",
+      "files": [
+        {
+          "bytes": 33353,
+          "path": "printing.rhai",
+          "sha256": "5a598a0974ecbf7527d8b243086c914a2929a732b5315541281bf48413bf0f9b"
+        }
+      ],
+      "hooks": [
+        "acquire",
+        "build",
+        "install",
+        "remove"
+      ],
+      "name": "printing",
+      "needs": {
+        "inputs": {},
+        "memory_mib": 4096,
+        "network": [
+          "dl-cdn.alpinelinux.org:443",
+          "dl.fedoraproject.org:443"
+        ],
+        "network_max_bytes": 26214400,
+        "outputs": {
+          "system": "directory"
+        },
+        "storage_max_bytes": null,
+        "storage_max_objects": 262144,
+        "timeout_secs": 7200
+      },
+      "version": "2026.11.15"
+    },
+    {
+      "about": {
         "category": "development",
         "details": "Provides CPython with its standard library and bundled extension modules for build scripts inside the Recipe sandbox. This standalone distribution uses the shared build image C library.",
         "homepage": "https://www.python.org",
@@ -1112,6 +3044,198 @@
         "timeout_secs": 600
       },
       "version": "3.14.10+20261026"
+    },
+    {
+      "about": {
+        "adds": {
+          "menu": [
+            "Qalculate!"
+          ],
+          "programs": [
+            "qalculate-qt"
+          ]
+        },
+        "category": "utilities",
+        "details": "Qalculate! (Qt), a calculator with units, currencies and functions.",
+        "homepage": "https://qalculate.github.io",
+        "keeps": [],
+        "kind": "app",
+        "libc": [
+          "musl"
+        ],
+        "license": "GPL-2.0-or-later",
+        "steps": {
+          "acquire": "Takes each pinned package by its SHA-256, from the install medium's cache or the distribution's mirror.",
+          "build": "Unpacks the packages natively into one system tree, without running their scripts.",
+          "install": "Publishes the system tree for Recipe to write into the system root, with a receipt."
+        },
+        "systems": [
+          "acornos"
+        ]
+      },
+      "build_deps": [],
+      "deps": [
+        "desktop-libs"
+      ],
+      "description": "A calculator",
+      "files": [
+        {
+          "bytes": 12261,
+          "path": "qalculate-qt.rhai",
+          "sha256": "74df4c3bd428ba0c93dd077836977086249f4a6ac52b2130b9384e038b99f905"
+        }
+      ],
+      "hooks": [
+        "acquire",
+        "build",
+        "install",
+        "remove"
+      ],
+      "name": "qalculate-qt",
+      "needs": {
+        "inputs": {},
+        "memory_mib": 4096,
+        "network": [
+          "dl-cdn.alpinelinux.org:443",
+          "dl.fedoraproject.org:443"
+        ],
+        "network_max_bytes": 6291456,
+        "outputs": {
+          "system": "directory"
+        },
+        "storage_max_bytes": null,
+        "storage_max_objects": 262144,
+        "timeout_secs": 7200
+      },
+      "version": "2026.11.15"
+    },
+    {
+      "about": {
+        "adds": {
+          "menu": [
+            "Qps"
+          ],
+          "programs": [
+            "qps"
+          ]
+        },
+        "category": "utilities",
+        "details": "Qps shows processes and their CPU and memory use, and ends them.",
+        "homepage": "https://github.com/lxqt/qps",
+        "keeps": [],
+        "kind": "app",
+        "libc": [
+          "musl"
+        ],
+        "license": "GPL-2.0-or-later",
+        "steps": {
+          "acquire": "Takes each pinned package by its SHA-256, from the install medium's cache or the distribution's mirror.",
+          "build": "Unpacks the packages natively into one system tree, without running their scripts.",
+          "install": "Publishes the system tree for Recipe to write into the system root, with a receipt."
+        },
+        "systems": [
+          "acornos"
+        ]
+      },
+      "build_deps": [],
+      "deps": [
+        "desktop-libs"
+      ],
+      "description": "A process viewer",
+      "files": [
+        {
+          "bytes": 10871,
+          "path": "qps.rhai",
+          "sha256": "91757983e00a45d9e6701845a9dae078aa71deb77bb1522b1e7e946a961cffdc"
+        }
+      ],
+      "hooks": [
+        "acquire",
+        "build",
+        "install",
+        "remove"
+      ],
+      "name": "qps",
+      "needs": {
+        "inputs": {},
+        "memory_mib": 4096,
+        "network": [
+          "dl-cdn.alpinelinux.org:443",
+          "dl.fedoraproject.org:443"
+        ],
+        "network_max_bytes": 1048576,
+        "outputs": {
+          "system": "directory"
+        },
+        "storage_max_bytes": null,
+        "storage_max_objects": 262144,
+        "timeout_secs": 7200
+      },
+      "version": "2026.11.15"
+    },
+    {
+      "about": {
+        "adds": {
+          "menu": [
+            "QTerminal"
+          ],
+          "programs": [
+            "qterminal"
+          ]
+        },
+        "category": "utilities",
+        "details": "QTerminal, the terminal of the LXQt desktop.",
+        "homepage": "https://github.com/lxqt/qterminal",
+        "keeps": [],
+        "kind": "app",
+        "libc": [
+          "musl"
+        ],
+        "license": "GPL-2.0-or-later",
+        "steps": {
+          "acquire": "Takes each pinned package by its SHA-256, from the install medium's cache or the distribution's mirror.",
+          "build": "Unpacks the packages natively into one system tree, without running their scripts.",
+          "install": "Publishes the system tree for Recipe to write into the system root, with a receipt."
+        },
+        "systems": [
+          "acornos"
+        ]
+      },
+      "build_deps": [],
+      "deps": [
+        "desktop-libs"
+      ],
+      "description": "LXQt's terminal",
+      "files": [
+        {
+          "bytes": 23431,
+          "path": "qterminal.rhai",
+          "sha256": "634d30235e78a36bbf3f250fee6f127295fb95f76352b8c8d266653ccadd4a7d"
+        }
+      ],
+      "hooks": [
+        "acquire",
+        "build",
+        "install",
+        "remove"
+      ],
+      "name": "qterminal",
+      "needs": {
+        "inputs": {},
+        "memory_mib": 4096,
+        "network": [
+          "dl-cdn.alpinelinux.org:443",
+          "dl.fedoraproject.org:443"
+        ],
+        "network_max_bytes": 1048576,
+        "outputs": {
+          "system": "directory"
+        },
+        "storage_max_bytes": null,
+        "storage_max_objects": 262144,
+        "timeout_secs": 7200
+      },
+      "version": "2026.11.15"
     },
     {
       "about": {
@@ -1170,6 +3294,65 @@
     },
     {
       "about": {
+        "category": "utilities",
+        "details": "Recipe, the software catalog and installer, and Recdirstat, which shows where the space on the disk goes and how alike the two systems are. Built from LevitateOS's desktop-apps source for each OS's own Qt.",
+        "homepage": "https://github.com/LevitateOS/desktop-apps",
+        "keeps": [],
+        "kind": "system",
+        "libc": [
+          "glibc",
+          "musl"
+        ],
+        "license": "MIT OR Apache-2.0",
+        "steps": {
+          "acquire": "Downloads the pinned prebuilt archive for this system's C library and checks its SHA-256.",
+          "build": "Unpacks it and keeps the two apps' programs, menu entries and Recipe's polkit actions.",
+          "install": "Publishes the system tree for Recipe to write into the system root, with a receipt."
+        },
+        "systems": [
+          "levitateos",
+          "acornos"
+        ]
+      },
+      "build_deps": [],
+      "deps": [
+        "desktop-libs"
+      ],
+      "description": "Recipe and Recdirstat, LevitateOS's desktop apps",
+      "files": [
+        {
+          "bytes": 5217,
+          "path": "rec-apps.rhai",
+          "sha256": "3d9d95ac409f05274766a8bf821edca53a722b5f5db55b9e2aac3e4d2b29f264"
+        }
+      ],
+      "hooks": [
+        "acquire",
+        "build",
+        "install",
+        "remove"
+      ],
+      "name": "rec-apps",
+      "needs": {
+        "inputs": {},
+        "memory_mib": 2048,
+        "network": [
+          "github.com:443",
+          "objects.githubusercontent.com:443",
+          "release-assets.githubusercontent.com:443"
+        ],
+        "network_max_bytes": 8388608,
+        "outputs": {
+          "system": "directory"
+        },
+        "storage_max_bytes": null,
+        "storage_max_objects": 16384,
+        "timeout_secs": 1800
+      },
+      "version": "2026.11.15"
+    },
+    {
+      "about": {
         "adds": {
           "menu": [],
           "programs": [
@@ -1221,6 +3404,560 @@
         "timeout_secs": 300
       },
       "version": "15.2.0"
+    },
+    {
+      "about": {
+        "category": "utilities",
+        "details": "Orca reads the screen aloud through Speech Dispatcher and the eSpeak NG voice; AcornOS adds the Onboard on-screen keyboard.",
+        "homepage": "https://orca.gnome.org",
+        "keeps": [],
+        "kind": "system",
+        "libc": [
+          "glibc",
+          "musl"
+        ],
+        "license": "LGPL-2.1-or-later AND GPL-2.0-or-later AND GPL-3.0-or-later",
+        "steps": {
+          "acquire": "Takes each pinned package by its SHA-256, from the install medium's cache or the distribution's mirror.",
+          "build": "Unpacks the packages natively into one system tree, without running their scripts.",
+          "install": "Publishes the system tree for Recipe to write into the system root, with a receipt."
+        },
+        "systems": [
+          "levitateos",
+          "acornos"
+        ]
+      },
+      "build_deps": [],
+      "deps": [
+        "desktop-libs",
+        "audio",
+        "spelling"
+      ],
+      "description": "The Orca screen reader, with speech",
+      "files": [
+        {
+          "bytes": 24036,
+          "path": "screen-reader.rhai",
+          "sha256": "ab1479b8f792e5b023c000d2b7fe252d6b812dbc46d00fc73b61bd6976a3df72"
+        }
+      ],
+      "hooks": [
+        "acquire",
+        "build",
+        "install",
+        "remove"
+      ],
+      "name": "screen-reader",
+      "needs": {
+        "inputs": {},
+        "memory_mib": 4096,
+        "network": [
+          "dl-cdn.alpinelinux.org:443",
+          "dl.fedoraproject.org:443"
+        ],
+        "network_max_bytes": 32505856,
+        "outputs": {
+          "system": "directory"
+        },
+        "storage_max_bytes": null,
+        "storage_max_objects": 262144,
+        "timeout_secs": 7200
+      },
+      "version": "2026.11.15"
+    },
+    {
+      "about": {
+        "adds": {
+          "menu": [
+            "ScreenGrab"
+          ],
+          "programs": [
+            "screengrab"
+          ]
+        },
+        "category": "graphics",
+        "details": "ScreenGrab takes screenshots of the whole screen, a window or a region.",
+        "homepage": "https://github.com/lxqt/screengrab",
+        "keeps": [],
+        "kind": "app",
+        "libc": [
+          "musl"
+        ],
+        "license": "GPL-2.0-or-later",
+        "steps": {
+          "acquire": "Takes each pinned package by its SHA-256, from the install medium's cache or the distribution's mirror.",
+          "build": "Unpacks the packages natively into one system tree, without running their scripts.",
+          "install": "Publishes the system tree for Recipe to write into the system root, with a receipt."
+        },
+        "systems": [
+          "acornos"
+        ]
+      },
+      "build_deps": [],
+      "deps": [
+        "desktop-libs"
+      ],
+      "description": "A screenshot tool",
+      "files": [
+        {
+          "bytes": 10945,
+          "path": "screengrab.rhai",
+          "sha256": "cdc019d407ba776a6897bd5b98cc882c3125de00240f99b50ce57eca9ac213a2"
+        }
+      ],
+      "hooks": [
+        "acquire",
+        "build",
+        "install",
+        "remove"
+      ],
+      "name": "screengrab",
+      "needs": {
+        "inputs": {},
+        "memory_mib": 4096,
+        "network": [
+          "dl-cdn.alpinelinux.org:443",
+          "dl.fedoraproject.org:443"
+        ],
+        "network_max_bytes": 1048576,
+        "outputs": {
+          "system": "directory"
+        },
+        "storage_max_bytes": null,
+        "storage_max_objects": 262144,
+        "timeout_secs": 7200
+      },
+      "version": "2026.11.15"
+    },
+    {
+      "about": {
+        "adds": {
+          "menu": [
+            "Document Scanner"
+          ],
+          "programs": [
+            "simple-scan"
+          ]
+        },
+        "category": "graphics",
+        "details": "Document Scanner scans images and documents over SANE and its drivers, which this group brings.",
+        "homepage": "https://gitlab.gnome.org/GNOME/simple-scan",
+        "keeps": [],
+        "kind": "app",
+        "libc": [
+          "musl"
+        ],
+        "license": "GPL-3.0-or-later",
+        "steps": {
+          "acquire": "Takes each pinned package by its SHA-256, from the install medium's cache or the distribution's mirror.",
+          "build": "Unpacks the packages natively into one system tree, without running their scripts.",
+          "install": "Publishes the system tree for Recipe to write into the system root, with a receipt."
+        },
+        "systems": [
+          "acornos"
+        ]
+      },
+      "build_deps": [],
+      "deps": [
+        "desktop-libs"
+      ],
+      "description": "A scanning program, with the scanner drivers",
+      "files": [
+        {
+          "bytes": 42699,
+          "path": "simple-scan.rhai",
+          "sha256": "85190afe5b60265550f77620d02c18cf9f7774e310dedbd1f12f483e3fd27641"
+        }
+      ],
+      "hooks": [
+        "acquire",
+        "build",
+        "install",
+        "remove"
+      ],
+      "name": "simple-scan",
+      "needs": {
+        "inputs": {},
+        "memory_mib": 4096,
+        "network": [
+          "dl-cdn.alpinelinux.org:443",
+          "dl.fedoraproject.org:443"
+        ],
+        "network_max_bytes": 7340032,
+        "outputs": {
+          "system": "directory"
+        },
+        "storage_max_bytes": null,
+        "storage_max_objects": 262144,
+        "timeout_secs": 7200
+      },
+      "version": "2026.11.15"
+    },
+    {
+      "about": {
+        "adds": {
+          "menu": [
+            "Skanlite"
+          ],
+          "programs": [
+            "skanlite"
+          ]
+        },
+        "category": "graphics",
+        "details": "Skanlite scans images and documents, over SANE and its scanner drivers, which this group brings.",
+        "homepage": "https://apps.kde.org/skanlite/",
+        "keeps": [],
+        "kind": "app",
+        "libc": [
+          "glibc"
+        ],
+        "license": "GPL-2.0-or-later",
+        "steps": {
+          "acquire": "Takes each pinned package by its SHA-256, from the install medium's cache or the distribution's mirror.",
+          "build": "Unpacks the packages natively into one system tree, without running their scripts.",
+          "install": "Publishes the system tree for Recipe to write into the system root, with a receipt."
+        },
+        "systems": [
+          "levitateos"
+        ]
+      },
+      "build_deps": [],
+      "deps": [
+        "desktop-libs"
+      ],
+      "description": "KDE's scanning program, with the scanner drivers",
+      "files": [
+        {
+          "bytes": 14091,
+          "path": "skanlite.rhai",
+          "sha256": "620250809689011725bdf912c43c9e4efc8d5f5bb2720702591b7dab3b281cc7"
+        }
+      ],
+      "hooks": [
+        "acquire",
+        "build",
+        "install",
+        "remove"
+      ],
+      "name": "skanlite",
+      "needs": {
+        "inputs": {},
+        "memory_mib": 4096,
+        "network": [
+          "dl-cdn.alpinelinux.org:443",
+          "dl.fedoraproject.org:443"
+        ],
+        "network_max_bytes": 7340032,
+        "outputs": {
+          "system": "directory"
+        },
+        "storage_max_bytes": null,
+        "storage_max_objects": 262144,
+        "timeout_secs": 7200
+      },
+      "version": "2026.11.15"
+    },
+    {
+      "about": {
+        "adds": {
+          "menu": [
+            "Spectacle"
+          ],
+          "programs": [
+            "spectacle"
+          ]
+        },
+        "category": "graphics",
+        "details": "Spectacle takes screenshots and screen recordings of the whole screen, a window or a region.",
+        "homepage": "https://apps.kde.org/spectacle/",
+        "keeps": [],
+        "kind": "app",
+        "libc": [
+          "glibc"
+        ],
+        "license": "GPL-2.0-or-later",
+        "steps": {
+          "acquire": "Takes each pinned package by its SHA-256, from the install medium's cache or the distribution's mirror.",
+          "build": "Unpacks the packages natively into one system tree, without running their scripts.",
+          "install": "Publishes the system tree for Recipe to write into the system root, with a receipt."
+        },
+        "systems": [
+          "levitateos"
+        ]
+      },
+      "build_deps": [],
+      "deps": [
+        "desktop-libs"
+      ],
+      "description": "KDE's screenshot tool",
+      "files": [
+        {
+          "bytes": 12119,
+          "path": "spectacle.rhai",
+          "sha256": "724e687aa8714f7e2934db2b783ea46220f94ba120518573db42ff971457f0f3"
+        }
+      ],
+      "hooks": [
+        "acquire",
+        "build",
+        "install",
+        "remove"
+      ],
+      "name": "spectacle",
+      "needs": {
+        "inputs": {},
+        "memory_mib": 4096,
+        "network": [
+          "dl-cdn.alpinelinux.org:443",
+          "dl.fedoraproject.org:443"
+        ],
+        "network_max_bytes": 4194304,
+        "outputs": {
+          "system": "directory"
+        },
+        "storage_max_bytes": null,
+        "storage_max_objects": 262144,
+        "timeout_secs": 7200
+      },
+      "version": "2026.11.15"
+    },
+    {
+      "about": {
+        "category": "utilities",
+        "details": "Hunspell and its English dictionaries, for spell checking in the programs that use it.",
+        "homepage": "https://hunspell.github.io",
+        "keeps": [],
+        "kind": "system",
+        "libc": [
+          "glibc",
+          "musl"
+        ],
+        "license": "LGPL-2.1-or-later",
+        "steps": {
+          "acquire": "Takes each pinned package by its SHA-256, from the install medium's cache or the distribution's mirror.",
+          "build": "Unpacks the packages natively into one system tree, without running their scripts.",
+          "install": "Publishes the system tree for Recipe to write into the system root, with a receipt."
+        },
+        "systems": [
+          "levitateos",
+          "acornos"
+        ]
+      },
+      "build_deps": [],
+      "deps": [],
+      "description": "English spelling dictionaries",
+      "files": [
+        {
+          "bytes": 18047,
+          "path": "spelling.rhai",
+          "sha256": "1de7d9833b3d57349cdd47bb0973e679f3bbba15b44a597cbf94d77e4b1e797c"
+        }
+      ],
+      "hooks": [
+        "acquire",
+        "build",
+        "install",
+        "remove"
+      ],
+      "name": "spelling",
+      "needs": {
+        "inputs": {},
+        "memory_mib": 4096,
+        "network": [
+          "dl-cdn.alpinelinux.org:443",
+          "dl.fedoraproject.org:443"
+        ],
+        "network_max_bytes": 2097152,
+        "outputs": {
+          "system": "directory"
+        },
+        "storage_max_bytes": null,
+        "storage_max_objects": 262144,
+        "timeout_secs": 7200
+      },
+      "version": "2026.11.15"
+    },
+    {
+      "about": {
+        "adds": {
+          "menu": [
+            "Steam"
+          ],
+          "programs": [
+            "steam"
+          ]
+        },
+        "category": "games",
+        "details": "Valve's Steam: the store, library and launcher for games, Counter-Strike 2 among them. This installs Valve's Steam launcher, the menu entry and icon, the device rules that let Steam controllers, other game pads and VR headsets work without root, and the 32-bit libraries Steam and its runtime load (the lib32 group). On first start the launcher downloads the Steam client from Valve into ~/.local/share/Steam. The Steam client updates itself there, from Valve, every time it starts, and it has no setting to turn that off: Recipe installs and updates the launcher, the device rules and the libraries, and the client and the games are Steam's own. Graphics: the system's own drivers are Mesa's (OpenGL and Vulkan, 64- and 32-bit), meant for AMD and Intel graphics; on NVIDIA they are nouveau and its Vulkan driver. For NVIDIA's proprietary driver, install its recipe, which must bring its 32-bit libraries too; that recipe is still to be written. Games run in Steam's runtime container (Steam Linux Runtime), which needs unprivileged user namespaces in the kernel. Needs a Steam account and network access to Valve. Steam is proprietary software under Valve's Steam Subscriber Agreement; the recipe downloads it from Valve and LevitateOS does not redistribute it. Built for glibc and LevitateOS; AcornOS (musl) cannot run it.",
+        "homepage": "https://store.steampowered.com/about/",
+        "keeps": [],
+        "kind": "app",
+        "libc": [
+          "glibc"
+        ],
+        "license": "proprietary (Valve: Steam Subscriber Agreement) AND MIT (steam-devices); Fedora packages under their own licences",
+        "steps": {
+          "acquire": "Downloads Valve's pinned Steam launcher tarball from repo.steampowered.com and checks its SHA-256, and takes each pinned Fedora package by its SHA-256 from the install medium's cache or the distribution's mirror.",
+          "build": "Unpacks the Fedora packages natively into one system tree, without running their scripts, and places Valve's launcher, client bootstrap, menu entry, icons and device rules in it, each checked against its own digest; nothing is compiled.",
+          "install": "Publishes the system tree for Recipe to write into the system root, with a receipt."
+        },
+        "systems": [
+          "levitateos"
+        ]
+      },
+      "build_deps": [],
+      "deps": [
+        "desktop-libs",
+        "lib32",
+        "graphics-drivers"
+      ],
+      "description": "Valve's Steam launcher and what it needs",
+      "files": [
+        {
+          "bytes": 20876,
+          "path": "steam.rhai",
+          "sha256": "3986658b680a6bcd83456a6d1b158d181658afacf1f5c8a02b0497374fe9b71b"
+        }
+      ],
+      "hooks": [
+        "acquire",
+        "build",
+        "install",
+        "remove"
+      ],
+      "name": "steam",
+      "needs": {
+        "inputs": {},
+        "memory_mib": 4096,
+        "network": [
+          "dl.fedoraproject.org:443",
+          "repo.steampowered.com:443"
+        ],
+        "network_max_bytes": 32505856,
+        "outputs": {
+          "system": "directory"
+        },
+        "storage_max_bytes": null,
+        "storage_max_objects": 262144,
+        "timeout_secs": 7200
+      },
+      "version": "2026.11.15"
+    },
+    {
+      "about": {
+        "category": "media",
+        "details": "Thumbnails of images, documents and videos in the file manager.",
+        "homepage": "https://kde.org",
+        "keeps": [],
+        "kind": "system",
+        "libc": [
+          "glibc",
+          "musl"
+        ],
+        "license": "GPL-2.0-or-later",
+        "steps": {
+          "acquire": "Takes each pinned package by its SHA-256, from the install medium's cache or the distribution's mirror.",
+          "build": "Unpacks the packages natively into one system tree, without running their scripts.",
+          "install": "Publishes the system tree for Recipe to write into the system root, with a receipt."
+        },
+        "systems": [
+          "levitateos",
+          "acornos"
+        ]
+      },
+      "build_deps": [],
+      "deps": [
+        "desktop-libs"
+      ],
+      "description": "File thumbnails",
+      "files": [
+        {
+          "bytes": 17082,
+          "path": "thumbnailers.rhai",
+          "sha256": "a6c83d0702feef45465f6cd73d8d947657cdc808ebf9393bfd4f0e753bcf6863"
+        }
+      ],
+      "hooks": [
+        "acquire",
+        "build",
+        "install",
+        "remove"
+      ],
+      "name": "thumbnailers",
+      "needs": {
+        "inputs": {},
+        "memory_mib": 4096,
+        "network": [
+          "dl-cdn.alpinelinux.org:443",
+          "dl.fedoraproject.org:443"
+        ],
+        "network_max_bytes": 9437184,
+        "outputs": {
+          "system": "directory"
+        },
+        "storage_max_bytes": null,
+        "storage_max_objects": 262144,
+        "timeout_secs": 7200
+      },
+      "version": "2026.11.15"
+    },
+    {
+      "about": {
+        "category": "drivers-codecs",
+        "details": "bolt, which authorises Thunderbolt devices; Plasma's settings page for it on LevitateOS.",
+        "homepage": "https://gitlab.freedesktop.org/bolt/bolt",
+        "keeps": [],
+        "kind": "system",
+        "libc": [
+          "glibc",
+          "musl"
+        ],
+        "license": "LGPL-2.1-or-later",
+        "steps": {
+          "acquire": "Takes each pinned package by its SHA-256, from the install medium's cache or the distribution's mirror.",
+          "build": "Unpacks the packages natively into one system tree, without running their scripts.",
+          "install": "Publishes the system tree for Recipe to write into the system root, with a receipt."
+        },
+        "systems": [
+          "levitateos",
+          "acornos"
+        ]
+      },
+      "build_deps": [],
+      "deps": [
+        "desktop-libs"
+      ],
+      "description": "Thunderbolt device authorisation",
+      "files": [
+        {
+          "bytes": 11844,
+          "path": "thunderbolt.rhai",
+          "sha256": "a198ed7f4bcc675b25be894eec159910b3d8d0516a6857e09907884a0f705773"
+        }
+      ],
+      "hooks": [
+        "acquire",
+        "build",
+        "install",
+        "remove"
+      ],
+      "name": "thunderbolt",
+      "needs": {
+        "inputs": {},
+        "memory_mib": 4096,
+        "network": [
+          "dl-cdn.alpinelinux.org:443",
+          "dl.fedoraproject.org:443"
+        ],
+        "network_max_bytes": 1048576,
+        "outputs": {
+          "system": "directory"
+        },
+        "storage_max_bytes": null,
+        "storage_max_objects": 262144,
+        "timeout_secs": 7200
+      },
+      "version": "2026.11.15"
     },
     {
       "about": {
@@ -1277,6 +4014,123 @@
         "timeout_secs": 300
       },
       "version": "0.13.7"
+    },
+    {
+      "about": {
+        "category": "utilities",
+        "details": "spice-vdagent: clipboard sharing and display resizing in a SPICE (libvirt) virtual machine.",
+        "homepage": "https://www.spice-space.org",
+        "keeps": [],
+        "kind": "system",
+        "libc": [
+          "glibc",
+          "musl"
+        ],
+        "license": "GPL-3.0-or-later",
+        "steps": {
+          "acquire": "Takes each pinned package by its SHA-256, from the install medium's cache or the distribution's mirror.",
+          "build": "Unpacks the packages natively into one system tree, without running their scripts.",
+          "install": "Publishes the system tree for Recipe to write into the system root, with a receipt."
+        },
+        "systems": [
+          "levitateos",
+          "acornos"
+        ]
+      },
+      "build_deps": [],
+      "deps": [
+        "desktop-libs"
+      ],
+      "description": "Guest agent for SPICE virtual machines",
+      "files": [
+        {
+          "bytes": 12695,
+          "path": "vm-guest.rhai",
+          "sha256": "3b78de27eac1fc0d25ea31c274c8b1b814cef42f96cd51bfe90d771d3a4bc589"
+        }
+      ],
+      "hooks": [
+        "acquire",
+        "build",
+        "install",
+        "remove"
+      ],
+      "name": "vm-guest",
+      "needs": {
+        "inputs": {},
+        "memory_mib": 4096,
+        "network": [
+          "dl-cdn.alpinelinux.org:443",
+          "dl.fedoraproject.org:443"
+        ],
+        "network_max_bytes": 1048576,
+        "outputs": {
+          "system": "directory"
+        },
+        "storage_max_bytes": null,
+        "storage_max_objects": 262144,
+        "timeout_secs": 7200
+      },
+      "version": "2026.11.15"
+    },
+    {
+      "about": {
+        "category": "drivers-codecs",
+        "details": "The XLibre X server, its libinput driver and what they load at run time: the keymap compiler and keymaps, the cursor and fixed fonts, Mesa's EGL and GBM for glamor and the libraries the server links. The server itself, with its setuid wrapper, /usr/bin/X and the modesetting and libinput drivers, is the OS builder's pinned prebuilt tree, compiled from pinned XLibre source.",
+        "homepage": "https://github.com/X11Libre",
+        "keeps": [],
+        "kind": "system",
+        "libc": [
+          "musl"
+        ],
+        "license": "MIT AND X11 AND LGPL-2.1-or-later",
+        "steps": {
+          "acquire": "Takes each pinned package and the pinned display-server prebuilt by their SHA-256, from the install medium's cache or the distribution's mirror and GitHub.",
+          "build": "Unpacks the packages natively into one system tree, without running their scripts, and adds the X server's files from the prebuilt, the wrapper setuid root.",
+          "install": "Publishes the system tree for Recipe to write into the system root, with a receipt."
+        },
+        "systems": [
+          "acornos"
+        ]
+      },
+      "build_deps": [],
+      "deps": [
+        "desktop-libs"
+      ],
+      "description": "The XLibre display server and its run-time parts",
+      "files": [
+        {
+          "bytes": 17529,
+          "path": "xlibre.rhai",
+          "sha256": "1e579fcd27ca785fadec49bc5b7d3137ebd3c4ca5cdb7bb86dfa1d6f9c3ea1e9"
+        }
+      ],
+      "hooks": [
+        "acquire",
+        "build",
+        "install",
+        "remove"
+      ],
+      "name": "xlibre",
+      "needs": {
+        "inputs": {},
+        "memory_mib": 4096,
+        "network": [
+          "dl-cdn.alpinelinux.org:443",
+          "dl.fedoraproject.org:443",
+          "github.com:443",
+          "objects.githubusercontent.com:443",
+          "release-assets.githubusercontent.com:443"
+        ],
+        "network_max_bytes": 6291456,
+        "outputs": {
+          "system": "directory"
+        },
+        "storage_max_bytes": null,
+        "storage_max_objects": 262144,
+        "timeout_secs": 7200
+      },
+      "version": "2026.11.15"
     },
     {
       "about": {
