@@ -8,11 +8,23 @@
 // `cargo xtask base groups levitate` (glibc: Fedora RPMs) and
 // `cargo xtask base groups acorn` (musl: Alpine APKs) from the seeds below. A
 // package more than one group needs belongs to desktop-libs.
+//
+// The X server itself (Xorg, its setuid wrapper, /usr/bin/X, the modesetting
+// and libinput drivers, the server's other modules and its xorg.conf.d
+// snippets) is not in a package: the OS builder compiles it from pinned
+// XLibre source (distro/builder/os-recipes/xlibre.rhai) and publishes the
+// tree as the LevitateOS/prebuilt release `display-server-<key16>`. This
+// recipe pins that archive (PREBUILT below, as rec-apps pins the desktop
+// apps) and puts the files FILES lists into the same system tree as the
+// packages. Nothing generates PREBUILT: when a new display-server prebuilt is
+// published (the XLibre pins or the Alpine build root changed), move PREBUILT
+// to the newest `display-server-<key16>` release by hand: its asset's URL and
+// the SHA-256 GitHub shows for it, and OTHER_DOWNLOAD_BYTES to its size.
 const RECIPE_API = 3;
 const NEEDS = #{
     outputs: #{ system: "directory" },
-    network: ["dl.fedoraproject.org:443", "dl-cdn.alpinelinux.org:443"],
-    network_max_bytes: 4194304,
+    network: ["dl.fedoraproject.org:443", "dl-cdn.alpinelinux.org:443", "github.com:443", "release-assets.githubusercontent.com:443", "objects.githubusercontent.com:443"],
+    network_max_bytes: 6291456,
     memory_mib: 4096,
     storage_max_objects: 262144,
     timeout_secs: 7200,
@@ -23,12 +35,12 @@ const ABOUT = #{
     category: "drivers-codecs",
     libc: ["musl"],
     systems: ["acornos"],
-    details: "What the XLibre X server and its libinput driver load at run time: the keymap compiler and keymaps, the cursor and fixed fonts, Mesa's EGL and GBM for glamor and the libraries the server links. The server itself is built from pinned source by the OS builder today; moving it into this recipe is a later step.",
+    details: "The XLibre X server, its libinput driver and what they load at run time: the keymap compiler and keymaps, the cursor and fixed fonts, Mesa's EGL and GBM for glamor and the libraries the server links. The server itself, with its setuid wrapper, /usr/bin/X and the modesetting and libinput drivers, is the OS builder's pinned prebuilt tree, compiled from pinned XLibre source.",
     homepage: "https://github.com/X11Libre",
     license: "MIT AND X11 AND LGPL-2.1-or-later",
     steps: #{
-        acquire: "Takes each pinned package by its SHA-256, from the install medium's cache or the distribution's mirror.",
-        build: "Unpacks the packages natively into one system tree, without running their scripts.",
+        acquire: "Takes each pinned package and the pinned display-server prebuilt by their SHA-256, from the install medium's cache or the distribution's mirror and GitHub.",
+        build: "Unpacks the packages natively into one system tree, without running their scripts, and adds the X server's files from the prebuilt, the wrapper setuid root.",
         install: "Publishes the system tree for Recipe to write into the system root, with a receipt.",
     },
     keeps: [],
@@ -51,9 +63,46 @@ let deps = ["desktop-libs"];
 
 let ctx = #{
     name: "xlibre",
-    version: "2026.11.13",
-    description: "The run-time parts of the XLibre display server",
+    version: "2026.11.15",
+    description: "The XLibre display server and its run-time parts",
 };
+
+// The display-server prebuilt: the LevitateOS/prebuilt release
+// `display-server-<key16>` that `prebuilt publish display-server acorn`
+// makes. [file, URL, SHA-256 (the digest GitHub publishes for the asset)].
+// Moved by hand to each new release (see the header).
+const OTHER_DOWNLOAD_BYTES = 1469755;
+const PREBUILT = #{
+    musl: ["display-server-acorn.tar.gz",
+           "https://github.com/LevitateOS/prebuilt/releases/download/display-server-56df0167e337c893/display-server-acorn.tar.gz",
+           "76374e35feae26a044e4f5e5bd1045403473d6f0bf85454025dccf177008bfe5"],
+};
+// What the system tree takes from the prebuilt tree: [path, mode], the
+// builder's installed-files list. Xorg.wrap is setuid root as in Alpine's
+// package; the prebuilt keeps that mode in its target metadata, which a
+// plain unpack does not carry, so it is set here. /usr/bin/X (the link the
+// display manager starts) and /var/lib/xkb are made in configure.
+const XORG_MODULES = "usr/lib/xorg/modules/xlibre-25";
+const FILES = [
+    ["usr/bin/Xorg", 0o755],
+    ["usr/bin/gtf", 0o755],
+    ["usr/libexec/Xorg", 0o755],
+    ["usr/libexec/Xorg.wrap", 0o4555],
+    ["usr/lib/xorg/protocol.txt", 0o644],
+    [XORG_MODULES + "/drivers/modesetting_drv.so", 0o755],
+    [XORG_MODULES + "/input/libinput_drv.so", 0o755],
+    [XORG_MODULES + "/extensions/libglx.so", 0o755],
+    [XORG_MODULES + "/libglamoregl.so", 0o755],
+    [XORG_MODULES + "/libexa.so", 0o755],
+    [XORG_MODULES + "/libfbdevhw.so", 0o755],
+    [XORG_MODULES + "/libint10.so", 0o755],
+    [XORG_MODULES + "/libshadow.so", 0o755],
+    [XORG_MODULES + "/libshadowfb.so", 0o755],
+    [XORG_MODULES + "/libvgahw.so", 0o755],
+    [XORG_MODULES + "/libwfb.so", 0o755],
+    ["usr/share/X11/xorg.conf.d/10-quirks.conf", 0o644],
+    ["usr/share/X11/xorg.conf.d/40-libinput.conf", 0o644],
+];
 
 // BEGIN GENERATED PINS glibc
 // No glibc build: this recipe names no seeds in SEEDS_GLIBC. Written by
@@ -66,8 +115,8 @@ const RPM_PINS = [];
 // BEGIN GENERATED PINS musl
 // Written by `cargo xtask base groups acorn`; do not edit. This group's
 // share of the Alpine v3.24 APKs in acorn-apk-lock.rhai and acorn-apk-desktop-lock.rhai (locked on
-// 2026-11-13): 7 packages, 3913476 bytes. Licences are each package's own.
-const APK_PINNED_ON = "2026-11-13";
+// 2026-11-15): 7 packages, 3913476 bytes. Licences are each package's own.
+const APK_PINNED_ON = "2026-11-15";
 const APK_PINNED_BYTES = 3913476;
 // [name, file, URL, SHA-256, bytes, licence, var/ kept as state seeds]
 const APK_PINS = [
@@ -109,14 +158,22 @@ if ctx.libc == "glibc" {
 ctx.no_build = ctx.name + " has pins for glibc (Fedora RPMs, LevitateOS) and musl (Alpine APKs, AcornOS); " +
     "this system's C library is " + ctx.libc + ", for which it has none. `cargo xtask base groups <distro>` " +
     "writes a variant's pins once the recipe names seeds for its C library.";
-if ctx.pinned_bytes > NEEDS.network_max_bytes {
-    throw "the pinned packages (" + ctx.pinned_bytes + " bytes) exceed NEEDS.network_max_bytes; " +
+// The display-server prebuilt (xlibre only: not a step of the shared tail in
+// other group recipes).
+ctx.prebuilt = PREBUILT[ctx.libc];
+ctx.prebuilt_archive = join_path(ctx.downloads, "display-server-prebuilt.tar.gz");
+ctx.prebuilt_unpacked = join_path(RUNTIME.paths.build, "display-server-unpacked");
+if ctx.pinned_bytes + OTHER_DOWNLOAD_BYTES > NEEDS.network_max_bytes {
+    throw "the pinned packages (" + ctx.pinned_bytes + " bytes) and the display-server prebuilt exceed NEEDS.network_max_bytes; " +
         "`cargo xtask base groups <distro>` sets it";
 }
 // What the system tree was made from: one line per pinned package.
 ctx.pins_record = "";
 for pin in ctx.pins {
     ctx.pins_record += pin[3] + "  " + pin[1] + "\n";
+}
+if type_of(ctx.prebuilt) != "()" {
+    ctx.pins_record += ctx.prebuilt[2] + "  " + ctx.prebuilt[0] + "\n";
 }
 
 fn archive_of(ctx, pin) {
@@ -141,6 +198,9 @@ fn is_acquired(ctx) {
         if !is_file(archive) { return needs_work(ctx, "download " + pin[1]); }
         verify_sha256(archive, pin[3]);
     }
+    // The display-server prebuilt.
+    if !is_file(ctx.prebuilt_archive) { return needs_work(ctx, "download " + ctx.prebuilt[0]); }
+    verify_sha256(ctx.prebuilt_archive, ctx.prebuilt[2]);
     ready(ctx)
 }
 
@@ -150,12 +210,16 @@ fn acquire(ctx) {
     if ctx.pins.is_empty() { throw ctx.no_build; }
     mkdir(ctx.downloads);
     let done = 0;
+    let total = ctx.pins.len() + 1;
     for pin in ctx.pins {
-        progress(done, ctx.pins.len(), "packages");
+        progress(done, total, "packages");
         download(pin[2], archive_of(ctx, pin), pin[3]);
         done += 1;
     }
-    progress(done, ctx.pins.len(), "packages");
+    // The display-server prebuilt.
+    progress(done, total, "packages");
+    download(ctx.prebuilt[1], ctx.prebuilt_archive, ctx.prebuilt[2]);
+    progress(total, total, "packages");
     ctx
 }
 
@@ -277,5 +341,29 @@ fn enable_service(ctx, unit, service) {
 // This group's configuration (hand-written).
 // ---------------------------------------------------------------------------
 
-// This group adds no configuration of its own.
-fn configure(ctx) { }
+// The X server from the pinned prebuilt, into the same tree as the packages
+// (build calls this before the tree is finalized).
+fn configure(ctx) {
+    if ctx.format != "apk" || type_of(ctx.prebuilt) == "()" { throw ctx.no_build; }
+    verify_sha256(ctx.prebuilt_archive, ctx.prebuilt[2]);
+    if exists(ctx.prebuilt_unpacked) { rm(ctx.prebuilt_unpacked); }
+    mkdir(ctx.prebuilt_unpacked);
+    extract(ctx.prebuilt_archive, ctx.prebuilt_unpacked);
+    for file in FILES {
+        let from = join_path(ctx.prebuilt_unpacked, file[0]);
+        if !is_file(from) { throw "the prebuilt display server lacks /" + file[0]; }
+        let dest = join_path(ctx.system, file[0]);
+        mkdir(dirname(dest));
+        if exists(dest) { rm(dest); }
+        copy_file(from, dest);
+        target_mode(ctx.system, file[0], file[1]);
+    }
+    rm(ctx.prebuilt_unpacked);
+    // The link the display manager starts (SDDM runs /usr/bin/X): to the
+    // wrapper script, as the server's own install makes it.
+    put_link(ctx, "usr/bin/X", "Xorg");
+    // Where the server writes the keymaps xkbcomp compiles: empty, a state
+    // seed (the server's -Dxkb_output_dir).
+    mkdir(join_path(ctx.system, "var/lib/xkb"));
+    target_mode(ctx.system, "var/lib/xkb", 0o755);
+}
