@@ -1,0 +1,219 @@
+// skanlite: a Recipe group, installed into the system root (`recipe --system install skanlite`)
+// with a receipt, so it can be removed or replaced like any other recipe. It is
+// a share of the packages the OS images shipped burned in until now: the same
+// builds, pinned to the base and desktop locks of each OS.
+//
+// Hand-written: ABOUT, the seeds per C library and the groups it needs (deps).
+// Generated: the two pin blocks, `version` and `network_max_bytes`, written by
+// `cargo xtask base groups levitate` (glibc: Fedora RPMs) and
+// `cargo xtask base groups acorn` (musl: Alpine APKs) from the seeds below. A
+// package more than one group needs belongs to desktop-libs.
+const RECIPE_API = 2;
+const NEEDS = #{
+    outputs: #{ system: "directory" },
+    network: ["dl.fedoraproject.org:443", "dl-cdn.alpinelinux.org:443"],
+    network_max_bytes: 7340032,
+    memory_mib: 4096,
+    storage_max_objects: 262144,
+    timeout_secs: 7200,
+};
+
+const ABOUT = #{
+    kind: "app",
+    category: "graphics",
+    libc: ["glibc"],
+    systems: ["levitate"],
+    details: "Skanlite scans images and documents, over SANE and its scanner drivers, which this group brings.",
+    homepage: "https://apps.kde.org/skanlite/",
+    license: "GPL-2.0-or-later",
+    adds: #{ programs: ["skanlite"], menu: ["Skanlite"] },
+    steps: #{
+        acquire: "Takes each pinned package by its SHA-256, from the install medium's cache or the distribution's mirror.",
+        build: "Unpacks the packages natively into one system tree, without running their scripts.",
+        install: "Publishes the system tree for Recipe to write into the system root, with a receipt.",
+    },
+    keeps: [],
+};
+
+// What this group installs, by name; the generator adds what they need.
+// LevitateOS (glibc, Fedora 45):
+const SEEDS_GLIBC = [
+    "skanlite", "sane-backends", "sane-backends-drivers-scanners"
+];
+// AcornOS (musl, Alpine 3.24):
+const SEEDS_MUSL = [];
+// Accounts the packages' files or daemons need that their own
+// usr/lib/sysusers.d does not make (sysusers.d `g`/`u` lines). Fedora packages
+// ship sysusers.d files; Alpine packages make theirs in install scripts, which
+// never run, so the AcornOS lines are written here from those scripts.
+const ACCOUNTS_GLIBC = [];
+const ACCOUNTS_MUSL = [];
+let deps = ["desktop-libs"];
+
+let ctx = #{
+    name: "skanlite",
+    version: "2026.11.10",
+    description: "KDE's scanning program, with the scanner drivers",
+};
+
+// BEGIN GENERATED PINS glibc
+// Written by `cargo xtask base groups levitate`; do not edit. This group's
+// share of the Fedora 45 RPMs in levitate-rpm-lock.rhai and levitate-rpm-desktop-lock.rhai (locked on
+// 2026-11-10): 9 packages, 7242882 bytes. Licences are each package's own.
+const RPM_PINNED_ON = "2026-11-10";
+const RPM_PINNED_BYTES = 7242882;
+// [name, file, URL, SHA-256, bytes, licence]
+const RPM_PINS = [
+    ["ksanecore", "ksanecore-26.08.2-1.fc45.x86_64.rpm", "https://dl.fedoraproject.org/pub/fedora/linux/releases/45/Everything/x86_64/os/Packages/k/ksanecore-26.08.2-1.fc45.x86_64.rpm", "7bd90973743842ae10c9940dc6848016114a4f1dbcd62cdd240582c57b11b246", 143282, "BSD and LGPLv2.1-only and LGPLv3.0-only"],
+    ["libieee1284", "libieee1284-0.2.11-50.fc45.x86_64.rpm", "https://dl.fedoraproject.org/pub/fedora/linux/releases/45/Everything/x86_64/os/Packages/l/libieee1284-0.2.11-50.fc45.x86_64.rpm", "3e75e9a8ebf3d9f135bb54309ef4d26161dbe4a3b734d874901e1cc1ce581888", 43158, "GPL-2.0-or-later"],
+    ["libksane", "libksane-26.08.2-1.fc45.x86_64.rpm", "https://dl.fedoraproject.org/pub/fedora/linux/releases/45/Everything/x86_64/os/Packages/l/libksane-26.08.2-1.fc45.x86_64.rpm", "0a1ff04d7462bb05ce4688b7cf15f7d0402d3ae409049d8368dfc38a21a6ff27", 216749, "CC0-1.0 AND LGPL-2.1-only AND LGPL-3.0-only"],
+    ["libsane-airscan", "libsane-airscan-0.99.38-1.fc45.x86_64.rpm", "https://dl.fedoraproject.org/pub/fedora/linux/updates/45/Everything/x86_64/Packages/l/libsane-airscan-0.99.38-1.fc45.x86_64.rpm", "62be7422a2332f5f6b418df429dc61f09a4790c8d4be987807b1488c2e1c7f33", 142925, "GPL-2.0-or-later WITH SANE-exception AND MIT"],
+    ["sane-airscan", "sane-airscan-0.99.38-1.fc45.x86_64.rpm", "https://dl.fedoraproject.org/pub/fedora/linux/updates/45/Everything/x86_64/Packages/s/sane-airscan-0.99.38-1.fc45.x86_64.rpm", "a3b9ea10a712e7c15f06f5d34bfb4d0e875adaae9665cd5d2a24a4555b706ef7", 89179, "GPL-2.0-or-later WITH SANE-exception AND MIT"],
+    ["sane-backends", "sane-backends-1.4.0-9.fc45.x86_64.rpm", "https://dl.fedoraproject.org/pub/fedora/linux/releases/45/Everything/x86_64/os/Packages/s/sane-backends-1.4.0-9.fc45.x86_64.rpm", "612c31ba4f7d3e7ad09672c9c5fc706f7dccda50894b1580e86c6f432ff9c2b9", 916971, "GPL-2.0-or-later WITH SANE-exception AND GPL-2.0-or-later AND GPL-2.0-only AND LGPL-2.0-or-later AND LGPL-2.1-or-later AND LicenseRef-Fedora-Public-Domain AND IJG AND MIT"],
+    ["sane-backends-drivers-scanners", "sane-backends-drivers-scanners-1.4.0-9.fc45.x86_64.rpm", "https://dl.fedoraproject.org/pub/fedora/linux/releases/45/Everything/x86_64/os/Packages/s/sane-backends-drivers-scanners-1.4.0-9.fc45.x86_64.rpm", "751bf6bc74ea49e23b305f71505d743a55dd9f648b28d792e99a5354823fd1f5", 3064409, "GPL-2.0-or-later WITH SANE-exception AND GPL-2.0-or-later AND GPL-2.0-only AND LGPL-2.0-or-later AND LGPL-2.1-or-later AND LicenseRef-Fedora-Public-Domain AND IJG AND MIT"],
+    ["sane-backends-libs", "sane-backends-libs-1.4.0-9.fc45.x86_64.rpm", "https://dl.fedoraproject.org/pub/fedora/linux/releases/45/Everything/x86_64/os/Packages/s/sane-backends-libs-1.4.0-9.fc45.x86_64.rpm", "2e8068ef321f17b491e1f4021fdbc814bd3a06f15464f0124162a38a3b4195b1", 49207, "GPL-2.0-or-later WITH SANE-exception AND GPL-2.0-or-later AND GPL-2.0-only AND LGPL-2.0-or-later AND LGPL-2.1-or-later AND LicenseRef-Fedora-Public-Domain AND IJG AND MIT"],
+    ["skanlite", "skanlite-26.08.2-1.fc45.x86_64.rpm", "https://dl.fedoraproject.org/pub/fedora/linux/releases/45/Everything/x86_64/os/Packages/s/skanlite-26.08.2-1.fc45.x86_64.rpm", "8bc5e5cbdee8c603b4821a3e01318501ba770fc3f0e3c078067293b1eb81819f", 2577002, "GPL-2.0-only OR GPL-3.0-only"],
+];
+// END GENERATED PINS glibc
+
+// BEGIN GENERATED PINS musl
+// No musl build: this recipe names no seeds in SEEDS_MUSL. Written by
+// `cargo xtask base groups acorn`; do not edit.
+const APK_PINNED_ON = "";
+const APK_PINNED_BYTES = 0;
+const APK_PINS = [];
+// END GENERATED PINS musl
+
+// The rest is the same in every group recipe.
+//
+// Which build this system takes: the Fedora RPMs on glibc (LevitateOS), the
+// Alpine APKs on musl (AcornOS). RUNTIME.host.libc is the C library of the
+// system the group is installed into.
+ctx.libc = RUNTIME.host.libc;
+ctx.downloads = join_path(RUNTIME.paths.build, "downloads");
+ctx.record = join_path(RUNTIME.paths.build, "system.pins");
+ctx.system = join_path(RUNTIME.paths.output, "system");
+if ctx.libc == "glibc" {
+    ctx.format = "rpm";
+    ctx.accounts = ACCOUNTS_GLIBC;
+    ctx.pins = RPM_PINS;
+    ctx.pinned_bytes = RPM_PINNED_BYTES;
+} else if ctx.libc == "musl" {
+    ctx.format = "apk";
+    ctx.accounts = ACCOUNTS_MUSL;
+    ctx.pins = APK_PINS;
+    ctx.pinned_bytes = APK_PINNED_BYTES;
+} else {
+    ctx.format = "";
+    ctx.accounts = [];
+    ctx.pins = [];
+    ctx.pinned_bytes = 0;
+}
+ctx.no_build = ctx.name + " has pins for glibc (Fedora RPMs, LevitateOS) and musl (Alpine APKs, AcornOS); " +
+    "this system's C library is " + ctx.libc + ", for which it has none. `cargo xtask base groups <distro>` " +
+    "writes a variant's pins once the recipe names seeds for its C library.";
+if ctx.pinned_bytes > NEEDS.network_max_bytes {
+    throw "the pinned packages (" + ctx.pinned_bytes + " bytes) exceed NEEDS.network_max_bytes; " +
+        "`cargo xtask base groups <distro>` sets it";
+}
+// What the system tree was made from: one line per pinned package.
+ctx.pins_record = "";
+for pin in ctx.pins {
+    ctx.pins_record += pin[3] + "  " + pin[1] + "\n";
+}
+
+fn archive_of(ctx, pin) {
+    join_path(ctx.downloads, pin[1])
+}
+
+fn check_system(ctx) {
+    if ctx.pins.is_empty() { return needs_work(ctx, ctx.no_build); }
+    if !is_file(ctx.record) || !is_dir(ctx.system) {
+        return needs_work(ctx, "unpack the " + ctx.pins.len() + " packages of " + ctx.name);
+    }
+    if read_file(ctx.record) != ctx.pins_record {
+        return needs_work(ctx, "the pinned package set of " + ctx.name + " changed");
+    }
+    ready(ctx)
+}
+
+fn is_acquired(ctx) {
+    if ctx.pins.is_empty() { return needs_work(ctx, ctx.no_build); }
+    for pin in ctx.pins {
+        let archive = archive_of(ctx, pin);
+        if !is_file(archive) { return needs_work(ctx, "download " + pin[1]); }
+        verify_sha256(archive, pin[3]);
+    }
+    ready(ctx)
+}
+
+// Each pinned file by its SHA-256: from the install medium's cache when
+// Recipe finds it there, else from the distribution's mirror.
+fn acquire(ctx) {
+    if ctx.pins.is_empty() { throw ctx.no_build; }
+    mkdir(ctx.downloads);
+    let done = 0;
+    for pin in ctx.pins {
+        progress(done, ctx.pins.len(), "packages");
+        download(pin[2], archive_of(ctx, pin), pin[3]);
+        done += 1;
+    }
+    progress(done, ctx.pins.len(), "packages");
+    ctx
+}
+
+fn is_built(ctx) {
+    check_system(ctx)
+}
+
+// Unpacks every package into one system tree, natively, without running any
+// of its scripts. Paths a system package does not own (per-machine and
+// run-time data: var, run, tmp and the like) are left out; the system makes
+// them at boot. Owners stay names, resolved in the root the group is written
+// into, after the accounts it needs are made there: those in its own
+// usr/lib/sysusers.d (Fedora packages ship them) and ACCOUNTS_* above.
+fn build(ctx) {
+    if ctx.pins.is_empty() { throw ctx.no_build; }
+    if exists(ctx.record) { rm(ctx.record); }
+    if exists(ctx.system) { rm(ctx.system); }
+    mkdir(ctx.system);
+    let done = 0;
+    for pin in ctx.pins {
+        progress(done, ctx.pins.len(), "packages");
+        let archive = archive_of(ctx, pin);
+        verify_sha256(archive, pin[3]);
+        if ctx.format == "apk" {
+            target_extract_apk(archive, ctx.system);
+        } else {
+            target_extract_rpm(archive, ctx.system);
+        }
+        done += 1;
+    }
+    progress(done, ctx.pins.len(), "packages");
+    for dir in ["var", "run", "tmp", "boot", "home", "root", "proc", "sys", "dev", "lost+found"] {
+        let path = join_path(ctx.system, dir);
+        if exists(path) { rm(path); }
+    }
+    target_finalize(ctx.system, #{ owners: "apply", accounts: ctx.accounts });
+    write_file(ctx.record, ctx.pins_record);
+    ctx
+}
+
+fn is_installed(ctx) {
+    if !is_dir(ctx.system) { return needs_work(ctx, "unpack the packages of " + ctx.name); }
+    ctx.outputs.system = ctx.system;
+    check_system(ctx)
+}
+
+fn install(ctx) {
+    // The unpacked tree is already in owned storage; publish it as it is.
+    ctx.outputs.system = ctx.system;
+    ctx
+}
+
+fn remove(ctx) {
+    if exists(ctx.system) { rm(ctx.system); }
+    if exists(ctx.record) { rm(ctx.record); }
+    ctx.outputs = #{};
+    ctx
+}
