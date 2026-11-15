@@ -53,7 +53,7 @@ let deps = ["desktop-libs"];
 
 let ctx = #{
     name: "firmware-updates",
-    version: "2026.11.13",
+    version: "2026.11.15",
     description: "Firmware updates through fwupd",
 };
 
@@ -68,8 +68,8 @@ const RPM_PINS = [];
 // BEGIN GENERATED PINS musl
 // Written by `cargo xtask base groups acorn`; do not edit. This group's
 // share of the Alpine v3.24 APKs in acorn-apk-lock.rhai and acorn-apk-desktop-lock.rhai (locked on
-// 2026-11-13): 21 packages, 7420377 bytes. Licences are each package's own.
-const APK_PINNED_ON = "2026-11-13";
+// 2026-11-15): 21 packages, 7420377 bytes. Licences are each package's own.
+const APK_PINNED_ON = "2026-11-15";
 const APK_PINNED_BYTES = 7420377;
 // [name, file, URL, SHA-256, bytes, licence, var/ kept as state seeds]
 const APK_PINS = [

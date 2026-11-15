@@ -53,16 +53,16 @@ let deps = ["desktop-libs"];
 
 let ctx = #{
     name: "firewall",
-    version: "2026.11.13",
+    version: "2026.11.15",
     description: "The firewalld firewall, with its settings",
 };
 
 // BEGIN GENERATED PINS glibc
 // Written by `cargo xtask base groups levitate`; do not edit. This group's
 // share of the Fedora 45 RPMs in levitate-rpm-lock.rhai and levitate-rpm-desktop-lock.rhai (locked on
-// 2026-11-10): 12 packages, 2770147 bytes. Licences are each package's own.
-const RPM_PINNED_ON = "2026-11-10";
-const RPM_PINNED_BYTES = 2770147;
+// 2026-11-15): 12 packages, 2770097 bytes. Licences are each package's own.
+const RPM_PINNED_ON = "2026-11-15";
+const RPM_PINNED_BYTES = 2770097;
 // [name, file, URL, SHA-256, bytes, licence, var/ kept as state seeds]
 const RPM_PINS = [
     ["firewalld", "firewalld-2.5.2-1.fc45.noarch.rpm", "https://dl.fedoraproject.org/pub/fedora/linux/releases/45/Everything/x86_64/os/Packages/f/firewalld-2.5.2-1.fc45.noarch.rpm", "a214f928b56fb678ccba8c328e976d02ef5684a4915ec216ca4ea86df473b541", 560763, "GPL-2.0-or-later", false],
@@ -73,8 +73,8 @@ const RPM_PINS = [
     ["libnftnl", "libnftnl-1.3.1-3.fc45.x86_64.rpm", "https://dl.fedoraproject.org/pub/fedora/linux/releases/45/Everything/x86_64/os/Packages/l/libnftnl-1.3.1-3.fc45.x86_64.rpm", "b79fbb57a0852c4e6e3b6d94221ac2c6ac195c166d846ea47297fd5ed69ee080", 91975, "GPL-2.0-or-later", false],
     ["nftables", "nftables-1.1.6-4.fc45.x86_64.rpm", "https://dl.fedoraproject.org/pub/fedora/linux/releases/45/Everything/x86_64/os/Packages/n/nftables-1.1.6-4.fc45.x86_64.rpm", "6cd8d5b71430fa8aec48d012aa3b663d53dbf703ac7d753be633d35716b7dc64", 459829, "GPL-2.0-only", false],
     ["nftables-services", "nftables-services-1.1.6-4.fc45.noarch.rpm", "https://dl.fedoraproject.org/pub/fedora/linux/releases/45/Everything/x86_64/os/Packages/n/nftables-services-1.1.6-4.fc45.noarch.rpm", "01755da25f0fca3082369a821cf627a5bef4c317ced0911991f5b0c9dc76ff10", 21833, "GPL-2.0-only", false],
-    ["plasma-firewall", "plasma-firewall-6.8.2-1.fc45.x86_64.rpm", "https://dl.fedoraproject.org/pub/fedora/linux/updates/45/Everything/x86_64/Packages/p/plasma-firewall-6.8.2-1.fc45.x86_64.rpm", "cc2405cef3b1ddaba0288fe32e22fc71a26f39ba2ce97fd9e965ed9a16a28bb6", 497043, "BSD-3-Clause AND CC0-1.0 AND FSFAP AND GPL-2.0-only AND GPL-2.0-or-later AND GPL-3.0-only AND GPL-3.0-or-later AND (GPL-2.0-only OR GPL-3.0-only)", false],
-    ["plasma-firewall-firewalld", "plasma-firewall-firewalld-6.8.2-1.fc45.x86_64.rpm", "https://dl.fedoraproject.org/pub/fedora/linux/updates/45/Everything/x86_64/Packages/p/plasma-firewall-firewalld-6.8.2-1.fc45.x86_64.rpm", "26d6fe3ea5e5ed7bb9a3aaddf18105eaa133c7421738405eded84bd708c23d96", 68461, "BSD-3-Clause AND CC0-1.0 AND FSFAP AND GPL-2.0-only AND GPL-2.0-or-later AND GPL-3.0-only AND GPL-3.0-or-later AND (GPL-2.0-only OR GPL-3.0-only)", false],
+    ["plasma-firewall", "plasma-firewall-6.8.3-1.fc45.x86_64.rpm", "https://dl.fedoraproject.org/pub/fedora/linux/updates/45/Everything/x86_64/Packages/p/plasma-firewall-6.8.3-1.fc45.x86_64.rpm", "d62d6fa48864c4058ad558d0e0a933d418398bafd1c329cf37066b93ac0a25a6", 497073, "BSD-3-Clause AND CC0-1.0 AND FSFAP AND GPL-2.0-only AND GPL-2.0-or-later AND GPL-3.0-only AND GPL-3.0-or-later AND (GPL-2.0-only OR GPL-3.0-only)", false],
+    ["plasma-firewall-firewalld", "plasma-firewall-firewalld-6.8.3-1.fc45.x86_64.rpm", "https://dl.fedoraproject.org/pub/fedora/linux/updates/45/Everything/x86_64/Packages/p/plasma-firewall-firewalld-6.8.3-1.fc45.x86_64.rpm", "deffea21dc5a832b9584f1ba0f96a065776296a691b4f34548ee48132be8b82c", 68381, "BSD-3-Clause AND CC0-1.0 AND FSFAP AND GPL-2.0-only AND GPL-2.0-or-later AND GPL-3.0-only AND GPL-3.0-or-later AND (GPL-2.0-only OR GPL-3.0-only)", false],
     ["python3-firewall", "python3-firewall-2.5.2-1.fc45.noarch.rpm", "https://dl.fedoraproject.org/pub/fedora/linux/releases/45/Everything/x86_64/os/Packages/p/python3-firewall-2.5.2-1.fc45.noarch.rpm", "08a28652e5f832fafb71c980190977b71fcaa1d7396c96312e416b0c01e7dff9", 529323, "GPL-2.0-or-later", false],
     ["python3-nftables", "python3-nftables-1.1.6-4.fc45.noarch.rpm", "https://dl.fedoraproject.org/pub/fedora/linux/releases/45/Everything/x86_64/os/Packages/p/python3-nftables-1.1.6-4.fc45.noarch.rpm", "fe9473c5269c296aceb0b2ef09b8a46af57da3399142df8b7cc0fa9ba13535d0", 21819, "GPL-2.0-only", false],
 ];
@@ -83,8 +83,8 @@ const RPM_PINS = [
 // BEGIN GENERATED PINS musl
 // Written by `cargo xtask base groups acorn`; do not edit. This group's
 // share of the Alpine v3.24 APKs in acorn-apk-lock.rhai and acorn-apk-desktop-lock.rhai (locked on
-// 2026-11-13): 10 packages, 1791901 bytes. Licences are each package's own.
-const APK_PINNED_ON = "2026-11-13";
+// 2026-11-15): 10 packages, 1791901 bytes. Licences are each package's own.
+const APK_PINNED_ON = "2026-11-15";
 const APK_PINNED_BYTES = 1791901;
 // [name, file, URL, SHA-256, bytes, licence, var/ kept as state seeds]
 const APK_PINS = [

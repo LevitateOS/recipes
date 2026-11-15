@@ -54,19 +54,19 @@ let deps = ["desktop-libs"];
 
 let ctx = #{
     name: "firefox",
-    version: "2026.11.13",
+    version: "2026.11.15",
     description: "The Firefox web browser",
 };
 
 // BEGIN GENERATED PINS glibc
 // Written by `cargo xtask base groups levitate`; do not edit. This group's
 // share of the Fedora 45 RPMs in levitate-rpm-lock.rhai and levitate-rpm-desktop-lock.rhai (locked on
-// 2026-11-10): 2 packages, 95218753 bytes. Licences are each package's own.
-const RPM_PINNED_ON = "2026-11-10";
-const RPM_PINNED_BYTES = 95218753;
+// 2026-11-15): 2 packages, 96313456 bytes. Licences are each package's own.
+const RPM_PINNED_ON = "2026-11-15";
+const RPM_PINNED_BYTES = 96313456;
 // [name, file, URL, SHA-256, bytes, licence, var/ kept as state seeds]
 const RPM_PINS = [
-    ["firefox", "firefox-159.0.1-1.fc45.x86_64.rpm", "https://dl.fedoraproject.org/pub/fedora/linux/updates/45/Everything/x86_64/Packages/f/firefox-159.0.1-1.fc45.x86_64.rpm", "b5a062d5ba3555b292decdf8672d3194a671bda0417c06888311ce41053adb3a", 95209833, "LicenseRef-Callaway-MPLv1.1 OR GPL-2.0-or-later OR LicenseRef-Callaway-LGPLv2+", false],
+    ["firefox", "firefox-160.0-1.fc45.x86_64.rpm", "https://dl.fedoraproject.org/pub/fedora/linux/updates/45/Everything/x86_64/Packages/f/firefox-160.0-1.fc45.x86_64.rpm", "9e53a1e1011a0d921a91b086453658bfa250551af7f5f0eb04a7bdab183544b5", 96304536, "LicenseRef-Callaway-MPLv1.1 OR GPL-2.0-or-later OR LicenseRef-Callaway-LGPLv2+", false],
     ["mozilla-filesystem", "mozilla-filesystem-1.9-39.fc45.x86_64.rpm", "https://dl.fedoraproject.org/pub/fedora/linux/releases/45/Everything/x86_64/os/Packages/m/mozilla-filesystem-1.9-39.fc45.x86_64.rpm", "eaaab6e3c57b4eed0028232e853189ef97e6be8d8097b03a5d8330d3a952e177", 8920, "MPL-1.1", false],
 ];
 // END GENERATED PINS glibc
@@ -74,8 +74,8 @@ const RPM_PINS = [
 // BEGIN GENERATED PINS musl
 // Written by `cargo xtask base groups acorn`; do not edit. This group's
 // share of the Alpine v3.24 APKs in acorn-apk-lock.rhai and acorn-apk-desktop-lock.rhai (locked on
-// 2026-11-13): 2 packages, 98377385 bytes. Licences are each package's own.
-const APK_PINNED_ON = "2026-11-13";
+// 2026-11-15): 2 packages, 98377385 bytes. Licences are each package's own.
+const APK_PINNED_ON = "2026-11-15";
 const APK_PINNED_BYTES = 98377385;
 // [name, file, URL, SHA-256, bytes, licence, var/ kept as state seeds]
 const APK_PINS = [

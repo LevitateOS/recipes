@@ -52,23 +52,23 @@ let deps = ["desktop-libs", "plasma", "konsole"];
 
 let ctx = #{
     name: "drkonqi",
-    version: "2026.11.10",
+    version: "2026.11.15",
     description: "KDE's crash handler",
 };
 
 // BEGIN GENERATED PINS glibc
 // Written by `cargo xtask base groups levitate`; do not edit. This group's
 // share of the Fedora 45 RPMs in levitate-rpm-lock.rhai and levitate-rpm-desktop-lock.rhai (locked on
-// 2026-11-10): 11 packages, 4008698 bytes. Licences are each package's own.
-const RPM_PINNED_ON = "2026-11-10";
-const RPM_PINNED_BYTES = 4008698;
+// 2026-11-15): 11 packages, 4009088 bytes. Licences are each package's own.
+const RPM_PINNED_ON = "2026-11-15";
+const RPM_PINNED_BYTES = 4009088;
 // [name, file, URL, SHA-256, bytes, licence, var/ kept as state seeds]
 const RPM_PINS = [
     ["elfutils", "elfutils-0.197-1.fc45.x86_64.rpm", "https://dl.fedoraproject.org/pub/fedora/linux/updates/45/Everything/x86_64/Packages/e/elfutils-0.197-1.fc45.x86_64.rpm", "46c498fc255dada98dfb250cfde0cd9c46b0e3e3855df643879db3b04ed23c64", 640402, "GPL-3.0-or-later AND (GPL-2.0-or-later OR LGPL-3.0-or-later) AND GFDL-1.3-no-invariants-or-later", false],
     ["elfutils-debuginfod-client", "elfutils-debuginfod-client-0.197-1.fc45.x86_64.rpm", "https://dl.fedoraproject.org/pub/fedora/linux/updates/45/Everything/x86_64/Packages/e/elfutils-debuginfod-client-0.197-1.fc45.x86_64.rpm", "86ca56dc35a1ca90a60ae458f627dbb3f440425ac8d80fa185bb6ebb8ce249df", 48496, "GPL-3.0-or-later AND (GPL-2.0-or-later OR LGPL-3.0-or-later)", false],
     ["elfutils-libs", "elfutils-libs-0.197-1.fc45.x86_64.rpm", "https://dl.fedoraproject.org/pub/fedora/linux/updates/45/Everything/x86_64/Packages/e/elfutils-libs-0.197-1.fc45.x86_64.rpm", "4a1196bc36a8ddae162d17d8158c52c137a027e7811d643b31da64ab04354bda", 292441, "GPL-2.0-or-later OR LGPL-3.0-or-later", false],
     ["libpfm", "libpfm-4.14.1-2.fc45.x86_64.rpm", "https://dl.fedoraproject.org/pub/fedora/linux/updates/45/Everything/x86_64/Packages/l/libpfm-4.14.1-2.fc45.x86_64.rpm", "5b35a8b4eb160b8551459cea06ff87c9f8dbb16f873bb55785988e06a295385d", 284586, "MIT", false],
-    ["plasma-drkonqi", "plasma-drkonqi-6.8.2-1.fc45.x86_64.rpm", "https://dl.fedoraproject.org/pub/fedora/linux/updates/45/Everything/x86_64/Packages/p/plasma-drkonqi-6.8.2-1.fc45.x86_64.rpm", "b7a69e7d81bbd4d5534f46913d74b2502463f012304612fe4e52d3ae243ee93a", 1012209, "BSD-2-Clause AND BSD-3-Clause AND CC0-1.0 AND GPL-2.0-only AND GPL-2.0-or-later AND GPL-3.0-only AND LGPL-2.1-only AND LGPL-3.0-only AND LGPL-3.0-or-later AND (GPL-2.0-only OR GPL-3.0-only) AND (LGPL-2.1-only OR LGPL-3.0-only)", false],
+    ["plasma-drkonqi", "plasma-drkonqi-6.8.3-1.fc45.x86_64.rpm", "https://dl.fedoraproject.org/pub/fedora/linux/updates/45/Everything/x86_64/Packages/p/plasma-drkonqi-6.8.3-1.fc45.x86_64.rpm", "5192e0eb3f7f27f1250ac42c465c3fb0e3de2331788946baf253457bc23392f0", 1012599, "BSD-2-Clause AND BSD-3-Clause AND CC0-1.0 AND GPL-2.0-only AND GPL-2.0-or-later AND GPL-3.0-only AND LGPL-2.1-only AND LGPL-3.0-only AND LGPL-3.0-or-later AND (GPL-2.0-only OR GPL-3.0-only) AND (LGPL-2.1-only OR LGPL-3.0-only)", false],
     ["python3-certifi", "python3-certifi-2026.01.04-3.fc45.noarch.rpm", "https://dl.fedoraproject.org/pub/fedora/linux/releases/45/Everything/x86_64/os/Packages/p/python3-certifi-2026.01.04-3.fc45.noarch.rpm", "3050fe041977d3eb415ff596a1e3d00ecd2e316de9a5cb80edca974655f7b706", 15442, "MPL-2.0", false],
     ["python3-idna", "python3-idna-3.18-2.fc45.noarch.rpm", "https://dl.fedoraproject.org/pub/fedora/linux/releases/45/Everything/x86_64/os/Packages/p/python3-idna-3.18-2.fc45.noarch.rpm", "cece41068e2c7ce6e2b1054b16ee1e99cbfdd9df6151c824944540f2cb70b890", 107001, "BSD-3-Clause", false],
     ["python3-psutil", "python3-psutil-7.2.2-10.fc45.x86_64.rpm", "https://dl.fedoraproject.org/pub/fedora/linux/releases/45/Everything/x86_64/os/Packages/p/python3-psutil-7.2.2-10.fc45.x86_64.rpm", "0f6f5e4b7123bf4229153b763f8d5a10da69593d260f7133e69942649e14c784", 275995, "BSD-3-Clause", false],

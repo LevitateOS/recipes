@@ -55,7 +55,7 @@ let deps = ["desktop-libs"];
 
 let ctx = #{
     name: "simple-scan",
-    version: "2026.11.13",
+    version: "2026.11.15",
     description: "A scanning program, with the scanner drivers",
 };
 
@@ -70,8 +70,8 @@ const RPM_PINS = [];
 // BEGIN GENERATED PINS musl
 // Written by `cargo xtask base groups acorn`; do not edit. This group's
 // share of the Alpine v3.24 APKs in acorn-apk-lock.rhai and acorn-apk-desktop-lock.rhai (locked on
-// 2026-11-13): 103 packages, 6471632 bytes. Licences are each package's own.
-const APK_PINNED_ON = "2026-11-13";
+// 2026-11-15): 103 packages, 6471632 bytes. Licences are each package's own.
+const APK_PINNED_ON = "2026-11-15";
 const APK_PINNED_BYTES = 6471632;
 // [name, file, URL, SHA-256, bytes, licence, var/ kept as state seeds]
 const APK_PINS = [

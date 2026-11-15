@@ -54,15 +54,15 @@ let deps = ["desktop-libs"];
 
 let ctx = #{
     name: "graphics-drivers",
-    version: "2026.11.13",
+    version: "2026.11.15",
     description: "Mesa's OpenGL, Vulkan and video decoding drivers",
 };
 
 // BEGIN GENERATED PINS glibc
 // Written by `cargo xtask base groups levitate`; do not edit. This group's
 // share of the Fedora 45 RPMs in levitate-rpm-lock.rhai and levitate-rpm-desktop-lock.rhai (locked on
-// 2026-11-10): 3 packages, 32799292 bytes. Licences are each package's own.
-const RPM_PINNED_ON = "2026-11-10";
+// 2026-11-15): 3 packages, 32799292 bytes. Licences are each package's own.
+const RPM_PINNED_ON = "2026-11-15";
 const RPM_PINNED_BYTES = 32799292;
 // [name, file, URL, SHA-256, bytes, licence, var/ kept as state seeds]
 const RPM_PINS = [
@@ -75,8 +75,8 @@ const RPM_PINS = [
 // BEGIN GENERATED PINS musl
 // Written by `cargo xtask base groups acorn`; do not edit. This group's
 // share of the Alpine v3.24 APKs in acorn-apk-lock.rhai and acorn-apk-desktop-lock.rhai (locked on
-// 2026-11-13): 7 packages, 26706466 bytes. Licences are each package's own.
-const APK_PINNED_ON = "2026-11-13";
+// 2026-11-15): 7 packages, 26706466 bytes. Licences are each package's own.
+const APK_PINNED_ON = "2026-11-15";
 const APK_PINNED_BYTES = 26706466;
 // [name, file, URL, SHA-256, bytes, licence, var/ kept as state seeds]
 const APK_PINS = [

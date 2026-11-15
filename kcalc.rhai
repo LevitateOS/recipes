@@ -52,19 +52,19 @@ let deps = ["desktop-libs"];
 
 let ctx = #{
     name: "kcalc",
-    version: "2026.11.10",
+    version: "2026.11.15",
     description: "KDE's calculator",
 };
 
 // BEGIN GENERATED PINS glibc
 // Written by `cargo xtask base groups levitate`; do not edit. This group's
 // share of the Fedora 45 RPMs in levitate-rpm-lock.rhai and levitate-rpm-desktop-lock.rhai (locked on
-// 2026-11-10): 2 packages, 905986 bytes. Licences are each package's own.
-const RPM_PINNED_ON = "2026-11-10";
-const RPM_PINNED_BYTES = 905986;
+// 2026-11-15): 2 packages, 906084 bytes. Licences are each package's own.
+const RPM_PINNED_ON = "2026-11-15";
+const RPM_PINNED_BYTES = 906084;
 // [name, file, URL, SHA-256, bytes, licence, var/ kept as state seeds]
 const RPM_PINS = [
-    ["kcalc", "kcalc-26.08.2-1.fc45.x86_64.rpm", "https://dl.fedoraproject.org/pub/fedora/linux/releases/45/Everything/x86_64/os/Packages/k/kcalc-26.08.2-1.fc45.x86_64.rpm", "4812e29b91bd374998735c246087cc16a7037c4a50493e10f4be433c0e8f6ad9", 828439, "GPL-2.0-or-later", false],
+    ["kcalc", "kcalc-26.08.3-1.fc45.x86_64.rpm", "https://dl.fedoraproject.org/pub/fedora/linux/updates/45/Everything/x86_64/Packages/k/kcalc-26.08.3-1.fc45.x86_64.rpm", "ddf0995731a3d9209a517f1eda641d044bd42da3582a66e8ffcd0c2a604e6ae5", 828537, "GPL-2.0-or-later", false],
     ["libmpc", "libmpc-1.4.1-2.fc45.x86_64.rpm", "https://dl.fedoraproject.org/pub/fedora/linux/releases/45/Everything/x86_64/os/Packages/l/libmpc-1.4.1-2.fc45.x86_64.rpm", "471e69c1cd9be651804a376ecee3cc3e1140da0c71ace50d4b5ab436a1f2923f", 77547, "LGPL-3.0-or-later AND FSFAP", false],
 ];
 // END GENERATED PINS glibc

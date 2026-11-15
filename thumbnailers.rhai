@@ -53,29 +53,29 @@ let deps = ["desktop-libs"];
 
 let ctx = #{
     name: "thumbnailers",
-    version: "2026.11.13",
+    version: "2026.11.15",
     description: "File thumbnails",
 };
 
 // BEGIN GENERATED PINS glibc
 // Written by `cargo xtask base groups levitate`; do not edit. This group's
 // share of the Fedora 45 RPMs in levitate-rpm-lock.rhai and levitate-rpm-desktop-lock.rhai (locked on
-// 2026-11-10): 3 packages, 185168 bytes. Licences are each package's own.
-const RPM_PINNED_ON = "2026-11-10";
-const RPM_PINNED_BYTES = 185168;
+// 2026-11-15): 3 packages, 185046 bytes. Licences are each package's own.
+const RPM_PINNED_ON = "2026-11-15";
+const RPM_PINNED_BYTES = 185046;
 // [name, file, URL, SHA-256, bytes, licence, var/ kept as state seeds]
 const RPM_PINS = [
-    ["ffmpegthumbs", "ffmpegthumbs-26.08.2-1.fc45.x86_64.rpm", "https://dl.fedoraproject.org/pub/fedora/linux/releases/45/Everything/x86_64/os/Packages/f/ffmpegthumbs-26.08.2-1.fc45.x86_64.rpm", "7db1864cbd4468e168484801485d26747b0bafd6898b8a40364c6c097dd3c7d2", 53816, "GPL-2.0-or-later", false],
-    ["kdegraphics-thumbnailers", "kdegraphics-thumbnailers-26.08.2-1.fc45.x86_64.rpm", "https://dl.fedoraproject.org/pub/fedora/linux/releases/45/Everything/x86_64/os/Packages/k/kdegraphics-thumbnailers-26.08.2-1.fc45.x86_64.rpm", "31631c4aa7996e8b9670455e09daf80a94254bb5b5d5a3842edb31dba95ea34f", 78776, "GPL-2.0-or-later", false],
-    ["libkdcraw", "libkdcraw-26.08.2-1.fc45.x86_64.rpm", "https://dl.fedoraproject.org/pub/fedora/linux/releases/45/Everything/x86_64/os/Packages/l/libkdcraw-26.08.2-1.fc45.x86_64.rpm", "61262c74ab1d67bb9ea2e88c31ecccfa15bdc254c7ec199f6365a25eefaa3641", 52576, "BSD-3-Clause AND CC0-1.0 AND GPL-2.0-or-later", false],
+    ["ffmpegthumbs", "ffmpegthumbs-26.08.3-1.fc45.x86_64.rpm", "https://dl.fedoraproject.org/pub/fedora/linux/updates/45/Everything/x86_64/Packages/f/ffmpegthumbs-26.08.3-1.fc45.x86_64.rpm", "1a651126ef1a22d153dee33b8ce500eca152aa753020ef86bb045bea3eaf416b", 53771, "GPL-2.0-or-later", false],
+    ["kdegraphics-thumbnailers", "kdegraphics-thumbnailers-26.08.3-1.fc45.x86_64.rpm", "https://dl.fedoraproject.org/pub/fedora/linux/updates/45/Everything/x86_64/Packages/k/kdegraphics-thumbnailers-26.08.3-1.fc45.x86_64.rpm", "520599508b8c0bcd5c3f785445bb856860951f44514b9a1eb76cd355f70a22fa", 78726, "GPL-2.0-or-later", false],
+    ["libkdcraw", "libkdcraw-26.08.3-1.fc45.x86_64.rpm", "https://dl.fedoraproject.org/pub/fedora/linux/updates/45/Everything/x86_64/Packages/l/libkdcraw-26.08.3-1.fc45.x86_64.rpm", "508d811e73b9f56c624309f34e2bc871b353b45b708baf813b4d035f4cb7f7dd", 52549, "BSD-3-Clause AND CC0-1.0 AND GPL-2.0-or-later", false],
 ];
 // END GENERATED PINS glibc
 
 // BEGIN GENERATED PINS musl
 // Written by `cargo xtask base groups acorn`; do not edit. This group's
 // share of the Alpine v3.24 APKs in acorn-apk-lock.rhai and acorn-apk-desktop-lock.rhai (locked on
-// 2026-11-13): 22 packages, 8656062 bytes. Licences are each package's own.
-const APK_PINNED_ON = "2026-11-13";
+// 2026-11-15): 22 packages, 8656062 bytes. Licences are each package's own.
+const APK_PINNED_ON = "2026-11-15";
 const APK_PINNED_BYTES = 8656062;
 // [name, file, URL, SHA-256, bytes, licence, var/ kept as state seeds]
 const APK_PINS = [

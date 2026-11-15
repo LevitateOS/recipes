@@ -53,24 +53,24 @@ let deps = ["desktop-libs", "network"];
 
 let ctx = #{
     name: "network-ui",
-    version: "2026.11.13",
+    version: "2026.11.15",
     description: "Network settings in the desktop, with OpenVPN",
 };
 
 // BEGIN GENERATED PINS glibc
 // Written by `cargo xtask base groups levitate`; do not edit. This group's
 // share of the Fedora 45 RPMs in levitate-rpm-lock.rhai and levitate-rpm-desktop-lock.rhai (locked on
-// 2026-11-10): 7 packages, 3585759 bytes. Licences are each package's own.
-const RPM_PINNED_ON = "2026-11-10";
-const RPM_PINNED_BYTES = 3585759;
+// 2026-11-15): 7 packages, 3582543 bytes. Licences are each package's own.
+const RPM_PINNED_ON = "2026-11-15";
+const RPM_PINNED_BYTES = 3582543;
 // [name, file, URL, SHA-256, bytes, licence, var/ kept as state seeds]
 const RPM_PINS = [
     ["NetworkManager-openvpn", "NetworkManager-openvpn-1.12.5-5.fc45.x86_64.rpm", "https://dl.fedoraproject.org/pub/fedora/linux/releases/45/Everything/x86_64/os/Packages/n/NetworkManager-openvpn-1.12.5-5.fc45.x86_64.rpm", "aa4e21e1573d96425c9bc3e90a04419eeeb4840794d8bdebc286d5f2d47c44ad", 318926, "GPL-2.0-or-later", false],
-    ["kf6-modemmanager-qt", "kf6-modemmanager-qt-6.31.0-1.fc45.x86_64.rpm", "https://dl.fedoraproject.org/pub/fedora/linux/releases/45/Everything/x86_64/os/Packages/k/kf6-modemmanager-qt-6.31.0-1.fc45.x86_64.rpm", "7f6748ba8e71f28e2baeaf9702dc4fe69c071c2ac79b8334754cc9a0957916af", 273432, "GPL-2.0-only AND GPL-3.0-only AND LGPL-2.1-only AND LGPL-3.0-only AND (GPL-2.0-only OR GPL-3.0-only) AND (LGPL-2.1-only OR LGPL-3.0-only)", false],
+    ["kf6-modemmanager-qt", "kf6-modemmanager-qt-6.32.0-1.fc45.x86_64.rpm", "https://dl.fedoraproject.org/pub/fedora/linux/updates/45/Everything/x86_64/Packages/k/kf6-modemmanager-qt-6.32.0-1.fc45.x86_64.rpm", "e37d630d8e12c04c52806b98873e3760943dd4cb8dceff3206fa4153a0d40164", 273157, "GPL-2.0-only AND GPL-3.0-only AND LGPL-2.1-only AND LGPL-3.0-only AND (GPL-2.0-only OR GPL-3.0-only) AND (LGPL-2.1-only OR LGPL-3.0-only)", false],
     ["openvpn", "openvpn-2.7.9-1.fc45.x86_64.rpm", "https://dl.fedoraproject.org/pub/fedora/linux/updates/45/Everything/x86_64/Packages/o/openvpn-2.7.9-1.fc45.x86_64.rpm", "ba38ed093cc75518e1219fc6ac74d7aea179bea2b88b747910b27ecbbd6cea8d", 749439, "GPL-2.0-only", false],
     ["pkcs11-helper", "pkcs11-helper-1.30.0-8.fc45.x86_64.rpm", "https://dl.fedoraproject.org/pub/fedora/linux/releases/45/Everything/x86_64/os/Packages/p/pkcs11-helper-1.30.0-8.fc45.x86_64.rpm", "ebf52773737eb613c0fa58db2725cfa6b0b09bec764c3fd776a666d74778c9d7", 70967, "GPL-2.0-only OR BSD-3-Clause", false],
-    ["plasma-nm", "plasma-nm-6.8.2-2.fc45.x86_64.rpm", "https://dl.fedoraproject.org/pub/fedora/linux/updates/45/Everything/x86_64/Packages/p/plasma-nm-6.8.2-2.fc45.x86_64.rpm", "068c41a84c8a735002e704186b7d6f5fe84f3b410458a3cae56ccd4bec93b38d", 1815364, "BSD-3-Clause AND CC0-1.0 AND GPL-2.0-only AND GPL-2.0-or-later AND GPL-3.0-only AND LGPL-2.0-or-later AND LGPL-2.1-only AND LGPL-3.0-only AND (GPL-2.0-only OR GPL-3.0-only) AND (LGPL-2.1-only OR LGPL-3.0-only)", false],
-    ["plasma-nm-openvpn", "plasma-nm-openvpn-6.8.2-2.fc45.x86_64.rpm", "https://dl.fedoraproject.org/pub/fedora/linux/updates/45/Everything/x86_64/Packages/p/plasma-nm-openvpn-6.8.2-2.fc45.x86_64.rpm", "1689cbcee1a76397432e85990e49abe5508bf5ef938fd25533cde877fd59af6a", 276040, "BSD-3-Clause AND CC0-1.0 AND GPL-2.0-only AND GPL-2.0-or-later AND GPL-3.0-only AND LGPL-2.0-or-later AND LGPL-2.1-only AND LGPL-3.0-only AND (GPL-2.0-only OR GPL-3.0-only) AND (LGPL-2.1-only OR LGPL-3.0-only)", false],
+    ["plasma-nm", "plasma-nm-6.8.3-1.fc45.x86_64.rpm", "https://dl.fedoraproject.org/pub/fedora/linux/updates/45/Everything/x86_64/Packages/p/plasma-nm-6.8.3-1.fc45.x86_64.rpm", "0aa5706b5a8335fbfef62fcc0190f63bedf838b91ae00c1bdd679d6cb4079e58", 1812465, "BSD-3-Clause AND CC0-1.0 AND GPL-2.0-only AND GPL-2.0-or-later AND GPL-3.0-only AND LGPL-2.0-or-later AND LGPL-2.1-only AND LGPL-3.0-only AND (GPL-2.0-only OR GPL-3.0-only) AND (LGPL-2.1-only OR LGPL-3.0-only)", false],
+    ["plasma-nm-openvpn", "plasma-nm-openvpn-6.8.3-1.fc45.x86_64.rpm", "https://dl.fedoraproject.org/pub/fedora/linux/updates/45/Everything/x86_64/Packages/p/plasma-nm-openvpn-6.8.3-1.fc45.x86_64.rpm", "dbb5cd77f297a2bc139ad4e38d601d7045792dfb5f89a2f1890ed7c33a87b337", 275998, "BSD-3-Clause AND CC0-1.0 AND GPL-2.0-only AND GPL-2.0-or-later AND GPL-3.0-only AND LGPL-2.0-or-later AND LGPL-2.1-only AND LGPL-3.0-only AND (GPL-2.0-only OR GPL-3.0-only) AND (LGPL-2.1-only OR LGPL-3.0-only)", false],
     ["qtkeychain-qt6", "qtkeychain-qt6-0.17.0-1.fc45.x86_64.rpm", "https://dl.fedoraproject.org/pub/fedora/linux/releases/45/Everything/x86_64/os/Packages/q/qtkeychain-qt6-0.17.0-1.fc45.x86_64.rpm", "69fd8af41d0e683e538a8f5d1467271c2248960249d81ecabd29bdf90a35d7ad", 81591, "BSD-3-Clause", false],
 ];
 // END GENERATED PINS glibc
@@ -78,8 +78,8 @@ const RPM_PINS = [
 // BEGIN GENERATED PINS musl
 // Written by `cargo xtask base groups acorn`; do not edit. This group's
 // share of the Alpine v3.24 APKs in acorn-apk-lock.rhai and acorn-apk-desktop-lock.rhai (locked on
-// 2026-11-13): 10 packages, 723638 bytes. Licences are each package's own.
-const APK_PINNED_ON = "2026-11-13";
+// 2026-11-15): 10 packages, 723638 bytes. Licences are each package's own.
+const APK_PINNED_ON = "2026-11-15";
 const APK_PINNED_BYTES = 723638;
 // [name, file, URL, SHA-256, bytes, licence, var/ kept as state seeds]
 const APK_PINS = [

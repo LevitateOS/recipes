@@ -53,28 +53,28 @@ let deps = ["desktop-libs"];
 
 let ctx = #{
     name: "thunderbolt",
-    version: "2026.11.13",
+    version: "2026.11.15",
     description: "Thunderbolt device authorisation",
 };
 
 // BEGIN GENERATED PINS glibc
 // Written by `cargo xtask base groups levitate`; do not edit. This group's
 // share of the Fedora 45 RPMs in levitate-rpm-lock.rhai and levitate-rpm-desktop-lock.rhai (locked on
-// 2026-11-10): 2 packages, 423304 bytes. Licences are each package's own.
-const RPM_PINNED_ON = "2026-11-10";
-const RPM_PINNED_BYTES = 423304;
+// 2026-11-15): 2 packages, 423278 bytes. Licences are each package's own.
+const RPM_PINNED_ON = "2026-11-15";
+const RPM_PINNED_BYTES = 423278;
 // [name, file, URL, SHA-256, bytes, licence, var/ kept as state seeds]
 const RPM_PINS = [
     ["bolt", "bolt-0.9.11-2.fc45.x86_64.rpm", "https://dl.fedoraproject.org/pub/fedora/linux/releases/45/Everything/x86_64/os/Packages/b/bolt-0.9.11-2.fc45.x86_64.rpm", "85a8bee9e51477ae08703b43049998f22e2ba31f5b87c00aa3d0905350887ac8", 195746, "LGPL-2.1-or-later", true],
-    ["plasma-thunderbolt", "plasma-thunderbolt-6.8.2-1.fc45.x86_64.rpm", "https://dl.fedoraproject.org/pub/fedora/linux/updates/45/Everything/x86_64/Packages/p/plasma-thunderbolt-6.8.2-1.fc45.x86_64.rpm", "3818138b1bb10eb65df44d90b9cd149e02f4b2fa01f1c2f6001a9cf4a17496ae", 227558, "BSD-3-Clause AND CC0-1.0 AND GPL-2.0-only AND GPL-3.0-only AND (GPL-2.0-only OR GPL-3.0-only)", false],
+    ["plasma-thunderbolt", "plasma-thunderbolt-6.8.3-1.fc45.x86_64.rpm", "https://dl.fedoraproject.org/pub/fedora/linux/updates/45/Everything/x86_64/Packages/p/plasma-thunderbolt-6.8.3-1.fc45.x86_64.rpm", "dbd4a2f5a59d56e85623559431065e4445ca40dacbdb299632832edb3c67ce8f", 227532, "BSD-3-Clause AND CC0-1.0 AND GPL-2.0-only AND GPL-3.0-only AND (GPL-2.0-only OR GPL-3.0-only)", false],
 ];
 // END GENERATED PINS glibc
 
 // BEGIN GENERATED PINS musl
 // Written by `cargo xtask base groups acorn`; do not edit. This group's
 // share of the Alpine v3.24 APKs in acorn-apk-lock.rhai and acorn-apk-desktop-lock.rhai (locked on
-// 2026-11-13): 1 packages, 137115 bytes. Licences are each package's own.
-const APK_PINNED_ON = "2026-11-13";
+// 2026-11-15): 1 packages, 137115 bytes. Licences are each package's own.
+const APK_PINNED_ON = "2026-11-15";
 const APK_PINNED_BYTES = 137115;
 // [name, file, URL, SHA-256, bytes, licence, var/ kept as state seeds]
 const APK_PINS = [

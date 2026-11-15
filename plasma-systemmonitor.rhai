@@ -52,19 +52,19 @@ let deps = ["desktop-libs"];
 
 let ctx = #{
     name: "plasma-systemmonitor",
-    version: "2026.11.10",
+    version: "2026.11.15",
     description: "KDE's system monitor",
 };
 
 // BEGIN GENERATED PINS glibc
 // Written by `cargo xtask base groups levitate`; do not edit. This group's
 // share of the Fedora 45 RPMs in levitate-rpm-lock.rhai and levitate-rpm-desktop-lock.rhai (locked on
-// 2026-11-10): 1 packages, 709057 bytes. Licences are each package's own.
-const RPM_PINNED_ON = "2026-11-10";
-const RPM_PINNED_BYTES = 709057;
+// 2026-11-15): 1 packages, 709379 bytes. Licences are each package's own.
+const RPM_PINNED_ON = "2026-11-15";
+const RPM_PINNED_BYTES = 709379;
 // [name, file, URL, SHA-256, bytes, licence, var/ kept as state seeds]
 const RPM_PINS = [
-    ["plasma-systemmonitor", "plasma-systemmonitor-6.8.2-1.fc45.x86_64.rpm", "https://dl.fedoraproject.org/pub/fedora/linux/updates/45/Everything/x86_64/Packages/p/plasma-systemmonitor-6.8.2-1.fc45.x86_64.rpm", "ef93b9e0494dd1b4e32e658708e818bcc05de98fbc6f65f146cedc06659fde5e", 709057, "BSD-3-Clause AND CC0-1.0 AND GPL-2.0-only AND GPL-3.0-only AND LGPL-2.0-or-later AND LGPL-2.1-only AND LGPL-3.0-only AND LGPL-3.0-or-later AND (GPL-2.0-only OR GPL-3.0-only) AND (LGPL-2.1-only OR LGPL-3.0-only)", false],
+    ["plasma-systemmonitor", "plasma-systemmonitor-6.8.3-1.fc45.x86_64.rpm", "https://dl.fedoraproject.org/pub/fedora/linux/updates/45/Everything/x86_64/Packages/p/plasma-systemmonitor-6.8.3-1.fc45.x86_64.rpm", "8e4900a1b53bac2bc817914f1b143ab68d1fd02cc8a2c4ab1c09a791f16f9ceb", 709379, "BSD-3-Clause AND CC0-1.0 AND GPL-2.0-only AND GPL-3.0-only AND LGPL-2.0-or-later AND LGPL-2.1-only AND LGPL-3.0-only AND LGPL-3.0-or-later AND (GPL-2.0-only OR GPL-3.0-only) AND (LGPL-2.1-only OR LGPL-3.0-only)", false],
 ];
 // END GENERATED PINS glibc
 

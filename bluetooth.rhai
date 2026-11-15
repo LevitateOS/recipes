@@ -53,19 +53,19 @@ let deps = ["desktop-libs", "audio", "network"];
 
 let ctx = #{
     name: "bluetooth",
-    version: "2026.11.13",
+    version: "2026.11.15",
     description: "Bluetooth",
 };
 
 // BEGIN GENERATED PINS glibc
 // Written by `cargo xtask base groups levitate`; do not edit. This group's
 // share of the Fedora 45 RPMs in levitate-rpm-lock.rhai and levitate-rpm-desktop-lock.rhai (locked on
-// 2026-11-10): 4 packages, 2837925 bytes. Licences are each package's own.
-const RPM_PINNED_ON = "2026-11-10";
-const RPM_PINNED_BYTES = 2837925;
+// 2026-11-15): 4 packages, 2837922 bytes. Licences are each package's own.
+const RPM_PINNED_ON = "2026-11-15";
+const RPM_PINNED_BYTES = 2837922;
 // [name, file, URL, SHA-256, bytes, licence, var/ kept as state seeds]
 const RPM_PINS = [
-    ["bluedevil", "bluedevil-6.8.2-1.fc45.x86_64.rpm", "https://dl.fedoraproject.org/pub/fedora/linux/updates/45/Everything/x86_64/Packages/b/bluedevil-6.8.2-1.fc45.x86_64.rpm", "f5d72525430a42ff7e6a05123be58b9ca4f8f3b7b7e63b8b52ae93e2de4bc49f", 829652, "GPL-2.0-or-later", false],
+    ["bluedevil", "bluedevil-6.8.3-1.fc45.x86_64.rpm", "https://dl.fedoraproject.org/pub/fedora/linux/updates/45/Everything/x86_64/Packages/b/bluedevil-6.8.3-1.fc45.x86_64.rpm", "ed44581b5aab6bee3b1c002ea1222fa1ad8167f545dbdc34627c3dbc106e9f36", 829649, "GPL-2.0-or-later", false],
     ["bluez", "bluez-5.88-1.fc45.x86_64.rpm", "https://dl.fedoraproject.org/pub/fedora/linux/updates/45/Everything/x86_64/Packages/b/bluez-5.88-1.fc45.x86_64.rpm", "89cf1c66846d19819be4584f1e9d67230fa8d715297c768064e98b11c6c3d350", 1580448, "GPL-2.0-or-later", true],
     ["bluez-obexd", "bluez-obexd-5.88-1.fc45.x86_64.rpm", "https://dl.fedoraproject.org/pub/fedora/linux/updates/45/Everything/x86_64/Packages/b/bluez-obexd-5.88-1.fc45.x86_64.rpm", "835b4e5e895dea044afe7c7003b300478584d2e3c362f8b1a5f560e0f459ed4f", 159558, "GPL-2.0-or-later", false],
     ["libical", "libical-3.0.20-11.fc45.x86_64.rpm", "https://dl.fedoraproject.org/pub/fedora/linux/updates/45/Everything/x86_64/Packages/l/libical-3.0.20-11.fc45.x86_64.rpm", "b4cc2ec06f12d5d3e63a8c1ae6d1b60c02a334d45a6d41080788718f670673be", 268267, "LGPL-2.1-only OR MPL-2.0", false],
@@ -75,8 +75,8 @@ const RPM_PINS = [
 // BEGIN GENERATED PINS musl
 // Written by `cargo xtask base groups acorn`; do not edit. This group's
 // share of the Alpine v3.24 APKs in acorn-apk-lock.rhai and acorn-apk-desktop-lock.rhai (locked on
-// 2026-11-13): 6 packages, 2545560 bytes. Licences are each package's own.
-const APK_PINNED_ON = "2026-11-13";
+// 2026-11-15): 6 packages, 2545560 bytes. Licences are each package's own.
+const APK_PINNED_ON = "2026-11-15";
 const APK_PINNED_BYTES = 2545560;
 // [name, file, URL, SHA-256, bytes, licence, var/ kept as state seeds]
 const APK_PINS = [

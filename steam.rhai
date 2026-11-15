@@ -49,7 +49,7 @@ const RECIPE_API = 3;
 const NEEDS = #{
     outputs: #{ system: "directory" },
     network: ["dl.fedoraproject.org:443", "repo.steampowered.com:443"],
-    network_max_bytes: 21495808,
+    network_max_bytes: 32505856,
     memory_mib: 4096,
     storage_max_objects: 262144,
     timeout_secs: 7200,
@@ -86,7 +86,7 @@ let deps = ["desktop-libs", "lib32", "graphics-drivers"];
 
 let ctx = #{
     name: "steam",
-    version: "2026.11.10",
+    version: "2026.11.15",
     description: "Valve's Steam launcher and what it needs",
 };
 
@@ -137,10 +137,18 @@ DefaultLimitNOFILE=1024:1048576
 `;
 
 // BEGIN GENERATED PINS glibc
-// Not generated yet: run `cargo xtask base groups levitate`.
-const RPM_PINNED_ON = "";
-const RPM_PINNED_BYTES = 0;
-const RPM_PINS = [];
+// Written by `cargo xtask base groups levitate`; do not edit. This group's
+// share of the Fedora 45 RPMs in levitate-rpm-lock.rhai and levitate-rpm-desktop-lock.rhai (locked on
+// 2026-11-15): 4 packages, 11788192 bytes. Licences are each package's own.
+const RPM_PINNED_ON = "2026-11-15";
+const RPM_PINNED_BYTES = 11788192;
+// [name, file, URL, SHA-256, bytes, licence, var/ kept as state seeds]
+const RPM_PINS = [
+    ["gtk4", "gtk4-4.24.1-1.fc45.x86_64.rpm", "https://dl.fedoraproject.org/pub/fedora/linux/releases/45/Everything/x86_64/os/Packages/g/gtk4-4.24.1-1.fc45.x86_64.rpm", "fb02ba7ae2efbb014d18d56207ced6f7f2c6be5ef2af7e797d4da0bdc738e943", 7244168, "LGPL-2.0-or-later AND LGPL-2.1-or-later AND Apache-2.0 AND CC0-1.0 AND MIT AND MIT-open-group AND HPND-sell-variant AND GPL-2.0-or-later AND GPL-3.0-or-later AND OFL-1.1", false],
+    ["libadwaita", "libadwaita-1.10.0-2.fc45.x86_64.rpm", "https://dl.fedoraproject.org/pub/fedora/linux/releases/45/Everything/x86_64/os/Packages/l/libadwaita-1.10.0-2.fc45.x86_64.rpm", "4ce2349fb1809450ec6c22686c6b63cf571c3079db36fa9fed1f26db0a22dde2", 805146, "LGPL-2.1-or-later AND MIT", false],
+    ["xz", "xz-5.8.3-2.fc45.x86_64.rpm", "https://dl.fedoraproject.org/pub/fedora/linux/releases/45/Everything/x86_64/os/Packages/x/xz-5.8.3-2.fc45.x86_64.rpm", "47eb91b7b870716aa6fc177ea883fed67e3c091c06bc772c6e2261edbb0f940c", 666836, "0BSD AND GPL-2.0-or-later AND LicenseRef-Fedora-Public-Domain", false],
+    ["zenity", "zenity-4.2.2-5.fc45.x86_64.rpm", "https://dl.fedoraproject.org/pub/fedora/linux/releases/45/Everything/x86_64/os/Packages/z/zenity-4.2.2-5.fc45.x86_64.rpm", "b473d0f3d41d16d9ac38b282999b8b42b51a130472b2b76e4983c5abd32ae9a4", 3072042, "LGPL-2.1-or-later", false],
+];
 // END GENERATED PINS glibc
 
 // BEGIN GENERATED PINS musl

@@ -52,20 +52,20 @@ let deps = ["desktop-libs", "plasma", "printing"];
 
 let ctx = #{
     name: "print-manager",
-    version: "2026.11.10",
+    version: "2026.11.15",
     description: "Plasma's printer settings",
 };
 
 // BEGIN GENERATED PINS glibc
 // Written by `cargo xtask base groups levitate`; do not edit. This group's
 // share of the Fedora 45 RPMs in levitate-rpm-lock.rhai and levitate-rpm-desktop-lock.rhai (locked on
-// 2026-11-10): 4 packages, 2181864 bytes. Licences are each package's own.
-const RPM_PINNED_ON = "2026-11-10";
-const RPM_PINNED_BYTES = 2181864;
+// 2026-11-15): 4 packages, 2175484 bytes. Licences are each package's own.
+const RPM_PINNED_ON = "2026-11-15";
+const RPM_PINNED_BYTES = 2175484;
 // [name, file, URL, SHA-256, bytes, licence, var/ kept as state seeds]
 const RPM_PINS = [
-    ["plasma-print-manager", "plasma-print-manager-6.8.2-1.fc45.x86_64.rpm", "https://dl.fedoraproject.org/pub/fedora/linux/updates/45/Everything/x86_64/Packages/p/plasma-print-manager-6.8.2-1.fc45.x86_64.rpm", "26c2b3f8a6a95840f2ba228db0b38d340091dd23f0281704dc05d938db8ca738", 537611, "BSD-3-Clause AND GPL-2.0-or-later AND LGPL-2.0-or-later AND LGPL-2.1-only AND LGPL-3.0-only AND (LGPL-2.1-only OR LGPL-3.0-only)", false],
-    ["plasma-print-manager-libs", "plasma-print-manager-libs-6.8.2-1.fc45.x86_64.rpm", "https://dl.fedoraproject.org/pub/fedora/linux/updates/45/Everything/x86_64/Packages/p/plasma-print-manager-libs-6.8.2-1.fc45.x86_64.rpm", "517be52542c7c93968752c54d571c520b6825f0ce00bd85f988afe3daf7d9404", 269872, "BSD-3-Clause AND GPL-2.0-or-later AND LGPL-2.0-or-later AND LGPL-2.1-only AND LGPL-3.0-only AND (LGPL-2.1-only OR LGPL-3.0-only)", false],
+    ["plasma-print-manager", "plasma-print-manager-6.8.3-1.fc45.x86_64.rpm", "https://dl.fedoraproject.org/pub/fedora/linux/updates/45/Everything/x86_64/Packages/p/plasma-print-manager-6.8.3-1.fc45.x86_64.rpm", "674abbe5f1a0525fe5e39ab525b65be55a68c33b7257a768f7e75fbb120f4ec6", 537698, "BSD-3-Clause AND GPL-2.0-or-later AND LGPL-2.0-or-later AND LGPL-2.1-only AND LGPL-3.0-only AND (LGPL-2.1-only OR LGPL-3.0-only)", false],
+    ["plasma-print-manager-libs", "plasma-print-manager-libs-6.8.3-1.fc45.x86_64.rpm", "https://dl.fedoraproject.org/pub/fedora/linux/updates/45/Everything/x86_64/Packages/p/plasma-print-manager-libs-6.8.3-1.fc45.x86_64.rpm", "2d4ad0801eddb774a2006ee7f989e5d3aa57c1c3921006eccf5d1abc1d729949", 263405, "BSD-3-Clause AND GPL-2.0-or-later AND LGPL-2.0-or-later AND LGPL-2.1-only AND LGPL-3.0-only AND (LGPL-2.1-only OR LGPL-3.0-only)", false],
     ["python3-cups", "python3-cups-2.0.4-11.fc45.x86_64.rpm", "https://dl.fedoraproject.org/pub/fedora/linux/releases/45/Everything/x86_64/os/Packages/p/python3-cups-2.0.4-11.fc45.x86_64.rpm", "3eba927025e176cb62a66abcd02692a7e910265c9f408e7a2ba07ad884ffd1ae", 86869, "GPL-2.0-or-later", false],
     ["system-config-printer-libs", "system-config-printer-libs-1.5.18-20.fc45.noarch.rpm", "https://dl.fedoraproject.org/pub/fedora/linux/releases/45/Everything/x86_64/os/Packages/s/system-config-printer-libs-1.5.18-20.fc45.noarch.rpm", "5ce54c04a54b68a5537e6ec27b8bf0a74b9f7a8ae2a07d034096a4f2969a12a0", 1287512, "GPL-2.0-or-later", false],
 ];

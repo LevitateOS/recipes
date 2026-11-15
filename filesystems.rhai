@@ -53,19 +53,19 @@ let deps = [];
 
 let ctx = #{
     name: "filesystems",
-    version: "2026.11.13",
+    version: "2026.11.15",
     description: "exFAT and NTFS drives",
 };
 
 // BEGIN GENERATED PINS glibc
 // Written by `cargo xtask base groups levitate`; do not edit. This group's
 // share of the Fedora 45 RPMs in levitate-rpm-lock.rhai and levitate-rpm-desktop-lock.rhai (locked on
-// 2026-11-10): 3 packages, 478717 bytes. Licences are each package's own.
-const RPM_PINNED_ON = "2026-11-10";
-const RPM_PINNED_BYTES = 478717;
+// 2026-11-15): 3 packages, 481686 bytes. Licences are each package's own.
+const RPM_PINNED_ON = "2026-11-15";
+const RPM_PINNED_BYTES = 481686;
 // [name, file, URL, SHA-256, bytes, licence, var/ kept as state seeds]
 const RPM_PINS = [
-    ["exfatprogs", "exfatprogs-1.4.3-1.fc45.x86_64.rpm", "https://dl.fedoraproject.org/pub/fedora/linux/releases/45/Everything/x86_64/os/Packages/e/exfatprogs-1.4.3-1.fc45.x86_64.rpm", "9351813244b314f6638932836a5d71252290debb7d30d3a5c8109970b2a56b20", 153091, "GPL-2.0-only", false],
+    ["exfatprogs", "exfatprogs-1.4.4-1.fc45.x86_64.rpm", "https://dl.fedoraproject.org/pub/fedora/linux/updates/45/Everything/x86_64/Packages/e/exfatprogs-1.4.4-1.fc45.x86_64.rpm", "5005f8ea88719eec4c6405c047597df1d8f5acfb4e5db6c10a004d796e996dd2", 156060, "GPL-2.0-only", false],
     ["ntfs-3g", "ntfs-3g-2026.2.25-3.fc45.x86_64.rpm", "https://dl.fedoraproject.org/pub/fedora/linux/releases/45/Everything/x86_64/os/Packages/n/ntfs-3g-2026.2.25-3.fc45.x86_64.rpm", "55f4485880d557fd74ceb44a7cb53dab6a58b3d51fedcecbba36af4c5be8030b", 136676, "GPL-2.0-or-later", false],
     ["ntfs-3g-libs", "ntfs-3g-libs-2026.2.25-3.fc45.x86_64.rpm", "https://dl.fedoraproject.org/pub/fedora/linux/releases/45/Everything/x86_64/os/Packages/n/ntfs-3g-libs-2026.2.25-3.fc45.x86_64.rpm", "ff325017b0a427cd575fcfe32e2d570ef03589cf9020acdf110ce0c03c2b4697", 188950, "GPL-2.0-or-later", false],
 ];
@@ -74,8 +74,8 @@ const RPM_PINS = [
 // BEGIN GENERATED PINS musl
 // Written by `cargo xtask base groups acorn`; do not edit. This group's
 // share of the Alpine v3.24 APKs in acorn-apk-lock.rhai and acorn-apk-desktop-lock.rhai (locked on
-// 2026-11-13): 3 packages, 399103 bytes. Licences are each package's own.
-const APK_PINNED_ON = "2026-11-13";
+// 2026-11-15): 3 packages, 399103 bytes. Licences are each package's own.
+const APK_PINNED_ON = "2026-11-15";
 const APK_PINNED_BYTES = 399103;
 // [name, file, URL, SHA-256, bytes, licence, var/ kept as state seeds]
 const APK_PINS = [

@@ -52,20 +52,20 @@ let deps = ["desktop-libs"];
 
 let ctx = #{
     name: "kwrite",
-    version: "2026.11.10",
+    version: "2026.11.15",
     description: "KDE's text editor",
 };
 
 // BEGIN GENERATED PINS glibc
 // Written by `cargo xtask base groups levitate`; do not edit. This group's
 // share of the Fedora 45 RPMs in levitate-rpm-lock.rhai and levitate-rpm-desktop-lock.rhai (locked on
-// 2026-11-10): 2 packages, 1566461 bytes. Licences are each package's own.
-const RPM_PINNED_ON = "2026-11-10";
-const RPM_PINNED_BYTES = 1566461;
+// 2026-11-15): 2 packages, 1567237 bytes. Licences are each package's own.
+const RPM_PINNED_ON = "2026-11-15";
+const RPM_PINNED_BYTES = 1567237;
 // [name, file, URL, SHA-256, bytes, licence, var/ kept as state seeds]
 const RPM_PINS = [
-    ["kate-libs", "kate-libs-26.08.2-2.fc45.x86_64.rpm", "https://dl.fedoraproject.org/pub/fedora/linux/releases/45/Everything/x86_64/os/Packages/k/kate-libs-26.08.2-2.fc45.x86_64.rpm", "dd9dd8bfe95735125edb62a25d683b468c5d7fe849394c682656080ba3c0b2c8", 850820, "LGPL-2.0-only AND LGPL-2.0-or-later AND GPL-2.0-or-later", false],
-    ["kwrite", "kwrite-26.08.2-2.fc45.x86_64.rpm", "https://dl.fedoraproject.org/pub/fedora/linux/releases/45/Everything/x86_64/os/Packages/k/kwrite-26.08.2-2.fc45.x86_64.rpm", "326b3a5a7e94e0b7e3b9e467d4edd91cafa34db3fdb33ae6e286f4a5b596811d", 715641, "LGPL-2.0-or-later", false],
+    ["kate-libs", "kate-libs-26.08.3-1.fc45.x86_64.rpm", "https://dl.fedoraproject.org/pub/fedora/linux/updates/45/Everything/x86_64/Packages/k/kate-libs-26.08.3-1.fc45.x86_64.rpm", "3d806af49250cc16a047c0c8fa3822d9bf15d1824ec7c575fe98b526911f6a8e", 851375, "LGPL-2.0-only AND LGPL-2.0-or-later AND GPL-2.0-or-later", false],
+    ["kwrite", "kwrite-26.08.3-1.fc45.x86_64.rpm", "https://dl.fedoraproject.org/pub/fedora/linux/updates/45/Everything/x86_64/Packages/k/kwrite-26.08.3-1.fc45.x86_64.rpm", "7370db4022c9235258d9230da5bae7a91d950a1df79f4010094c1d4e290fa8f8", 715862, "LGPL-2.0-or-later", false],
 ];
 // END GENERATED PINS glibc
 

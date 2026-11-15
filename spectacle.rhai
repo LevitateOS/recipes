@@ -52,22 +52,22 @@ let deps = ["desktop-libs"];
 
 let ctx = #{
     name: "spectacle",
-    version: "2026.11.10",
+    version: "2026.11.15",
     description: "KDE's screenshot tool",
 };
 
 // BEGIN GENERATED PINS glibc
 // Written by `cargo xtask base groups levitate`; do not edit. This group's
 // share of the Fedora 45 RPMs in levitate-rpm-lock.rhai and levitate-rpm-desktop-lock.rhai (locked on
-// 2026-11-10): 4 packages, 3779435 bytes. Licences are each package's own.
-const RPM_PINNED_ON = "2026-11-10";
-const RPM_PINNED_BYTES = 3779435;
+// 2026-11-15): 4 packages, 3800284 bytes. Licences are each package's own.
+const RPM_PINNED_ON = "2026-11-15";
+const RPM_PINNED_BYTES = 3800284;
 // [name, file, URL, SHA-256, bytes, licence, var/ kept as state seeds]
 const RPM_PINS = [
     ["accounts-qml-module-qt6", "accounts-qml-module-qt6-0.7^20231216.05e79eb-9.fc45.x86_64.rpm", "https://dl.fedoraproject.org/pub/fedora/linux/releases/45/Everything/x86_64/os/Packages/a/accounts-qml-module-qt6-0.7^20231216.05e79eb-9.fc45.x86_64.rpm", "8d013b57c8237a0f51a48722a490234c7d3e2cda32d8ffd93e1d7c38efd3f568", 91067, "LGPL-2.1-only", false],
-    ["kf6-purpose", "kf6-purpose-6.31.0-1.fc45.x86_64.rpm", "https://dl.fedoraproject.org/pub/fedora/linux/releases/45/Everything/x86_64/os/Packages/k/kf6-purpose-6.31.0-1.fc45.x86_64.rpm", "73e5bc16adeccf25747d948663744c1c0ae51afeec17efb97a75c0d79ea8d0d6", 766564, "CC0-1.0 AND GPL-2.0-or-later AND LGPL-2.0-or-later AND LGPL-2.1-or-later", false],
+    ["kf6-purpose", "kf6-purpose-6.32.0-1.fc45.x86_64.rpm", "https://dl.fedoraproject.org/pub/fedora/linux/updates/45/Everything/x86_64/Packages/k/kf6-purpose-6.32.0-1.fc45.x86_64.rpm", "9da645c5f3394d61ade5f596371220dadf9964e30b5d0c82a1188a800ab402f9", 791638, "CC0-1.0 AND GPL-2.0-or-later AND LGPL-2.0-or-later AND LGPL-2.1-or-later", false],
     ["kquickimageeditor-qt6", "kquickimageeditor-qt6-0.7.0-2.fc45.x86_64.rpm", "https://dl.fedoraproject.org/pub/fedora/linux/releases/45/Everything/x86_64/os/Packages/k/kquickimageeditor-qt6-0.7.0-2.fc45.x86_64.rpm", "4abd06816f9b7b53762b7cb1f8e12232a15571b7a3acdd9532ad430cc212ae50", 557312, "BSD-2-Clause AND CC0-1.0 AND LGPL-2.0-or-later AND LGPL-2.1-only AND LGPL-2.1-or-later AND LGPL-3.0-only", false],
-    ["spectacle", "spectacle-6.8.2-1.fc45.x86_64.rpm", "https://dl.fedoraproject.org/pub/fedora/linux/updates/45/Everything/x86_64/Packages/s/spectacle-6.8.2-1.fc45.x86_64.rpm", "90f7c4e4ec85a0623986eae19aa070c010d6ff82a8407588651ee4e3104c98dd", 2364492, "GPL-2.0-only", false],
+    ["spectacle", "spectacle-6.8.3-1.fc45.x86_64.rpm", "https://dl.fedoraproject.org/pub/fedora/linux/updates/45/Everything/x86_64/Packages/s/spectacle-6.8.3-1.fc45.x86_64.rpm", "7ffe183233cd764eff0a38c560b60481544f903737a2d335ef2eabc45dba6387", 2360267, "GPL-2.0-only", false],
 ];
 // END GENERATED PINS glibc
 

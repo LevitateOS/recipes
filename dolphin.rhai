@@ -52,21 +52,21 @@ let deps = ["desktop-libs"];
 
 let ctx = #{
     name: "dolphin",
-    version: "2026.11.10",
+    version: "2026.11.15",
     description: "KDE's file manager",
 };
 
 // BEGIN GENERATED PINS glibc
 // Written by `cargo xtask base groups levitate`; do not edit. This group's
 // share of the Fedora 45 RPMs in levitate-rpm-lock.rhai and levitate-rpm-desktop-lock.rhai (locked on
-// 2026-11-10): 3 packages, 5652314 bytes. Licences are each package's own.
-const RPM_PINNED_ON = "2026-11-10";
-const RPM_PINNED_BYTES = 5652314;
+// 2026-11-15): 3 packages, 5664980 bytes. Licences are each package's own.
+const RPM_PINNED_ON = "2026-11-15";
+const RPM_PINNED_BYTES = 5664980;
 // [name, file, URL, SHA-256, bytes, licence, var/ kept as state seeds]
 const RPM_PINS = [
-    ["baloo-widgets", "baloo-widgets-26.08.2-1.fc45.x86_64.rpm", "https://dl.fedoraproject.org/pub/fedora/linux/releases/45/Everything/x86_64/os/Packages/b/baloo-widgets-26.08.2-1.fc45.x86_64.rpm", "c4bfd722fc87aeab9ea35957e275c6db90a7d4dc76ae18cc75b68f246fb43dfb", 212501, "LGPL-2.0-only OR LGPL-3.0-only", false],
-    ["dolphin", "dolphin-26.08.2-3.fc45.x86_64.rpm", "https://dl.fedoraproject.org/pub/fedora/linux/releases/45/Everything/x86_64/os/Packages/d/dolphin-26.08.2-3.fc45.x86_64.rpm", "b7083fb924eb1d11032f7583ed647662aacd5bc39133c325eca030eb17f6d509", 4707291, "BSD-2-Clause AND BSD-3-Clause AND GPL-2.0-only AND GPL-2.0-or-later AND GPL-3.0-only AND LGPL-2.0-only AND LGPL-2.0-or-later AND LGPL-2.1-only AND LGPL-3.0-only AND (GPL-2.0-only OR GPL-3.0-only) AND (LGPL-2.1-only OR LGPL-3.0-only)", false],
-    ["dolphin-libs", "dolphin-libs-26.08.2-3.fc45.x86_64.rpm", "https://dl.fedoraproject.org/pub/fedora/linux/releases/45/Everything/x86_64/os/Packages/d/dolphin-libs-26.08.2-3.fc45.x86_64.rpm", "de65fc81c5926925b15e9fb1cac9005526b4b82db1a00123123b890e31273bb7", 732522, "BSD-2-Clause AND BSD-3-Clause AND GPL-2.0-only AND GPL-2.0-or-later AND GPL-3.0-only AND LGPL-2.0-only AND LGPL-2.0-or-later AND LGPL-2.1-only AND LGPL-3.0-only AND (GPL-2.0-only OR GPL-3.0-only) AND (LGPL-2.1-only OR LGPL-3.0-only)", false],
+    ["baloo-widgets", "baloo-widgets-26.08.3-1.fc45.x86_64.rpm", "https://dl.fedoraproject.org/pub/fedora/linux/updates/45/Everything/x86_64/Packages/b/baloo-widgets-26.08.3-1.fc45.x86_64.rpm", "8dd60945be88c92fff438ea419b6d8deb3986d3b422061cb146ed76d9b5b7ad2", 212383, "LGPL-2.0-only OR LGPL-3.0-only", false],
+    ["dolphin", "dolphin-26.08.3-1.fc45.x86_64.rpm", "https://dl.fedoraproject.org/pub/fedora/linux/updates/45/Everything/x86_64/Packages/d/dolphin-26.08.3-1.fc45.x86_64.rpm", "034ebac49e4f0f4f6ba11628d6cad81e401a85ae440fb019bdec410803a6db23", 4717985, "BSD-2-Clause AND BSD-3-Clause AND GPL-2.0-only AND GPL-2.0-or-later AND GPL-3.0-only AND LGPL-2.0-only AND LGPL-2.0-or-later AND LGPL-2.1-only AND LGPL-3.0-only AND (GPL-2.0-only OR GPL-3.0-only) AND (LGPL-2.1-only OR LGPL-3.0-only)", false],
+    ["dolphin-libs", "dolphin-libs-26.08.3-1.fc45.x86_64.rpm", "https://dl.fedoraproject.org/pub/fedora/linux/updates/45/Everything/x86_64/Packages/d/dolphin-libs-26.08.3-1.fc45.x86_64.rpm", "057751a1006f56965e453795b689b4e795bc30eb703eacad3e4319a2f9c119f7", 734612, "BSD-2-Clause AND BSD-3-Clause AND GPL-2.0-only AND GPL-2.0-or-later AND GPL-3.0-only AND LGPL-2.0-only AND LGPL-2.0-or-later AND LGPL-2.1-only AND LGPL-3.0-only AND (GPL-2.0-only OR GPL-3.0-only) AND (LGPL-2.1-only OR LGPL-3.0-only)", false],
 ];
 // END GENERATED PINS glibc
 

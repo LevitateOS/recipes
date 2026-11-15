@@ -52,22 +52,22 @@ let deps = ["desktop-libs"];
 
 let ctx = #{
     name: "konsole",
-    version: "2026.11.10",
+    version: "2026.11.15",
     description: "KDE's terminal",
 };
 
 // BEGIN GENERATED PINS glibc
 // Written by `cargo xtask base groups levitate`; do not edit. This group's
 // share of the Fedora 45 RPMs in levitate-rpm-lock.rhai and levitate-rpm-desktop-lock.rhai (locked on
-// 2026-11-10): 4 packages, 3111204 bytes. Licences are each package's own.
-const RPM_PINNED_ON = "2026-11-10";
-const RPM_PINNED_BYTES = 3111204;
+// 2026-11-15): 4 packages, 3117378 bytes. Licences are each package's own.
+const RPM_PINNED_ON = "2026-11-15";
+const RPM_PINNED_BYTES = 3117378;
 // [name, file, URL, SHA-256, bytes, licence, var/ kept as state seeds]
 const RPM_PINS = [
-    ["keditbookmarks", "keditbookmarks-26.08.2-1.fc45.x86_64.rpm", "https://dl.fedoraproject.org/pub/fedora/linux/releases/45/Everything/x86_64/os/Packages/k/keditbookmarks-26.08.2-1.fc45.x86_64.rpm", "42c91b052c4ac46483e1fcd09a9c2bfbe2fdf46f6d39455e61385aaeb3a982db", 450694, "GPL-2.0-only AND GPL-3.0-only AND LicenseRef-Callaway-GFDL", false],
-    ["keditbookmarks-libs", "keditbookmarks-libs-26.08.2-1.fc45.x86_64.rpm", "https://dl.fedoraproject.org/pub/fedora/linux/releases/45/Everything/x86_64/os/Packages/k/keditbookmarks-libs-26.08.2-1.fc45.x86_64.rpm", "7cc6d2d3076786a972054e28199cf5cf97bd480ea3305cec02bcd4c2b18f79cf", 52485, "GPL-2.0-only AND GPL-3.0-only AND LicenseRef-Callaway-GFDL", false],
-    ["konsole", "konsole-26.08.2-2.fc45.x86_64.rpm", "https://dl.fedoraproject.org/pub/fedora/linux/updates/45/Everything/x86_64/Packages/k/konsole-26.08.2-2.fc45.x86_64.rpm", "9d0a3806e6c41d830b481953d5cb3ff7ebb4710693a07dfdde746475cf4e5733", 1487782, "CC0-1.0 AND GPL-2.0-only AND GPL-2.0-or-later AND GPL-3.0-only AND LGPL-2.0-only AND LGPL-2.1-only AND LGPL-3.0-only AND (GPL-2.0-only OR GPL-3.0-only) AND (LGPL-2.1-only OR LGPL-3.0-only)", false],
-    ["konsole-part", "konsole-part-26.08.2-2.fc45.x86_64.rpm", "https://dl.fedoraproject.org/pub/fedora/linux/updates/45/Everything/x86_64/Packages/k/konsole-part-26.08.2-2.fc45.x86_64.rpm", "4f15b39e7747dfb7ed4e3788ec101d5c0363988398eae19eac0188752d32e990", 1120243, "CC0-1.0 AND GPL-2.0-only AND GPL-2.0-or-later AND GPL-3.0-only AND LGPL-2.0-only AND LGPL-2.1-only AND LGPL-3.0-only AND (GPL-2.0-only OR GPL-3.0-only) AND (LGPL-2.1-only OR LGPL-3.0-only)", false],
+    ["keditbookmarks", "keditbookmarks-26.08.3-1.fc45.x86_64.rpm", "https://dl.fedoraproject.org/pub/fedora/linux/updates/45/Everything/x86_64/Packages/k/keditbookmarks-26.08.3-1.fc45.x86_64.rpm", "dd1f06c195228fda3e566bbc49058c5a0e25c5db7b612aac40791d95235cff9f", 450466, "GPL-2.0-only AND GPL-3.0-only AND LicenseRef-Callaway-GFDL", false],
+    ["keditbookmarks-libs", "keditbookmarks-libs-26.08.3-1.fc45.x86_64.rpm", "https://dl.fedoraproject.org/pub/fedora/linux/updates/45/Everything/x86_64/Packages/k/keditbookmarks-libs-26.08.3-1.fc45.x86_64.rpm", "48d4c363efbe0256bbe7a887e63602f93505778dc79011a1c5a59af60f5b3315", 52441, "GPL-2.0-only AND GPL-3.0-only AND LicenseRef-Callaway-GFDL", false],
+    ["konsole", "konsole-26.08.3-1.fc45.x86_64.rpm", "https://dl.fedoraproject.org/pub/fedora/linux/updates/45/Everything/x86_64/Packages/k/konsole-26.08.3-1.fc45.x86_64.rpm", "7a78e0f6a770dea8f4a3523d7774eb18b201f98367aa0f289a088fe90b8ed701", 1490267, "CC0-1.0 AND GPL-2.0-only AND GPL-2.0-or-later AND GPL-3.0-only AND LGPL-2.0-only AND LGPL-2.1-only AND LGPL-3.0-only AND (GPL-2.0-only OR GPL-3.0-only) AND (LGPL-2.1-only OR LGPL-3.0-only)", false],
+    ["konsole-part", "konsole-part-26.08.3-1.fc45.x86_64.rpm", "https://dl.fedoraproject.org/pub/fedora/linux/updates/45/Everything/x86_64/Packages/k/konsole-part-26.08.3-1.fc45.x86_64.rpm", "5a61db346da0f9bd42265d97c7e0510390701b5d32d86f74afe8380c0f07f4f3", 1124204, "CC0-1.0 AND GPL-2.0-only AND GPL-2.0-or-later AND GPL-3.0-only AND LGPL-2.0-only AND LGPL-2.1-only AND LGPL-3.0-only AND (GPL-2.0-only OR GPL-3.0-only) AND (LGPL-2.1-only OR LGPL-3.0-only)", false],
 ];
 // END GENERATED PINS glibc
 

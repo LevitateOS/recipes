@@ -52,21 +52,21 @@ let deps = ["desktop-libs"];
 
 let ctx = #{
     name: "ark",
-    version: "2026.11.10",
+    version: "2026.11.15",
     description: "KDE's archive manager",
 };
 
 // BEGIN GENERATED PINS glibc
 // Written by `cargo xtask base groups levitate`; do not edit. This group's
 // share of the Fedora 45 RPMs in levitate-rpm-lock.rhai and levitate-rpm-desktop-lock.rhai (locked on
-// 2026-11-10): 6 packages, 3465911 bytes. Licences are each package's own.
-const RPM_PINNED_ON = "2026-11-10";
-const RPM_PINNED_BYTES = 3465911;
+// 2026-11-15): 6 packages, 3466242 bytes. Licences are each package's own.
+const RPM_PINNED_ON = "2026-11-15";
+const RPM_PINNED_BYTES = 3466242;
 // [name, file, URL, SHA-256, bytes, licence, var/ kept as state seeds]
 const RPM_PINS = [
     ["7zip", "7zip-26.04-1.fc45.x86_64.rpm", "https://dl.fedoraproject.org/pub/fedora/linux/updates/45/Everything/x86_64/Packages/7/7zip-26.04-1.fc45.x86_64.rpm", "699901f624fc01b32f410bd3f7079647ada1d0ea16096afab1640e29a4be8bd7", 1359084, "LGPL-2.1-or-later AND BSD-3-Clause AND BSD-2-Clause AND LicenseRef-Fedora-Public-Domain", false],
-    ["ark", "ark-26.08.2-1.fc45.x86_64.rpm", "https://dl.fedoraproject.org/pub/fedora/linux/releases/45/Everything/x86_64/os/Packages/a/ark-26.08.2-1.fc45.x86_64.rpm", "91a6197110ebf2631b9089c2ae42c92c28eb9996e4b933d8539855b7d04d275b", 1230334, "GPL-2.0-or-later AND LGPL-3.0-only", false],
-    ["ark-libs", "ark-libs-26.08.2-1.fc45.x86_64.rpm", "https://dl.fedoraproject.org/pub/fedora/linux/releases/45/Everything/x86_64/os/Packages/a/ark-libs-26.08.2-1.fc45.x86_64.rpm", "1013185b664715a37c3e8a31f8713f563d6485c77e191efa4da46bedff742ca2", 539282, "BSD-2-Clause AND GPL-2.0-or-later AND MIT", false],
+    ["ark", "ark-26.08.3-1.fc45.x86_64.rpm", "https://dl.fedoraproject.org/pub/fedora/linux/updates/45/Everything/x86_64/Packages/a/ark-26.08.3-1.fc45.x86_64.rpm", "f27dbaee5e60d86aad6717beb7b9478f8bd91037ad65bc27e27ab83244ac735c", 1230552, "GPL-2.0-or-later AND LGPL-3.0-only", false],
+    ["ark-libs", "ark-libs-26.08.3-1.fc45.x86_64.rpm", "https://dl.fedoraproject.org/pub/fedora/linux/updates/45/Everything/x86_64/Packages/a/ark-libs-26.08.3-1.fc45.x86_64.rpm", "83e60600c764446244736eb8a16e799ab6f1b7d3a3dc93864b61f6beed254f4d", 539395, "BSD-2-Clause AND GPL-2.0-or-later AND MIT", false],
     ["bzip2", "bzip2-1.0.8-24.fc45.x86_64.rpm", "https://dl.fedoraproject.org/pub/fedora/linux/releases/45/Everything/x86_64/os/Packages/b/bzip2-1.0.8-24.fc45.x86_64.rpm", "3ccf5b4b033119a91a68049cce27868ce2832284746c390a9611a79e5462af0f", 53508, "BSD-4-Clause", false],
     ["libzip", "libzip-1.12.1-1.fc45.x86_64.rpm", "https://dl.fedoraproject.org/pub/fedora/linux/updates/45/Everything/x86_64/Packages/l/libzip-1.12.1-1.fc45.x86_64.rpm", "402d47cfea209d8d5b2c40ec265f9b3f81ef5440a8a5cd582e4dc652e518810d", 79337, "BSD-3-Clause", false],
     ["unzip", "unzip-6.0-71.fc45.x86_64.rpm", "https://dl.fedoraproject.org/pub/fedora/linux/releases/45/Everything/x86_64/os/Packages/u/unzip-6.0-71.fc45.x86_64.rpm", "bcc959eb44aad1c77760ea27a217f559f2f0271a786206ca33a48da654bc1e2b", 204366, "Info-ZIP", false],

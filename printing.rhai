@@ -56,16 +56,16 @@ let deps = ["desktop-libs"];
 
 let ctx = #{
     name: "printing",
-    version: "2026.11.13",
+    version: "2026.11.15",
     description: "Printing: CUPS with driverless printers",
 };
 
 // BEGIN GENERATED PINS glibc
 // Written by `cargo xtask base groups levitate`; do not edit. This group's
 // share of the Fedora 45 RPMs in levitate-rpm-lock.rhai and levitate-rpm-desktop-lock.rhai (locked on
-// 2026-11-10): 37 packages, 24646786 bytes. Licences are each package's own.
-const RPM_PINNED_ON = "2026-11-10";
-const RPM_PINNED_BYTES = 24646786;
+// 2026-11-15): 37 packages, 24647143 bytes. Licences are each package's own.
+const RPM_PINNED_ON = "2026-11-15";
+const RPM_PINNED_BYTES = 24647143;
 // [name, file, URL, SHA-256, bytes, licence, var/ kept as state seeds]
 const RPM_PINS = [
     ["acl", "acl-2.4.0-2.fc45.x86_64.rpm", "https://dl.fedoraproject.org/pub/fedora/linux/releases/45/Everything/x86_64/os/Packages/a/acl-2.4.0-2.fc45.x86_64.rpm", "48e25a76cd159e18665ddabdc768e426ddaa76115fa733926a5936bd359717b5", 78378, "GPL-2.0-or-later AND LGPL-2.1-or-later", false],
@@ -84,15 +84,15 @@ const RPM_PINS = [
     ["google-droid-sans-fonts", "google-droid-sans-fonts-20200215-25.fc45.noarch.rpm", "https://dl.fedoraproject.org/pub/fedora/linux/releases/45/Everything/x86_64/os/Packages/g/google-droid-sans-fonts-20200215-25.fc45.noarch.rpm", "6c7b755a5bf2c4e461cb42c9cfd447f247b06b269e14e035663e9bc17824973c", 2833190, "Apache-2.0", false],
     ["ipp-usb", "ipp-usb-0.9.34-3.fc45.x86_64.rpm", "https://dl.fedoraproject.org/pub/fedora/linux/releases/45/Everything/x86_64/os/Packages/i/ipp-usb-0.9.34-3.fc45.x86_64.rpm", "61580294f440b7900dffabc1afbf3fa0169d5d05219e8b7a35166d11bce533b0", 2680073, "BSD-2-Clause", false],
     ["jbig2dec-libs", "jbig2dec-libs-0.20-9.fc45.x86_64.rpm", "https://dl.fedoraproject.org/pub/fedora/linux/releases/45/Everything/x86_64/os/Packages/j/jbig2dec-libs-0.20-9.fc45.x86_64.rpm", "6dfc9479439530b19fde74d01394722bd2aa92bf2c9d196c9072828a0196f62d", 77430, "AGPL-3.0-or-later", false],
-    ["libcupsfilters", "libcupsfilters-2.2.1-5.fc45.x86_64.rpm", "https://dl.fedoraproject.org/pub/fedora/linux/releases/45/Everything/x86_64/os/Packages/l/libcupsfilters-2.2.1-5.fc45.x86_64.rpm", "9e057d786754b4f5dcc8d0d5e502bcf0cc2491db54607fc3fd6d0b4b0d59a11d", 553057, "Apache-2.0 WITH LLVM-exception", false],
+    ["libcupsfilters", "libcupsfilters-2.2.1-8.fc45.x86_64.rpm", "https://dl.fedoraproject.org/pub/fedora/linux/updates/45/Everything/x86_64/Packages/l/libcupsfilters-2.2.1-8.fc45.x86_64.rpm", "7b720fe8c196f0d75a23f229572b444325d3f16de2531a0f46e56dcd6b3bd330", 553213, "Apache-2.0 WITH LLVM-exception", false],
     ["libdaemon", "libdaemon-0.14-34.fc45.x86_64.rpm", "https://dl.fedoraproject.org/pub/fedora/linux/releases/45/Everything/x86_64/os/Packages/l/libdaemon-0.14-34.fc45.x86_64.rpm", "e23b749246ac851b05d7c64f45bb46aaa05658438cef9358eca79ef23ad6a2ff", 32709, "LGPL-2.1-or-later", false],
     ["libexif", "libexif-0.6.26-2.fc45.x86_64.rpm", "https://dl.fedoraproject.org/pub/fedora/linux/releases/45/Everything/x86_64/os/Packages/l/libexif-0.6.26-2.fc45.x86_64.rpm", "d488b5dc285621cf0ca7a52de8d777ed3ef6be70aae8f7ea2ad555cc8def5f48", 526325, "LGPL-2.1-or-later", false],
     ["libgs", "libgs-10.07.1-3.fc45.x86_64.rpm", "https://dl.fedoraproject.org/pub/fedora/linux/updates/45/Everything/x86_64/Packages/l/libgs-10.07.1-3.fc45.x86_64.rpm", "3af2bade31c824ddad2af826c7d5a9dc8919f0e796b84d65cfca1944f7f43e4a", 4096047, "AGPL-3.0-or-later", false],
     ["libijs", "libijs-0.35-27.fc45.x86_64.rpm", "https://dl.fedoraproject.org/pub/fedora/linux/releases/45/Everything/x86_64/os/Packages/l/libijs-0.35-27.fc45.x86_64.rpm", "3beaba00c02e78d55be804f3588fc32449effe93b455b696bcb566fb2c5fa10f", 30129, "AGPL-3.0-or-later", false],
     ["libpaper", "libpaper-2.1.1-11.fc45.x86_64.rpm", "https://dl.fedoraproject.org/pub/fedora/linux/releases/45/Everything/x86_64/os/Packages/l/libpaper-2.1.1-11.fc45.x86_64.rpm", "af798513d484bdc493a5bca13f2091c5c47b13047ac5d077a6ebdc4c09eab6ad", 26966, "LGPL-2.1-or-later AND LicenseRef-Fedora-Public-Domain AND GPL-3.0-or-later AND LGPL-2.0-or-later AND FSFAP", false],
-    ["libppd", "libppd-2.1.1-4.fc45.x86_64.rpm", "https://dl.fedoraproject.org/pub/fedora/linux/releases/45/Everything/x86_64/os/Packages/l/libppd-2.1.1-4.fc45.x86_64.rpm", "55f05d84a377778473250abeed491186320697c7c9da97b1a30bfe8f788a6eda", 272160, "Apache-2.0 WITH LLVM-exception", false],
+    ["libppd", "libppd-2.1.1-5.fc45.x86_64.rpm", "https://dl.fedoraproject.org/pub/fedora/linux/updates/45/Everything/x86_64/Packages/l/libppd-2.1.1-5.fc45.x86_64.rpm", "df4d7856b1f2ee08c54742cd8249e525e0c57cc4b153d01e151da74d28d2e031", 271748, "Apache-2.0 WITH LLVM-exception", false],
     ["pdfio", "pdfio-1.6.5-1.fc45.x86_64.rpm", "https://dl.fedoraproject.org/pub/fedora/linux/releases/45/Everything/x86_64/os/Packages/p/pdfio-1.6.5-1.fc45.x86_64.rpm", "befaa28cceabf97df2c9c8c875db18ee7deae4310472f43e9ef70d4f8ede711d", 87553, "Apache-2.0 WITH LLVM-exception AND Zlib AND GPL-2.0-or-later AND MIT-CMU AND BSD-3-Clause", false],
-    ["poppler-utils", "poppler-utils-26.08.0-1.fc45.x86_64.rpm", "https://dl.fedoraproject.org/pub/fedora/linux/releases/45/Everything/x86_64/os/Packages/p/poppler-utils-26.08.0-1.fc45.x86_64.rpm", "c538086a3ee1b09262d778a4bbf7cfe370642797d58084cfc9a87a62757d8679", 324850, "(GPL-2.0-only OR GPL-3.0-only) AND GPL-2.0-or-later AND LGPL-2.0-or-later AND LGPL-2.1-or-later AND MIT", false],
+    ["poppler-utils", "poppler-utils-26.08.0-2.fc45.x86_64.rpm", "https://dl.fedoraproject.org/pub/fedora/linux/updates/45/Everything/x86_64/Packages/p/poppler-utils-26.08.0-2.fc45.x86_64.rpm", "187bd0b0b1290e19be306ac7ce0ccaa11e1dfe4be654577dc1509c7a9d648857", 325463, "(GPL-2.0-only OR GPL-3.0-only) AND GPL-2.0-or-later AND LGPL-2.0-or-later AND LGPL-2.1-or-later AND MIT", false],
     ["urw-base35-bookman-fonts", "urw-base35-bookman-fonts-20200910-29.fc45.noarch.rpm", "https://dl.fedoraproject.org/pub/fedora/linux/releases/45/Everything/x86_64/os/Packages/u/urw-base35-bookman-fonts-20200910-29.fc45.noarch.rpm", "6eab8e66bf7581d13e111780ba14d543f676ce6c618432de9d75568e1c0afdd4", 865271, "AGPL-3.0-only AND GPL-2.0-or-later", false],
     ["urw-base35-c059-fonts", "urw-base35-c059-fonts-20200910-29.fc45.noarch.rpm", "https://dl.fedoraproject.org/pub/fedora/linux/releases/45/Everything/x86_64/os/Packages/u/urw-base35-c059-fonts-20200910-29.fc45.noarch.rpm", "ac4327a999e2933148dea267ad8701ae8bfcb465579d5fa4c73399a8850e0592", 893665, "AGPL-3.0-only AND GPL-2.0-or-later", false],
     ["urw-base35-d050000l-fonts", "urw-base35-d050000l-fonts-20200910-29.fc45.noarch.rpm", "https://dl.fedoraproject.org/pub/fedora/linux/releases/45/Everything/x86_64/os/Packages/u/urw-base35-d050000l-fonts-20200910-29.fc45.noarch.rpm", "003b7ce250b0f9ddb29eb5806b352179b50d60a18cc0fe1fdd6e29085f26c106", 76920, "AGPL-3.0-only AND GPL-2.0-or-later", false],
@@ -111,8 +111,8 @@ const RPM_PINS = [
 // BEGIN GENERATED PINS musl
 // Written by `cargo xtask base groups acorn`; do not edit. This group's
 // share of the Alpine v3.24 APKs in acorn-apk-lock.rhai and acorn-apk-desktop-lock.rhai (locked on
-// 2026-11-13): 32 packages, 26172697 bytes. Licences are each package's own.
-const APK_PINNED_ON = "2026-11-13";
+// 2026-11-15): 32 packages, 26172697 bytes. Licences are each package's own.
+const APK_PINNED_ON = "2026-11-15";
 const APK_PINNED_BYTES = 26172697;
 // [name, file, URL, SHA-256, bytes, licence, var/ kept as state seeds]
 const APK_PINS = [
