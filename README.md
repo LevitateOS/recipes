@@ -2,8 +2,10 @@
 
 The official source of software for LevitateOS and AcornOS: what a person
 chooses and manages themselves, apart from the OS image. Each `NAME.rhai` is a
-recipe that [Recipe](https://github.com/LevitateOS/recipe) runs inside Ginux
-and installs into a profile. [ripgrep](ripgrep.rhai) is the first.
+recipe that [Recipe](https://github.com/LevitateOS/recipe) runs and installs
+into a profile. A recipe that starts no program runs on the host, confined; any
+other runs inside a Ginux domain, with only the network and files its `NEEDS`
+declare. [ripgrep](ripgrep.rhai) is the first.
 
 The systems ship this source, so nothing needs adding there:
 
@@ -13,6 +15,12 @@ sudo recipe install ripgrep
 sudo recipe update ripgrep
 sudo recipe remove ripgrep
 ```
+
+On an A/B system, `sudo recipe install` is system scope: it writes into the
+unlocked other root, and the software is active when that root is booted. A
+recipe whose `ABOUT.libc` this system's C library cannot run is refused at install
+(`recipe list --json` says `runs_here: false` and why); on AcornOS (musl) that
+is every recipe built for glibc.
 
 Elsewhere, add it once:
 
