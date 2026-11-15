@@ -54,15 +54,15 @@ let deps = ["desktop-libs", "audio", "fonts", "spelling"];
 
 let ctx = #{
     name: "plasma",
-    version: "2026.11.15",
+    version: "2026.11.16",
     description: "The KDE Plasma desktop on Wayland",
 };
 
 // BEGIN GENERATED PINS glibc
 // Written by `cargo xtask base groups levitate`; do not edit. This group's
 // share of the Fedora 45 RPMs in levitate-rpm-lock.rhai and levitate-rpm-desktop-lock.rhai (locked on
-// 2026-11-15): 185 packages, 158833520 bytes. Licences are each package's own.
-const RPM_PINNED_ON = "2026-11-15";
+// 2026-11-16): 185 packages, 158833520 bytes. Licences are each package's own.
+const RPM_PINNED_ON = "2026-11-16";
 const RPM_PINNED_BYTES = 158833520;
 // [name, file, URL, SHA-256, bytes, licence, var/ kept as state seeds]
 const RPM_PINS = [

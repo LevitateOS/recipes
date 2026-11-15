@@ -52,15 +52,15 @@ let deps = ["desktop-libs"];
 
 let ctx = #{
     name: "spectacle",
-    version: "2026.11.15",
+    version: "2026.11.16",
     description: "KDE's screenshot tool",
 };
 
 // BEGIN GENERATED PINS glibc
 // Written by `cargo xtask base groups levitate`; do not edit. This group's
 // share of the Fedora 45 RPMs in levitate-rpm-lock.rhai and levitate-rpm-desktop-lock.rhai (locked on
-// 2026-11-15): 4 packages, 3800284 bytes. Licences are each package's own.
-const RPM_PINNED_ON = "2026-11-15";
+// 2026-11-16): 4 packages, 3800284 bytes. Licences are each package's own.
+const RPM_PINNED_ON = "2026-11-16";
 const RPM_PINNED_BYTES = 3800284;
 // [name, file, URL, SHA-256, bytes, licence, var/ kept as state seeds]
 const RPM_PINS = [

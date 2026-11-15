@@ -94,15 +94,15 @@ let deps = ["desktop-libs"];
 
 let ctx = #{
     name: "lib32",
-    version: "2026.11.15",
+    version: "2026.11.16",
     description: "32-bit libraries for 32-bit programs and Steam",
 };
 
 // BEGIN GENERATED PINS glibc
 // Written by `cargo xtask base groups levitate`; do not edit. This group's
 // share of the Fedora 45 RPMs in levitate-rpm-lock.rhai and levitate-rpm-desktop-lock.rhai (locked on
-// 2026-11-15): 123 packages, 128140239 bytes. Licences are each package's own.
-const RPM_PINNED_ON = "2026-11-15";
+// 2026-11-16): 123 packages, 128140239 bytes. Licences are each package's own.
+const RPM_PINNED_ON = "2026-11-16";
 const RPM_PINNED_BYTES = 128140239;
 // 118 of them are i686 builds (SEEDS_I686), which no lock holds: those Fedora
 // 45's release and updates repositories held when this was written, each

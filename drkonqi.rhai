@@ -52,15 +52,15 @@ let deps = ["desktop-libs", "plasma", "konsole"];
 
 let ctx = #{
     name: "drkonqi",
-    version: "2026.11.15",
+    version: "2026.11.16",
     description: "KDE's crash handler",
 };
 
 // BEGIN GENERATED PINS glibc
 // Written by `cargo xtask base groups levitate`; do not edit. This group's
 // share of the Fedora 45 RPMs in levitate-rpm-lock.rhai and levitate-rpm-desktop-lock.rhai (locked on
-// 2026-11-15): 11 packages, 4009088 bytes. Licences are each package's own.
-const RPM_PINNED_ON = "2026-11-15";
+// 2026-11-16): 11 packages, 4009088 bytes. Licences are each package's own.
+const RPM_PINNED_ON = "2026-11-16";
 const RPM_PINNED_BYTES = 4009088;
 // [name, file, URL, SHA-256, bytes, licence, var/ kept as state seeds]
 const RPM_PINS = [
