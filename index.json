@@ -1,5 +1,5 @@
 {
-  "commit": "1c2ead4cf12d285129341e2b95574f174235b25b",
+  "commit": "e51655a24a08c7c775c725851dc770cc401531e6",
   "recipes": [
     {
       "about": {
@@ -99,7 +99,7 @@
         {
           "bytes": 12427,
           "path": "ark.rhai",
-          "sha256": "c3cf4ffe939c87c00ea17b30dea6cb5c7a667140b23a44adee7890fb149ed185"
+          "sha256": "f34dcd091a2d86dc7f95552dea5f66e6528ad8026a313dc2820dad97c349c584"
         }
       ],
       "hooks": [
@@ -124,7 +124,7 @@
         "storage_max_objects": 262144,
         "timeout_secs": 7200
       },
-      "version": "2026.11.15"
+      "version": "2026.11.16"
     },
     {
       "about": {
@@ -157,7 +157,7 @@
         {
           "bytes": 19546,
           "path": "audio.rhai",
-          "sha256": "55dde10f7252a750d5643ef3fec242161c7c1a5ae89ff0864e2af6e62b545184"
+          "sha256": "8e3e2f68eac3213694c0b2bd186e01595b878253b9f1f17769d4e5fe45ee9903"
         }
       ],
       "hooks": [
@@ -182,7 +182,7 @@
         "storage_max_objects": 262144,
         "timeout_secs": 7200
       },
-      "version": "2026.11.15"
+      "version": "2026.11.16"
     },
     {
       "about": {
@@ -271,7 +271,7 @@
         {
           "bytes": 13687,
           "path": "bluetooth.rhai",
-          "sha256": "6da5dc79d6a68851fd855e99ba0e1e8cab4889fdbf245bb21174ba2453670b58"
+          "sha256": "1a952266d10300500d8b76651604bb5d0ee7def866734f805a6743909da7bd05"
         }
       ],
       "hooks": [
@@ -296,7 +296,7 @@
         "storage_max_objects": 262144,
         "timeout_secs": 7200
       },
-      "version": "2026.11.15"
+      "version": "2026.11.16"
     },
     {
       "about": {
@@ -591,7 +591,7 @@
         {
           "bytes": 212301,
           "path": "desktop-libs.rhai",
-          "sha256": "e48277d355be72c6bd0ea3b932d734e0f70b3c3d10c98b922c7111621ebc267a"
+          "sha256": "12004257060c28e28bc3d9e31926c0502f8ba8f561cef3442ceb6b038cc0aa51"
         }
       ],
       "hooks": [
@@ -616,7 +616,7 @@
         "storage_max_objects": 262144,
         "timeout_secs": 7200
       },
-      "version": "2026.11.15"
+      "version": "2026.11.16"
     },
     {
       "about": {
@@ -705,7 +705,7 @@
         {
           "bytes": 11990,
           "path": "dolphin.rhai",
-          "sha256": "0c3b6a100a9813bfd864718ba862495dc9e6163cd756b70387858a05d2b3bd19"
+          "sha256": "b634fe8d9da1aed4e02a7c012616ac81d676759bdf3687192477455854d20c6a"
         }
       ],
       "hooks": [
@@ -730,7 +730,7 @@
         "storage_max_objects": 262144,
         "timeout_secs": 7200
       },
-      "version": "2026.11.15"
+      "version": "2026.11.16"
     },
     {
       "about": {
@@ -769,7 +769,7 @@
         {
           "bytes": 14355,
           "path": "drkonqi.rhai",
-          "sha256": "80a4c00d2ce77ee79cb012f21e4bf13fcc868ce99d00d14edd63ae7b0640307a"
+          "sha256": "24e64cf1ef4595f6b6c64cf22837d7eb9303aac831f8187fd609534488acce48"
         }
       ],
       "hooks": [
@@ -794,7 +794,7 @@
         "storage_max_objects": 262144,
         "timeout_secs": 7200
       },
-      "version": "2026.11.15"
+      "version": "2026.11.16"
     },
     {
       "about": {
@@ -934,7 +934,7 @@
         {
           "bytes": 12518,
           "path": "filesystems.rhai",
-          "sha256": "32756ab3dfe0bd01a50c1b2761834b77f6f3433ed1a63fa44c42bd8c69c895b9"
+          "sha256": "d6dff777c199ec39f57c2fcc1ebbaebf0d45f069fcd583e485290ab96f413aee"
         }
       ],
       "hooks": [
@@ -959,7 +959,7 @@
         "storage_max_objects": 262144,
         "timeout_secs": 7200
       },
-      "version": "2026.11.15"
+      "version": "2026.11.16"
     },
     {
       "about": {
@@ -1000,7 +1000,7 @@
         {
           "bytes": 16952,
           "path": "firefox.rhai",
-          "sha256": "1362092e4220beaa7254f1b24a34a1686e0bee27b83e340e2255238971df2f3f"
+          "sha256": "6f9d2c16d8aeb2fc69953d4a5aced359612d82cc4a0c92d237b429b462cd943e"
         }
       ],
       "hooks": [
@@ -1025,7 +1025,7 @@
         "storage_max_objects": 262144,
         "timeout_secs": 7200
       },
-      "version": "2026.11.15"
+      "version": "2026.11.16"
     },
     {
       "about": {
@@ -1058,7 +1058,7 @@
         {
           "bytes": 18142,
           "path": "firewall.rhai",
-          "sha256": "ea89fbf7793feb9047327d315ac24af6249a81fc4191d2aeb1494666402de877"
+          "sha256": "d4180ef8cfd89309c47681ec6c77fd28d8fb415927d6b9029f10d08bbc3ae081"
         }
       ],
       "hooks": [
@@ -1083,7 +1083,7 @@
         "storage_max_objects": 262144,
         "timeout_secs": 7200
       },
-      "version": "2026.11.15"
+      "version": "2026.11.16"
     },
     {
       "about": {
@@ -1114,7 +1114,7 @@
         {
           "bytes": 15939,
           "path": "firmware-updates.rhai",
-          "sha256": "760da5d9e3ebcca4b7feac9d9687c93ad78acb3bf4fd203b1ea903396c5cd6c6"
+          "sha256": "c1429e7c0163fefd9466c26a53700d3114ea8d6a2024ab8b7b0acb5fb204098f"
         }
       ],
       "hooks": [
@@ -1139,7 +1139,7 @@
         "storage_max_objects": 262144,
         "timeout_secs": 7200
       },
-      "version": "2026.11.15"
+      "version": "2026.11.16"
     },
     {
       "about": {
@@ -1172,7 +1172,7 @@
         {
           "bytes": 11508,
           "path": "fonts-cjk.rhai",
-          "sha256": "7cbab2ed1468c974b83d94972438d14328faa88b56f3ce22c4c57a3f09c5b660"
+          "sha256": "192def687f5797dc57a84bb384047af26fb453bb290205a0daebfa5d5c6adab3"
         }
       ],
       "hooks": [
@@ -1197,7 +1197,7 @@
         "storage_max_objects": 262144,
         "timeout_secs": 7200
       },
-      "version": "2026.11.15"
+      "version": "2026.11.16"
     },
     {
       "about": {
@@ -1230,7 +1230,7 @@
         {
           "bytes": 12612,
           "path": "fonts-office.rhai",
-          "sha256": "a58484a3d12641acb6fc4688e8e0e98df7be16e97b6b99ad85d0df58613b41c4"
+          "sha256": "dd4e2dfd80705cdfe718da920dd82ff677bca28f1b556e4a46c9cd1886ad0e89"
         }
       ],
       "hooks": [
@@ -1255,7 +1255,7 @@
         "storage_max_objects": 262144,
         "timeout_secs": 7200
       },
-      "version": "2026.11.15"
+      "version": "2026.11.16"
     },
     {
       "about": {
@@ -1288,7 +1288,7 @@
         {
           "bytes": 13020,
           "path": "fonts.rhai",
-          "sha256": "a72d1441f900261e2c99213d3fa6bff892766c983b22a9cd889a6759caeaa0a3"
+          "sha256": "8a7f325a82762c2f70c6f3f4d1ee966a2f7a0ff872b85ed6800812c51d135550"
         }
       ],
       "hooks": [
@@ -1313,7 +1313,7 @@
         "storage_max_objects": 262144,
         "timeout_secs": 7200
       },
-      "version": "2026.11.15"
+      "version": "2026.11.16"
     },
     {
       "about": {
@@ -1502,7 +1502,7 @@
         {
           "bytes": 13870,
           "path": "graphics-drivers.rhai",
-          "sha256": "45d8592bc4457c67d98d99b2b88cb54dd3c316378193a4fc8f4ca090487ff98d"
+          "sha256": "08583a772e3c9c32a1a0c3cf7fb059bfe50ebfb9d086f1d9b60b2e49be72522d"
         }
       ],
       "hooks": [
@@ -1527,7 +1527,7 @@
         "storage_max_objects": 262144,
         "timeout_secs": 7200
       },
-      "version": "2026.11.15"
+      "version": "2026.11.16"
     },
     {
       "about": {
@@ -1667,7 +1667,7 @@
         {
           "bytes": 11196,
           "path": "kcalc.rhai",
-          "sha256": "f3c5c649de27785eb320f9be74ec1270a8ea0627d6070cf412b2a0204277d2e8"
+          "sha256": "864251e5e5e7c59bbcf119aff37fe458212f39d37cc5a0a91cdfaf2814dc9a3c"
         }
       ],
       "hooks": [
@@ -1692,7 +1692,7 @@
         "storage_max_objects": 262144,
         "timeout_secs": 7200
       },
-      "version": "2026.11.15"
+      "version": "2026.11.16"
     },
     {
       "about": {
@@ -1731,7 +1731,7 @@
         {
           "bytes": 24717,
           "path": "konsole.rhai",
-          "sha256": "dd16b6e81fc3dcb6536fc5dabb91cd5e60fd2c667675ffa2319937080da3144a"
+          "sha256": "9261e54fc2892c812256432162d0f8140a5f450d9d7bc27ac7d01af14128771b"
         }
       ],
       "hooks": [
@@ -1756,7 +1756,7 @@
         "storage_max_objects": 262144,
         "timeout_secs": 7200
       },
-      "version": "2026.11.15"
+      "version": "2026.11.16"
     },
     {
       "about": {
@@ -1795,7 +1795,7 @@
         {
           "bytes": 11279,
           "path": "kwrite.rhai",
-          "sha256": "518ee0fd819c0991404022c626d60f41ac835e0b3f4beb6153a864c6e5cff6d8"
+          "sha256": "aedee693271ac232973c7122ba0a3edd41abafcc3832c883d456023c8e19d187"
         }
       ],
       "hooks": [
@@ -1820,7 +1820,7 @@
         "storage_max_objects": 262144,
         "timeout_secs": 7200
       },
-      "version": "2026.11.15"
+      "version": "2026.11.16"
     },
     {
       "about": {
@@ -1850,7 +1850,7 @@
         {
           "bytes": 57194,
           "path": "lib32.rhai",
-          "sha256": "e042cb1378f4278d7811e5817223cd020e22788f5a8d7fe9320a0088d87cc930"
+          "sha256": "46ca82b9591ac79bde281bc347538ee14f3a82faa4bb05515827edac87ca38ac"
         }
       ],
       "hooks": [
@@ -1874,7 +1874,7 @@
         "storage_max_objects": 262144,
         "timeout_secs": 7200
       },
-      "version": "2026.11.15"
+      "version": "2026.11.16"
     },
     {
       "about": {
@@ -1905,7 +1905,7 @@
         {
           "bytes": 16478,
           "path": "login-screen.rhai",
-          "sha256": "d9d9e652dc9d95bd6a544de0e5d566fce73f19c6909a57fdaa9c7cdfe74acdb1"
+          "sha256": "8852fd1d68758cd06febffe33c25d46cd0488d3667cb44bffed7cad894c34348"
         }
       ],
       "hooks": [
@@ -1930,7 +1930,7 @@
         "storage_max_objects": 262144,
         "timeout_secs": 7200
       },
-      "version": "2026.11.15"
+      "version": "2026.11.16"
     },
     {
       "about": {
@@ -1969,7 +1969,7 @@
         {
           "bytes": 10930,
           "path": "lximage-qt.rhai",
-          "sha256": "d7e208464292f4eb60af1f310d931693fe242d17d18e9c6ea81fc031d4ea663b"
+          "sha256": "11fd0a2d4940096fa66779ccf4002e97201a079eb3de4b82736660bd2ee0fb34"
         }
       ],
       "hooks": [
@@ -1994,7 +1994,7 @@
         "storage_max_objects": 262144,
         "timeout_secs": 7200
       },
-      "version": "2026.11.15"
+      "version": "2026.11.16"
     },
     {
       "about": {
@@ -2033,7 +2033,7 @@
         {
           "bytes": 11443,
           "path": "lxqt-archiver.rhai",
-          "sha256": "ea793348e8ca4ea1c2f912257906297acafd400c189744da47de9871f5936fc1"
+          "sha256": "365868017b84a4600b1d6793d009e10bdcd5c64702d553ecf7fb7fe379ce33fc"
         }
       ],
       "hooks": [
@@ -2058,7 +2058,7 @@
         "storage_max_objects": 262144,
         "timeout_secs": 7200
       },
-      "version": "2026.11.15"
+      "version": "2026.11.16"
     },
     {
       "about": {
@@ -2093,7 +2093,7 @@
         {
           "bytes": 57826,
           "path": "lxqt.rhai",
-          "sha256": "700a299763de6000ef4350fab20217a702c369cd26443bd06356fd8302cabec6"
+          "sha256": "23fe1d067f9837be2bd862e49e8415cca1e4b429f9bcc594793c7291649ca8b9"
         }
       ],
       "hooks": [
@@ -2118,7 +2118,7 @@
         "storage_max_objects": 262144,
         "timeout_secs": 7200
       },
-      "version": "2026.11.15"
+      "version": "2026.11.16"
     },
     {
       "about": {
@@ -2149,7 +2149,7 @@
         {
           "bytes": 13126,
           "path": "manuals.rhai",
-          "sha256": "595b183327ab9397b83c1a13ca1eb48bea1f1f451687fb341392ce569d303978"
+          "sha256": "61a3b1a9c4c91770fe25dca83865b9a57f1b1ea9b28d4f62cf66826c22c2c1c5"
         }
       ],
       "hooks": [
@@ -2174,7 +2174,7 @@
         "storage_max_objects": 262144,
         "timeout_secs": 7200
       },
-      "version": "2026.11.15"
+      "version": "2026.11.16"
     },
     {
       "about": {
@@ -2268,7 +2268,7 @@
         {
           "bytes": 13350,
           "path": "mousepad.rhai",
-          "sha256": "302cd3b4172d02d53ab6483414c31691858d7265b5179cfd48c85b9a6f22908d"
+          "sha256": "8f664322712f97740007f4aa9ff826f156e285aa3ff33c7b2ec51b876afe1866"
         }
       ],
       "hooks": [
@@ -2293,7 +2293,7 @@
         "storage_max_objects": 262144,
         "timeout_secs": 7200
       },
-      "version": "2026.11.15"
+      "version": "2026.11.16"
     },
     {
       "about": {
@@ -2380,7 +2380,7 @@
         {
           "bytes": 16457,
           "path": "network-ui.rhai",
-          "sha256": "bbbd560edcaa7e09a0bc1d4019880c7c4a757e0648c76024f797bae9ac7ae92e"
+          "sha256": "0df3514e4f16a847b252b0ec020e1edfc7adc03bafbacba6125dbcbd92735c18"
         }
       ],
       "hooks": [
@@ -2405,7 +2405,7 @@
         "storage_max_objects": 262144,
         "timeout_secs": 7200
       },
-      "version": "2026.11.15"
+      "version": "2026.11.16"
     },
     {
       "about": {
@@ -2438,7 +2438,7 @@
         {
           "bytes": 16153,
           "path": "network.rhai",
-          "sha256": "878d1af16ec86b2df424b65b186638e643e12ee7c3951a6b1bae1940611396d0"
+          "sha256": "7d94d664d655a6542539a69eb6fc61f556514efc37da13286ad82424c25b64c3"
         }
       ],
       "hooks": [
@@ -2463,7 +2463,7 @@
         "storage_max_objects": 262144,
         "timeout_secs": 7200
       },
-      "version": "2026.11.15"
+      "version": "2026.11.16"
     },
     {
       "about": {
@@ -2607,7 +2607,7 @@
         {
           "bytes": 11289,
           "path": "pavucontrol-qt.rhai",
-          "sha256": "2cc8c2c7ab4d4fda714f97811fc637d3fdbacd151879edb7ed5c7fbfe4068119"
+          "sha256": "d0a30076f574ff683190061eb07cf6fd672fb354ada2f22a6174a4e3e21f5e90"
         }
       ],
       "hooks": [
@@ -2632,7 +2632,7 @@
         "storage_max_objects": 262144,
         "timeout_secs": 7200
       },
-      "version": "2026.11.15"
+      "version": "2026.11.16"
     },
     {
       "about": {
@@ -2671,7 +2671,7 @@
         {
           "bytes": 23831,
           "path": "pcmanfm-qt.rhai",
-          "sha256": "d870eb8c898d4dcf64030b5048896c82dcba886b115f34ddc7ada1651f23d8a0"
+          "sha256": "37bc34113f8a7623c5c33eccc154bd107e408074acb4cd87ae9f34caf4346ce4"
         }
       ],
       "hooks": [
@@ -2696,7 +2696,7 @@
         "storage_max_objects": 262144,
         "timeout_secs": 7200
       },
-      "version": "2026.11.15"
+      "version": "2026.11.16"
     },
     {
       "about": {
@@ -2792,7 +2792,7 @@
         {
           "bytes": 11301,
           "path": "plasma-systemmonitor.rhai",
-          "sha256": "3f61c7bc0f0d871c2664c1467e1e41ac1ceef3293cdadcd0e3b7365421017460"
+          "sha256": "d4bbcee1cdac00674a35ddc4faed167955b2126dfd9b8700b34eb7d971255f48"
         }
       ],
       "hooks": [
@@ -2817,7 +2817,7 @@
         "storage_max_objects": 262144,
         "timeout_secs": 7200
       },
-      "version": "2026.11.15"
+      "version": "2026.11.16"
     },
     {
       "about": {
@@ -2851,7 +2851,7 @@
         {
           "bytes": 96255,
           "path": "plasma.rhai",
-          "sha256": "40855e56a5462535d5617bb05bee9d372d373388616743c52f63add15f2ad259"
+          "sha256": "ff00a51082ae61eef382dc9139437778e1938ce7205fdd0574df784568e0fdf8"
         }
       ],
       "hooks": [
@@ -2876,7 +2876,7 @@
         "storage_max_objects": 262144,
         "timeout_secs": 7200
       },
-      "version": "2026.11.15"
+      "version": "2026.11.16"
     },
     {
       "about": {
@@ -2913,7 +2913,7 @@
         {
           "bytes": 12307,
           "path": "print-manager.rhai",
-          "sha256": "343de4b8ce328600c45c828ead185fa0789344357a77b19f10eedf26f0daf5bb"
+          "sha256": "8122303ccf4e12a5b0d309e5d68fd6ffff8a0a1eb90cbaa2b6c3523a03cb4a85"
         }
       ],
       "hooks": [
@@ -2938,7 +2938,7 @@
         "storage_max_objects": 262144,
         "timeout_secs": 7200
       },
-      "version": "2026.11.15"
+      "version": "2026.11.16"
     },
     {
       "about": {
@@ -2971,7 +2971,7 @@
         {
           "bytes": 33353,
           "path": "printing.rhai",
-          "sha256": "5a598a0974ecbf7527d8b243086c914a2929a732b5315541281bf48413bf0f9b"
+          "sha256": "e8a317baec8883a2a439164219433d58552d9aa28e7bbe6781fed9688e08629d"
         }
       ],
       "hooks": [
@@ -2996,7 +2996,7 @@
         "storage_max_objects": 262144,
         "timeout_secs": 7200
       },
-      "version": "2026.11.15"
+      "version": "2026.11.16"
     },
     {
       "about": {
@@ -3082,7 +3082,7 @@
         {
           "bytes": 12261,
           "path": "qalculate-qt.rhai",
-          "sha256": "74df4c3bd428ba0c93dd077836977086249f4a6ac52b2130b9384e038b99f905"
+          "sha256": "392a8b5e994e7c3e9285af11b4888850c32c081333cf417c34c187e4e3da30a8"
         }
       ],
       "hooks": [
@@ -3107,7 +3107,7 @@
         "storage_max_objects": 262144,
         "timeout_secs": 7200
       },
-      "version": "2026.11.15"
+      "version": "2026.11.16"
     },
     {
       "about": {
@@ -3146,7 +3146,7 @@
         {
           "bytes": 10871,
           "path": "qps.rhai",
-          "sha256": "91757983e00a45d9e6701845a9dae078aa71deb77bb1522b1e7e946a961cffdc"
+          "sha256": "a99e16c3a58952c6fd019726effc9a0b066384f4940af7fb9c4639e6daf51073"
         }
       ],
       "hooks": [
@@ -3171,7 +3171,7 @@
         "storage_max_objects": 262144,
         "timeout_secs": 7200
       },
-      "version": "2026.11.15"
+      "version": "2026.11.16"
     },
     {
       "about": {
@@ -3210,7 +3210,7 @@
         {
           "bytes": 23431,
           "path": "qterminal.rhai",
-          "sha256": "634d30235e78a36bbf3f250fee6f127295fb95f76352b8c8d266653ccadd4a7d"
+          "sha256": "686059b803474ad2bfae069b84af4d7c521dc509d3f2843c38adefbf09b20835"
         }
       ],
       "hooks": [
@@ -3235,7 +3235,7 @@
         "storage_max_objects": 262144,
         "timeout_secs": 7200
       },
-      "version": "2026.11.15"
+      "version": "2026.11.16"
     },
     {
       "about": {
@@ -3438,7 +3438,7 @@
         {
           "bytes": 24036,
           "path": "screen-reader.rhai",
-          "sha256": "ab1479b8f792e5b023c000d2b7fe252d6b812dbc46d00fc73b61bd6976a3df72"
+          "sha256": "1be3d4db06066785c541ff1975efcdfa5741800ef63afaa7a928dfc1dc1cb3eb"
         }
       ],
       "hooks": [
@@ -3463,7 +3463,7 @@
         "storage_max_objects": 262144,
         "timeout_secs": 7200
       },
-      "version": "2026.11.15"
+      "version": "2026.11.16"
     },
     {
       "about": {
@@ -3502,7 +3502,7 @@
         {
           "bytes": 10945,
           "path": "screengrab.rhai",
-          "sha256": "cdc019d407ba776a6897bd5b98cc882c3125de00240f99b50ce57eca9ac213a2"
+          "sha256": "d79737d767b66fd8a1ff4102a2e7df635d2e24b81b0fecbcd623b4ca2240492a"
         }
       ],
       "hooks": [
@@ -3527,7 +3527,7 @@
         "storage_max_objects": 262144,
         "timeout_secs": 7200
       },
-      "version": "2026.11.15"
+      "version": "2026.11.16"
     },
     {
       "about": {
@@ -3566,7 +3566,7 @@
         {
           "bytes": 42699,
           "path": "simple-scan.rhai",
-          "sha256": "85190afe5b60265550f77620d02c18cf9f7774e310dedbd1f12f483e3fd27641"
+          "sha256": "379be9b10b47f8cb2853c176849b67b1155ec086c567c702d8a87e52b72a853e"
         }
       ],
       "hooks": [
@@ -3591,7 +3591,7 @@
         "storage_max_objects": 262144,
         "timeout_secs": 7200
       },
-      "version": "2026.11.15"
+      "version": "2026.11.16"
     },
     {
       "about": {
@@ -3630,7 +3630,7 @@
         {
           "bytes": 14091,
           "path": "skanlite.rhai",
-          "sha256": "620250809689011725bdf912c43c9e4efc8d5f5bb2720702591b7dab3b281cc7"
+          "sha256": "06311ea493caef412412a430c369395663d4305bdc52c284074c7082c5a80c3b"
         }
       ],
       "hooks": [
@@ -3655,7 +3655,7 @@
         "storage_max_objects": 262144,
         "timeout_secs": 7200
       },
-      "version": "2026.11.15"
+      "version": "2026.11.16"
     },
     {
       "about": {
@@ -3694,7 +3694,7 @@
         {
           "bytes": 12119,
           "path": "spectacle.rhai",
-          "sha256": "724e687aa8714f7e2934db2b783ea46220f94ba120518573db42ff971457f0f3"
+          "sha256": "9bb044e92c8eae37b8f37ffbd03b33ac0f682d3ab39ffcd38718f5c4044517ee"
         }
       ],
       "hooks": [
@@ -3719,7 +3719,7 @@
         "storage_max_objects": 262144,
         "timeout_secs": 7200
       },
-      "version": "2026.11.15"
+      "version": "2026.11.16"
     },
     {
       "about": {
@@ -3750,7 +3750,7 @@
         {
           "bytes": 18047,
           "path": "spelling.rhai",
-          "sha256": "1de7d9833b3d57349cdd47bb0973e679f3bbba15b44a597cbf94d77e4b1e797c"
+          "sha256": "cd976a6f0ae000ffd5202b743064cab5d4c8722cb9b3dc816100c9a16b2396ba"
         }
       ],
       "hooks": [
@@ -3775,7 +3775,7 @@
         "storage_max_objects": 262144,
         "timeout_secs": 7200
       },
-      "version": "2026.11.15"
+      "version": "2026.11.16"
     },
     {
       "about": {
@@ -3816,7 +3816,7 @@
         {
           "bytes": 20876,
           "path": "steam.rhai",
-          "sha256": "3986658b680a6bcd83456a6d1b158d181658afacf1f5c8a02b0497374fe9b71b"
+          "sha256": "1f6d586eefc7d79e76425b8d3580751e6d8b228b01ce0c23eee0d50e3a21c41e"
         }
       ],
       "hooks": [
@@ -3841,7 +3841,7 @@
         "storage_max_objects": 262144,
         "timeout_secs": 7200
       },
-      "version": "2026.11.15"
+      "version": "2026.11.16"
     },
     {
       "about": {
@@ -3874,7 +3874,7 @@
         {
           "bytes": 17082,
           "path": "thumbnailers.rhai",
-          "sha256": "a6c83d0702feef45465f6cd73d8d947657cdc808ebf9393bfd4f0e753bcf6863"
+          "sha256": "a5e72fc30756e95b08e869c37cf76c1747a5d0ee91570c6c889970ea09cb6d63"
         }
       ],
       "hooks": [
@@ -3899,7 +3899,7 @@
         "storage_max_objects": 262144,
         "timeout_secs": 7200
       },
-      "version": "2026.11.15"
+      "version": "2026.11.16"
     },
     {
       "about": {
@@ -3932,7 +3932,7 @@
         {
           "bytes": 11844,
           "path": "thunderbolt.rhai",
-          "sha256": "a198ed7f4bcc675b25be894eec159910b3d8d0516a6857e09907884a0f705773"
+          "sha256": "c901c6e6c9fb0e1cb5ad4982fa5d54259c2552b6bcffaf30c5709ccf153effe6"
         }
       ],
       "hooks": [
@@ -3957,7 +3957,7 @@
         "storage_max_objects": 262144,
         "timeout_secs": 7200
       },
-      "version": "2026.11.15"
+      "version": "2026.11.16"
     },
     {
       "about": {
@@ -4046,7 +4046,7 @@
         {
           "bytes": 12695,
           "path": "vm-guest.rhai",
-          "sha256": "3b78de27eac1fc0d25ea31c274c8b1b814cef42f96cd51bfe90d771d3a4bc589"
+          "sha256": "afd3d175cac6d6a7f3330ec521a26786fbfa6ad38ffc1d6e65405b19543c6bb4"
         }
       ],
       "hooks": [
@@ -4071,7 +4071,7 @@
         "storage_max_objects": 262144,
         "timeout_secs": 7200
       },
-      "version": "2026.11.15"
+      "version": "2026.11.16"
     },
     {
       "about": {
@@ -4102,7 +4102,7 @@
         {
           "bytes": 17529,
           "path": "xlibre.rhai",
-          "sha256": "1e579fcd27ca785fadec49bc5b7d3137ebd3c4ca5cdb7bb86dfa1d6f9c3ea1e9"
+          "sha256": "05a48324da950de6b52e31b6d8447495264897e9ff1dde6b5b3d1191fb878ca7"
         }
       ],
       "hooks": [
@@ -4130,7 +4130,7 @@
         "storage_max_objects": 262144,
         "timeout_secs": 7200
       },
-      "version": "2026.11.15"
+      "version": "2026.11.16"
     },
     {
       "about": {
