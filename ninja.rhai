@@ -1,10 +1,6 @@
+const RECIPE_API = 1;
 // Archive SHA-256: GitHub release-asset digest, independently verified on 2026-11-11.
 // COPYING is the pinned upstream licence text, hashed on 2026-11-11.
-// FILE_SHA256 pins every installed regular file from these verified archives.
-const RECIPE_API = 2;
-const FILE_SHA256 = `607e668f90dd6cd82e1a42ae572647ad1b1fd43063964295b9547836d8c15d99  bin/ninja
-eb7e9ab9690124c5c9f42bdc81383d886a3dede26345b6ed15bbad7caf81f7ea  share/licenses/ninja/COPYING
-`;
 const NEEDS = #{
     outputs: #{ tools: "directory" },
     network: ["github.com:443", "release-assets.githubusercontent.com:443", "raw.githubusercontent.com:443"],
@@ -22,105 +18,27 @@ const ABOUT = #{
     homepage: "https://ninja-build.org",
     license: "Apache-2.0",
     steps: #{
-        acquire: "Downloads the pinned toolchain files and checks their SHA-256 values.",
-        build: "Extracts the release and checks every regular file against the committed payload manifest.",
+        download: "Downloads the pinned toolchain files and checks their SHA-256 values.",
         install: "Publishes a private tools directory for recipes that name this under build_deps.",
     },
 };
 
-let ctx = #{
-    name: "ninja",
-    version: "1.13.2",
-    description: "Ninja build runner",
-    downloads: join_path(RUNTIME.paths.build, "downloads"),
-    unpacked: join_path(RUNTIME.paths.build, "unpacked"),
-    tools: join_path(RUNTIME.paths.output, "tools"),
-    manifest: join_path(RUNTIME.paths.temp, "ninja.sha256"),
-    manifest_sha256: "a80e2e5bc28fe03b6c663026bdee53c6da1dbe486766b59ef69d271ae543af96",
-    source_subdir: "",
-    probe: "bin/ninja",
-    sources: [
-        #{ url: "https://github.com/ninja-build/ninja/releases/download/v1.13.2/ninja-linux.zip",
-           archive: "ninja-linux.zip", sha256: "5749cbc4e668273514150a80e387a957f933c6ed3f5f11e03fb30955e2bbead6",
-           format: "zip", destination: "" },
-        #{ url: "https://raw.githubusercontent.com/ninja-build/ninja/v1.13.2/COPYING",
-           archive: "COPYING", sha256: "eb7e9ab9690124c5c9f42bdc81383d886a3dede26345b6ed15bbad7caf81f7ea",
-           format: "file", destination: "share/licenses/ninja/COPYING" },
-    ],
+const PACKAGE = #{ name: "ninja", version: "1.13.2", description: "Ninja build runner" };
+const UPSTREAM = #{ github: "ninja-build/ninja", prefix: "v" };
+
+const SOURCES = #{
+    release: #{
+        url: "https://github.com/ninja-build/ninja/releases/download/v1.13.2/ninja-linux.zip",
+        sha256: "5749cbc4e668273514150a80e387a957f933c6ed3f5f11e03fb30955e2bbead6",
+    },
+    licence: #{
+        url: "https://raw.githubusercontent.com/ninja-build/ninja/v1.13.2/COPYING",
+        sha256: "eb7e9ab9690124c5c9f42bdc81383d886a3dede26345b6ed15bbad7caf81f7ea",
+    },
 };
-// Setup stages the literal payload manifest in owned temporary storage.
-write_file(ctx.manifest, FILE_SHA256);
 
-fn check_payload(ctx, root) {
-    if !is_file(join_path(root, ctx.probe)) {
-        return needs_work(ctx, "missing " + ctx.name + " toolchain");
-    }
-    verify_sha256(ctx.manifest, ctx.manifest_sha256);
-    for line in read_file(ctx.manifest).split("\n") {
-        if line.trim() == "" { continue; }
-        let hex = line.sub_string(0, 64);
-        let path = line.sub_string(66);
-        verify_sha256(join_path(root, path), hex);
-    }
-    ready(ctx)
-}
-
-fn is_acquired(ctx) {
-    for source in ctx.sources {
-        let path = join_path(ctx.downloads, source.archive);
-        if !is_file(path) { return needs_work(ctx, "download " + source.archive); }
-        verify_sha256(path, source.sha256);
-    }
-    ready(ctx)
-}
-fn acquire(ctx) {
-    mkdir(ctx.downloads);
-    for source in ctx.sources {
-        download(source.url, join_path(ctx.downloads, source.archive), source.sha256);
-    }
-    ctx
-}
-fn is_built(ctx) {
-    check_payload(ctx, join_path(ctx.unpacked, ctx.source_subdir))
-}
-fn build(ctx) {
-    if exists(ctx.unpacked) { rm(ctx.unpacked); }
-    mkdir(ctx.unpacked);
-    for source in ctx.sources {
-        let archive = join_path(ctx.downloads, source.archive);
-        verify_sha256(archive, source.sha256);
-        if source.format == "rpm" {
-            target_extract_rpm(archive, ctx.unpacked);
-        } else if source.format == "file" {
-            let destination = join_path(ctx.unpacked, source.destination);
-            mkdir(dirname(destination));
-            copy_file(archive, destination);
-        } else {
-            extract_with_format(archive, ctx.unpacked, source.format);
-        }
-    }
-    mkdir(join_path(ctx.unpacked, "bin"));
-    copy_file(join_path(ctx.unpacked, "ninja"), join_path(ctx.unpacked, "bin/ninja"));
-    chmod(join_path(ctx.unpacked, "bin/ninja"), 0o755);
-    rm(join_path(ctx.unpacked, "ninja"));
-    ctx
-}
-fn is_installed(ctx) {
-    if !is_file(join_path(ctx.tools, ctx.probe)) {
-        return needs_work(ctx, "publish " + ctx.name + " tools");
-    }
-    ctx.outputs.tools = ctx.tools;
-    check_payload(ctx, ctx.tools)
-}
-fn install(ctx) {
-    if exists(ctx.tools) { rm(ctx.tools); }
-    mkdir(ctx.tools);
-    copy_tree_contents(join_path(ctx.unpacked, ctx.source_subdir), ctx.tools);
-    ctx.outputs.tools = ctx.tools;
-    ctx
-}
-fn remove(ctx) {
-    if exists(ctx.tools) { rm(ctx.tools); }
-    ctx.outputs = #{};
-    ctx
-}
+// The release is one program at its top; the licence is a plain file.
+const FILES = [
+    ["release/ninja", "bin/ninja", 0o755],
+    ["licence",       "share/licenses/ninja/COPYING"],
+];
