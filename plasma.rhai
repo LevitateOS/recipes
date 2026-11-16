@@ -41,26 +41,23 @@ const PACKAGE = #{ name: "plasma", description: "The KDE Plasma desktop on Wayla
 
 // What this group installs, by name; the generator adds what they need.
 // glibc: LevitateOS (Fedora 45). musl: AcornOS (Alpine 3.24).
+// kf6-kimageformats: the image formats KDE's programs and thumbnails read
+// beyond Qt's own (AVIF and others).
 const PACKAGES = #{
     glibc: [
         "plasma-desktop", "plasma-workspace", "kwin", "xorg-x11-server-Xwayland", "plasma-pa",
         "powerdevil", "kscreen", "kinfocenter", "kde-gtk-config", "breeze-gtk",
         "xdg-desktop-portal-kde", "polkit-kde", "kwalletmanager5", "pam-kwallet", "upower",
-        "power-profiles-daemon", "udisks2", "sddm", "sddm-breeze", "sddm-wayland-plasma"
+        "power-profiles-daemon", "udisks2", "kf6-kimageformats"
     ],
 };
 
 let deps = ["desktop-libs", "audio", "fonts", "spelling"];
 
-fn wallpaper_path(os) {
-    "/usr/share/wallpapers/" + os.name + (if os.appearance == "dark" { "/contents/images_dark/3840x2160.jpg" } else { "/contents/images/3840x2160.jpg" })
-}
-
 // What the OS builder's desktop policy did for Plasma, moved here so it goes
-// with Plasma: boot to SDDM (display-manager.service) with KDE's Breeze theme
-// and the OS's wallpaper behind it, power profiles at boot, Recipe as the
-// software app on the panel and in the menu's favourites (Discover is not
-// shipped), the default applications, the look (colour schemes from the OS's
+// with Plasma: power profiles at boot, Recipe as the software app on the
+// panel and in the menu's favourites (Discover is not shipped), the default
+// applications, the look (colour schemes from the OS's
 // palettes, the Global Theme of the starting mode, Breeze icons and cursor),
 // the OS's mark on the start button, the OS's wallpaper as Plasma's default,
 // and what a user at the machine may do without the administrator's
@@ -69,24 +66,9 @@ fn wallpaper_path(os) {
 fn configure(tree) {
     let os = os_facts::of(PACKAGE_FORMAT);
     let mode = os.appearance;
-    // Boot into SDDM, which takes the first virtual console from its getty.
-    let sddm = "usr/lib/systemd/system/sddm.service";
-    tree_text(tree, sddm);
-    put_link(tree, "etc/systemd/system/display-manager.service", "/" + sddm);
-    put_link(tree, "etc/systemd/system/getty@tty1.service", "/dev/null");
     enable_service(tree, "power-profiles-daemon.service", "");
     // Nothing provides the Unity GTK module its user unit starts.
     put_link(tree, "etc/systemd/user/unity-gtk-module.service", "/dev/null");
-
-    // The login screen: KDE's Breeze theme (Fedora's copy, with Fedora's logo,
-    // is not offered), the starting mode's wallpaper and surface colour.
-    let themes = "usr/share/sddm/themes/";
-    tree_text(tree, themes + "breeze/theme.conf");
-    let p = look::palette(os, mode);
-    put(tree, themes + "breeze/theme.conf.user", "[General]\nbackground=" + wallpaper_path(os) + "\ncolor=" + p.surface + "\n", 0o644);
-    let fedora = join_path(tree, themes + "01-breeze-fedora");
-    if exists(fedora) { rm(fedora); }
-    put(tree, "etc/sddm.conf.d/10-theme.conf", "[Theme]\nCurrent=breeze\nCursorTheme=breeze_cursors\n", 0o644);
 
     // The default application for each kind of file.
     let apps = #{ browser: "org.mozilla.firefox.desktop", files: "org.kde.dolphin.desktop", text: "org.kde.kwrite.desktop",

@@ -40,10 +40,11 @@ const ABOUT = #{
 const PACKAGE = #{ name: "lxqt", description: "The LXQt desktop on X11" };   // version: lxqt.pins
 
 // What this group installs, by name; the generator adds what they need.
-// glibc: LevitateOS (Fedora 45). musl: AcornOS (Alpine 3.24).
+// glibc: LevitateOS (Fedora 45). musl: AcornOS (Alpine 3.24). upower: LXQt's
+// power management and battery display talk to it.
 const PACKAGES = #{
     musl: [
-        "lxqt-desktop", "picom", "gvfs", "gvfs-mtp", "gvfs-gphoto2", "gvfs-smb", "gvfs-nfs", "udisks2",
+        "lxqt-desktop", "picom", "gvfs", "gvfs-mtp", "gvfs-gphoto2", "gvfs-smb", "gvfs-nfs", "udisks2", "upower",
         "xdg-desktop-portal", "xdg-desktop-portal-lxqt", "setxkbmap", "xrandr", "dbus-x11",
         "adwaita-icon-theme", "breeze-icons"
     ],

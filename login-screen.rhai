@@ -1,91 +1,163 @@
 const RECIPE_API = 1;
-// login-screen: a Recipe group, installed into the system root (`recipe --system install login-screen`)
-// with a receipt, so it can be removed or replaced like any other recipe. It is
-// a share of the packages the OS images shipped burned in until now: the same
-// builds, pinned to the base and desktop locks of each OS.
+// login-screen: reclogin, the login screen of LevitateOS and AcornOS, as a
+// Recipe group installed into the system root (`recipe --system install
+// login-screen`) with a receipt, so it can be removed or replaced like any
+// other group. Removed, the machine starts to its text logins.
 //
-// Hand-written: ABOUT, the seeds per C library, the accounts and the groups it
-// needs (deps). Generated: login-screen.pins beside this file (the pinned packages and
-// the group's version), written by `cargo xtask base groups levitate` (glibc:
-// Fedora RPMs) and `cargo xtask base groups acorn` (musl: Alpine APKs) from the
-// seeds below. A package more than one group needs belongs to desktop-libs.
+// It names no packages (no PACKAGES, no pins file), so `cargo xtask base
+// groups` leaves it alone, as it leaves rec-apps.
+//
+// The programs and their files are the OS builder's pinned prebuilt tree (the
+// LevitateOS/prebuilt release `login-screen-<key16>` that `prebuilt publish
+// login-screen <distro>` makes from tools/reclogin), compiled in each OS's own
+// apps-build root against the libpam, libinput and libxkbcommon that OS
+// ships: one archive per C library. The SOURCES below follow the newest
+// published key; when reclogin or the libraries it is built against change, a
+// new key is published and these sources must be moved to it (by hand: nothing
+// generates them).
+//
+// The libraries it links: libpam is in the base on both systems; libinput,
+// libxkbcommon (with the keymaps of xkeyboard-config) come with desktop-libs.
 const NEEDS = #{
     outputs: #{ system: "directory" },
-    network: ["dl.fedoraproject.org:443", "dl-cdn.alpinelinux.org:443"],
-    memory_mib: 4096,
-    storage_max_objects: 262144,
-    timeout_secs: 7200,
+    network: ["github.com:443", "release-assets.githubusercontent.com:443", "objects.githubusercontent.com:443"],
+    // Two stripped programs, the fonts and the background: the larger
+    // archive (glibc, 5525296 bytes), rounded up.
+    network_max_bytes: 6291456,
+    timeout_secs: 1800,
 };
-
-import "os-facts.rhai" as os_facts;
 
 const ABOUT = #{
     kind: "system",
     category: "utilities",
-    libc: ["musl"],
-    systems: ["acornos"],
-    details: "SDDM, the graphical login screen; on LevitateOS with Plasma's Breeze theme and Wayland greeter. It lists whatever sessions the installed desktops provide.",
-    homepage: "https://github.com/sddm/sddm",
-    license: "GPL-2.0-or-later",
+    libc: ["glibc", "musl"],
+    systems: ["levitateos", "acornos"],
+    details: "reclogin, the login screen: it lists the people who use this computer, asks for the password through the system's own login rules, and starts the desktop they choose. It draws straight to the screen, on console 7; the text logins on consoles 1 to 6 stay. Removing it leaves the text logins.",
+    homepage: "https://github.com/LevitateOS/reclogin",
+    license: "(MIT OR Apache-2.0) AND OFL-1.1",
     steps: #{
-        download: "Takes each pinned package by its SHA-256, from the install medium's cache or the distribution's mirror.",
-        install: "Unpacks the packages natively into one system tree, without running their scripts, and writes it into the system root with a receipt.",
+        download: "Downloads the pinned prebuilt archive for this system's C library and checks its SHA-256.",
+        build: "Unpacks it and keeps the two programs, the login rules (PAM), the settings file, the service, the accounts, the brand files and the guest session's files.",
+        install: "Publishes the system tree for Recipe to write into the system root, with a receipt, and starts the login screen at boot.",
     },
     keeps: [],
 };
 
-const PACKAGE = #{ name: "login-screen", description: "The SDDM login screen" };   // version: login-screen.pins
-
-// What this group installs, by name; the generator adds what they need.
-// musl: AcornOS (Alpine 3.24) only; on LevitateOS SDDM is part of plasma, so
-// there are no glibc seeds and no glibc build.
-const PACKAGES = #{ musl: ["sddm"] };
-
-// Accounts the packages' files or daemons need that their own
-// usr/lib/sysusers.d does not make (sysusers.d `g`/`u` lines). Alpine packages
-// make theirs in install scripts, which never run, so the lines are written
-// here from those scripts.
-const ACCOUNTS = #{
-    musl: ["g sddm -", "u sddm - 'SDDM display manager' /var/lib/sddm /sbin/nologin", "m sddm video"],
-};
+const PACKAGE = #{ name: "login-screen", version: "2026.11.16", description: "reclogin, the login screen" };
 
 let deps = ["desktop-libs"];
 
-// The login screen on AcornOS (on LevitateOS SDDM is part of plasma): SDDM
-// starts at boot after dbus and elogind; SDDM's own Maldives theme under the
-// OS's name (Alpine's copy does not say it is for the Qt 6 greeter, the only
-// one Alpine has) with the starting mode's wallpaper (the base's file) and
-// the Adwaita cursor. Alpine's sddm service waits in start_post for the
-// greeter's runtime directory, which an autologin never makes; its conf.d,
-// sourced before the service script, makes that wait succeed.
-fn configure(tree) {
-    let os = os_facts::of(PACKAGE_FORMAT);
-    let background = "/usr/share/wallpapers/" + os.name + (if os.appearance == "dark" { "/contents/images_dark/3840x2160.jpg" } else { "/contents/images/3840x2160.jpg" });
-    let themes = "usr/share/sddm/themes/";
-    let theme = os.id;
-    let packaged = themes + "maldives/";
-    let meta = tree_text(tree, packaged + "metadata.desktop");
-    for file in ["Main.qml", "angle-down.png", "rectangle.png"] {
-        mkdir(join_path(tree, themes + theme));
-        copy_file(join_path(tree, packaged + file), join_path(tree, themes + theme + "/" + file));
-        target_mode(tree, themes + theme + "/" + file, 0o644);
+// One prebuilt archive per C library: the release asset and the digest GitHub
+// publishes for it. The source is fetched only on the system whose C library
+// it names (`libc`): glibc from `prebuilt publish login-screen levitate`,
+// musl from `... acorn`. The archive holds the tree at its root (etc/, usr/),
+// so nothing is left out when it is unpacked (strip: false).
+const SOURCES = #{
+    glibc: #{
+        url: "https://github.com/LevitateOS/prebuilt/releases/download/login-screen-86d815752d902d81/login-screen-levitate.tar.gz",
+        sha256: "e0317266c250ed8ba67c98043d56dca1be58f302fd72f903c189cfe813849947",
+        strip: false,
+        libc: "glibc",
+    },
+    musl: #{
+        url: "https://github.com/LevitateOS/prebuilt/releases/download/login-screen-ffd914bc27cad91d/login-screen-acorn.tar.gz",
+        sha256: "9d029420be4574f2572f946e116c24018e98a316c5ed848b9d152d6417bdd4b9",
+        strip: false,
+        libc: "musl",
+    },
+};
+
+// The account the greeter runs as, and the guest account (fixed uid and gid
+// 60600, locked, home in memory at /run/reclogin/guest: reclogind uses it only
+// when it is exactly this). The tree's usr/lib/sysusers.d/reclogin.conf makes
+// them too (Recipe reads a change's own sysusers.d); a line made twice is
+// made once. Same lines as tools/reclogin/dist/sysusers/reclogin.conf. The
+// same on both systems.
+const ACCOUNTS = #{
+    glibc: [
+        "u reclogin - 'reclogin login screen' - -",
+        "g guest 60600",
+        "u guest 60600:60600 'Guest' /run/reclogin/guest /bin/bash",
+        "u reclogin-sweep 60601 'reclogin guest sweep' - -",
+    ],
+    musl: [
+        "u reclogin - 'reclogin login screen' - -",
+        "g guest 60600",
+        "u guest 60600:60600 'Guest' /run/reclogin/guest /bin/bash",
+        "u reclogin-sweep 60601 'reclogin guest sweep' - -",
+    ],
+};
+
+// What the system tree takes from the prebuilt tree: [path, mode], the
+// builder's list (distro/builder/os-recipes/reclogin.rhai, installed_files)
+// for this system's init. Paths are written out in full: a computed constant
+// is not visible inside build. The display-manager link (systemd) and the
+// runlevel link (OpenRC) are made in build.
+const PLACED = [
+    ["usr/bin/reclogind", 0o755],
+    ["usr/bin/reclogin-greeter", 0o755],
+    ["etc/pam.d/reclogin", 0o644],
+    ["etc/pam.d/reclogin-autologin", 0o644],
+    ["etc/reclogin.conf", 0o644],
+    ["usr/lib/sysusers.d/reclogin.conf", 0o644],
+    ["usr/share/reclogin/brand.json", 0o644],
+    ["usr/share/reclogin/background.png", 0o644],
+    ["usr/share/reclogin/fonts/Newsreader.ttf", 0o644],
+    ["usr/share/reclogin/fonts/Newsreader-Italic.ttf", 0o644],
+    ["usr/share/reclogin/fonts/NewsreaderDisplay.ttf", 0o644],
+    ["usr/share/reclogin/fonts/NewsreaderDisplay-Italic.ttf", 0o644],
+    ["usr/share/reclogin/fonts/InstrumentSans.ttf", 0o644],
+    ["usr/share/reclogin/fonts/OFL-Newsreader.txt", 0o644],
+    ["usr/share/reclogin/fonts/OFL-InstrumentSans.txt", 0o644],
+    // The guest.
+    ["etc/pam.d/reclogin-guest", 0o644],
+    ["etc/security/limits.d/50-reclogin-guest.conf", 0o644],
+    ["etc/ssh/sshd_config.d/50-reclogin-guest.conf", 0o644],
+    ["usr/share/polkit-1/rules.d/50-reclogin-guest.rules", 0o644],
+    ["usr/libexec/reclogin/reclogin-guest-notice", 0o755],
+    ["usr/share/reclogin/guest-home/.config/autostart/reclogin-guest-notice.desktop", 0o644],
+];
+// systemd (LevitateOS, glibc) and OpenRC (AcornOS, musl).
+const PLACED_SYSTEMD = [
+    ["usr/lib/systemd/system/reclogin.service", 0o644],
+    ["usr/lib/systemd/system/user@60600.service.d/50-reclogin-guest.conf", 0o644],
+];
+const PLACED_OPENRC = [
+    ["etc/init.d/reclogin", 0o755],
+    ["usr/libexec/reclogin/reclogind-run", 0o755],
+];
+
+// The prebuilt tree is unpacked into `src` (the source named for this system's
+// C library); the placed files go into the system tree `out`.
+fn build(src, out) {
+    let prebuilt = if HOST_LIBC == "glibc" { src.glibc } else { src.musl };
+    let init = if HOST_LIBC == "glibc" { "systemd" } else { "openrc" };
+    let placed = PLACED + (if init == "systemd" { PLACED_SYSTEMD } else { PLACED_OPENRC });
+    for file in placed {
+        let from = join_path(prebuilt, file[0]);
+        if !is_file(from) { throw "the prebuilt login screen lacks /" + file[0]; }
+        let dest = join_path(out, file[0]);
+        mkdir(dirname(dest));
+        copy_file(from, dest);
+        target_mode(out, file[0], file[1]);
     }
-    let metadata = "";
-    for line in meta.split("\n") {
-        if line.starts_with("Name=") { line = "Name=" + os.name; }
-        else if line.starts_with("Theme-Id=") { line = "Theme-Id=" + theme; }
-        else if line.starts_with("Screenshot=") || line.starts_with("QtVersion=") || line == "" { continue; }
-        metadata += line + "\n";
+    start_at_boot(out, init);
+}
+
+// Start the login screen at boot, in this system's init's own form. systemd:
+// the unit's Alias=, display-manager.service, which graphical.target wants
+// (the unit has no WantedBy: nothing else starts it). OpenRC: the service in
+// the default runlevel (it needs elogind and dbus, which the base starts).
+// Text logins stay on consoles 1 to 6 on both: nothing is masked.
+fn start_at_boot(out, init) {
+    if init == "systemd" {
+        let unit = "usr/lib/systemd/system/reclogin.service";
+        if !read_file(join_path(out, unit)).contains("Alias=display-manager.service") {
+            throw "login-screen: /" + unit + " no longer names display-manager.service as its alias";
+        }
+        put_link(out, "etc/systemd/system/display-manager.service", "/" + unit);
+    } else {
+        if !is_file(join_path(out, "etc/init.d/reclogin")) { throw "login-screen: the prebuilt has no OpenRC service reclogin"; }
+        put_link(out, "etc/runlevels/default/reclogin", "/etc/init.d/reclogin");
     }
-    put(tree, themes + theme + "/metadata.desktop", metadata + "QtVersion=6\n", 0o644);
-    put(tree, themes + theme + "/theme.conf", "[General]\nbackground=" + background + "\n", 0o644);
-    put(tree, "etc/sddm.conf.d/10-theme.conf", "[Theme]\nCurrent=" + theme + "\nCursorTheme=Adwaita\n", 0o644);
-    let conf = "etc/conf.d/sddm";
-    let text = read_file_or_empty(join_path(tree, conf));
-    if text != "" && !text.ends_with("\n") { text += "\n"; }
-    text += "# The desktop system (installed-system.rhai): start_post's wait for the\n";
-    text += "# greeter's runtime directory succeeds, since an autologin starts no greeter.\n";
-    text += "ewaitfile() { return 0; }\n";
-    put(tree, conf, text, 0o644);
-    enable_service(tree, "", "sddm");
 }

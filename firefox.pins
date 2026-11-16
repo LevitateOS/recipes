@@ -7,5 +7,5 @@ firefox 9e53a1e1011a0d921a91b086453658bfa250551af7f5f0eb04a7bdab183544b5 9630453
 mozilla-filesystem eaaab6e3c57b4eed0028232e853189ef97e6be8d8097b03a5d8330d3a952e177 8920 - https://dl.fedoraproject.org/pub/fedora/linux/releases/45/Everything/x86_64/os/Packages/m/mozilla-filesystem-1.9-39.fc45.x86_64.rpm MPL-1.1
 
 [musl apk]
-firefox 2631ca233bb33b2895a3bf4e4045319bac796457839b2d35762a1396198a5801 98322025 - https://dl-cdn.alpinelinux.org/alpine/v3.24/community/x86_64/firefox-151.0.3-r0.apk GPL-3.0-only AND LGPL-2.1-only AND LGPL-3.0-only AND MPL-2.0
+firefox 14a863aa6a52373c6609be3ea31b79c4cb0083050bd4b8c941a8c8d0d3b74d17 106710682 - https://dl-cdn.alpinelinux.org/alpine/v3.24/community/x86_64/firefox-160.0-r0.apk GPL-3.0-only AND LGPL-2.1-only AND LGPL-3.0-only AND MPL-2.0
 scudo-malloc 3a34e54040c95c585a49fcb0d07e794cc0e9093d1dd61860a508c300d0edf3d4 55360 - https://dl-cdn.alpinelinux.org/alpine/v3.24/main/x86_64/scudo-malloc-22.1.3-r0.apk Apache-2.0 WITH LLVM-exception

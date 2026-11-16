@@ -623,7 +623,7 @@ neon d16f2660d7732c5f856c87ecd05ff5df7ba5139f921034a6c23b6d93694fe002 70636 - ht
 nettle 693c1a99b781cd17149916df30113ccd6bdddac130298c17b1286fd2ae438386 343067 - https://dl-cdn.alpinelinux.org/alpine/v3.24/main/x86_64/nettle-3.10.2-r0.apk GPL-2.0-or-later OR LGPL-3.0-or-later
 npth d92e7427c7e054467162218eee78589d94407bf34faf82aaf8f60dd3bd321521 6488 - https://dl-cdn.alpinelinux.org/alpine/v3.24/main/x86_64/npth-1.8-r0.apk LGPL-2.0-or-later
 nspr 0b918a47c9e625f2b7001424dc64d6738e192594c584cecce4ae67d72199c4b0 126923 - https://dl-cdn.alpinelinux.org/alpine/v3.24/main/x86_64/nspr-4.38.2-r0.apk MPL-2.0
-nss 1df40eb4fccf83653c166bd843e8193eb82a969dedb6d1e7760263d1adc078a8 1721257 - https://dl-cdn.alpinelinux.org/alpine/v3.24/main/x86_64/nss-3.124-r0.apk MPL-2.0
+nss afe396bc1fcbd234a856edda5644d0671700acbd7c7df6b084d5c195736eab77 1759247 - https://dl-cdn.alpinelinux.org/alpine/v3.24/main/x86_64/nss-3.133-r0.apk MPL-2.0
 numactl 4a78670a16d9ae7377906e2084be7430197d4b4c24877d65712dd1d4597b59db 20036 - https://dl-cdn.alpinelinux.org/alpine/v3.24/main/x86_64/numactl-2.0.19-r0.apk LGPL-2.1-only
 openal-soft-libs e5f4699ad0dfc8353dae629d45d0881a6e1da555b21b0f5bfaac8ee4659d3fa0 691783 - https://dl-cdn.alpinelinux.org/alpine/v3.24/community/x86_64/openal-soft-libs-1.25.2-r0.apk LGPL-2.0-or-later
 openexr-libiex cd78c1a45ae084911785e79e476a305c569fd022db862c91e63552267ed41b37 110799 - https://dl-cdn.alpinelinux.org/alpine/v3.24/community/x86_64/openexr-libiex-3.4.15-r0.apk BSD-3-Clause

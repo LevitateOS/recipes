@@ -1,9 +1,0 @@
-# login-screen.pins: written by `cargo xtask base groups`; do not edit.
-# No glibc build: SDDM is part of plasma on LevitateOS. musl: Alpine v3.24, locked 2026-11-16.
-version 2026.11.16
-
-[musl apk]
-sddm 632ee19ebeeb207dc98cf8575f3fabf8d911df3cfd8de52f903382d57e13f8cd 3836964 - https://dl-cdn.alpinelinux.org/alpine/v3.24/community/x86_64/sddm-0.21.0-r10.apk GPL-2.0-or-later
-sddm-openrc 56d6bf208dc3b8ef7da1c55f363263281ae84398235c76602f6b97a623e21368 1889 - https://dl-cdn.alpinelinux.org/alpine/v3.24/community/x86_64/sddm-openrc-0.21.0-r10.apk GPL-2.0-or-later
-upower 78761cf27cb5d4a516a11e5536ad2236eee6c1a811e720266ee3b81e9af06430 126255 var https://dl-cdn.alpinelinux.org/alpine/v3.24/community/x86_64/upower-1.91.0-r2.apk GPL-2.0-or-later
-upower-udev defc1d7faf6c795758a28cec57b96f82d6e23f0497d31aa6b9acb64d2b9d30a0 4002 - https://dl-cdn.alpinelinux.org/alpine/v3.24/community/x86_64/upower-udev-1.91.0-r2.apk GPL-2.0-or-later

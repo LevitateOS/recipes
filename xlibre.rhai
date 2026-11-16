@@ -101,7 +101,7 @@ const FILES = [
 ];
 
 // After Recipe has unpacked the packages and placed FILES: the link the
-// display manager starts (SDDM runs /usr/bin/X), to the wrapper script, as
+// display manager starts (reclogin runs /usr/bin/X), to the wrapper script, as
 // the server's own install makes it; and where the server writes the keymaps
 // xkbcomp compiles: empty, a state seed (the server's -Dxkb_output_dir).
 fn configure(tree) {
