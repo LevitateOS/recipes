@@ -50,6 +50,18 @@ let deps = [];
 
 fn configure(tree) {
     if PACKAGE_FORMAT != "apk" { return; }
+    // Alpine's fonts.conf lists only /var/cache/fontconfig, where Recipe keeps
+    // no files, so the root effects recipe's font caches would be lost. This
+    // adds Fedora's directory, /usr/lib/fontconfig/cache, which fontconfig
+    // reads (every listed cache directory is read) and which the effects run
+    // writes (the first writable one is written). fonts.conf includes conf.d
+    // before its own <cachedir> lines, so this one comes first; a user's
+    // fc-cache on the read-only root skips it and writes the next writable
+    // one (/var/cache/fontconfig, else the user's own).
+    if is_file(join_path(tree, "etc/fonts/fonts.conf")) {
+        put(tree, "etc/fonts/conf.d/00-system-cache.conf",
+            "<?xml version=\"1.0\"?>\n<!DOCTYPE fontconfig SYSTEM \"urn:fontconfig:fonts.dtd\">\n<fontconfig>\n\t<!-- The caches the root effects recipe builds, owned by system-effects. -->\n\t<cachedir>/usr/lib/fontconfig/cache</cachedir>\n</fontconfig>\n", 0o644);
+    }
     if is_file(join_path(tree, "usr/bin/pinentry-curses")) && !exists(join_path(tree, "usr/bin/pinentry")) {
         put_link(tree, "usr/bin/pinentry", "pinentry-curses");
     }

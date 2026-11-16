@@ -6,6 +6,12 @@ const RECIPE_API = 1;
 // file from Anthropic at install time; nothing is redistributed.
 // libc: one source per C library (SOURCES, by libc); Recipe fetches only this system's. The musl build is
 // .../2.1.323/linux-x64-musl/claude, sha256 8ba3c07a4531a04843048d1ecd4abad2c41fd9a5a52476789a23280ed227d399.
+// Updater: the real program is placed at lib/claude-code/claude and bin/claude is a small launcher that exports
+// DISABLE_AUTOUPDATER=1 (stops the background update check) and DISABLE_UPDATES=1 (also blocks `claude update` and
+// `claude install`, so Recipe is the only way the program changes), then execs it. Both variables are documented at
+// https://code.claude.com/docs/en/setup#disable-auto-updates ; the documented settings.json `env` key would write
+// into the user's home, so the launcher is used instead. Packages hold no symlinks, so the launcher follows its own
+// link (the profile's bin/claude links into the package) the way pi.rhai does.
 const NEEDS = #{
     outputs: #{ "package": "directory" },
     network: ["downloads.claude.ai:443"],
@@ -17,13 +23,14 @@ const ABOUT = #{
     kind: "tool",
     category: "development",
     libc: ["glibc", "musl"],
-    details: "Runs Anthropic's Claude Code coding agent in the terminal. Needs a Claude account or API key and network access to Anthropic. Proprietary software under Anthropic's Commercial Terms. Upstream updates itself; Recipe manages updates here, so set DISABLE_AUTOUPDATER=1 in your environment. This recipe does not change user environment. The build matches the system's C library: glibc on LevitateOS, musl on AcornOS.",
+    details: "Runs Anthropic's Claude Code coding agent in the terminal. Needs a Claude account or API key and network access to Anthropic. Proprietary software under Anthropic's Commercial Terms. Upstream updates itself; the claude command installed here is a launcher that turns the program's own updater off (DISABLE_AUTOUPDATER=1, DISABLE_UPDATES=1), and Recipe updates the program (recipe update claude-code). This recipe does not change user environment or configuration. The build matches the system's C library: glibc on LevitateOS, musl on AcornOS.",
     homepage: "https://claude.com/product/claude-code",
     license: "proprietary (Anthropic Commercial Terms, all rights reserved)",
     adds: #{ programs: ["claude"], menu: [] },
     steps: #{
         download: "Downloads the pinned file from Anthropic and checks it against the digest in Anthropic's signed release manifest.",
-        install: "Puts the claude command in bin.",
+        build: "Writes the launcher bin/claude, which turns the program's own updater off; nothing is compiled.",
+        install: "Puts the program under lib/claude-code and the launcher in bin.",
     },
     keeps: [],
 };
@@ -45,7 +52,23 @@ const SOURCES = #{
 };
 
 // Each source is one plain file, named by its source name; the entry of the other C library's source is left out with it.
+// The program goes to lib/claude-code/claude; bin/claude is the launcher `build` writes.
 const FILES = [
-    ["glibc", "bin/claude", 0o755],
-    ["musl", "bin/claude", 0o755],
+    ["glibc", "lib/claude-code/claude", 0o755],
+    ["musl", "lib/claude-code/claude", 0o755],
 ];
+
+const LAUNCHER = `#!/bin/sh
+set -eu
+tool_root=$(CDPATH= cd -- "$(dirname -- "$(readlink -f -- "$0")")/.." && pwd)
+export DISABLE_AUTOUPDATER=1
+export DISABLE_UPDATES=1
+exec "$tool_root/lib/claude-code/claude" "$@"
+`;
+
+fn build(src, out) {
+    let launcher = join_path(out, "bin/claude");
+    mkdir(dirname(launcher));
+    write_file(launcher, LAUNCHER);
+    chmod(launcher, 0o755);
+}
