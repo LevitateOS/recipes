@@ -33,6 +33,9 @@ const ABOUT = #{
     },
 };
 
+// No UPSTREAM and no latest(): the version is not free to move. It has to equal
+// the GCC of the build image (Rocky Linux's gcc 14.3.1-4.4.el10), so it moves
+// only when the image does.
 const PACKAGE = #{ name: "gxx", version: "14.3.1-4.4.el10", description: "C++ frontend and headers for the GCC 14 build image" };
 
 // The three RPMs keep their top folder (usr/): they merge into one tree.
