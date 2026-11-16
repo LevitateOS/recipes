@@ -4,23 +4,26 @@
 The approach of `cargo xtask base lock` (LevitateOS xtask/src/tasks/base.rs),
 narrowed to what a carried runtime needs:
 
+- read the seeds from the recipe's `PACKAGES` declaration (a plain list,
+  docs/recipe-format.md section 2.6);
 - read the Fedora RELEASE release and updates repositories' primary index
   (checked against repomd.xml), newest build of each x86_64/noarch name;
-- resolve the closure of SEEDS following only *shared-library* requires
+- resolve the closure of the seeds following only *shared-library* requires
   (`libfoo.so.N()(64bit)` and its versioned forms), so the set is every
   package that ships a library something in the set links against, and no
   package that only a program, daemon, scriptlet or data dependency pulls in;
   providers are chosen by the same rule as base.rs;
 - download each RPM once into the cache, check it against the index
   SHA-256 and the release signing key (rpmkeys --checksig);
-- write the pin list as Rhai into the recipe between the markers
-  `// BEGIN GENERATED PINS` and `// END GENERATED PINS`.
+- write the pins file `desktop-runtime.pins` beside the recipe (section 2.7).
+  The recipe's own text is never touched.
 
 Regenerate (network; a few minutes, ~70 MB):
 
-    python3 -I generators/desktop-runtime-pins.py --recipe desktop-runtime.rhai
+    python3 -I generators/desktop-runtime-pins.py
 
-`--check` only reports what would change.
+`--check` only reports what would change (network, no download, no write):
+it exits 1 when the pinned packages differ from the file on disk.
 """
 
 import argparse
@@ -44,37 +47,31 @@ KEY = "/home/vince/Projects/LevitateOS/distro/variants/levitate/keys/RPM-GPG-KEY
 HERE = os.path.dirname(os.path.abspath(__file__))
 CACHE = os.path.join(os.path.dirname(HERE), "rpms")
 
-# What Electron 3x/4x and Chrome declare (readelf NEEDED and Depends), plus the
-# libraries those load by name rather than link (NSS's softokn/freebl), and the
-# packages that carry the runtime data (glibc-common: the C.utf8 locale; dconf:
-# the GSettings GIO module; librsvg2 for glycin's SVG loader).
-SEEDS = [
-    # C and C++ runtime
-    "glibc", "glibc-common", "libgcc", "libstdc++",
-    # GTK 3 stack
-    "gtk3", "glib2", "pango", "cairo", "cairo-gobject", "harfbuzz",
-    "fontconfig", "freetype", "gdk-pixbuf2", "librsvg2",
-    "atk", "at-spi2-atk", "at-spi2-core", "dconf",
-    # D-Bus, NSS
-    "dbus-libs", "nss", "nspr", "nss-util", "nss-softokn", "nss-softokn-freebl",
-    # X11 / xcb / xkb
-    "libX11", "libX11-xcb", "libXcomposite", "libXdamage", "libXext",
-    "libXfixes", "libXrandr", "libXtst", "libXScrnSaver", "libXi",
-    "libXcursor", "libxcb", "libxkbcommon", "libxkbcommon-x11", "libxshmfence",
-    # graphics buffers, Wayland
-    "mesa-libgbm", "libdrm", "libwayland-client", "libwayland-cursor",
-    "libwayland-egl", "libva",
-    # printing, sound, secrets, notifications, misc
-    "cups-libs", "alsa-lib", "libsecret", "libnotify", "expat", "libuuid",
-    "systemd-libs",
-]
-
-# Packages taken for some files only, whose requires are not followed: Fedora
-# 45's gdk-pixbuf decodes through glycin, whose loaders are programs here; the
-# recipe keeps glycin-image-rs and glycin-svg (libc/libgcc_s/librsvg2/cairo/
-# GLib only) and not the HEIF and JPEG XL loaders that pull libheif and libjxl.
-# The recipe's closure check proves what it keeps links only inside the set.
+# The seeds are the recipe's PACKAGES (what Electron 3x/4x and Chrome declare,
+# plus the libraries those load by name rather than link, and the packages that
+# carry the runtime data). The names below are taken for some files only, and
+# their requires are not followed: Fedora 45's gdk-pixbuf decodes through
+# glycin, whose loaders are programs here; the recipe keeps glycin-image-rs and
+# glycin-svg (libc/libgcc_s/librsvg2/cairo/GLib only) and not the HEIF and JPEG
+# XL loaders that pull libheif and libjxl. The recipe's closure check proves
+# what it keeps links only inside the set.
 FILES_ONLY = ["glycin-loaders"]
+RECIPE = os.path.join(os.path.dirname(HERE), "desktop-runtime.rhai")
+PINS = os.path.join(os.path.dirname(HERE), "desktop-runtime.pins")
+
+
+def read_seeds(path):
+    """The names in the recipe's literal `const PACKAGES = [ ... ];` list."""
+    text = open(path).read()
+    m = re.search(r"^const PACKAGES = \[(.*?)^\];", text, re.S | re.M)
+    if not m:
+        sys.exit(f"{path} has no plain-list `const PACKAGES = [ ... ];`")
+    code = "\n".join(line.split("//")[0] for line in m.group(1).splitlines())
+    names = re.findall(r'"([^"]+)"', code)
+    if not names:
+        sys.exit(f"{path}: PACKAGES names no package")
+    return names
+
 
 SONAME = re.compile(r"^[^ ()]+\.so(\.[^ ()]*)?(\([^)]*\))?\(64bit\)$")
 
@@ -185,18 +182,18 @@ def primary(repo, newest):
         el.clear()
 
 
-def resolve(pkgs):
+def resolve(pkgs, seeds):
     providers = {}
     for p in pkgs.values():
         for cap in p["provides"] + [p["name"]]:
             providers.setdefault(cap, [])
             if p["name"] not in providers[cap]:
                 providers[cap].append(p["name"])
-    missing = [s for s in SEEDS + FILES_ONLY if s not in pkgs]
+    missing = [s for s in seeds + FILES_ONLY if s not in pkgs]
     if missing:
         sys.exit("Fedora has no x86_64/noarch build of: " + ", ".join(missing))
     chosen, provided, todo, skipped = set(), set(), [], {}
-    prefer = set(SEEDS)
+    prefer = set(seeds)
 
     def install(n):
         if n not in chosen:
@@ -205,7 +202,7 @@ def resolve(pkgs):
             provided.update(pkgs[n]["provides"])
             todo.append(n)
 
-    for s in SEEDS:
+    for s in seeds:
         install(s)
     for s in FILES_ONLY:
         chosen.add(s)
@@ -267,82 +264,58 @@ def check_signatures(files):
     print(f"[ok] {len(files)} RPMs signed by the Fedora {RELEASE} key", file=sys.stderr)
 
 
-def render(rpms):
-    total = sum(p["size"] for p in rpms)
+def render(rpms, today):
     lines = [
-        "// BEGIN GENERATED PINS",
-        f"// Generated on {datetime.date.today()} from the Fedora {RELEASE} release and updates",
-        "// repositories' primary metadata: the seeds below and every package whose",
-        "// shared library one of them links against. Each RPM was checked against its",
-        "// repository SHA-256 and size and the Fedora signing key. Do not edit: rerun",
-        "// the generator (see the recipe header).",
-        "// Seeds: " + " ".join(SEEDS) + ".",
-        "// Taken for some files only (requires not followed): " + " ".join(FILES_ONLY) + ".",
-        f"const FEDORA_RELEASE = {RELEASE};",
-        f'const PINNED_ON = "{datetime.date.today()}";',
-        f"const PINNED_BYTES = {total};",
-        "// [name, NEVRA, URL, SHA256, bytes]",
-        "const PINS = [",
+        "# desktop-runtime.pins: written by `recipes/generators/desktop-runtime-pins.py`; do not edit.",
+        f"# Fedora {RELEASE} release and updates, generated {today}: the seeds and every package whose shared library one of them links against.",
+        f"version {RELEASE}.{today.strftime('%Y%m%d')}",
+        "",
+        "[any rpm]",
     ]
     for p in rpms:
-        lines.append(f'    ["{p["name"]}", "{nevra(p)}", "{p["url"]}", "{p["sha256"]}", {p["size"]}],')
-    lines += ["];", "// END GENERATED PINS"]
-    import textwrap
-    out = []
-    for l in lines:
-        if l.startswith("// Seeds: ") or l.startswith("// Taken for"):
-            out += textwrap.wrap(l, 80, subsequent_indent="//   ", break_on_hyphens=False)
-        else:
-            out.append(l)
-    lines = out
+        lines.append(f'{p["name"]} {p["sha256"]} {p["size"]} - {p["url"]} -')
     return "\n".join(lines) + "\n"
+
+
+def pin_lines(text):
+    """The package lines of a pins file (the date-bearing header is left out)."""
+    return [l for l in text.splitlines() if l and not l.startswith(("#", "version ", "["))]
 
 
 def main():
     ap = argparse.ArgumentParser()
-    ap.add_argument("--recipe", help="splice the pins into this recipe")
-    ap.add_argument("--out", default=os.path.join(os.path.dirname(HERE), "pins.rhai"))
+    ap.add_argument("--out", default=PINS, help="the pins file to write (default: desktop-runtime.pins beside the recipe)")
     ap.add_argument("--check", action="store_true")
     ap.add_argument("--skipped", action="store_true", help="list the requires not followed")
     a = ap.parse_args()
+    seeds = [s for s in read_seeds(RECIPE) if s not in FILES_ONLY]
     newest = {}
     for repo in REPOS:
         print(f"[step] read {repo}", file=sys.stderr)
         primary(repo, newest)
-    chosen, skipped = resolve(newest)
+    chosen, skipped = resolve(newest, seeds)
     rpms = [newest[n] for n in sorted(chosen)]
     if a.skipped:
         for n in sorted(skipped):
             print(n + ": " + ", ".join(sorted(set(skipped[n]))))
-    text = render(rpms)
     print(f"{len(rpms)} packages, {sum(p['size'] for p in rpms)} bytes to download, "
           f"{sum(p['installed'] for p in rpms)} bytes installed", file=sys.stderr)
-    if a.recipe:
-        old = open(a.recipe).read()
-        m = re.search(r"// BEGIN GENERATED PINS\n.*?// END GENERATED PINS\n", old, re.S)
-        if not m:
-            sys.exit("recipe has no generated pins block")
-        old_pins = set(re.findall(r'^    \["[^"]+", "([^"]+)"', m.group(0), re.M))
-        new_pins = {nevra(p) for p in rpms}
-        for x in sorted(old_pins - new_pins):
-            print("  - " + x)
-        for x in sorted(new_pins - old_pins):
-            print("  + " + x)
-        if a.check:
-            sys.exit(1 if old_pins != new_pins else 0)
+    text = render(rpms, datetime.date.today())
+    old = open(a.out).read() if os.path.isfile(a.out) else ""
+    old_lines, new_lines = set(pin_lines(old)), set(pin_lines(text))
+    for x in sorted(old_lines - new_lines):
+        print("  - " + x.split(" ")[0] + " " + x.split(" ")[4].rsplit("/", 1)[1])
+    for x in sorted(new_lines - old_lines):
+        print("  + " + x.split(" ")[0] + " " + x.split(" ")[4].rsplit("/", 1)[1])
+    if a.check:
+        sys.exit(1 if old_lines != new_lines or pin_lines(old) != pin_lines(text) else 0)
     files = download_verified(rpms)
     check_signatures(files)
-    if a.recipe:
-        new = old[: m.start()] + text + old[m.end():]
-        stamp = datetime.date.today().strftime("%Y%m%d")
-        new, k = re.subn(r'version: "\d+\.\d{8}"', f'version: "{RELEASE}.{stamp}"', new, count=1)
-        if k != 1:
-            sys.exit("recipe has no version: \"RELEASE.YYYYMMDD\" line")
-        open(a.recipe, "w").write(new)
-        print(f"wrote {a.recipe}", file=sys.stderr)
-    else:
-        open(a.out, "w").write(text)
-        print(f"wrote {a.out}", file=sys.stderr)
+    if old_lines == new_lines and pin_lines(old) == pin_lines(text):
+        print(f"{a.out} is current", file=sys.stderr)
+        return
+    open(a.out, "w").write(text)
+    print(f"wrote {a.out}", file=sys.stderr)
 
 
 if __name__ == "__main__":
