@@ -1,5 +1,5 @@
 {
-  "commit": "93d2629235d2d1d11644f8a1b9a7f3428eca29a2",
+  "commit": "3d25c694d9645570b3c3c0d0a77fbd355cb2503e",
   "recipes": [
     {
       "about": {
@@ -707,7 +707,7 @@
         {
           "bytes": 160279,
           "path": "desktop-libs.pins",
-          "sha256": "28b356db8df9cd76ca5b7807efb402bba60eef1fef3389692387ee4d5a6c9f69"
+          "sha256": "5c3d3e95a8766523adb698f6938a6273bbc4fe48b6f97dfb4b928a950d9b2c20"
         }
       ],
       "functions": [
@@ -1164,9 +1164,9 @@
           "sha256": "df29a3f420f2269e4dffc4018af4768f02c60af4bd864b48de2c2d5a837029f9"
         },
         {
-          "bytes": 1130,
+          "bytes": 1129,
           "path": "firefox.pins",
-          "sha256": "40a920a3c3aeb982e81335bfa227c703ce6eac256bde4c4b1eaed4c8c635865c"
+          "sha256": "bdba89c809b43d8938be988461d89ffe7602260f4cf42c620ef7a15b0d03456f"
         }
       ],
       "functions": [
@@ -2154,19 +2154,22 @@
     {
       "about": {
         "category": "utilities",
-        "details": "SDDM, the graphical login screen; on LevitateOS with Plasma's Breeze theme and Wayland greeter. It lists whatever sessions the installed desktops provide.",
-        "homepage": "https://github.com/sddm/sddm",
+        "details": "reclogin, the login screen: it lists the people who use this computer, asks for the password through the system's own login rules, and starts the desktop they choose. It draws straight to the screen, on console 7; the text logins on consoles 1 to 6 stay. Removing it leaves the text logins.",
+        "homepage": "https://github.com/LevitateOS/reclogin",
         "keeps": [],
         "kind": "system",
         "libc": [
+          "glibc",
           "musl"
         ],
-        "license": "GPL-2.0-or-later",
+        "license": "(MIT OR Apache-2.0) AND OFL-1.1",
         "steps": {
-          "download": "Takes each pinned package by its SHA-256, from the install medium's cache or the distribution's mirror.",
-          "install": "Unpacks the packages natively into one system tree, without running their scripts, and writes it into the system root with a receipt."
+          "build": "Unpacks it and keeps the two programs, the login rules (PAM), the settings file, the service, the accounts, the brand files and the guest session's files.",
+          "download": "Downloads the pinned prebuilt archive for this system's C library and checks its SHA-256.",
+          "install": "Publishes the system tree for Recipe to write into the system root, with a receipt, and starts the login screen at boot."
         },
         "systems": [
+          "levitateos",
           "acornos"
         ]
       },
@@ -2174,46 +2177,38 @@
       "deps": [
         "desktop-libs"
       ],
-      "description": "The SDDM login screen",
+      "description": "reclogin, the login screen",
       "files": [
         {
-          "bytes": 4754,
+          "bytes": 8141,
           "path": "login-screen.rhai",
-          "sha256": "6f1872eacc9324c27394d29ebf72c281e1c2458fa071518503123b9d42049549"
-        },
-        {
-          "bytes": 2994,
-          "path": "os-facts.rhai",
-          "sha256": "df29a3f420f2269e4dffc4018af4768f02c60af4bd864b48de2c2d5a837029f9"
-        },
-        {
-          "bytes": 935,
-          "path": "login-screen.pins",
-          "sha256": "fdea435f3287ff71e2938e5bb8175dea70263be1931438eb7f01a9b6c08daf8d"
+          "sha256": "f280e73e7fb05b1bacace95a9bc6d8cc0dc215f3541d1b2b02aa4e45afa91c7c"
         }
       ],
       "functions": [
-        "configure"
+        "build"
       ],
       "name": "login-screen",
       "needs": {
         "defines": {},
         "inputs": {},
-        "memory_mib": 4096,
+        "memory_mib": 2048,
         "network": [
-          "dl-cdn.alpinelinux.org:443",
-          "dl.fedoraproject.org:443"
+          "github.com:443",
+          "objects.githubusercontent.com:443",
+          "release-assets.githubusercontent.com:443"
         ],
-        "network_max_bytes": 0,
+        "network_max_bytes": 6291456,
         "outputs": {
           "system": "directory"
         },
         "storage_max_bytes": null,
-        "storage_max_objects": 262144,
-        "timeout_secs": 7200
+        "storage_max_objects": 16384,
+        "timeout_secs": 1800
       },
       "steps": [
         "download",
+        "build",
         "install",
         "cleanup"
       ],
@@ -2390,9 +2385,9 @@
       "description": "The LXQt desktop on X11",
       "files": [
         {
-          "bytes": 7066,
+          "bytes": 7143,
           "path": "lxqt.rhai",
-          "sha256": "d742453479a810d7ec7933803144d30b84e6f50243334e633e1d7cd91b98bf02"
+          "sha256": "4f5def2af23a700d4a22ccc64ddf76ad47a87b35bcdcbae3cd57f8bd38907ee4"
         },
         {
           "bytes": 11199,
@@ -2405,9 +2400,9 @@
           "sha256": "df29a3f420f2269e4dffc4018af4768f02c60af4bd864b48de2c2d5a837029f9"
         },
         {
-          "bytes": 22605,
+          "bytes": 22975,
           "path": "lxqt.pins",
-          "sha256": "9da6ed46c4d772fc000020141a188509b5839f79b5efc4f68544e48f2f092144"
+          "sha256": "92c2ce03194088aefc20a408f820be44dce182f3279a6332e28e89484292599d"
         }
       ],
       "functions": [
@@ -3246,9 +3241,9 @@
       "description": "The KDE Plasma desktop on Wayland",
       "files": [
         {
-          "bytes": 10399,
+          "bytes": 9261,
           "path": "plasma.rhai",
-          "sha256": "8f2d31c491cbbbca6c5fb5cda352ac1ac75a7f185670c6ad36ad91c014b79d2d"
+          "sha256": "048291cf4f63e444a90e78b121432d36ba7a113bfcc6ec3827f00c9af83210b5"
         },
         {
           "bytes": 11199,
@@ -3261,9 +3256,9 @@
           "sha256": "df29a3f420f2269e4dffc4018af4768f02c60af4bd864b48de2c2d5a837029f9"
         },
         {
-          "bytes": 51741,
+          "bytes": 48857,
           "path": "plasma.pins",
-          "sha256": "5b7356e3952b66cc5c59fb9d02ff6fe7e4872043458bb88d3f1c2db8249a261a"
+          "sha256": "06246a91212ffd9d3824836c9fe618b04b7e5eed4dc99674adc164649b61e904"
         }
       ],
       "functions": [
@@ -4640,9 +4635,9 @@
       "description": "The XLibre display server and its run-time parts",
       "files": [
         {
-          "bytes": 7339,
+          "bytes": 7343,
           "path": "xlibre.rhai",
-          "sha256": "5030245e86bf3dbfd7dd4600d896f694c45ea010149d223763dd4a0bafa650e8"
+          "sha256": "6842f692a9f1615b28ef492a3a96fefda923f3aeaaef2c28316ef2866b5cb3a3"
         },
         {
           "bytes": 1375,
