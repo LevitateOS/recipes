@@ -12,7 +12,7 @@ The systems ship this source, so nothing needs adding there:
 ```sh
 recipe list
 sudo recipe install ripgrep
-sudo recipe update ripgrep
+sudo recipe update ripgrep   # installs the version the recipe names
 sudo recipe remove ripgrep
 ```
 
@@ -42,7 +42,7 @@ the recipes in it install without a network until a newer index is fetched.
 ## Changing a recipe
 
 1. Edit or add `NAME.rhai`, following the
-   [authoring contract](https://github.com/LevitateOS/recipe/blob/master/WRITING_RECIPES.md).
+   [specification and authoring guide](https://github.com/LevitateOS/recipe/blob/master/WRITING_RECIPES.md).
    `recipe info ./NAME.rhai` checks that it compiles.
 2. Commit.
 3. Run `recipe index` here and commit `index.json`.
@@ -53,15 +53,18 @@ committed. A push whose index is behind the recipes fails the Index check.
 ## Layout
 
 - One flat folder. A recipe's `name` equals its file name.
-- Every `.rhai` file is a recipe on its own, with `RECIPE_API`, `NEEDS` and an
-  `ABOUT` block. User programs publish a directory output named `package`
-  holding regular `bin/COMMAND` and `share/PATH` files.
+- Every `.rhai` file is a recipe on its own, with `const RECIPE_API = 1;`,
+  `NEEDS` and an `ABOUT` block. Most state their sources and files as
+  declarations (`SOURCES`, `FILES`, `PACKAGES`) and have no code. User programs
+  publish a directory output named `package` holding regular `bin/COMMAND` and
+  `share/PATH` files.
 - Build tools publish `tools` instead, are named only under `build_deps`, and
   are never activated into a profile. Their `ABOUT.kind` is `library` so a
   front end hides them until asked. Both OS variants use the same glibc build
   image; these tools run there, independently of the host C library.
 - Files beside a recipe that share its name belong to it and are fetched with
-  it: `NAME.svg` is its icon.
+  it: `NAME.svg` is its icon, `NAME.pins` the pinned packages of a group
+  (written only by the generator, never by hand).
 - [`repo.toml`](repo.toml) is what this source says about itself.
 - [`generators/`](generators) holds scripts that write pinned parts of a
   recipe, not recipes: `desktop-runtime-pins.py` regenerates the Fedora pins
