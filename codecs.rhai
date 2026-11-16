@@ -84,7 +84,7 @@ const ABOUT = #{
     adds: #{ programs: [], menu: [] },
     steps: #{
         download: "Downloads RPM Fusion's pinned libavcodec-freeworld, x264-libs, x265-libs and vvenc-libs packages from download1.rpmfusion.org and Fedora's numactl-libs from dl.fedoraproject.org, and checks their SHA-256 values.",
-        install: "Unpacks the packages natively into one system tree, without running its scripts, and writes it into the system root with a receipt; the library goes into its own folder, /usr/lib64/ffmpeg, which the dynamic loader prefers.",
+        install: "Unpacks the packages natively into one system tree, without running their scripts, and writes it into the system root with a receipt; the library goes into its own folder, /usr/lib64/ffmpeg, which the dynamic loader prefers.",
     },
     keeps: [],
 };
@@ -133,7 +133,7 @@ const SOURCES = #{
     },
 };
 
-// The four packages whole, at their own paths (etc/ and usr/).
+// The five packages whole, at their own paths (etc/ and usr/).
 const FILES = [
     ["freeworld/", ""],
     ["x264/", ""],
