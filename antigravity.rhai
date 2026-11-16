@@ -88,7 +88,18 @@ const SOURCES = #{
 
 // The whole application (its top folder Antigravity-x64/ is left out) under lib/antigravity; build then removes
 // chrome-sandbox.
-const FILES = [["", "lib/antigravity/"]];
+const FILES = [
+    ["", "lib/antigravity/"],
+    ["antigravity", "lib/antigravity/antigravity", 0o755],
+    ["chrome_crashpad_handler", "lib/antigravity/chrome_crashpad_handler", 0o755],
+    ["libffmpeg.so", "lib/antigravity/libffmpeg.so", 0o755],
+    ["libvk_swiftshader.so", "lib/antigravity/libvk_swiftshader.so", 0o755],
+    ["libvulkan.so.1", "lib/antigravity/libvulkan.so.1", 0o755],
+    ["resources/app.asar.unpacked/node_modules/chrome-devtools-mcp/build/src/bin/chrome-devtools-mcp.js", "lib/antigravity/resources/app.asar.unpacked/node_modules/chrome-devtools-mcp/build/src/bin/chrome-devtools-mcp.js", 0o755],
+    ["resources/app.asar.unpacked/node_modules/chrome-devtools-mcp/build/src/bin/chrome-devtools.js", "lib/antigravity/resources/app.asar.unpacked/node_modules/chrome-devtools-mcp/build/src/bin/chrome-devtools.js", 0o755],
+    ["resources/bin/language_server", "lib/antigravity/resources/bin/language_server", 0o755],
+    ["resources/bin/webm_encoder", "lib/antigravity/resources/bin/webm_encoder", 0o755],
+];
 
 // app.asar is an uncompressed archive: 8 bytes, the header pickle (294840 bytes), then the files; icon.png sits at
 // 8 + 294840 + 4929891, and the asar header records the digest below.
