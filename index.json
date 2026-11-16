@@ -1,5 +1,5 @@
 {
-  "commit": "65493e3f03b52fbd90ba3be9bc408562440ae220",
+  "commit": "93d2629235d2d1d11644f8a1b9a7f3428eca29a2",
   "recipes": [
     {
       "about": {
@@ -1772,9 +1772,9 @@
       "description": "C++ frontend and headers for the GCC 14 build image",
       "files": [
         {
-          "bytes": 4989,
+          "bytes": 5178,
           "path": "gxx.rhai",
-          "sha256": "052b1d5d73e9ac2c91f93099480d173fff1cf7f690dc042b64d884489b358d3f"
+          "sha256": "d14d357b5140ece108ab76ee54ce344c14b637061e7959f3570061dc4a1b1d90"
         }
       ],
       "functions": [
@@ -3445,13 +3445,14 @@
       "description": "Self-contained Python interpreter and standard library",
       "files": [
         {
-          "bytes": 2287,
+          "bytes": 3287,
           "path": "python.rhai",
-          "sha256": "8d4d7ec4394dcf0ec719d8b844ec16819cb72f8a1c47d3812e5001182fe657d5"
+          "sha256": "767f2d50f51479d437a98c14abfae366f691c5114011cfad0d0455e7ef8a96a4"
         }
       ],
       "functions": [
-        "verify"
+        "verify",
+        "latest"
       ],
       "name": "python",
       "needs": {
@@ -3475,7 +3476,9 @@
         "install",
         "cleanup"
       ],
-      "upstream": null,
+      "upstream": {
+        "latest": true
+      },
       "version": "3.14.10+20261026"
     },
     {
