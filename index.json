@@ -1,5 +1,5 @@
 {
-  "commit": "e51655a24a08c7c775c725851dc770cc401531e6",
+  "commit": "322e1f627d424bf6d1220f5e927f9ad732317760",
   "recipes": [
     {
       "about": {
@@ -22,9 +22,9 @@
         "libc_carried": true,
         "license": "proprietary (Google terms; bundles Electron MIT, Chromium and Apache-2.0 parts)",
         "steps": {
-          "acquire": "Downloads the pinned Antigravity tarball from Google's storage. Google publishes no checksum for it; the digest is of the bytes first downloaded.",
-          "build": "Unpacks the tarball and checks every file against its own digest; nothing is compiled.",
-          "install": "Puts the application under lib/antigravity without its setuid helper, adds the desktop runtime's data, rewrites the program and its libraries to the carried C library and libraries, and adds a starter, a menu entry and an icon."
+          "build": "Puts the application under lib/antigravity without its setuid helper, adds the desktop runtime's data, rewrites the program and its libraries to the carried C library and libraries, and adds a starter, a menu entry and an icon; nothing is compiled.",
+          "download": "Downloads the pinned Antigravity tarball from Google's storage. Google publishes no checksum for it; the digest is of the bytes first downloaded.",
+          "install": "Activates the package in the profile."
         }
       },
       "build_deps": [
@@ -34,19 +34,18 @@
       "description": "Antigravity agent-first desktop application",
       "files": [
         {
-          "bytes": 104764,
+          "bytes": 9744,
           "path": "antigravity.rhai",
-          "sha256": "3ee35a6597dfb748e2e498e34a0a0da06907eb6d467c46a12e194824b6eabf7f"
+          "sha256": "6816b97ae425e53936a34482eda18ab9aa3c38e9ce97bb604d54fc008250ce0a"
         }
       ],
-      "hooks": [
-        "acquire",
+      "functions": [
         "build",
-        "install",
-        "remove"
+        "verify"
       ],
       "name": "antigravity",
       "needs": {
+        "defines": {},
         "inputs": {},
         "memory_mib": 4096,
         "network": [
@@ -60,6 +59,13 @@
         "storage_max_objects": 131072,
         "timeout_secs": 3600
       },
+      "steps": [
+        "download",
+        "build",
+        "install",
+        "cleanup"
+      ],
+      "upstream": null,
       "version": "2.31.2"
     },
     {
@@ -82,9 +88,8 @@
         ],
         "license": "GPL-2.0-or-later",
         "steps": {
-          "acquire": "Takes each pinned package by its SHA-256, from the install medium's cache or the distribution's mirror.",
-          "build": "Unpacks the packages natively into one system tree, without running their scripts.",
-          "install": "Publishes the system tree for Recipe to write into the system root, with a receipt."
+          "download": "Takes each pinned package by its SHA-256, from the install medium's cache or the distribution's mirror.",
+          "install": "Unpacks the packages natively into one system tree, without running their scripts, and writes it into the system root with a receipt."
         },
         "systems": [
           "levitateos"
@@ -97,26 +102,27 @@
       "description": "KDE's archive manager",
       "files": [
         {
-          "bytes": 12427,
+          "bytes": 1908,
           "path": "ark.rhai",
-          "sha256": "f34dcd091a2d86dc7f95552dea5f66e6528ad8026a313dc2820dad97c349c584"
+          "sha256": "58069b5180650982108df99c511cfc89a0462ad72f55b40f7a9ac4667ac45258"
+        },
+        {
+          "bytes": 1540,
+          "path": "ark.pins",
+          "sha256": "a9c8cdc619cc593960cf9d002ba439d2633070a8677ad513c19bb4a05a1bef30"
         }
       ],
-      "hooks": [
-        "acquire",
-        "build",
-        "install",
-        "remove"
-      ],
+      "functions": [],
       "name": "ark",
       "needs": {
+        "defines": {},
         "inputs": {},
         "memory_mib": 4096,
         "network": [
           "dl-cdn.alpinelinux.org:443",
           "dl.fedoraproject.org:443"
         ],
-        "network_max_bytes": 4194304,
+        "network_max_bytes": 0,
         "outputs": {
           "system": "directory"
         },
@@ -124,6 +130,12 @@
         "storage_max_objects": 262144,
         "timeout_secs": 7200
       },
+      "steps": [
+        "download",
+        "install",
+        "cleanup"
+      ],
+      "upstream": null,
       "version": "2026.11.16"
     },
     {
@@ -139,9 +151,8 @@
         ],
         "license": "MIT AND LGPL-2.1-or-later",
         "steps": {
-          "acquire": "Takes each pinned package by its SHA-256, from the install medium's cache or the distribution's mirror.",
-          "build": "Unpacks the packages natively into one system tree, without running their scripts.",
-          "install": "Publishes the system tree for Recipe to write into the system root, with a receipt."
+          "download": "Takes each pinned package by its SHA-256, from the install medium's cache or the distribution's mirror.",
+          "install": "Unpacks the packages natively into one system tree, without running their scripts, and writes it into the system root with a receipt."
         },
         "systems": [
           "levitateos",
@@ -155,26 +166,29 @@
       "description": "Sound: PipeWire and WirePlumber",
       "files": [
         {
-          "bytes": 19546,
+          "bytes": 3092,
           "path": "audio.rhai",
-          "sha256": "8e3e2f68eac3213694c0b2bd186e01595b878253b9f1f17769d4e5fe45ee9903"
+          "sha256": "7302cd878699fb671c97b2fa558db716a218755c60acfad1fb0b733061ef3454"
+        },
+        {
+          "bytes": 6067,
+          "path": "audio.pins",
+          "sha256": "3382b280eb49f74e508ca7fa2a2569f12f98a4c0a3a71ade6b1e5b5fa7e06d01"
         }
       ],
-      "hooks": [
-        "acquire",
-        "build",
-        "install",
-        "remove"
+      "functions": [
+        "configure"
       ],
       "name": "audio",
       "needs": {
+        "defines": {},
         "inputs": {},
         "memory_mib": 4096,
         "network": [
           "dl-cdn.alpinelinux.org:443",
           "dl.fedoraproject.org:443"
         ],
-        "network_max_bytes": 4194304,
+        "network_max_bytes": 0,
         "outputs": {
           "system": "directory"
         },
@@ -182,6 +196,12 @@
         "storage_max_objects": 262144,
         "timeout_secs": 7200
       },
+      "steps": [
+        "download",
+        "install",
+        "cleanup"
+      ],
+      "upstream": null,
       "version": "2026.11.16"
     },
     {
@@ -199,8 +219,7 @@
         "kind": "tool",
         "license": "MIT OR Apache-2.0",
         "steps": {
-          "acquire": "Downloads the pinned upstream release and any companion documentation or licence files, checking every SHA-256.",
-          "build": "Unpacks the static release and checks each selected file against its own digest; nothing is compiled.",
+          "download": "Downloads the pinned upstream release and any companion documentation or licence files, checking every SHA-256.",
           "install": "Copies the commands and accompanying release files into bin and share."
         }
       },
@@ -209,19 +228,15 @@
       "description": "File viewer with syntax highlighting",
       "files": [
         {
-          "bytes": 5627,
+          "bytes": 2135,
           "path": "bat.rhai",
-          "sha256": "df3c2cef4c0473752136caaa6c3fce187a7807373c165619ee2dd4224522908f"
+          "sha256": "e666cf84a86f8bb5982d3dcab0ab0a1057508a56abf3ad204f379c7c56a7335b"
         }
       ],
-      "hooks": [
-        "acquire",
-        "build",
-        "install",
-        "remove"
-      ],
+      "functions": [],
       "name": "bat",
       "needs": {
+        "defines": {},
         "inputs": {},
         "memory_mib": 2048,
         "network": [
@@ -235,6 +250,15 @@
         "storage_max_bytes": null,
         "storage_max_objects": 16384,
         "timeout_secs": 300
+      },
+      "steps": [
+        "download",
+        "install",
+        "cleanup"
+      ],
+      "upstream": {
+        "github": "sharkdp/bat",
+        "prefix": "v"
       },
       "version": "0.26.1"
     },
@@ -251,9 +275,8 @@
         ],
         "license": "GPL-2.0-or-later AND LGPL-2.1-or-later",
         "steps": {
-          "acquire": "Takes each pinned package by its SHA-256, from the install medium's cache or the distribution's mirror.",
-          "build": "Unpacks the packages natively into one system tree, without running their scripts.",
-          "install": "Publishes the system tree for Recipe to write into the system root, with a receipt."
+          "download": "Takes each pinned package by its SHA-256, from the install medium's cache or the distribution's mirror.",
+          "install": "Unpacks the packages natively into one system tree, without running their scripts, and writes it into the system root with a receipt."
         },
         "systems": [
           "levitateos",
@@ -269,26 +292,29 @@
       "description": "Bluetooth",
       "files": [
         {
-          "bytes": 13687,
+          "bytes": 2078,
           "path": "bluetooth.rhai",
-          "sha256": "1a952266d10300500d8b76651604bb5d0ee7def866734f805a6743909da7bd05"
+          "sha256": "b7ef3ba6f9110dea5af7f5fafc01ba128782c8f9c08edd774b0cbac92b121d35"
+        },
+        {
+          "bytes": 2275,
+          "path": "bluetooth.pins",
+          "sha256": "399570fc11b549e1f13aa0b3ee2dd7b05a52726e4e4a071bb92f4e53aea2e811"
         }
       ],
-      "hooks": [
-        "acquire",
-        "build",
-        "install",
-        "remove"
+      "functions": [
+        "configure"
       ],
       "name": "bluetooth",
       "needs": {
+        "defines": {},
         "inputs": {},
         "memory_mib": 4096,
         "network": [
           "dl-cdn.alpinelinux.org:443",
           "dl.fedoraproject.org:443"
         ],
-        "network_max_bytes": 3145728,
+        "network_max_bytes": 0,
         "outputs": {
           "system": "directory"
         },
@@ -296,6 +322,12 @@
         "storage_max_objects": 262144,
         "timeout_secs": 7200
       },
+      "steps": [
+        "download",
+        "install",
+        "cleanup"
+      ],
+      "upstream": null,
       "version": "2026.11.16"
     },
     {
@@ -313,9 +345,8 @@
         "kind": "tool",
         "license": "Apache-2.0",
         "steps": {
-          "acquire": "Downloads the pinned upstream release and any companion documentation or licence files, checking every SHA-256.",
-          "build": "Unpacks the static release and checks each selected file against its own digest; nothing is compiled.",
-          "install": "Copies the commands and accompanying release files into bin and share."
+          "download": "Downloads the pinned upstream release and checks it against its SHA-256 digest.",
+          "install": "Puts btop, its licence and its themes in place; nothing is compiled."
         }
       },
       "build_deps": [],
@@ -323,19 +354,15 @@
       "description": "Interactive system resource monitor",
       "files": [
         {
-          "bytes": 12696,
+          "bytes": 1718,
           "path": "btop.rhai",
-          "sha256": "9a2c75d275b50cab175e15a593f93de39a690e62dbfe311e817c3ed7cabf2a6f"
+          "sha256": "a12346980a48613c0fa232ea7ac0f1c3a89798c0cb72503f8cd233b8b74e1571"
         }
       ],
-      "hooks": [
-        "acquire",
-        "build",
-        "install",
-        "remove"
-      ],
+      "functions": [],
       "name": "btop",
       "needs": {
+        "defines": {},
         "inputs": {},
         "memory_mib": 2048,
         "network": [
@@ -349,6 +376,15 @@
         "storage_max_bytes": null,
         "storage_max_objects": 16384,
         "timeout_secs": 300
+      },
+      "steps": [
+        "download",
+        "install",
+        "cleanup"
+      ],
+      "upstream": {
+        "github": "aristocratos/btop",
+        "prefix": "v"
       },
       "version": "1.4.8"
     },
@@ -370,8 +406,7 @@
         ],
         "license": "proprietary (Anthropic Commercial Terms, all rights reserved)",
         "steps": {
-          "acquire": "Downloads the pinned file from Anthropic and checks it against the digest in Anthropic's signed release manifest.",
-          "build": "Copies the file into place and checks it against its digest; nothing is compiled.",
+          "download": "Downloads the pinned file from Anthropic and checks it against the digest in Anthropic's signed release manifest.",
           "install": "Puts the claude command in bin."
         }
       },
@@ -380,19 +415,15 @@
       "description": "Claude Code terminal coding agent",
       "files": [
         {
-          "bytes": 4816,
+          "bytes": 2443,
           "path": "claude-code.rhai",
-          "sha256": "96ebac1f40da797ba377fc9a40fd39e2b036549365e601617302edb26692d484"
+          "sha256": "74243bd901dd97b9af2ecec3d08db1def00918a6a627a9d38c5a1b6945a969be"
         }
       ],
-      "hooks": [
-        "acquire",
-        "build",
-        "install",
-        "remove"
-      ],
+      "functions": [],
       "name": "claude-code",
       "needs": {
+        "defines": {},
         "inputs": {},
         "memory_mib": 2048,
         "network": [
@@ -406,6 +437,12 @@
         "storage_max_objects": 16384,
         "timeout_secs": 3600
       },
+      "steps": [
+        "download",
+        "install",
+        "cleanup"
+      ],
+      "upstream": null,
       "version": "2.1.323"
     },
     {
@@ -416,9 +453,8 @@
         "kind": "library",
         "license": "BSD-3-Clause",
         "steps": {
-          "acquire": "Downloads the pinned toolchain files and checks their SHA-256 values.",
-          "build": "Extracts the release and checks every regular file against the committed payload manifest.",
-          "install": "Publishes a private tools directory for recipes that name this under build_deps."
+          "download": "Downloads the pinned release archive and checks its SHA-256.",
+          "install": "Publishes the whole release as a private tools directory for recipes that name this under build_deps."
         }
       },
       "build_deps": [],
@@ -426,19 +462,17 @@
       "description": "CMake build configuration tools",
       "files": [
         {
-          "bytes": 1065903,
+          "bytes": 1897,
           "path": "cmake.rhai",
-          "sha256": "58afbb2c3a8624bf0c11bf184d3db5b1c16aba782d85c350f1af204009706eb0"
+          "sha256": "55ec2d3b22cf845f6642242834e46a755f4d5861ef3b236373c6fc990135b540"
         }
       ],
-      "hooks": [
-        "acquire",
-        "build",
-        "install",
-        "remove"
+      "functions": [
+        "verify"
       ],
       "name": "cmake",
       "needs": {
+        "defines": {},
         "inputs": {},
         "memory_mib": 4096,
         "network": [
@@ -452,6 +486,15 @@
         "storage_max_bytes": null,
         "storage_max_objects": 131072,
         "timeout_secs": 1800
+      },
+      "steps": [
+        "download",
+        "install",
+        "cleanup"
+      ],
+      "upstream": {
+        "github": "Kitware/CMake",
+        "prefix": "v"
       },
       "version": "4.4.5"
     },
@@ -470,8 +513,7 @@
         "kind": "tool",
         "license": "Apache-2.0",
         "steps": {
-          "acquire": "Downloads the pinned upstream musl release archive and checks it against the digest GitHub publishes for it.",
-          "build": "Unpacks the static binary and checks it against its own digest; nothing is compiled.",
+          "download": "Downloads the pinned upstream musl release archive and checks it against the digest GitHub publishes for it.",
           "install": "Puts the codex command in bin."
         }
       },
@@ -480,19 +522,15 @@
       "description": "OpenAI Codex terminal coding agent",
       "files": [
         {
-          "bytes": 4533,
+          "bytes": 2131,
           "path": "codex.rhai",
-          "sha256": "83cb80d45c7daa333dc1f05600fd0959b7ef43a1cf28425cc11ca2b4f7721359"
+          "sha256": "d3b46d71d8429c03ad79c3558f5486b0710589cfbc74786ea80158186f36a183"
         }
       ],
-      "hooks": [
-        "acquire",
-        "build",
-        "install",
-        "remove"
-      ],
+      "functions": [],
       "name": "codex",
       "needs": {
+        "defines": {},
         "inputs": {},
         "memory_mib": 2048,
         "network": [
@@ -506,6 +544,15 @@
         "storage_max_bytes": null,
         "storage_max_objects": 16384,
         "timeout_secs": 3600
+      },
+      "steps": [
+        "download",
+        "install",
+        "cleanup"
+      ],
+      "upstream": {
+        "github": "openai/codex",
+        "prefix": "rust-v"
       },
       "version": "0.167.2"
     },
@@ -524,8 +571,7 @@
         "kind": "tool",
         "license": "MIT",
         "steps": {
-          "acquire": "Downloads the pinned upstream release and any companion documentation or licence files, checking every SHA-256.",
-          "build": "Unpacks the static release and checks each selected file against its own digest; nothing is compiled.",
+          "download": "Downloads the pinned upstream release and any companion documentation or licence files, checking every SHA-256.",
           "install": "Copies the commands and accompanying release files into bin and share."
         }
       },
@@ -534,19 +580,15 @@
       "description": "Syntax-highlighted pager for diffs",
       "files": [
         {
-          "bytes": 4264,
+          "bytes": 1579,
           "path": "delta.rhai",
-          "sha256": "97ad6bb6335d6a0883d9ef93cc22122394aa47aa5c475121ed5c26f8a8183edb"
+          "sha256": "15ca5c50c7a40ce901db9cc55021af2ba1238803c0b97372385283fc23aeba47"
         }
       ],
-      "hooks": [
-        "acquire",
-        "build",
-        "install",
-        "remove"
-      ],
+      "functions": [],
       "name": "delta",
       "needs": {
+        "defines": {},
         "inputs": {},
         "memory_mib": 2048,
         "network": [
@@ -560,6 +602,14 @@
         "storage_max_bytes": null,
         "storage_max_objects": 16384,
         "timeout_secs": 300
+      },
+      "steps": [
+        "download",
+        "install",
+        "cleanup"
+      ],
+      "upstream": {
+        "github": "dandavison/delta"
       },
       "version": "0.20.1"
     },
@@ -575,9 +625,8 @@
         ],
         "license": "LGPL-2.1-or-later AND LGPL-3.0-only AND GPL-2.0-or-later AND MIT AND BSD-3-Clause",
         "steps": {
-          "acquire": "Takes each pinned package by its SHA-256, from the install medium's cache or the distribution's mirror.",
-          "build": "Unpacks the packages natively into one system tree, without running their scripts.",
-          "install": "Publishes the system tree for Recipe to write into the system root, with a receipt."
+          "download": "Takes each pinned package by its SHA-256, from the install medium's cache or the distribution's mirror.",
+          "install": "Unpacks the packages natively into one system tree, without running their scripts, and writes it into the system root with a receipt."
         },
         "systems": [
           "levitateos",
@@ -589,26 +638,29 @@
       "description": "Libraries more than one desktop group needs",
       "files": [
         {
-          "bytes": 212301,
+          "bytes": 2906,
           "path": "desktop-libs.rhai",
-          "sha256": "12004257060c28e28bc3d9e31926c0502f8ba8f561cef3442ceb6b038cc0aa51"
+          "sha256": "3252248d7e2d86176be2d52230e0eca473b697ab7fb8187458f5e544efda856b"
+        },
+        {
+          "bytes": 160279,
+          "path": "desktop-libs.pins",
+          "sha256": "28b356db8df9cd76ca5b7807efb402bba60eef1fef3389692387ee4d5a6c9f69"
         }
       ],
-      "hooks": [
-        "acquire",
-        "build",
-        "install",
-        "remove"
+      "functions": [
+        "configure"
       ],
       "name": "desktop-libs",
       "needs": {
+        "defines": {},
         "inputs": {},
         "memory_mib": 4096,
         "network": [
           "dl-cdn.alpinelinux.org:443",
           "dl.fedoraproject.org:443"
         ],
-        "network_max_bytes": 312475648,
+        "network_max_bytes": 0,
         "outputs": {
           "system": "directory"
         },
@@ -616,6 +668,12 @@
         "storage_max_objects": 262144,
         "timeout_secs": 7200
       },
+      "steps": [
+        "download",
+        "install",
+        "cleanup"
+      ],
+      "upstream": null,
       "version": "2026.11.16"
     },
     {
@@ -630,8 +688,8 @@
         "libc_carried": true,
         "license": "LGPL-2.1-or-later AND LGPL-3.0-or-later AND GPL-2.0-or-later AND MPL-2.0 AND MIT AND BSD-3-Clause AND Apache-2.0",
         "steps": {
-          "acquire": "Downloads each pinned Fedora RPM and checks its SHA-256.",
           "build": "Extracts the RPMs without scriptlets, keeps the shared libraries and the data they read at run time, compiles the GSettings schemas and checks that every library and loader finds all it links against inside lib.",
+          "download": "Downloads each pinned Fedora RPM and checks its SHA-256.",
           "install": "Publishes the sdk directory for recipes that name this under build_deps."
         }
       },
@@ -640,25 +698,29 @@
       "description": "Libraries and data carried by upstream desktop builds",
       "files": [
         {
-          "bytes": 41884,
+          "bytes": 11670,
           "path": "desktop-runtime.rhai",
-          "sha256": "b8532c7fb68e24f9dbe03f42dcc4531d898c6b549919ad5f0cc3d80e00e2bf87"
+          "sha256": "1a5270c7779e091b45e17106bbbedbcb532303929957025d188bf775ce90a76e"
+        },
+        {
+          "bytes": 23461,
+          "path": "desktop-runtime.pins",
+          "sha256": "6f35fb22f5cd8cc324f14e492d516f26294c0a7c094b64b66e7f43d35fed0b91"
         }
       ],
-      "hooks": [
-        "acquire",
+      "functions": [
         "build",
-        "install",
-        "remove"
+        "verify"
       ],
       "name": "desktop-runtime",
       "needs": {
+        "defines": {},
         "inputs": {},
         "memory_mib": 4096,
         "network": [
           "dl.fedoraproject.org:443"
         ],
-        "network_max_bytes": 100663296,
+        "network_max_bytes": 0,
         "outputs": {
           "sdk": "directory"
         },
@@ -666,6 +728,13 @@
         "storage_max_objects": 65536,
         "timeout_secs": 3600
       },
+      "steps": [
+        "download",
+        "build",
+        "install",
+        "cleanup"
+      ],
+      "upstream": null,
       "version": "45.20261113"
     },
     {
@@ -688,9 +757,8 @@
         ],
         "license": "GPL-2.0-or-later",
         "steps": {
-          "acquire": "Takes each pinned package by its SHA-256, from the install medium's cache or the distribution's mirror.",
-          "build": "Unpacks the packages natively into one system tree, without running their scripts.",
-          "install": "Publishes the system tree for Recipe to write into the system root, with a receipt."
+          "download": "Takes each pinned package by its SHA-256, from the install medium's cache or the distribution's mirror.",
+          "install": "Unpacks the packages natively into one system tree, without running their scripts, and writes it into the system root with a receipt."
         },
         "systems": [
           "levitateos"
@@ -703,26 +771,27 @@
       "description": "KDE's file manager",
       "files": [
         {
-          "bytes": 11990,
+          "bytes": 1898,
           "path": "dolphin.rhai",
-          "sha256": "b634fe8d9da1aed4e02a7c012616ac81d676759bdf3687192477455854d20c6a"
+          "sha256": "f3dca8f26947dd9b29ab1b6b67cc7f1c6463a5156b1a33c7054bbba886c8e5ed"
+        },
+        {
+          "bytes": 1279,
+          "path": "dolphin.pins",
+          "sha256": "faf1db67cb74463260c8196f78e4c41f035c800b2ef5846148e3045a7a1dfcfb"
         }
       ],
-      "hooks": [
-        "acquire",
-        "build",
-        "install",
-        "remove"
-      ],
+      "functions": [],
       "name": "dolphin",
       "needs": {
+        "defines": {},
         "inputs": {},
         "memory_mib": 4096,
         "network": [
           "dl-cdn.alpinelinux.org:443",
           "dl.fedoraproject.org:443"
         ],
-        "network_max_bytes": 6291456,
+        "network_max_bytes": 0,
         "outputs": {
           "system": "directory"
         },
@@ -730,6 +799,12 @@
         "storage_max_objects": 262144,
         "timeout_secs": 7200
       },
+      "steps": [
+        "download",
+        "install",
+        "cleanup"
+      ],
+      "upstream": null,
       "version": "2026.11.16"
     },
     {
@@ -750,9 +825,8 @@
         ],
         "license": "GPL-2.0-or-later",
         "steps": {
-          "acquire": "Takes each pinned package by its SHA-256, from the install medium's cache or the distribution's mirror.",
-          "build": "Unpacks the packages natively into one system tree, without running their scripts.",
-          "install": "Publishes the system tree for Recipe to write into the system root, with a receipt."
+          "download": "Takes each pinned package by its SHA-256, from the install medium's cache or the distribution's mirror.",
+          "install": "Unpacks the packages natively into one system tree, without running their scripts, and writes it into the system root with a receipt."
         },
         "systems": [
           "levitateos"
@@ -767,26 +841,27 @@
       "description": "KDE's crash handler",
       "files": [
         {
-          "bytes": 14355,
+          "bytes": 1983,
           "path": "drkonqi.rhai",
-          "sha256": "24e64cf1ef4595f6b6c64cf22837d7eb9303aac831f8187fd609534488acce48"
+          "sha256": "8fb13627021b1031b68ac27757376b4b0b3df2429a270543364f0e97103bfa96"
+        },
+        {
+          "bytes": 3013,
+          "path": "drkonqi.pins",
+          "sha256": "babdb0e3fd61f36ef6454b242b5f6786846a59ad6982c507d79d301c23046e50"
         }
       ],
-      "hooks": [
-        "acquire",
-        "build",
-        "install",
-        "remove"
-      ],
+      "functions": [],
       "name": "drkonqi",
       "needs": {
+        "defines": {},
         "inputs": {},
         "memory_mib": 4096,
         "network": [
           "dl-cdn.alpinelinux.org:443",
           "dl.fedoraproject.org:443"
         ],
-        "network_max_bytes": 4194304,
+        "network_max_bytes": 0,
         "outputs": {
           "system": "directory"
         },
@@ -794,6 +869,12 @@
         "storage_max_objects": 262144,
         "timeout_secs": 7200
       },
+      "steps": [
+        "download",
+        "install",
+        "cleanup"
+      ],
+      "upstream": null,
       "version": "2026.11.16"
     },
     {
@@ -811,9 +892,8 @@
         "kind": "tool",
         "license": "EUPL-1.2 AND MIT AND CC-BY-4.0",
         "steps": {
-          "acquire": "Downloads the pinned upstream release and any companion documentation or licence files, checking every SHA-256.",
-          "build": "Unpacks the static release and checks each selected file against its own digest; nothing is compiled.",
-          "install": "Copies the commands and accompanying release files into bin and share."
+          "download": "Downloads the pinned upstream release, its manual pages, completions and licence texts, checking every SHA-256.",
+          "install": "Puts eza, its manual pages, shell completions and licences in place; nothing is compiled."
         }
       },
       "build_deps": [],
@@ -821,19 +901,15 @@
       "description": "Directory listing with file details",
       "files": [
         {
-          "bytes": 8285,
+          "bytes": 4303,
           "path": "eza.rhai",
-          "sha256": "224a17157702253c85d4727cf69f0e0b87eb01eb08430c6ea68d2064b35bae02"
+          "sha256": "6f558f1f8049ce39d93cbb1603466995bb214972c7d582c9ed1f5dd6203332a6"
         }
       ],
-      "hooks": [
-        "acquire",
-        "build",
-        "install",
-        "remove"
-      ],
+      "functions": [],
       "name": "eza",
       "needs": {
+        "defines": {},
         "inputs": {},
         "memory_mib": 2048,
         "network": [
@@ -848,6 +924,15 @@
         "storage_max_bytes": null,
         "storage_max_objects": 16384,
         "timeout_secs": 300
+      },
+      "steps": [
+        "download",
+        "install",
+        "cleanup"
+      ],
+      "upstream": {
+        "github": "eza-community/eza",
+        "prefix": "v"
       },
       "version": "0.23.5"
     },
@@ -866,8 +951,7 @@
         "kind": "tool",
         "license": "MIT OR Apache-2.0",
         "steps": {
-          "acquire": "Downloads the pinned upstream release and any companion documentation or licence files, checking every SHA-256.",
-          "build": "Unpacks the static release and checks each selected file against its own digest; nothing is compiled.",
+          "download": "Downloads the pinned upstream release and any companion documentation or licence files, checking every SHA-256.",
           "install": "Copies the commands and accompanying release files into bin and share."
         }
       },
@@ -876,19 +960,15 @@
       "description": "Fast file finder",
       "files": [
         {
-          "bytes": 6317,
+          "bytes": 2324,
           "path": "fd.rhai",
-          "sha256": "e86db61062905d667eb91a96038e63bf882157da9126b6ed07001db06df8f5ab"
+          "sha256": "0bb6e26276f0222ac19da10abb655c61e194fa9fd62b5fa8cda63e9372071f75"
         }
       ],
-      "hooks": [
-        "acquire",
-        "build",
-        "install",
-        "remove"
-      ],
+      "functions": [],
       "name": "fd",
       "needs": {
+        "defines": {},
         "inputs": {},
         "memory_mib": 2048,
         "network": [
@@ -902,6 +982,15 @@
         "storage_max_bytes": null,
         "storage_max_objects": 16384,
         "timeout_secs": 300
+      },
+      "steps": [
+        "download",
+        "install",
+        "cleanup"
+      ],
+      "upstream": {
+        "github": "sharkdp/fd",
+        "prefix": "v"
       },
       "version": "10.5.2"
     },
@@ -918,9 +1007,8 @@
         ],
         "license": "GPL-2.0-or-later",
         "steps": {
-          "acquire": "Takes each pinned package by its SHA-256, from the install medium's cache or the distribution's mirror.",
-          "build": "Unpacks the packages natively into one system tree, without running their scripts.",
-          "install": "Publishes the system tree for Recipe to write into the system root, with a receipt."
+          "download": "Takes each pinned package by its SHA-256, from the install medium's cache or the distribution's mirror.",
+          "install": "Unpacks the packages natively into one system tree, without running their scripts, and writes it into the system root with a receipt."
         },
         "systems": [
           "levitateos",
@@ -932,26 +1020,27 @@
       "description": "exFAT and NTFS drives",
       "files": [
         {
-          "bytes": 12518,
+          "bytes": 1969,
           "path": "filesystems.rhai",
-          "sha256": "d6dff777c199ec39f57c2fcc1ebbaebf0d45f069fcd583e485290ab96f413aee"
+          "sha256": "935131765bc61ffca9edfc04a5a5f822cff61c7a8dd06bfc4647ea9699c29118"
+        },
+        {
+          "bytes": 1420,
+          "path": "filesystems.pins",
+          "sha256": "fbbebe238e2d928de2c64b5d6a70f21ef010f35bcaf02dba076ef230995f08b9"
         }
       ],
-      "hooks": [
-        "acquire",
-        "build",
-        "install",
-        "remove"
-      ],
+      "functions": [],
       "name": "filesystems",
       "needs": {
+        "defines": {},
         "inputs": {},
         "memory_mib": 4096,
         "network": [
           "dl-cdn.alpinelinux.org:443",
           "dl.fedoraproject.org:443"
         ],
-        "network_max_bytes": 1048576,
+        "network_max_bytes": 0,
         "outputs": {
           "system": "directory"
         },
@@ -959,6 +1048,12 @@
         "storage_max_objects": 262144,
         "timeout_secs": 7200
       },
+      "steps": [
+        "download",
+        "install",
+        "cleanup"
+      ],
+      "upstream": null,
       "version": "2026.11.16"
     },
     {
@@ -982,9 +1077,8 @@
         ],
         "license": "MPL-2.0",
         "steps": {
-          "acquire": "Takes each pinned package by its SHA-256, from the install medium's cache or the distribution's mirror.",
-          "build": "Unpacks the packages natively into one system tree, without running their scripts.",
-          "install": "Publishes the system tree for Recipe to write into the system root, with a receipt."
+          "download": "Takes each pinned package by its SHA-256, from the install medium's cache or the distribution's mirror.",
+          "install": "Unpacks the packages natively into one system tree, without running their scripts, and writes it into the system root with a receipt."
         },
         "systems": [
           "levitateos",
@@ -998,26 +1092,34 @@
       "description": "The Firefox web browser",
       "files": [
         {
-          "bytes": 16952,
+          "bytes": 4417,
           "path": "firefox.rhai",
-          "sha256": "6f9d2c16d8aeb2fc69953d4a5aced359612d82cc4a0c92d237b429b462cd943e"
+          "sha256": "24971fb0127524434e017eee7f6e69b09e6f82e6338b41668a88115f896cd126"
+        },
+        {
+          "bytes": 2994,
+          "path": "os-facts.rhai",
+          "sha256": "df29a3f420f2269e4dffc4018af4768f02c60af4bd864b48de2c2d5a837029f9"
+        },
+        {
+          "bytes": 1130,
+          "path": "firefox.pins",
+          "sha256": "40a920a3c3aeb982e81335bfa227c703ce6eac256bde4c4b1eaed4c8c635865c"
         }
       ],
-      "hooks": [
-        "acquire",
-        "build",
-        "install",
-        "remove"
+      "functions": [
+        "configure"
       ],
       "name": "firefox",
       "needs": {
+        "defines": {},
         "inputs": {},
         "memory_mib": 4096,
         "network": [
           "dl-cdn.alpinelinux.org:443",
           "dl.fedoraproject.org:443"
         ],
-        "network_max_bytes": 98566144,
+        "network_max_bytes": 0,
         "outputs": {
           "system": "directory"
         },
@@ -1025,6 +1127,12 @@
         "storage_max_objects": 262144,
         "timeout_secs": 7200
       },
+      "steps": [
+        "download",
+        "install",
+        "cleanup"
+      ],
+      "upstream": null,
       "version": "2026.11.16"
     },
     {
@@ -1040,9 +1148,8 @@
         ],
         "license": "GPL-2.0-or-later",
         "steps": {
-          "acquire": "Takes each pinned package by its SHA-256, from the install medium's cache or the distribution's mirror.",
-          "build": "Unpacks the packages natively into one system tree, without running their scripts.",
-          "install": "Publishes the system tree for Recipe to write into the system root, with a receipt."
+          "download": "Takes each pinned package by its SHA-256, from the install medium's cache or the distribution's mirror.",
+          "install": "Unpacks the packages natively into one system tree, without running their scripts, and writes it into the system root with a receipt."
         },
         "systems": [
           "levitateos",
@@ -1056,26 +1163,29 @@
       "description": "The firewalld firewall, with its settings",
       "files": [
         {
-          "bytes": 18142,
+          "bytes": 2582,
           "path": "firewall.rhai",
-          "sha256": "d4180ef8cfd89309c47681ec6c77fd28d8fb415927d6b9029f10d08bbc3ae081"
+          "sha256": "bce950dd2d0f075b93b9298e04bc736daaf8a9057f19d97dc1cc9251a9e227f5"
+        },
+        {
+          "bytes": 5212,
+          "path": "firewall.pins",
+          "sha256": "f3b5a183cce71bc3d429404de40b96872dca50d677f70663b3a52e72c675ebdc"
         }
       ],
-      "hooks": [
-        "acquire",
-        "build",
-        "install",
-        "remove"
+      "functions": [
+        "configure"
       ],
       "name": "firewall",
       "needs": {
+        "defines": {},
         "inputs": {},
         "memory_mib": 4096,
         "network": [
           "dl-cdn.alpinelinux.org:443",
           "dl.fedoraproject.org:443"
         ],
-        "network_max_bytes": 3145728,
+        "network_max_bytes": 0,
         "outputs": {
           "system": "directory"
         },
@@ -1083,6 +1193,12 @@
         "storage_max_objects": 262144,
         "timeout_secs": 7200
       },
+      "steps": [
+        "download",
+        "install",
+        "cleanup"
+      ],
+      "upstream": null,
       "version": "2026.11.16"
     },
     {
@@ -1097,9 +1213,8 @@
         ],
         "license": "LGPL-2.1-or-later",
         "steps": {
-          "acquire": "Takes each pinned package by its SHA-256, from the install medium's cache or the distribution's mirror.",
-          "build": "Unpacks the packages natively into one system tree, without running their scripts.",
-          "install": "Publishes the system tree for Recipe to write into the system root, with a receipt."
+          "download": "Takes each pinned package by its SHA-256, from the install medium's cache or the distribution's mirror.",
+          "install": "Unpacks the packages natively into one system tree, without running their scripts, and writes it into the system root with a receipt."
         },
         "systems": [
           "acornos"
@@ -1112,26 +1227,27 @@
       "description": "Firmware updates through fwupd",
       "files": [
         {
-          "bytes": 15939,
+          "bytes": 2277,
           "path": "firmware-updates.rhai",
-          "sha256": "c1429e7c0163fefd9466c26a53700d3114ea8d6a2024ab8b7b0acb5fb204098f"
+          "sha256": "8aa7764e53a9848da08096855952f6cd6c5e8e9b6d9c54ce28e167c38cbd2c2f"
+        },
+        {
+          "bytes": 4274,
+          "path": "firmware-updates.pins",
+          "sha256": "b7d2b64a8bc5378257621167027f2904a4e88c322878070296b04c4db0e24af4"
         }
       ],
-      "hooks": [
-        "acquire",
-        "build",
-        "install",
-        "remove"
-      ],
+      "functions": [],
       "name": "firmware-updates",
       "needs": {
+        "defines": {},
         "inputs": {},
         "memory_mib": 4096,
         "network": [
           "dl-cdn.alpinelinux.org:443",
           "dl.fedoraproject.org:443"
         ],
-        "network_max_bytes": 8388608,
+        "network_max_bytes": 0,
         "outputs": {
           "system": "directory"
         },
@@ -1139,6 +1255,12 @@
         "storage_max_objects": 262144,
         "timeout_secs": 7200
       },
+      "steps": [
+        "download",
+        "install",
+        "cleanup"
+      ],
+      "upstream": null,
       "version": "2026.11.16"
     },
     {
@@ -1154,9 +1276,8 @@
         ],
         "license": "OFL-1.1",
         "steps": {
-          "acquire": "Takes each pinned package by its SHA-256, from the install medium's cache or the distribution's mirror.",
-          "build": "Unpacks the packages natively into one system tree, without running their scripts.",
-          "install": "Publishes the system tree for Recipe to write into the system root, with a receipt."
+          "download": "Takes each pinned package by its SHA-256, from the install medium's cache or the distribution's mirror.",
+          "install": "Unpacks the packages natively into one system tree, without running their scripts, and writes it into the system root with a receipt."
         },
         "systems": [
           "levitateos",
@@ -1170,26 +1291,27 @@
       "description": "Fonts for Chinese, Japanese and Korean",
       "files": [
         {
-          "bytes": 11508,
+          "bytes": 1938,
           "path": "fonts-cjk.rhai",
-          "sha256": "192def687f5797dc57a84bb384047af26fb453bb290205a0daebfa5d5c6adab3"
+          "sha256": "c1428c3b02704575b068892316f9477f3cdc7ab67a308e6e369e91846cf80709"
+        },
+        {
+          "bytes": 638,
+          "path": "fonts-cjk.pins",
+          "sha256": "07d2539a992ad7837e999a4dc3cac197a811258cf61fa6f2689a7e4b25148c49"
         }
       ],
-      "hooks": [
-        "acquire",
-        "build",
-        "install",
-        "remove"
-      ],
+      "functions": [],
       "name": "fonts-cjk",
       "needs": {
+        "defines": {},
         "inputs": {},
         "memory_mib": 4096,
         "network": [
           "dl-cdn.alpinelinux.org:443",
           "dl.fedoraproject.org:443"
         ],
-        "network_max_bytes": 84934656,
+        "network_max_bytes": 0,
         "outputs": {
           "system": "directory"
         },
@@ -1197,6 +1319,12 @@
         "storage_max_objects": 262144,
         "timeout_secs": 7200
       },
+      "steps": [
+        "download",
+        "install",
+        "cleanup"
+      ],
+      "upstream": null,
       "version": "2026.11.16"
     },
     {
@@ -1212,9 +1340,8 @@
         ],
         "license": "OFL-1.1",
         "steps": {
-          "acquire": "Takes each pinned package by its SHA-256, from the install medium's cache or the distribution's mirror.",
-          "build": "Unpacks the packages natively into one system tree, without running their scripts.",
-          "install": "Publishes the system tree for Recipe to write into the system root, with a receipt."
+          "download": "Takes each pinned package by its SHA-256, from the install medium's cache or the distribution's mirror.",
+          "install": "Unpacks the packages natively into one system tree, without running their scripts, and writes it into the system root with a receipt."
         },
         "systems": [
           "levitateos",
@@ -1228,26 +1355,27 @@
       "description": "Fonts for documents",
       "files": [
         {
-          "bytes": 12612,
+          "bytes": 2107,
           "path": "fonts-office.rhai",
-          "sha256": "dd4e2dfd80705cdfe718da920dd82ff677bca28f1b556e4a46c9cd1886ad0e89"
+          "sha256": "deba771d19d9e5d4edb1938dbc68cd5204d121ce66a7d0972d85458250a2e0f8"
+        },
+        {
+          "bytes": 1364,
+          "path": "fonts-office.pins",
+          "sha256": "1cbf95c3ddc1bd0e6d86796325de020eacf6bc893e7553f746355d1abd2dae3e"
         }
       ],
-      "hooks": [
-        "acquire",
-        "build",
-        "install",
-        "remove"
-      ],
+      "functions": [],
       "name": "fonts-office",
       "needs": {
+        "defines": {},
         "inputs": {},
         "memory_mib": 4096,
         "network": [
           "dl-cdn.alpinelinux.org:443",
           "dl.fedoraproject.org:443"
         ],
-        "network_max_bytes": 15728640,
+        "network_max_bytes": 0,
         "outputs": {
           "system": "directory"
         },
@@ -1255,6 +1383,12 @@
         "storage_max_objects": 262144,
         "timeout_secs": 7200
       },
+      "steps": [
+        "download",
+        "install",
+        "cleanup"
+      ],
+      "upstream": null,
       "version": "2026.11.16"
     },
     {
@@ -1270,9 +1404,8 @@
         ],
         "license": "OFL-1.1",
         "steps": {
-          "acquire": "Takes each pinned package by its SHA-256, from the install medium's cache or the distribution's mirror.",
-          "build": "Unpacks the packages natively into one system tree, without running their scripts.",
-          "install": "Publishes the system tree for Recipe to write into the system root, with a receipt."
+          "download": "Takes each pinned package by its SHA-256, from the install medium's cache or the distribution's mirror.",
+          "install": "Unpacks the packages natively into one system tree, without running their scripts, and writes it into the system root with a receipt."
         },
         "systems": [
           "levitateos",
@@ -1286,26 +1419,27 @@
       "description": "The Noto fonts the desktop uses",
       "files": [
         {
-          "bytes": 13020,
+          "bytes": 2007,
           "path": "fonts.rhai",
-          "sha256": "8a7f325a82762c2f70c6f3f4d1ee966a2f7a0ff872b85ed6800812c51d135550"
+          "sha256": "09589fafa3c0bd0650a7b8ab40fb20f9945da0d9c9a07488fa6ff088af8afbda"
+        },
+        {
+          "bytes": 1729,
+          "path": "fonts.pins",
+          "sha256": "da32a3fae0ed00942326ce256e562f0f33536b0e06ca6dad57aacf6ffd31c697"
         }
       ],
-      "hooks": [
-        "acquire",
-        "build",
-        "install",
-        "remove"
-      ],
+      "functions": [],
       "name": "fonts",
       "needs": {
+        "defines": {},
         "inputs": {},
         "memory_mib": 4096,
         "network": [
           "dl-cdn.alpinelinux.org:443",
           "dl.fedoraproject.org:443"
         ],
-        "network_max_bytes": 19922944,
+        "network_max_bytes": 0,
         "outputs": {
           "system": "directory"
         },
@@ -1313,6 +1447,12 @@
         "storage_max_objects": 262144,
         "timeout_secs": 7200
       },
+      "steps": [
+        "download",
+        "install",
+        "cleanup"
+      ],
+      "upstream": null,
       "version": "2026.11.16"
     },
     {
@@ -1330,8 +1470,7 @@
         "kind": "tool",
         "license": "MIT",
         "steps": {
-          "acquire": "Downloads the pinned upstream release and any companion documentation or licence files, checking every SHA-256.",
-          "build": "Unpacks the static release and checks each selected file against its own digest; nothing is compiled.",
+          "download": "Downloads the pinned upstream release and any companion documentation or licence files, checking every SHA-256.",
           "install": "Copies the commands and accompanying release files into bin and share."
         }
       },
@@ -1340,19 +1479,15 @@
       "description": "Interactive fuzzy finder",
       "files": [
         {
-          "bytes": 4544,
+          "bytes": 1835,
           "path": "fzf.rhai",
-          "sha256": "82acfe19debdd48ec97f5a6173d3031d5d42276474d6b8bb94b9066ea0029940"
+          "sha256": "fd96175dfed153ac8d78f384bc0c9b15e84e85701bf83df62a10a1d1003db0dc"
         }
       ],
-      "hooks": [
-        "acquire",
-        "build",
-        "install",
-        "remove"
-      ],
+      "functions": [],
       "name": "fzf",
       "needs": {
+        "defines": {},
         "inputs": {},
         "memory_mib": 2048,
         "network": [
@@ -1367,6 +1502,15 @@
         "storage_max_bytes": null,
         "storage_max_objects": 16384,
         "timeout_secs": 300
+      },
+      "steps": [
+        "download",
+        "install",
+        "cleanup"
+      ],
+      "upstream": {
+        "github": "junegunn/fzf",
+        "prefix": "v"
       },
       "version": "0.75.0"
     },
@@ -1385,9 +1529,8 @@
         "kind": "tool",
         "license": "MIT",
         "steps": {
-          "acquire": "Downloads the pinned upstream release and any companion documentation or licence files, checking every SHA-256.",
-          "build": "Unpacks the static release and checks each selected file against its own digest; nothing is compiled.",
-          "install": "Copies the commands and accompanying release files into bin and share."
+          "download": "Downloads the pinned upstream release and checks it against its SHA-256 digest.",
+          "install": "Puts gh, its manual pages and its licence in place; nothing is compiled."
         }
       },
       "build_deps": [],
@@ -1395,19 +1538,15 @@
       "description": "GitHub command-line client",
       "files": [
         {
-          "bytes": 58392,
+          "bytes": 1673,
           "path": "gh.rhai",
-          "sha256": "12e3763284d2dc6baf2b9057bb2a5bf5096d351d50fc2d3093a85e79a196346e"
+          "sha256": "d1fef85554850c39786eb35c4c2c912d60a21476d69633bf8610ec50be99d561"
         }
       ],
-      "hooks": [
-        "acquire",
-        "build",
-        "install",
-        "remove"
-      ],
+      "functions": [],
       "name": "gh",
       "needs": {
+        "defines": {},
         "inputs": {},
         "memory_mib": 2048,
         "network": [
@@ -1422,6 +1561,15 @@
         "storage_max_objects": 16384,
         "timeout_secs": 300
       },
+      "steps": [
+        "download",
+        "install",
+        "cleanup"
+      ],
+      "upstream": {
+        "github": "cli/cli",
+        "prefix": "v"
+      },
       "version": "2.103.3"
     },
     {
@@ -1432,9 +1580,9 @@
         "kind": "library",
         "license": "BSD-3-Clause",
         "steps": {
-          "acquire": "Downloads the pinned toolchain files and checks their SHA-256 values.",
-          "build": "Extracts the release and checks every regular file against the committed payload manifest.",
-          "install": "Publishes a private tools directory for recipes that name this under build_deps."
+          "build": "Removes upstream test fixtures and writes the go launcher and the gofmt copy.",
+          "download": "Downloads the pinned release archive and checks its SHA-256.",
+          "install": "Publishes the toolchain under lib/go with the launchers in bin, as a private tools directory for recipes that name this under build_deps."
         }
       },
       "build_deps": [],
@@ -1442,19 +1590,19 @@
       "description": "Go compiler and standard library",
       "files": [
         {
-          "bytes": 679152,
+          "bytes": 3179,
           "path": "go.rhai",
-          "sha256": "4aa0b2c7039d315f7a1731ddad355a198dfac5a30eb6ca5c6ab0fa9213cc2ae9"
+          "sha256": "75d35f2e9131ac2595ad47057711b9ff7032fb8c028528da9ccc49be8b288539"
         }
       ],
-      "hooks": [
-        "acquire",
+      "functions": [
         "build",
-        "install",
-        "remove"
+        "verify",
+        "latest"
       ],
       "name": "go",
       "needs": {
+        "defines": {},
         "inputs": {},
         "memory_mib": 4096,
         "network": [
@@ -1468,6 +1616,15 @@
         "storage_max_bytes": null,
         "storage_max_objects": 131072,
         "timeout_secs": 1800
+      },
+      "steps": [
+        "download",
+        "build",
+        "install",
+        "cleanup"
+      ],
+      "upstream": {
+        "latest": true
       },
       "version": "1.27.4"
     },
@@ -1484,9 +1641,8 @@
         ],
         "license": "MIT AND BSD-3-Clause",
         "steps": {
-          "acquire": "Takes each pinned package by its SHA-256, from the install medium's cache or the distribution's mirror.",
-          "build": "Unpacks the packages natively into one system tree, without running their scripts.",
-          "install": "Publishes the system tree for Recipe to write into the system root, with a receipt."
+          "download": "Takes each pinned package by its SHA-256, from the install medium's cache or the distribution's mirror.",
+          "install": "Unpacks the packages natively into one system tree, without running their scripts, and writes it into the system root with a receipt."
         },
         "systems": [
           "levitateos",
@@ -1500,26 +1656,27 @@
       "description": "Mesa's OpenGL, Vulkan and video decoding drivers",
       "files": [
         {
-          "bytes": 13870,
+          "bytes": 2137,
           "path": "graphics-drivers.rhai",
-          "sha256": "08583a772e3c9c32a1a0c3cf7fb059bfe50ebfb9d086f1d9b60b2e49be72522d"
+          "sha256": "5efd506548609df030295fa5d1b089eb491d42a71a62601729061cf975f43593"
+        },
+        {
+          "bytes": 2342,
+          "path": "graphics-drivers.pins",
+          "sha256": "8b95dbbd0022c0878a458a4ca17c25a9ec4f3a9d2c10eac201a83f9d4671a6e9"
         }
       ],
-      "hooks": [
-        "acquire",
-        "build",
-        "install",
-        "remove"
-      ],
+      "functions": [],
       "name": "graphics-drivers",
       "needs": {
+        "defines": {},
         "inputs": {},
         "memory_mib": 4096,
         "network": [
           "dl-cdn.alpinelinux.org:443",
           "dl.fedoraproject.org:443"
         ],
-        "network_max_bytes": 33554432,
+        "network_max_bytes": 0,
         "outputs": {
           "system": "directory"
         },
@@ -1527,6 +1684,12 @@
         "storage_max_objects": 262144,
         "timeout_secs": 7200
       },
+      "steps": [
+        "download",
+        "install",
+        "cleanup"
+      ],
+      "upstream": null,
       "version": "2026.11.16"
     },
     {
@@ -1537,8 +1700,8 @@
         "kind": "library",
         "license": "GPL-3.0-or-later AND (GPL-3.0-or-later WITH GCC-exception-3.1)",
         "steps": {
-          "acquire": "Downloads the pinned toolchain files and checks their SHA-256 values.",
-          "build": "Extracts the release and checks every regular file against the committed payload manifest.",
+          "build": "Checks the shared GCC 14.3.1 image, drops the i686 libraries and replaces the C++ drivers with launchers.",
+          "download": "Downloads the pinned RPMs and licence texts and checks their SHA-256 values.",
           "install": "Publishes a private tools directory for recipes that name this under build_deps."
         }
       },
@@ -1547,19 +1710,18 @@
       "description": "C++ frontend and headers for the GCC 14 build image",
       "files": [
         {
-          "bytes": 115208,
+          "bytes": 4989,
           "path": "gxx.rhai",
-          "sha256": "b6d30ab16939a4da2e74b2102f5906db80aaeffdf4dbc5dffbe4f0c50df91ce2"
+          "sha256": "052b1d5d73e9ac2c91f93099480d173fff1cf7f690dc042b64d884489b358d3f"
         }
       ],
-      "hooks": [
-        "acquire",
+      "functions": [
         "build",
-        "install",
-        "remove"
+        "verify"
       ],
       "name": "gxx",
       "needs": {
+        "defines": {},
         "inputs": {},
         "memory_mib": 4096,
         "network": [
@@ -1574,6 +1736,13 @@
         "storage_max_objects": 131072,
         "timeout_secs": 600
       },
+      "steps": [
+        "download",
+        "build",
+        "install",
+        "cleanup"
+      ],
+      "upstream": null,
       "version": "14.3.1-4.4.el10"
     },
     {
@@ -1591,8 +1760,7 @@
         "kind": "tool",
         "license": "MIT",
         "steps": {
-          "acquire": "Downloads the pinned upstream release and any companion documentation or licence files, checking every SHA-256.",
-          "build": "Unpacks the static release and checks each selected file against its own digest; nothing is compiled.",
+          "download": "Downloads the pinned upstream release and any companion documentation or licence files, checking every SHA-256.",
           "install": "Copies the commands and accompanying release files into bin and share."
         }
       },
@@ -1601,19 +1769,15 @@
       "description": "Command-line JSON processor",
       "files": [
         {
-          "bytes": 4796,
+          "bytes": 1987,
           "path": "jq.rhai",
-          "sha256": "4b72462e7c8b94440d75005efe4d7f65f44cd58477fa0070f3b59da3d4af8978"
+          "sha256": "f1a5c86a4598b50dc4b384cdae66290c6100f1341a2bdfc48a68d57187a84723"
         }
       ],
-      "hooks": [
-        "acquire",
-        "build",
-        "install",
-        "remove"
-      ],
+      "functions": [],
       "name": "jq",
       "needs": {
+        "defines": {},
         "inputs": {},
         "memory_mib": 2048,
         "network": [
@@ -1627,6 +1791,15 @@
         "storage_max_bytes": null,
         "storage_max_objects": 16384,
         "timeout_secs": 300
+      },
+      "steps": [
+        "download",
+        "install",
+        "cleanup"
+      ],
+      "upstream": {
+        "github": "jqlang/jq",
+        "prefix": "jq-"
       },
       "version": "1.8.2"
     },
@@ -1650,9 +1823,8 @@
         ],
         "license": "GPL-2.0-or-later",
         "steps": {
-          "acquire": "Takes each pinned package by its SHA-256, from the install medium's cache or the distribution's mirror.",
-          "build": "Unpacks the packages natively into one system tree, without running their scripts.",
-          "install": "Publishes the system tree for Recipe to write into the system root, with a receipt."
+          "download": "Takes each pinned package by its SHA-256, from the install medium's cache or the distribution's mirror.",
+          "install": "Unpacks the packages natively into one system tree, without running their scripts, and writes it into the system root with a receipt."
         },
         "systems": [
           "levitateos"
@@ -1665,26 +1837,27 @@
       "description": "KDE's calculator",
       "files": [
         {
-          "bytes": 11196,
+          "bytes": 1861,
           "path": "kcalc.rhai",
-          "sha256": "864251e5e5e7c59bbcf119aff37fe458212f39d37cc5a0a91cdfaf2814dc9a3c"
+          "sha256": "a0f1999483867afe2766e43afeb1a08ee096837127759a0259e6a20d23603a49"
+        },
+        {
+          "bytes": 595,
+          "path": "kcalc.pins",
+          "sha256": "612213a929c958aa74864dfdcd116b14f5138cb629d15aed1a1739f32af6af8f"
         }
       ],
-      "hooks": [
-        "acquire",
-        "build",
-        "install",
-        "remove"
-      ],
+      "functions": [],
       "name": "kcalc",
       "needs": {
+        "defines": {},
         "inputs": {},
         "memory_mib": 4096,
         "network": [
           "dl-cdn.alpinelinux.org:443",
           "dl.fedoraproject.org:443"
         ],
-        "network_max_bytes": 1048576,
+        "network_max_bytes": 0,
         "outputs": {
           "system": "directory"
         },
@@ -1692,6 +1865,12 @@
         "storage_max_objects": 262144,
         "timeout_secs": 7200
       },
+      "steps": [
+        "download",
+        "install",
+        "cleanup"
+      ],
+      "upstream": null,
       "version": "2026.11.16"
     },
     {
@@ -1714,9 +1893,8 @@
         ],
         "license": "GPL-2.0-or-later",
         "steps": {
-          "acquire": "Takes each pinned package by its SHA-256, from the install medium's cache or the distribution's mirror.",
-          "build": "Unpacks the packages natively into one system tree, without running their scripts.",
-          "install": "Publishes the system tree for Recipe to write into the system root, with a receipt."
+          "download": "Takes each pinned package by its SHA-256, from the install medium's cache or the distribution's mirror.",
+          "install": "Unpacks the packages natively into one system tree, without running their scripts, and writes it into the system root with a receipt."
         },
         "systems": [
           "levitateos"
@@ -1729,26 +1907,39 @@
       "description": "KDE's terminal",
       "files": [
         {
-          "bytes": 24717,
+          "bytes": 2869,
           "path": "konsole.rhai",
-          "sha256": "9261e54fc2892c812256432162d0f8140a5f450d9d7bc27ac7d01af14128771b"
+          "sha256": "1171861bce0bcf74a01b3cda88e2e098043356f26aa59c621fba825b9c41cfbe"
+        },
+        {
+          "bytes": 11199,
+          "path": "look.rhai",
+          "sha256": "2d9c598eba58d1609f228b59d53ca927100a1c5d8f8ff859736c9727a4b6f54d"
+        },
+        {
+          "bytes": 2994,
+          "path": "os-facts.rhai",
+          "sha256": "df29a3f420f2269e4dffc4018af4768f02c60af4bd864b48de2c2d5a837029f9"
+        },
+        {
+          "bytes": 1506,
+          "path": "konsole.pins",
+          "sha256": "5302dadd480350c14e886d0e5e787c59a94bc4ff00028a0ca038cfcd9352e598"
         }
       ],
-      "hooks": [
-        "acquire",
-        "build",
-        "install",
-        "remove"
+      "functions": [
+        "configure"
       ],
       "name": "konsole",
       "needs": {
+        "defines": {},
         "inputs": {},
         "memory_mib": 4096,
         "network": [
           "dl-cdn.alpinelinux.org:443",
           "dl.fedoraproject.org:443"
         ],
-        "network_max_bytes": 3145728,
+        "network_max_bytes": 0,
         "outputs": {
           "system": "directory"
         },
@@ -1756,6 +1947,12 @@
         "storage_max_objects": 262144,
         "timeout_secs": 7200
       },
+      "steps": [
+        "download",
+        "install",
+        "cleanup"
+      ],
+      "upstream": null,
       "version": "2026.11.16"
     },
     {
@@ -1778,9 +1975,8 @@
         ],
         "license": "LGPL-2.0-or-later",
         "steps": {
-          "acquire": "Takes each pinned package by its SHA-256, from the install medium's cache or the distribution's mirror.",
-          "build": "Unpacks the packages natively into one system tree, without running their scripts.",
-          "install": "Publishes the system tree for Recipe to write into the system root, with a receipt."
+          "download": "Takes each pinned package by its SHA-256, from the install medium's cache or the distribution's mirror.",
+          "install": "Unpacks the packages natively into one system tree, without running their scripts, and writes it into the system root with a receipt."
         },
         "systems": [
           "levitateos"
@@ -1793,26 +1989,27 @@
       "description": "KDE's text editor",
       "files": [
         {
-          "bytes": 11279,
+          "bytes": 1901,
           "path": "kwrite.rhai",
-          "sha256": "aedee693271ac232973c7122ba0a3edd41abafcc3832c883d456023c8e19d187"
+          "sha256": "aea310bbf30e697842b94d3e129665d20d970ed03eb7ab1aa6661ab1eba2053c"
+        },
+        {
+          "bytes": 633,
+          "path": "kwrite.pins",
+          "sha256": "5692ca6cfd372d9064be4529e8f8311f127f66b20e68e92903393edc4673a51f"
         }
       ],
-      "hooks": [
-        "acquire",
-        "build",
-        "install",
-        "remove"
-      ],
+      "functions": [],
       "name": "kwrite",
       "needs": {
+        "defines": {},
         "inputs": {},
         "memory_mib": 4096,
         "network": [
           "dl-cdn.alpinelinux.org:443",
           "dl.fedoraproject.org:443"
         ],
-        "network_max_bytes": 2097152,
+        "network_max_bytes": 0,
         "outputs": {
           "system": "directory"
         },
@@ -1820,6 +2017,12 @@
         "storage_max_objects": 262144,
         "timeout_secs": 7200
       },
+      "steps": [
+        "download",
+        "install",
+        "cleanup"
+      ],
+      "upstream": null,
       "version": "2026.11.16"
     },
     {
@@ -1833,9 +2036,9 @@
         ],
         "license": "LGPL-2.1-or-later AND GPL-2.0-or-later AND MIT AND BSD-3-Clause AND MPL-2.0",
         "steps": {
-          "acquire": "Takes each pinned package by its SHA-256, from the install medium's cache or the distribution's mirror.",
           "build": "Unpacks the packages natively into one system tree, without running their scripts, keeping only the 32-bit libraries of the i686 packages.",
-          "install": "Publishes the system tree for Recipe to write into the system root, with a receipt."
+          "download": "Takes each pinned package by its SHA-256, from the install medium's cache or the distribution's mirror.",
+          "install": "Writes the system tree into the system root, with a receipt."
         },
         "systems": [
           "levitateos"
@@ -1848,25 +2051,28 @@
       "description": "32-bit libraries for 32-bit programs and Steam",
       "files": [
         {
-          "bytes": 57194,
+          "bytes": 9305,
           "path": "lib32.rhai",
-          "sha256": "46ca82b9591ac79bde281bc347538ee14f3a82faa4bb05515827edac87ca38ac"
+          "sha256": "d4751920b37bc8a9ebbab0ca55fe109bcf1a11fb1e264bc9c5d56e477db2f990"
+        },
+        {
+          "bytes": 35557,
+          "path": "lib32.pins",
+          "sha256": "21fb3f620b1c52bac80367545d09487fe991eb8f31e1f86b1a5cc9cba031e142"
         }
       ],
-      "hooks": [
-        "acquire",
-        "build",
-        "install",
-        "remove"
+      "functions": [
+        "build"
       ],
       "name": "lib32",
       "needs": {
+        "defines": {},
         "inputs": {},
         "memory_mib": 4096,
         "network": [
           "dl.fedoraproject.org:443"
         ],
-        "network_max_bytes": 128974848,
+        "network_max_bytes": 0,
         "outputs": {
           "system": "directory"
         },
@@ -1874,6 +2080,13 @@
         "storage_max_objects": 262144,
         "timeout_secs": 7200
       },
+      "steps": [
+        "download",
+        "build",
+        "install",
+        "cleanup"
+      ],
+      "upstream": null,
       "version": "2026.11.16"
     },
     {
@@ -1888,9 +2101,8 @@
         ],
         "license": "GPL-2.0-or-later",
         "steps": {
-          "acquire": "Takes each pinned package by its SHA-256, from the install medium's cache or the distribution's mirror.",
-          "build": "Unpacks the packages natively into one system tree, without running their scripts.",
-          "install": "Publishes the system tree for Recipe to write into the system root, with a receipt."
+          "download": "Takes each pinned package by its SHA-256, from the install medium's cache or the distribution's mirror.",
+          "install": "Unpacks the packages natively into one system tree, without running their scripts, and writes it into the system root with a receipt."
         },
         "systems": [
           "acornos"
@@ -1903,26 +2115,34 @@
       "description": "The SDDM login screen",
       "files": [
         {
-          "bytes": 16478,
+          "bytes": 4754,
           "path": "login-screen.rhai",
-          "sha256": "8852fd1d68758cd06febffe33c25d46cd0488d3667cb44bffed7cad894c34348"
+          "sha256": "6f1872eacc9324c27394d29ebf72c281e1c2458fa071518503123b9d42049549"
+        },
+        {
+          "bytes": 2994,
+          "path": "os-facts.rhai",
+          "sha256": "df29a3f420f2269e4dffc4018af4768f02c60af4bd864b48de2c2d5a837029f9"
+        },
+        {
+          "bytes": 935,
+          "path": "login-screen.pins",
+          "sha256": "fdea435f3287ff71e2938e5bb8175dea70263be1931438eb7f01a9b6c08daf8d"
         }
       ],
-      "hooks": [
-        "acquire",
-        "build",
-        "install",
-        "remove"
+      "functions": [
+        "configure"
       ],
       "name": "login-screen",
       "needs": {
+        "defines": {},
         "inputs": {},
         "memory_mib": 4096,
         "network": [
           "dl-cdn.alpinelinux.org:443",
           "dl.fedoraproject.org:443"
         ],
-        "network_max_bytes": 4194304,
+        "network_max_bytes": 0,
         "outputs": {
           "system": "directory"
         },
@@ -1930,6 +2150,12 @@
         "storage_max_objects": 262144,
         "timeout_secs": 7200
       },
+      "steps": [
+        "download",
+        "install",
+        "cleanup"
+      ],
+      "upstream": null,
       "version": "2026.11.16"
     },
     {
@@ -1952,9 +2178,8 @@
         ],
         "license": "GPL-2.0-or-later",
         "steps": {
-          "acquire": "Takes each pinned package by its SHA-256, from the install medium's cache or the distribution's mirror.",
-          "build": "Unpacks the packages natively into one system tree, without running their scripts.",
-          "install": "Publishes the system tree for Recipe to write into the system root, with a receipt."
+          "download": "Takes each pinned package by its SHA-256, from the install medium's cache or the distribution's mirror.",
+          "install": "Unpacks the packages natively into one system tree, without running their scripts, and writes it into the system root with a receipt."
         },
         "systems": [
           "acornos"
@@ -1967,26 +2192,27 @@
       "description": "LXQt's image viewer",
       "files": [
         {
-          "bytes": 10930,
+          "bytes": 1928,
           "path": "lximage-qt.rhai",
-          "sha256": "11fd0a2d4940096fa66779ccf4002e97201a079eb3de4b82736660bd2ee0fb34"
+          "sha256": "99fff26163ad2811094df9cb69df66de9546a91ebf009091bfc08c5ec9636d0c"
+        },
+        {
+          "bytes": 346,
+          "path": "lximage-qt.pins",
+          "sha256": "27da7d50ce23e6596d5f6a63eb1b3774705cc8ef06e5f7ac88e9106756b140a0"
         }
       ],
-      "hooks": [
-        "acquire",
-        "build",
-        "install",
-        "remove"
-      ],
+      "functions": [],
       "name": "lximage-qt",
       "needs": {
+        "defines": {},
         "inputs": {},
         "memory_mib": 4096,
         "network": [
           "dl-cdn.alpinelinux.org:443",
           "dl.fedoraproject.org:443"
         ],
-        "network_max_bytes": 1048576,
+        "network_max_bytes": 0,
         "outputs": {
           "system": "directory"
         },
@@ -1994,6 +2220,12 @@
         "storage_max_objects": 262144,
         "timeout_secs": 7200
       },
+      "steps": [
+        "download",
+        "install",
+        "cleanup"
+      ],
+      "upstream": null,
       "version": "2026.11.16"
     },
     {
@@ -2016,9 +2248,8 @@
         ],
         "license": "GPL-2.0-or-later",
         "steps": {
-          "acquire": "Takes each pinned package by its SHA-256, from the install medium's cache or the distribution's mirror.",
-          "build": "Unpacks the packages natively into one system tree, without running their scripts.",
-          "install": "Publishes the system tree for Recipe to write into the system root, with a receipt."
+          "download": "Takes each pinned package by its SHA-256, from the install medium's cache or the distribution's mirror.",
+          "install": "Unpacks the packages natively into one system tree, without running their scripts, and writes it into the system root with a receipt."
         },
         "systems": [
           "acornos"
@@ -2031,26 +2262,27 @@
       "description": "LXQt's archive manager",
       "files": [
         {
-          "bytes": 11443,
+          "bytes": 2018,
           "path": "lxqt-archiver.rhai",
-          "sha256": "365868017b84a4600b1d6793d009e10bdcd5c64702d553ecf7fb7fe379ce33fc"
+          "sha256": "b57f766fc9a34cf02a3c78b5320b13550fd68ac2e979164fa1ff93adbf545998"
+        },
+        {
+          "bytes": 683,
+          "path": "lxqt-archiver.pins",
+          "sha256": "c74c76f7ac3314570bd58692bb5a0fbc4b9aef3d2bb93773af2f17b66c61ee99"
         }
       ],
-      "hooks": [
-        "acquire",
-        "build",
-        "install",
-        "remove"
-      ],
+      "functions": [],
       "name": "lxqt-archiver",
       "needs": {
+        "defines": {},
         "inputs": {},
         "memory_mib": 4096,
         "network": [
           "dl-cdn.alpinelinux.org:443",
           "dl.fedoraproject.org:443"
         ],
-        "network_max_bytes": 2097152,
+        "network_max_bytes": 0,
         "outputs": {
           "system": "directory"
         },
@@ -2058,6 +2290,12 @@
         "storage_max_objects": 262144,
         "timeout_secs": 7200
       },
+      "steps": [
+        "download",
+        "install",
+        "cleanup"
+      ],
+      "upstream": null,
       "version": "2026.11.16"
     },
     {
@@ -2072,9 +2310,8 @@
         ],
         "license": "LGPL-2.1-or-later AND GPL-2.0-or-later AND GPL-3.0-or-later",
         "steps": {
-          "acquire": "Takes each pinned package by its SHA-256, from the install medium's cache or the distribution's mirror.",
-          "build": "Unpacks the packages natively into one system tree, without running their scripts.",
-          "install": "Publishes the system tree for Recipe to write into the system root, with a receipt."
+          "download": "Takes each pinned package by its SHA-256, from the install medium's cache or the distribution's mirror.",
+          "install": "Unpacks the packages natively into one system tree, without running their scripts, and writes it into the system root with a receipt."
         },
         "systems": [
           "acornos"
@@ -2091,26 +2328,39 @@
       "description": "The LXQt desktop on X11",
       "files": [
         {
-          "bytes": 57826,
+          "bytes": 7066,
           "path": "lxqt.rhai",
-          "sha256": "23fe1d067f9837be2bd862e49e8415cca1e4b429f9bcc594793c7291649ca8b9"
+          "sha256": "d742453479a810d7ec7933803144d30b84e6f50243334e633e1d7cd91b98bf02"
+        },
+        {
+          "bytes": 11199,
+          "path": "look.rhai",
+          "sha256": "2d9c598eba58d1609f228b59d53ca927100a1c5d8f8ff859736c9727a4b6f54d"
+        },
+        {
+          "bytes": 2994,
+          "path": "os-facts.rhai",
+          "sha256": "df29a3f420f2269e4dffc4018af4768f02c60af4bd864b48de2c2d5a837029f9"
+        },
+        {
+          "bytes": 22605,
+          "path": "lxqt.pins",
+          "sha256": "9da6ed46c4d772fc000020141a188509b5839f79b5efc4f68544e48f2f092144"
         }
       ],
-      "hooks": [
-        "acquire",
-        "build",
-        "install",
-        "remove"
+      "functions": [
+        "configure"
       ],
       "name": "lxqt",
       "needs": {
+        "defines": {},
         "inputs": {},
         "memory_mib": 4096,
         "network": [
           "dl-cdn.alpinelinux.org:443",
           "dl.fedoraproject.org:443"
         ],
-        "network_max_bytes": 76546048,
+        "network_max_bytes": 0,
         "outputs": {
           "system": "directory"
         },
@@ -2118,6 +2368,12 @@
         "storage_max_objects": 262144,
         "timeout_secs": 7200
       },
+      "steps": [
+        "download",
+        "install",
+        "cleanup"
+      ],
+      "upstream": null,
       "version": "2026.11.16"
     },
     {
@@ -2133,9 +2389,8 @@
         ],
         "license": "GPL-2.0-or-later AND BSD-3-Clause",
         "steps": {
-          "acquire": "Takes each pinned package by its SHA-256, from the install medium's cache or the distribution's mirror.",
-          "build": "Unpacks the packages natively into one system tree, without running their scripts.",
-          "install": "Publishes the system tree for Recipe to write into the system root, with a receipt."
+          "download": "Takes each pinned package by its SHA-256, from the install medium's cache or the distribution's mirror.",
+          "install": "Unpacks the packages natively into one system tree, without running their scripts, and writes it into the system root with a receipt."
         },
         "systems": [
           "levitateos",
@@ -2147,26 +2402,29 @@
       "description": "Manual pages",
       "files": [
         {
-          "bytes": 13126,
+          "bytes": 2645,
           "path": "manuals.rhai",
-          "sha256": "61a3b1a9c4c91770fe25dca83865b9a57f1b1ea9b28d4f62cf66826c22c2c1c5"
+          "sha256": "3b86321b3d991ff008bf16e8c730f994168fef07d0bf7da70d41ff8ff67f364c"
+        },
+        {
+          "bytes": 1325,
+          "path": "manuals.pins",
+          "sha256": "15b8408fec496d15990685a2900c9605a21a05e0e1f781e2a643d076f4593ed0"
         }
       ],
-      "hooks": [
-        "acquire",
-        "build",
-        "install",
-        "remove"
+      "functions": [
+        "configure"
       ],
       "name": "manuals",
       "needs": {
+        "defines": {},
         "inputs": {},
         "memory_mib": 4096,
         "network": [
           "dl-cdn.alpinelinux.org:443",
           "dl.fedoraproject.org:443"
         ],
-        "network_max_bytes": 4194304,
+        "network_max_bytes": 0,
         "outputs": {
           "system": "directory"
         },
@@ -2174,6 +2432,12 @@
         "storage_max_objects": 262144,
         "timeout_secs": 7200
       },
+      "steps": [
+        "download",
+        "install",
+        "cleanup"
+      ],
+      "upstream": null,
       "version": "2026.11.16"
     },
     {
@@ -2191,8 +2455,7 @@
         "kind": "tool",
         "license": "MIT",
         "steps": {
-          "acquire": "Downloads the pinned upstream release and any companion documentation or licence files, checking every SHA-256.",
-          "build": "Unpacks the static release and checks each selected file against its own digest; nothing is compiled.",
+          "download": "Downloads the pinned upstream release and any companion documentation or licence files, checking every SHA-256.",
           "install": "Copies the commands and accompanying release files into bin and share."
         }
       },
@@ -2201,19 +2464,15 @@
       "description": "Terminal text editor",
       "files": [
         {
-          "bytes": 4596,
+          "bytes": 1797,
           "path": "micro.rhai",
-          "sha256": "833a39cefbac3e3bc83c71b5ee82aa2bfdc98130c46ddd097536b99792f491b8"
+          "sha256": "2cb5d13b841d9ab1a7e8a1001f084022d2e24f5fca67ac91ee74270cd9d9f22a"
         }
       ],
-      "hooks": [
-        "acquire",
-        "build",
-        "install",
-        "remove"
-      ],
+      "functions": [],
       "name": "micro",
       "needs": {
+        "defines": {},
         "inputs": {},
         "memory_mib": 2048,
         "network": [
@@ -2227,6 +2486,15 @@
         "storage_max_bytes": null,
         "storage_max_objects": 16384,
         "timeout_secs": 300
+      },
+      "steps": [
+        "download",
+        "install",
+        "cleanup"
+      ],
+      "upstream": {
+        "github": "micro-editor/micro",
+        "prefix": "v"
       },
       "version": "2.0.15"
     },
@@ -2250,9 +2518,8 @@
         ],
         "license": "GPL-2.0-or-later",
         "steps": {
-          "acquire": "Takes each pinned package by its SHA-256, from the install medium's cache or the distribution's mirror.",
-          "build": "Unpacks the packages natively into one system tree, without running their scripts.",
-          "install": "Publishes the system tree for Recipe to write into the system root, with a receipt."
+          "download": "Takes each pinned package by its SHA-256, from the install medium's cache or the distribution's mirror.",
+          "install": "Unpacks the packages natively into one system tree, without running their scripts, and writes it into the system root with a receipt."
         },
         "systems": [
           "acornos"
@@ -2266,26 +2533,27 @@
       "description": "A text editor",
       "files": [
         {
-          "bytes": 13350,
+          "bytes": 1910,
           "path": "mousepad.rhai",
-          "sha256": "8f664322712f97740007f4aa9ff826f156e285aa3ff33c7b2ec51b876afe1866"
+          "sha256": "3994e430952f38b9ecb53156fe265c7bc0d4f40fffc66131c7ffc4a54bdca96b"
+        },
+        {
+          "bytes": 2238,
+          "path": "mousepad.pins",
+          "sha256": "19450bfa64debbdd007e3117795e7361232608e84f440f81cc4a5ed05564f8b8"
         }
       ],
-      "hooks": [
-        "acquire",
-        "build",
-        "install",
-        "remove"
-      ],
+      "functions": [],
       "name": "mousepad",
       "needs": {
+        "defines": {},
         "inputs": {},
         "memory_mib": 4096,
         "network": [
           "dl-cdn.alpinelinux.org:443",
           "dl.fedoraproject.org:443"
         ],
-        "network_max_bytes": 2097152,
+        "network_max_bytes": 0,
         "outputs": {
           "system": "directory"
         },
@@ -2293,6 +2561,12 @@
         "storage_max_objects": 262144,
         "timeout_secs": 7200
       },
+      "steps": [
+        "download",
+        "install",
+        "cleanup"
+      ],
+      "upstream": null,
       "version": "2026.11.16"
     },
     {
@@ -2310,8 +2584,7 @@
         "kind": "tool",
         "license": "proprietary (Meta terms)",
         "steps": {
-          "acquire": "Downloads the pinned file from Meta and checks it against the digest in Meta's release manifest.",
-          "build": "Copies the file into place and checks it against its digest; nothing is compiled.",
+          "download": "Downloads the pinned file from Meta and checks it against the digest in Meta's release manifest.",
           "install": "Puts the muse command in bin."
         }
       },
@@ -2320,19 +2593,15 @@
       "description": "Meta Muse terminal coding agent",
       "files": [
         {
-          "bytes": 4525,
+          "bytes": 2312,
           "path": "muse.rhai",
-          "sha256": "17c8874fee930059c77ef76f3e9aa3040f926169c375d0674cabb5360bc6fcbf"
+          "sha256": "e3709267c4609bda611ede3cfb6f30f13842509cdef017de25bfce2b37704325"
         }
       ],
-      "hooks": [
-        "acquire",
-        "build",
-        "install",
-        "remove"
-      ],
+      "functions": [],
       "name": "muse",
       "needs": {
+        "defines": {},
         "inputs": {},
         "memory_mib": 2048,
         "network": [
@@ -2346,6 +2615,12 @@
         "storage_max_objects": 16384,
         "timeout_secs": 3600
       },
+      "steps": [
+        "download",
+        "install",
+        "cleanup"
+      ],
+      "upstream": null,
       "version": "1.4.18-R8587.1"
     },
     {
@@ -2361,9 +2636,8 @@
         ],
         "license": "GPL-2.0-or-later AND LGPL-2.1-or-later",
         "steps": {
-          "acquire": "Takes each pinned package by its SHA-256, from the install medium's cache or the distribution's mirror.",
-          "build": "Unpacks the packages natively into one system tree, without running their scripts.",
-          "install": "Publishes the system tree for Recipe to write into the system root, with a receipt."
+          "download": "Takes each pinned package by its SHA-256, from the install medium's cache or the distribution's mirror.",
+          "install": "Unpacks the packages natively into one system tree, without running their scripts, and writes it into the system root with a receipt."
         },
         "systems": [
           "levitateos",
@@ -2378,26 +2652,27 @@
       "description": "Network settings in the desktop, with OpenVPN",
       "files": [
         {
-          "bytes": 16457,
+          "bytes": 2127,
           "path": "network-ui.rhai",
-          "sha256": "0df3514e4f16a847b252b0ec020e1edfc7adc03bafbacba6125dbcbd92735c18"
+          "sha256": "4ba0a4f357e8c092776cf3b674e28656207978bd8a63815c469a0bbd5ce4c4a4"
+        },
+        {
+          "bytes": 4477,
+          "path": "network-ui.pins",
+          "sha256": "37e25b8c92b1848c62125a1676e6626eff331b9444223ce5b576113327779730"
         }
       ],
-      "hooks": [
-        "acquire",
-        "build",
-        "install",
-        "remove"
-      ],
+      "functions": [],
       "name": "network-ui",
       "needs": {
+        "defines": {},
         "inputs": {},
         "memory_mib": 4096,
         "network": [
           "dl-cdn.alpinelinux.org:443",
           "dl.fedoraproject.org:443"
         ],
-        "network_max_bytes": 4194304,
+        "network_max_bytes": 0,
         "outputs": {
           "system": "directory"
         },
@@ -2405,6 +2680,12 @@
         "storage_max_objects": 262144,
         "timeout_secs": 7200
       },
+      "steps": [
+        "download",
+        "install",
+        "cleanup"
+      ],
+      "upstream": null,
       "version": "2026.11.16"
     },
     {
@@ -2420,9 +2701,8 @@
         ],
         "license": "GPL-2.0-or-later AND LGPL-2.1-or-later AND BSD-3-Clause",
         "steps": {
-          "acquire": "Takes each pinned package by its SHA-256, from the install medium's cache or the distribution's mirror.",
-          "build": "Unpacks the packages natively into one system tree, without running their scripts.",
-          "install": "Publishes the system tree for Recipe to write into the system root, with a receipt."
+          "download": "Takes each pinned package by its SHA-256, from the install medium's cache or the distribution's mirror.",
+          "install": "Unpacks the packages natively into one system tree, without running their scripts, and writes it into the system root with a receipt."
         },
         "systems": [
           "levitateos",
@@ -2436,26 +2716,29 @@
       "description": "NetworkManager, with WiFi",
       "files": [
         {
-          "bytes": 16153,
+          "bytes": 2861,
           "path": "network.rhai",
-          "sha256": "7d94d664d655a6542539a69eb6fc61f556514efc37da13286ad82424c25b64c3"
+          "sha256": "f48485d05f0406496f71e46975b2bf5bdbb6995aac455063a30e84e35face3bd"
+        },
+        {
+          "bytes": 4020,
+          "path": "network.pins",
+          "sha256": "e6551b00d7d751eb3a942764034bb3f63eac4b287830c8d756c7c3e15a3f9d0c"
         }
       ],
-      "hooks": [
-        "acquire",
-        "build",
-        "install",
-        "remove"
+      "functions": [
+        "configure"
       ],
       "name": "network",
       "needs": {
+        "defines": {},
         "inputs": {},
         "memory_mib": 4096,
         "network": [
           "dl-cdn.alpinelinux.org:443",
           "dl.fedoraproject.org:443"
         ],
-        "network_max_bytes": 7340032,
+        "network_max_bytes": 0,
         "outputs": {
           "system": "directory"
         },
@@ -2463,6 +2746,12 @@
         "storage_max_objects": 262144,
         "timeout_secs": 7200
       },
+      "steps": [
+        "download",
+        "install",
+        "cleanup"
+      ],
+      "upstream": null,
       "version": "2026.11.16"
     },
     {
@@ -2473,8 +2762,7 @@
         "kind": "library",
         "license": "Apache-2.0",
         "steps": {
-          "acquire": "Downloads the pinned toolchain files and checks their SHA-256 values.",
-          "build": "Extracts the release and checks every regular file against the committed payload manifest.",
+          "download": "Downloads the pinned toolchain files and checks their SHA-256 values.",
           "install": "Publishes a private tools directory for recipes that name this under build_deps."
         }
       },
@@ -2483,19 +2771,15 @@
       "description": "Ninja build runner",
       "files": [
         {
-          "bytes": 4980,
+          "bytes": 1847,
           "path": "ninja.rhai",
-          "sha256": "ee5c403b9478f8ffc0b03c2ae68fa7f7b63be51c3b164214edb958b59b1ce1fb"
+          "sha256": "b85917e69a137033fea0a012a1ef8df599b7abdff0a49056ad51fff93992c9a8"
         }
       ],
-      "hooks": [
-        "acquire",
-        "build",
-        "install",
-        "remove"
-      ],
+      "functions": [],
       "name": "ninja",
       "needs": {
+        "defines": {},
         "inputs": {},
         "memory_mib": 4096,
         "network": [
@@ -2510,6 +2794,15 @@
         "storage_max_bytes": null,
         "storage_max_objects": 131072,
         "timeout_secs": 600
+      },
+      "steps": [
+        "download",
+        "install",
+        "cleanup"
+      ],
+      "upstream": {
+        "github": "ninja-build/ninja",
+        "prefix": "v"
       },
       "version": "1.13.2"
     },
@@ -2531,8 +2824,7 @@
         ],
         "license": "MIT",
         "steps": {
-          "acquire": "Downloads the pinned upstream release archive and checks it against the digest GitHub publishes for it.",
-          "build": "Unpacks the binary and checks it against its own digest; nothing is compiled.",
+          "download": "Downloads the pinned upstream release archive and checks it against the digest GitHub publishes for it.",
           "install": "Puts the opencode command in bin."
         }
       },
@@ -2541,19 +2833,15 @@
       "description": "opencode terminal coding agent",
       "files": [
         {
-          "bytes": 4748,
+          "bytes": 2345,
           "path": "opencode.rhai",
-          "sha256": "f4c28a5e9cc3bf6598d3af5ceab07d9405c40d3586509d4ad5a6291938d4d80f"
+          "sha256": "f36efcbb11fc87563ab36f80adf3f44baac0197aa24d1fae97563087d72928c2"
         }
       ],
-      "hooks": [
-        "acquire",
-        "build",
-        "install",
-        "remove"
-      ],
+      "functions": [],
       "name": "opencode",
       "needs": {
+        "defines": {},
         "inputs": {},
         "memory_mib": 2048,
         "network": [
@@ -2567,6 +2855,15 @@
         "storage_max_bytes": null,
         "storage_max_objects": 16384,
         "timeout_secs": 3600
+      },
+      "steps": [
+        "download",
+        "install",
+        "cleanup"
+      ],
+      "upstream": {
+        "github": "anomalyco/opencode",
+        "prefix": "v"
       },
       "version": "1.19.5"
     },
@@ -2590,9 +2887,8 @@
         ],
         "license": "GPL-2.0-or-later",
         "steps": {
-          "acquire": "Takes each pinned package by its SHA-256, from the install medium's cache or the distribution's mirror.",
-          "build": "Unpacks the packages natively into one system tree, without running their scripts.",
-          "install": "Publishes the system tree for Recipe to write into the system root, with a receipt."
+          "download": "Takes each pinned package by its SHA-256, from the install medium's cache or the distribution's mirror.",
+          "install": "Unpacks the packages natively into one system tree, without running their scripts, and writes it into the system root with a receipt."
         },
         "systems": [
           "acornos"
@@ -2605,26 +2901,27 @@
       "description": "Sound volume and device settings",
       "files": [
         {
-          "bytes": 11289,
+          "bytes": 2015,
           "path": "pavucontrol-qt.rhai",
-          "sha256": "d0a30076f574ff683190061eb07cf6fd672fb354ada2f22a6174a4e3e21f5e90"
+          "sha256": "431dadc19136a08b678616be1577e3e0c762812cd0914a4556226437a7403bbe"
+        },
+        {
+          "bytes": 566,
+          "path": "pavucontrol-qt.pins",
+          "sha256": "be839c5248cc1d33d1403c5546edff1cdb4ab1fabc86a47d5f1e55825a0e63ac"
         }
       ],
-      "hooks": [
-        "acquire",
-        "build",
-        "install",
-        "remove"
-      ],
+      "functions": [],
       "name": "pavucontrol-qt",
       "needs": {
+        "defines": {},
         "inputs": {},
         "memory_mib": 4096,
         "network": [
           "dl-cdn.alpinelinux.org:443",
           "dl.fedoraproject.org:443"
         ],
-        "network_max_bytes": 1048576,
+        "network_max_bytes": 0,
         "outputs": {
           "system": "directory"
         },
@@ -2632,6 +2929,12 @@
         "storage_max_objects": 262144,
         "timeout_secs": 7200
       },
+      "steps": [
+        "download",
+        "install",
+        "cleanup"
+      ],
+      "upstream": null,
       "version": "2026.11.16"
     },
     {
@@ -2654,9 +2957,8 @@
         ],
         "license": "GPL-2.0-or-later",
         "steps": {
-          "acquire": "Takes each pinned package by its SHA-256, from the install medium's cache or the distribution's mirror.",
-          "build": "Unpacks the packages natively into one system tree, without running their scripts.",
-          "install": "Publishes the system tree for Recipe to write into the system root, with a receipt."
+          "download": "Takes each pinned package by its SHA-256, from the install medium's cache or the distribution's mirror.",
+          "install": "Unpacks the packages natively into one system tree, without running their scripts, and writes it into the system root with a receipt."
         },
         "systems": [
           "acornos"
@@ -2669,26 +2971,39 @@
       "description": "LXQt's file manager and desktop",
       "files": [
         {
-          "bytes": 23831,
+          "bytes": 3402,
           "path": "pcmanfm-qt.rhai",
-          "sha256": "37bc34113f8a7623c5c33eccc154bd107e408074acb4cd87ae9f34caf4346ce4"
+          "sha256": "844c30cf1d01d5565217c699352bb570808a80a79931179621f9b0c7ae718c43"
+        },
+        {
+          "bytes": 11199,
+          "path": "look.rhai",
+          "sha256": "2d9c598eba58d1609f228b59d53ca927100a1c5d8f8ff859736c9727a4b6f54d"
+        },
+        {
+          "bytes": 2994,
+          "path": "os-facts.rhai",
+          "sha256": "df29a3f420f2269e4dffc4018af4768f02c60af4bd864b48de2c2d5a837029f9"
+        },
+        {
+          "bytes": 346,
+          "path": "pcmanfm-qt.pins",
+          "sha256": "d68e7d29dafbde20b5e1c428a6f50a64f93c0edfede12007c5bff6c4311f57d4"
         }
       ],
-      "hooks": [
-        "acquire",
-        "build",
-        "install",
-        "remove"
+      "functions": [
+        "configure"
       ],
       "name": "pcmanfm-qt",
       "needs": {
+        "defines": {},
         "inputs": {},
         "memory_mib": 4096,
         "network": [
           "dl-cdn.alpinelinux.org:443",
           "dl.fedoraproject.org:443"
         ],
-        "network_max_bytes": 1048576,
+        "network_max_bytes": 0,
         "outputs": {
           "system": "directory"
         },
@@ -2696,6 +3011,12 @@
         "storage_max_objects": 262144,
         "timeout_secs": 7200
       },
+      "steps": [
+        "download",
+        "install",
+        "cleanup"
+      ],
+      "upstream": null,
       "version": "2026.11.16"
     },
     {
@@ -2716,9 +3037,9 @@
         ],
         "license": "MIT",
         "steps": {
-          "acquire": "Downloads the pinned upstream release archive and checks it against the digest in upstream's SHA256SUMS.",
-          "build": "Unpacks the release and checks every file against its own digest; nothing is compiled.",
-          "install": "Puts the program and its support files under lib/pi and a launcher in bin."
+          "build": "Writes the launcher bin/pi; nothing is compiled.",
+          "download": "Downloads the pinned upstream release archive and checks it against the digest in upstream's SHA256SUMS.",
+          "install": "Puts the program and its support files under lib/pi and the launcher in bin."
         }
       },
       "build_deps": [],
@@ -2726,19 +3047,17 @@
       "description": "pi terminal coding agent",
       "files": [
         {
-          "bytes": 50542,
+          "bytes": 2948,
           "path": "pi.rhai",
-          "sha256": "303d6acfa40fb67a1b60ee2bac3f302992a7cab7792423f9b69ce70a24e71662"
+          "sha256": "fd4cf12c92e56f4957fa62253a2cbcd522f397b361c010c931cdbc35378b4cbe"
         }
       ],
-      "hooks": [
-        "acquire",
-        "build",
-        "install",
-        "remove"
+      "functions": [
+        "build"
       ],
       "name": "pi",
       "needs": {
+        "defines": {},
         "inputs": {},
         "memory_mib": 2048,
         "network": [
@@ -2752,6 +3071,16 @@
         "storage_max_bytes": null,
         "storage_max_objects": 16384,
         "timeout_secs": 3600
+      },
+      "steps": [
+        "download",
+        "build",
+        "install",
+        "cleanup"
+      ],
+      "upstream": {
+        "github": "earendil-works/pi",
+        "prefix": "v"
       },
       "version": "1.5.2"
     },
@@ -2775,9 +3104,8 @@
         ],
         "license": "GPL-2.0-or-later",
         "steps": {
-          "acquire": "Takes each pinned package by its SHA-256, from the install medium's cache or the distribution's mirror.",
-          "build": "Unpacks the packages natively into one system tree, without running their scripts.",
-          "install": "Publishes the system tree for Recipe to write into the system root, with a receipt."
+          "download": "Takes each pinned package by its SHA-256, from the install medium's cache or the distribution's mirror.",
+          "install": "Unpacks the packages natively into one system tree, without running their scripts, and writes it into the system root with a receipt."
         },
         "systems": [
           "levitateos"
@@ -2790,26 +3118,27 @@
       "description": "KDE's system monitor",
       "files": [
         {
-          "bytes": 11301,
+          "bytes": 2048,
           "path": "plasma-systemmonitor.rhai",
-          "sha256": "d4bbcee1cdac00674a35ddc4faed167955b2126dfd9b8700b34eb7d971255f48"
+          "sha256": "a3e6492a328413dad3a8ddc1c8a5633f9320b972eec1478d33e1583e673c7379"
+        },
+        {
+          "bytes": 603,
+          "path": "plasma-systemmonitor.pins",
+          "sha256": "e958fe885be1d0f2f8f61dbdacffa1aea577ed8fe2a21ed96dc9e37d580b738c"
         }
       ],
-      "hooks": [
-        "acquire",
-        "build",
-        "install",
-        "remove"
-      ],
+      "functions": [],
       "name": "plasma-systemmonitor",
       "needs": {
+        "defines": {},
         "inputs": {},
         "memory_mib": 4096,
         "network": [
           "dl-cdn.alpinelinux.org:443",
           "dl.fedoraproject.org:443"
         ],
-        "network_max_bytes": 1048576,
+        "network_max_bytes": 0,
         "outputs": {
           "system": "directory"
         },
@@ -2817,6 +3146,12 @@
         "storage_max_objects": 262144,
         "timeout_secs": 7200
       },
+      "steps": [
+        "download",
+        "install",
+        "cleanup"
+      ],
+      "upstream": null,
       "version": "2026.11.16"
     },
     {
@@ -2831,9 +3166,8 @@
         ],
         "license": "GPL-2.0-or-later AND LGPL-2.1-or-later AND GPL-3.0-or-later",
         "steps": {
-          "acquire": "Takes each pinned package by its SHA-256, from the install medium's cache or the distribution's mirror.",
-          "build": "Unpacks the packages natively into one system tree, without running their scripts.",
-          "install": "Publishes the system tree for Recipe to write into the system root, with a receipt."
+          "download": "Takes each pinned package by its SHA-256, from the install medium's cache or the distribution's mirror.",
+          "install": "Unpacks the packages natively into one system tree, without running their scripts, and writes it into the system root with a receipt."
         },
         "systems": [
           "levitateos"
@@ -2849,26 +3183,39 @@
       "description": "The KDE Plasma desktop on Wayland",
       "files": [
         {
-          "bytes": 96255,
+          "bytes": 10399,
           "path": "plasma.rhai",
-          "sha256": "ff00a51082ae61eef382dc9139437778e1938ce7205fdd0574df784568e0fdf8"
+          "sha256": "8f2d31c491cbbbca6c5fb5cda352ac1ac75a7f185670c6ad36ad91c014b79d2d"
+        },
+        {
+          "bytes": 11199,
+          "path": "look.rhai",
+          "sha256": "2d9c598eba58d1609f228b59d53ca927100a1c5d8f8ff859736c9727a4b6f54d"
+        },
+        {
+          "bytes": 2994,
+          "path": "os-facts.rhai",
+          "sha256": "df29a3f420f2269e4dffc4018af4768f02c60af4bd864b48de2c2d5a837029f9"
+        },
+        {
+          "bytes": 51741,
+          "path": "plasma.pins",
+          "sha256": "9819682309f0ee8a30453a20b07eef1fed7f81603c52c53e90a5606f5bad9c2e"
         }
       ],
-      "hooks": [
-        "acquire",
-        "build",
-        "install",
-        "remove"
+      "functions": [
+        "configure"
       ],
       "name": "plasma",
       "needs": {
+        "defines": {},
         "inputs": {},
         "memory_mib": 4096,
         "network": [
           "dl-cdn.alpinelinux.org:443",
           "dl.fedoraproject.org:443"
         ],
-        "network_max_bytes": 159383552,
+        "network_max_bytes": 0,
         "outputs": {
           "system": "directory"
         },
@@ -2876,6 +3223,12 @@
         "storage_max_objects": 262144,
         "timeout_secs": 7200
       },
+      "steps": [
+        "download",
+        "install",
+        "cleanup"
+      ],
+      "upstream": null,
       "version": "2026.11.16"
     },
     {
@@ -2894,9 +3247,8 @@
         ],
         "license": "GPL-2.0-or-later",
         "steps": {
-          "acquire": "Takes each pinned package by its SHA-256, from the install medium's cache or the distribution's mirror.",
-          "build": "Unpacks the packages natively into one system tree, without running their scripts.",
-          "install": "Publishes the system tree for Recipe to write into the system root, with a receipt."
+          "download": "Takes each pinned package by its SHA-256, from the install medium's cache or the distribution's mirror.",
+          "install": "Unpacks the packages natively into one system tree, without running their scripts, and writes it into the system root with a receipt."
         },
         "systems": [
           "levitateos"
@@ -2911,26 +3263,27 @@
       "description": "Plasma's printer settings",
       "files": [
         {
-          "bytes": 12307,
+          "bytes": 2040,
           "path": "print-manager.rhai",
-          "sha256": "8122303ccf4e12a5b0d309e5d68fd6ffff8a0a1eb90cbaa2b6c3523a03cb4a85"
+          "sha256": "5ce269226aa411939a16ffbf7b883ef5c3b9838d1f7fa9aae5c445173c72f1ae"
+        },
+        {
+          "bytes": 1372,
+          "path": "print-manager.pins",
+          "sha256": "a28306a9be4b23af35b17286ee548349e558732150347a6434a03a8b46638dfe"
         }
       ],
-      "hooks": [
-        "acquire",
-        "build",
-        "install",
-        "remove"
-      ],
+      "functions": [],
       "name": "print-manager",
       "needs": {
+        "defines": {},
         "inputs": {},
         "memory_mib": 4096,
         "network": [
           "dl-cdn.alpinelinux.org:443",
           "dl.fedoraproject.org:443"
         ],
-        "network_max_bytes": 3145728,
+        "network_max_bytes": 0,
         "outputs": {
           "system": "directory"
         },
@@ -2938,6 +3291,12 @@
         "storage_max_objects": 262144,
         "timeout_secs": 7200
       },
+      "steps": [
+        "download",
+        "install",
+        "cleanup"
+      ],
+      "upstream": null,
       "version": "2026.11.16"
     },
     {
@@ -2953,9 +3312,8 @@
         ],
         "license": "Apache-2.0 WITH LLVM-exception AND GPL-2.0-or-later AND LGPL-2.1-or-later",
         "steps": {
-          "acquire": "Takes each pinned package by its SHA-256, from the install medium's cache or the distribution's mirror.",
-          "build": "Unpacks the packages natively into one system tree, without running their scripts.",
-          "install": "Publishes the system tree for Recipe to write into the system root, with a receipt."
+          "download": "Takes each pinned package by its SHA-256, from the install medium's cache or the distribution's mirror.",
+          "install": "Unpacks the packages natively into one system tree, without running their scripts, and writes it into the system root with a receipt."
         },
         "systems": [
           "levitateos",
@@ -2969,26 +3327,29 @@
       "description": "Printing: CUPS with driverless printers",
       "files": [
         {
-          "bytes": 33353,
+          "bytes": 4818,
           "path": "printing.rhai",
-          "sha256": "e8a317baec8883a2a439164219433d58552d9aa28e7bbe6781fed9688e08629d"
+          "sha256": "62cc0d7111d3327a15503e2d0c93293f130d91794b0121a145d45fa0649897c7"
+        },
+        {
+          "bytes": 15814,
+          "path": "printing.pins",
+          "sha256": "20b42aac70444d9b580f1829a22a8730794a54c04ef2320f6529ebdb08765ce4"
         }
       ],
-      "hooks": [
-        "acquire",
-        "build",
-        "install",
-        "remove"
+      "functions": [
+        "configure"
       ],
       "name": "printing",
       "needs": {
+        "defines": {},
         "inputs": {},
         "memory_mib": 4096,
         "network": [
           "dl-cdn.alpinelinux.org:443",
           "dl.fedoraproject.org:443"
         ],
-        "network_max_bytes": 26214400,
+        "network_max_bytes": 0,
         "outputs": {
           "system": "directory"
         },
@@ -2996,6 +3357,12 @@
         "storage_max_objects": 262144,
         "timeout_secs": 7200
       },
+      "steps": [
+        "download",
+        "install",
+        "cleanup"
+      ],
+      "upstream": null,
       "version": "2026.11.16"
     },
     {
@@ -3006,9 +3373,8 @@
         "kind": "library",
         "license": "Python-2.0",
         "steps": {
-          "acquire": "Downloads the pinned toolchain files and checks their SHA-256 values.",
-          "build": "Extracts the release and checks every regular file against the committed payload manifest.",
-          "install": "Publishes a private tools directory for recipes that name this under build_deps."
+          "download": "Downloads the pinned release archive and checks its SHA-256.",
+          "install": "Publishes the whole distribution as a private tools directory for recipes that name this under build_deps."
         }
       },
       "build_deps": [],
@@ -3016,19 +3382,17 @@
       "description": "Self-contained Python interpreter and standard library",
       "files": [
         {
-          "bytes": 360270,
+          "bytes": 2287,
           "path": "python.rhai",
-          "sha256": "31685290d25efb7325f94df4d68e108296a577e0b17a54f0d91a0c8064c8c60d"
+          "sha256": "8d4d7ec4394dcf0ec719d8b844ec16819cb72f8a1c47d3812e5001182fe657d5"
         }
       ],
-      "hooks": [
-        "acquire",
-        "build",
-        "install",
-        "remove"
+      "functions": [
+        "verify"
       ],
       "name": "python",
       "needs": {
+        "defines": {},
         "inputs": {},
         "memory_mib": 4096,
         "network": [
@@ -3043,6 +3407,12 @@
         "storage_max_objects": 131072,
         "timeout_secs": 600
       },
+      "steps": [
+        "download",
+        "install",
+        "cleanup"
+      ],
+      "upstream": null,
       "version": "3.14.10+20261026"
     },
     {
@@ -3065,9 +3435,8 @@
         ],
         "license": "GPL-2.0-or-later",
         "steps": {
-          "acquire": "Takes each pinned package by its SHA-256, from the install medium's cache or the distribution's mirror.",
-          "build": "Unpacks the packages natively into one system tree, without running their scripts.",
-          "install": "Publishes the system tree for Recipe to write into the system root, with a receipt."
+          "download": "Takes each pinned package by its SHA-256, from the install medium's cache or the distribution's mirror.",
+          "install": "Unpacks the packages natively into one system tree, without running their scripts, and writes it into the system root with a receipt."
         },
         "systems": [
           "acornos"
@@ -3080,26 +3449,27 @@
       "description": "A calculator",
       "files": [
         {
-          "bytes": 12261,
+          "bytes": 1943,
           "path": "qalculate-qt.rhai",
-          "sha256": "392a8b5e994e7c3e9285af11b4888850c32c081333cf417c34c187e4e3da30a8"
+          "sha256": "9974db9f8f0dba8edd82b8a10049e71ab1a2ae18914d068782f6d4413603ee46"
+        },
+        {
+          "bytes": 1372,
+          "path": "qalculate-qt.pins",
+          "sha256": "7e1e872fe403913c07f9712d1d5654061fcc7eead389fdc79a38af1c20c1411a"
         }
       ],
-      "hooks": [
-        "acquire",
-        "build",
-        "install",
-        "remove"
-      ],
+      "functions": [],
       "name": "qalculate-qt",
       "needs": {
+        "defines": {},
         "inputs": {},
         "memory_mib": 4096,
         "network": [
           "dl-cdn.alpinelinux.org:443",
           "dl.fedoraproject.org:443"
         ],
-        "network_max_bytes": 6291456,
+        "network_max_bytes": 0,
         "outputs": {
           "system": "directory"
         },
@@ -3107,6 +3477,12 @@
         "storage_max_objects": 262144,
         "timeout_secs": 7200
       },
+      "steps": [
+        "download",
+        "install",
+        "cleanup"
+      ],
+      "upstream": null,
       "version": "2026.11.16"
     },
     {
@@ -3129,9 +3505,8 @@
         ],
         "license": "GPL-2.0-or-later",
         "steps": {
-          "acquire": "Takes each pinned package by its SHA-256, from the install medium's cache or the distribution's mirror.",
-          "build": "Unpacks the packages natively into one system tree, without running their scripts.",
-          "install": "Publishes the system tree for Recipe to write into the system root, with a receipt."
+          "download": "Takes each pinned package by its SHA-256, from the install medium's cache or the distribution's mirror.",
+          "install": "Unpacks the packages natively into one system tree, without running their scripts, and writes it into the system root with a receipt."
         },
         "systems": [
           "acornos"
@@ -3144,26 +3519,27 @@
       "description": "A process viewer",
       "files": [
         {
-          "bytes": 10871,
+          "bytes": 1874,
           "path": "qps.rhai",
-          "sha256": "a99e16c3a58952c6fd019726effc9a0b066384f4940af7fb9c4639e6daf51073"
+          "sha256": "d9be6b66002a744aea090b021d644ac6090cd2c9a80a42d2087aa54b36a702ee"
+        },
+        {
+          "bytes": 326,
+          "path": "qps.pins",
+          "sha256": "ac28883b33bfc335eaa95d134ed2e4afd33b174575a1dbf727da04da078c4727"
         }
       ],
-      "hooks": [
-        "acquire",
-        "build",
-        "install",
-        "remove"
-      ],
+      "functions": [],
       "name": "qps",
       "needs": {
+        "defines": {},
         "inputs": {},
         "memory_mib": 4096,
         "network": [
           "dl-cdn.alpinelinux.org:443",
           "dl.fedoraproject.org:443"
         ],
-        "network_max_bytes": 1048576,
+        "network_max_bytes": 0,
         "outputs": {
           "system": "directory"
         },
@@ -3171,6 +3547,12 @@
         "storage_max_objects": 262144,
         "timeout_secs": 7200
       },
+      "steps": [
+        "download",
+        "install",
+        "cleanup"
+      ],
+      "upstream": null,
       "version": "2026.11.16"
     },
     {
@@ -3193,9 +3575,8 @@
         ],
         "license": "GPL-2.0-or-later",
         "steps": {
-          "acquire": "Takes each pinned package by its SHA-256, from the install medium's cache or the distribution's mirror.",
-          "build": "Unpacks the packages natively into one system tree, without running their scripts.",
-          "install": "Publishes the system tree for Recipe to write into the system root, with a receipt."
+          "download": "Takes each pinned package by its SHA-256, from the install medium's cache or the distribution's mirror.",
+          "install": "Unpacks the packages natively into one system tree, without running their scripts, and writes it into the system root with a receipt."
         },
         "systems": [
           "acornos"
@@ -3208,26 +3589,39 @@
       "description": "LXQt's terminal",
       "files": [
         {
-          "bytes": 23431,
+          "bytes": 2725,
           "path": "qterminal.rhai",
-          "sha256": "686059b803474ad2bfae069b84af4d7c521dc509d3f2843c38adefbf09b20835"
+          "sha256": "2e64fb604636fbab3cf3fc64d884b3eee995a65fdf67f86a44d57e5f15eee801"
+        },
+        {
+          "bytes": 11199,
+          "path": "look.rhai",
+          "sha256": "2d9c598eba58d1609f228b59d53ca927100a1c5d8f8ff859736c9727a4b6f54d"
+        },
+        {
+          "bytes": 2994,
+          "path": "os-facts.rhai",
+          "sha256": "df29a3f420f2269e4dffc4018af4768f02c60af4bd864b48de2c2d5a837029f9"
+        },
+        {
+          "bytes": 533,
+          "path": "qterminal.pins",
+          "sha256": "e10343a741c77b8acea842ae824ddfb8e21b9d2af41bc8eabc655ed184f5323a"
         }
       ],
-      "hooks": [
-        "acquire",
-        "build",
-        "install",
-        "remove"
+      "functions": [
+        "configure"
       ],
       "name": "qterminal",
       "needs": {
+        "defines": {},
         "inputs": {},
         "memory_mib": 4096,
         "network": [
           "dl-cdn.alpinelinux.org:443",
           "dl.fedoraproject.org:443"
         ],
-        "network_max_bytes": 1048576,
+        "network_max_bytes": 0,
         "outputs": {
           "system": "directory"
         },
@@ -3235,6 +3629,12 @@
         "storage_max_objects": 262144,
         "timeout_secs": 7200
       },
+      "steps": [
+        "download",
+        "install",
+        "cleanup"
+      ],
+      "upstream": null,
       "version": "2026.11.16"
     },
     {
@@ -3252,8 +3652,7 @@
         "kind": "tool",
         "license": "MIT",
         "steps": {
-          "acquire": "Downloads the pinned upstream release and any companion documentation or licence files, checking every SHA-256.",
-          "build": "Unpacks the static release and checks each selected file against its own digest; nothing is compiled.",
+          "download": "Downloads the pinned upstream release and any companion documentation or licence files, checking every SHA-256.",
           "install": "Copies the commands and accompanying release files into bin and share."
         }
       },
@@ -3262,19 +3661,15 @@
       "description": "File synchronisation for cloud storage",
       "files": [
         {
-          "bytes": 4785,
+          "bytes": 1977,
           "path": "rclone.rhai",
-          "sha256": "07a0f7a2fab1f4f5bd19747b16d83705e699ec3d8332ba116e428467f9011d98"
+          "sha256": "94602a1453f216a00892975340569259da8eea68a216050a4030217b348f4e27"
         }
       ],
-      "hooks": [
-        "acquire",
-        "build",
-        "install",
-        "remove"
-      ],
+      "functions": [],
       "name": "rclone",
       "needs": {
+        "defines": {},
         "inputs": {},
         "memory_mib": 2048,
         "network": [
@@ -3289,6 +3684,15 @@
         "storage_max_bytes": null,
         "storage_max_objects": 16384,
         "timeout_secs": 300
+      },
+      "steps": [
+        "download",
+        "install",
+        "cleanup"
+      ],
+      "upstream": {
+        "github": "rclone/rclone",
+        "prefix": "v"
       },
       "version": "1.76.0"
     },
@@ -3305,9 +3709,8 @@
         ],
         "license": "MIT OR Apache-2.0",
         "steps": {
-          "acquire": "Downloads the pinned prebuilt archive for this system's C library and checks its SHA-256.",
-          "build": "Unpacks it and keeps the two apps' programs, menu entries and Recipe's polkit actions.",
-          "install": "Publishes the system tree for Recipe to write into the system root, with a receipt."
+          "download": "Downloads the pinned prebuilt archive for this system's C library and checks its SHA-256.",
+          "install": "Unpacks it, keeps the two apps' programs, menu entries and Recipe's polkit actions, and writes them into the system root with a receipt."
         },
         "systems": [
           "levitateos",
@@ -3321,19 +3724,15 @@
       "description": "Recipe and Recdirstat, LevitateOS's desktop apps",
       "files": [
         {
-          "bytes": 5217,
+          "bytes": 4062,
           "path": "rec-apps.rhai",
-          "sha256": "3d9d95ac409f05274766a8bf821edca53a722b5f5db55b9e2aac3e4d2b29f264"
+          "sha256": "cb4d06ca96bb90d36cf547f01cb694890585ced268203663c9a3669b02a34678"
         }
       ],
-      "hooks": [
-        "acquire",
-        "build",
-        "install",
-        "remove"
-      ],
+      "functions": [],
       "name": "rec-apps",
       "needs": {
+        "defines": {},
         "inputs": {},
         "memory_mib": 2048,
         "network": [
@@ -3349,6 +3748,12 @@
         "storage_max_objects": 16384,
         "timeout_secs": 1800
       },
+      "steps": [
+        "download",
+        "install",
+        "cleanup"
+      ],
+      "upstream": null,
       "version": "2026.11.15"
     },
     {
@@ -3366,9 +3771,8 @@
         "kind": "tool",
         "license": "MIT OR Unlicense",
         "steps": {
-          "acquire": "Downloads upstream's static release archive and checks it against the digest published with the release.",
-          "build": "Nothing is compiled: the archive is unpacked and each file is checked against its own digest.",
-          "install": "Puts rg, its manual page and its licences in place."
+          "download": "Downloads upstream's static release archive and checks it against the digest published with the release.",
+          "install": "Puts rg, its manual page and its licences in place; nothing is compiled."
         }
       },
       "build_deps": [],
@@ -3376,19 +3780,15 @@
       "description": "Fast recursive text search with rg",
       "files": [
         {
-          "bytes": 4243,
+          "bytes": 1838,
           "path": "ripgrep.rhai",
-          "sha256": "a3a8bf193466d2239bf8d9e4fd8c23bd035691be56d5c26d515164141edbd67f"
+          "sha256": "4236c30dab7324e362295daa8744bedd3aa8b716455617cdb8e5d9e9d61d0ac2"
         }
       ],
-      "hooks": [
-        "acquire",
-        "build",
-        "install",
-        "remove"
-      ],
+      "functions": [],
       "name": "ripgrep",
       "needs": {
+        "defines": {},
         "inputs": {},
         "memory_mib": 2048,
         "network": [
@@ -3402,6 +3802,14 @@
         "storage_max_bytes": null,
         "storage_max_objects": 16384,
         "timeout_secs": 300
+      },
+      "steps": [
+        "download",
+        "install",
+        "cleanup"
+      ],
+      "upstream": {
+        "github": "BurntSushi/ripgrep"
       },
       "version": "15.2.0"
     },
@@ -3418,9 +3826,8 @@
         ],
         "license": "LGPL-2.1-or-later AND GPL-2.0-or-later AND GPL-3.0-or-later",
         "steps": {
-          "acquire": "Takes each pinned package by its SHA-256, from the install medium's cache or the distribution's mirror.",
-          "build": "Unpacks the packages natively into one system tree, without running their scripts.",
-          "install": "Publishes the system tree for Recipe to write into the system root, with a receipt."
+          "download": "Takes each pinned package by its SHA-256, from the install medium's cache or the distribution's mirror.",
+          "install": "Unpacks the packages natively into one system tree, without running their scripts, and writes it into the system root with a receipt."
         },
         "systems": [
           "levitateos",
@@ -3436,26 +3843,27 @@
       "description": "The Orca screen reader, with speech",
       "files": [
         {
-          "bytes": 24036,
+          "bytes": 2170,
           "path": "screen-reader.rhai",
-          "sha256": "1be3d4db06066785c541ff1975efcdfa5741800ef63afaa7a928dfc1dc1cb3eb"
+          "sha256": "036003019aee9e132c22211ae8278076e7f2be7dac9f06f1086fdc5138689acf"
+        },
+        {
+          "bytes": 10358,
+          "path": "screen-reader.pins",
+          "sha256": "1725c18819cfdebb9e7c2d0e5cdf6e51be11d829eb0f006259c3ea6619c3ffcd"
         }
       ],
-      "hooks": [
-        "acquire",
-        "build",
-        "install",
-        "remove"
-      ],
+      "functions": [],
       "name": "screen-reader",
       "needs": {
+        "defines": {},
         "inputs": {},
         "memory_mib": 4096,
         "network": [
           "dl-cdn.alpinelinux.org:443",
           "dl.fedoraproject.org:443"
         ],
-        "network_max_bytes": 32505856,
+        "network_max_bytes": 0,
         "outputs": {
           "system": "directory"
         },
@@ -3463,6 +3871,12 @@
         "storage_max_objects": 262144,
         "timeout_secs": 7200
       },
+      "steps": [
+        "download",
+        "install",
+        "cleanup"
+      ],
+      "upstream": null,
       "version": "2026.11.16"
     },
     {
@@ -3485,9 +3899,8 @@
         ],
         "license": "GPL-2.0-or-later",
         "steps": {
-          "acquire": "Takes each pinned package by its SHA-256, from the install medium's cache or the distribution's mirror.",
-          "build": "Unpacks the packages natively into one system tree, without running their scripts.",
-          "install": "Publishes the system tree for Recipe to write into the system root, with a receipt."
+          "download": "Takes each pinned package by its SHA-256, from the install medium's cache or the distribution's mirror.",
+          "install": "Unpacks the packages natively into one system tree, without running their scripts, and writes it into the system root with a receipt."
         },
         "systems": [
           "acornos"
@@ -3500,26 +3913,27 @@
       "description": "A screenshot tool",
       "files": [
         {
-          "bytes": 10945,
+          "bytes": 1944,
           "path": "screengrab.rhai",
-          "sha256": "d79737d767b66fd8a1ff4102a2e7df635d2e24b81b0fecbcd623b4ca2240492a"
+          "sha256": "6c60e80d10a0126bc8ced16556909591cc34dc2ae54d89adda705ec688064a21"
+        },
+        {
+          "bytes": 345,
+          "path": "screengrab.pins",
+          "sha256": "882c9d9f99c729f51c4ec4c298422d13e51dc6e818e9c47c09e482172750a0d5"
         }
       ],
-      "hooks": [
-        "acquire",
-        "build",
-        "install",
-        "remove"
-      ],
+      "functions": [],
       "name": "screengrab",
       "needs": {
+        "defines": {},
         "inputs": {},
         "memory_mib": 4096,
         "network": [
           "dl-cdn.alpinelinux.org:443",
           "dl.fedoraproject.org:443"
         ],
-        "network_max_bytes": 1048576,
+        "network_max_bytes": 0,
         "outputs": {
           "system": "directory"
         },
@@ -3527,6 +3941,12 @@
         "storage_max_objects": 262144,
         "timeout_secs": 7200
       },
+      "steps": [
+        "download",
+        "install",
+        "cleanup"
+      ],
+      "upstream": null,
       "version": "2026.11.16"
     },
     {
@@ -3549,9 +3969,8 @@
         ],
         "license": "GPL-3.0-or-later",
         "steps": {
-          "acquire": "Takes each pinned package by its SHA-256, from the install medium's cache or the distribution's mirror.",
-          "build": "Unpacks the packages natively into one system tree, without running their scripts.",
-          "install": "Publishes the system tree for Recipe to write into the system root, with a receipt."
+          "download": "Takes each pinned package by its SHA-256, from the install medium's cache or the distribution's mirror.",
+          "install": "Unpacks the packages natively into one system tree, without running their scripts, and writes it into the system root with a receipt."
         },
         "systems": [
           "acornos"
@@ -3564,26 +3983,27 @@
       "description": "A scanning program, with the scanner drivers",
       "files": [
         {
-          "bytes": 42699,
+          "bytes": 2462,
           "path": "simple-scan.rhai",
-          "sha256": "379be9b10b47f8cb2853c176849b67b1155ec086c567c702d8a87e52b72a853e"
+          "sha256": "2772705da29187755ef2288869112f8f6e695d3977f5d39bd7b1c35e263355cc"
+        },
+        {
+          "bytes": 25844,
+          "path": "simple-scan.pins",
+          "sha256": "48df8a90fbbe10f109158bb5526200817bd6883d82c8c70d2fda94f335b823c1"
         }
       ],
-      "hooks": [
-        "acquire",
-        "build",
-        "install",
-        "remove"
-      ],
+      "functions": [],
       "name": "simple-scan",
       "needs": {
+        "defines": {},
         "inputs": {},
         "memory_mib": 4096,
         "network": [
           "dl-cdn.alpinelinux.org:443",
           "dl.fedoraproject.org:443"
         ],
-        "network_max_bytes": 7340032,
+        "network_max_bytes": 0,
         "outputs": {
           "system": "directory"
         },
@@ -3591,6 +4011,12 @@
         "storage_max_objects": 262144,
         "timeout_secs": 7200
       },
+      "steps": [
+        "download",
+        "install",
+        "cleanup"
+      ],
+      "upstream": null,
       "version": "2026.11.16"
     },
     {
@@ -3613,9 +4039,8 @@
         ],
         "license": "GPL-2.0-or-later",
         "steps": {
-          "acquire": "Takes each pinned package by its SHA-256, from the install medium's cache or the distribution's mirror.",
-          "build": "Unpacks the packages natively into one system tree, without running their scripts.",
-          "install": "Publishes the system tree for Recipe to write into the system root, with a receipt."
+          "download": "Takes each pinned package by its SHA-256, from the install medium's cache or the distribution's mirror.",
+          "install": "Unpacks the packages natively into one system tree, without running their scripts, and writes it into the system root with a receipt."
         },
         "systems": [
           "levitateos"
@@ -3628,26 +4053,27 @@
       "description": "KDE's scanning program, with the scanner drivers",
       "files": [
         {
-          "bytes": 14091,
+          "bytes": 2035,
           "path": "skanlite.rhai",
-          "sha256": "06311ea493caef412412a430c369395663d4305bdc52c284074c7082c5a80c3b"
+          "sha256": "448378503c78a0b586e953652f15b2abe01625d1fc6cce58ea93ca12376ed516"
+        },
+        {
+          "bytes": 2836,
+          "path": "skanlite.pins",
+          "sha256": "acb5000a535c9ea72febbbb542519537697d88fdcaff4619cc6b3212a512f961"
         }
       ],
-      "hooks": [
-        "acquire",
-        "build",
-        "install",
-        "remove"
-      ],
+      "functions": [],
       "name": "skanlite",
       "needs": {
+        "defines": {},
         "inputs": {},
         "memory_mib": 4096,
         "network": [
           "dl-cdn.alpinelinux.org:443",
           "dl.fedoraproject.org:443"
         ],
-        "network_max_bytes": 7340032,
+        "network_max_bytes": 0,
         "outputs": {
           "system": "directory"
         },
@@ -3655,6 +4081,12 @@
         "storage_max_objects": 262144,
         "timeout_secs": 7200
       },
+      "steps": [
+        "download",
+        "install",
+        "cleanup"
+      ],
+      "upstream": null,
       "version": "2026.11.16"
     },
     {
@@ -3677,9 +4109,8 @@
         ],
         "license": "GPL-2.0-or-later",
         "steps": {
-          "acquire": "Takes each pinned package by its SHA-256, from the install medium's cache or the distribution's mirror.",
-          "build": "Unpacks the packages natively into one system tree, without running their scripts.",
-          "install": "Publishes the system tree for Recipe to write into the system root, with a receipt."
+          "download": "Takes each pinned package by its SHA-256, from the install medium's cache or the distribution's mirror.",
+          "install": "Unpacks the packages natively into one system tree, without running their scripts, and writes it into the system root with a receipt."
         },
         "systems": [
           "levitateos"
@@ -3692,26 +4123,27 @@
       "description": "KDE's screenshot tool",
       "files": [
         {
-          "bytes": 12119,
+          "bytes": 1962,
           "path": "spectacle.rhai",
-          "sha256": "9bb044e92c8eae37b8f37ffbd03b33ac0f682d3ab39ffcd38718f5c4044517ee"
+          "sha256": "37bba1e9561e3809737bc8b280897052b44b65e62a028b87ca0f7e4dfc582b73"
+        },
+        {
+          "bytes": 1256,
+          "path": "spectacle.pins",
+          "sha256": "0bbfd9833cae85670a7de1fea288706a717ab94714564ef2574c6dc7c7a5534e"
         }
       ],
-      "hooks": [
-        "acquire",
-        "build",
-        "install",
-        "remove"
-      ],
+      "functions": [],
       "name": "spectacle",
       "needs": {
+        "defines": {},
         "inputs": {},
         "memory_mib": 4096,
         "network": [
           "dl-cdn.alpinelinux.org:443",
           "dl.fedoraproject.org:443"
         ],
-        "network_max_bytes": 4194304,
+        "network_max_bytes": 0,
         "outputs": {
           "system": "directory"
         },
@@ -3719,6 +4151,12 @@
         "storage_max_objects": 262144,
         "timeout_secs": 7200
       },
+      "steps": [
+        "download",
+        "install",
+        "cleanup"
+      ],
+      "upstream": null,
       "version": "2026.11.16"
     },
     {
@@ -3734,9 +4172,8 @@
         ],
         "license": "LGPL-2.1-or-later",
         "steps": {
-          "acquire": "Takes each pinned package by its SHA-256, from the install medium's cache or the distribution's mirror.",
-          "build": "Unpacks the packages natively into one system tree, without running their scripts.",
-          "install": "Publishes the system tree for Recipe to write into the system root, with a receipt."
+          "download": "Takes each pinned package by its SHA-256, from the install medium's cache or the distribution's mirror.",
+          "install": "Unpacks the packages natively into one system tree, without running their scripts, and writes it into the system root with a receipt."
         },
         "systems": [
           "levitateos",
@@ -3748,26 +4185,27 @@
       "description": "English spelling dictionaries",
       "files": [
         {
-          "bytes": 18047,
+          "bytes": 1942,
           "path": "spelling.rhai",
-          "sha256": "cd976a6f0ae000ffd5202b743064cab5d4c8722cb9b3dc816100c9a16b2396ba"
+          "sha256": "58322a49599882575732820008e7a8b4c2cb9c3c3e89a9d44f58871ca821cf45"
+        },
+        {
+          "bytes": 5637,
+          "path": "spelling.pins",
+          "sha256": "7b12a1c41da3672e1596e7cd0d86b0ec088e614f28360e8b1e5a45b4caa6e752"
         }
       ],
-      "hooks": [
-        "acquire",
-        "build",
-        "install",
-        "remove"
-      ],
+      "functions": [],
       "name": "spelling",
       "needs": {
+        "defines": {},
         "inputs": {},
         "memory_mib": 4096,
         "network": [
           "dl-cdn.alpinelinux.org:443",
           "dl.fedoraproject.org:443"
         ],
-        "network_max_bytes": 2097152,
+        "network_max_bytes": 0,
         "outputs": {
           "system": "directory"
         },
@@ -3775,6 +4213,12 @@
         "storage_max_objects": 262144,
         "timeout_secs": 7200
       },
+      "steps": [
+        "download",
+        "install",
+        "cleanup"
+      ],
+      "upstream": null,
       "version": "2026.11.16"
     },
     {
@@ -3797,9 +4241,8 @@
         ],
         "license": "proprietary (Valve: Steam Subscriber Agreement) AND MIT (steam-devices); Fedora packages under their own licences",
         "steps": {
-          "acquire": "Downloads Valve's pinned Steam launcher tarball from repo.steampowered.com and checks its SHA-256, and takes each pinned Fedora package by its SHA-256 from the install medium's cache or the distribution's mirror.",
-          "build": "Unpacks the Fedora packages natively into one system tree, without running their scripts, and places Valve's launcher, client bootstrap, menu entry, icons and device rules in it, each checked against its own digest; nothing is compiled.",
-          "install": "Publishes the system tree for Recipe to write into the system root, with a receipt."
+          "download": "Downloads Valve's pinned Steam launcher tarball from repo.steampowered.com and checks its SHA-256, and takes each pinned Fedora package by its SHA-256 from the install medium's cache or the distribution's mirror.",
+          "install": "Unpacks the Fedora packages natively into one system tree, without running their scripts, places Valve's launcher, client bootstrap, menu entry, icons and device rules in it (nothing is compiled), and writes the tree into the system root with a receipt."
         },
         "systems": [
           "levitateos"
@@ -3814,26 +4257,29 @@
       "description": "Valve's Steam launcher and what it needs",
       "files": [
         {
-          "bytes": 20876,
+          "bytes": 10332,
           "path": "steam.rhai",
-          "sha256": "1f6d586eefc7d79e76425b8d3580751e6d8b228b01ce0c23eee0d50e3a21c41e"
+          "sha256": "a794c4f831fdd53d13d56f02f0f3df0a7cdd48227e25fdd129a28b16d54c5f03"
+        },
+        {
+          "bytes": 1266,
+          "path": "steam.pins",
+          "sha256": "a8cdb1871006372cdbf609e29d761a0186b3c20fbcaef25a43c6a46e64bb369d"
         }
       ],
-      "hooks": [
-        "acquire",
-        "build",
-        "install",
-        "remove"
+      "functions": [
+        "configure"
       ],
       "name": "steam",
       "needs": {
+        "defines": {},
         "inputs": {},
         "memory_mib": 4096,
         "network": [
           "dl.fedoraproject.org:443",
           "repo.steampowered.com:443"
         ],
-        "network_max_bytes": 32505856,
+        "network_max_bytes": 20971520,
         "outputs": {
           "system": "directory"
         },
@@ -3841,6 +4287,12 @@
         "storage_max_objects": 262144,
         "timeout_secs": 7200
       },
+      "steps": [
+        "download",
+        "install",
+        "cleanup"
+      ],
+      "upstream": null,
       "version": "2026.11.16"
     },
     {
@@ -3856,9 +4308,8 @@
         ],
         "license": "GPL-2.0-or-later",
         "steps": {
-          "acquire": "Takes each pinned package by its SHA-256, from the install medium's cache or the distribution's mirror.",
-          "build": "Unpacks the packages natively into one system tree, without running their scripts.",
-          "install": "Publishes the system tree for Recipe to write into the system root, with a receipt."
+          "download": "Takes each pinned package by its SHA-256, from the install medium's cache or the distribution's mirror.",
+          "install": "Unpacks the packages natively into one system tree, without running their scripts, and writes it into the system root with a receipt."
         },
         "systems": [
           "levitateos",
@@ -3872,26 +4323,27 @@
       "description": "File thumbnails",
       "files": [
         {
-          "bytes": 17082,
+          "bytes": 1949,
           "path": "thumbnailers.rhai",
-          "sha256": "a5e72fc30756e95b08e869c37cf76c1747a5d0ee91570c6c889970ea09cb6d63"
+          "sha256": "6f0b3a6282747f5911fd8e7b58b19d6c5cb3ba8ed2fc6f8a759357f945708cd8"
+        },
+        {
+          "bytes": 5021,
+          "path": "thumbnailers.pins",
+          "sha256": "513e79a04b7fad81a7069b2ef2cf5826e193a60856a25a4a3451d35cf41c748a"
         }
       ],
-      "hooks": [
-        "acquire",
-        "build",
-        "install",
-        "remove"
-      ],
+      "functions": [],
       "name": "thumbnailers",
       "needs": {
+        "defines": {},
         "inputs": {},
         "memory_mib": 4096,
         "network": [
           "dl-cdn.alpinelinux.org:443",
           "dl.fedoraproject.org:443"
         ],
-        "network_max_bytes": 9437184,
+        "network_max_bytes": 0,
         "outputs": {
           "system": "directory"
         },
@@ -3899,6 +4351,12 @@
         "storage_max_objects": 262144,
         "timeout_secs": 7200
       },
+      "steps": [
+        "download",
+        "install",
+        "cleanup"
+      ],
+      "upstream": null,
       "version": "2026.11.16"
     },
     {
@@ -3914,9 +4372,8 @@
         ],
         "license": "LGPL-2.1-or-later",
         "steps": {
-          "acquire": "Takes each pinned package by its SHA-256, from the install medium's cache or the distribution's mirror.",
-          "build": "Unpacks the packages natively into one system tree, without running their scripts.",
-          "install": "Publishes the system tree for Recipe to write into the system root, with a receipt."
+          "download": "Takes each pinned package by its SHA-256, from the install medium's cache or the distribution's mirror.",
+          "install": "Unpacks the packages natively into one system tree, without running their scripts, and writes it into the system root with a receipt."
         },
         "systems": [
           "levitateos",
@@ -3930,26 +4387,27 @@
       "description": "Thunderbolt device authorisation",
       "files": [
         {
-          "bytes": 11844,
+          "bytes": 1994,
           "path": "thunderbolt.rhai",
-          "sha256": "c901c6e6c9fb0e1cb5ad4982fa5d54259c2552b6bcffaf30c5709ccf153effe6"
+          "sha256": "44e621908d23299eb0573b3c3fdb0b82082e7bda58498181b51e5864f9058a4b"
+        },
+        {
+          "bytes": 907,
+          "path": "thunderbolt.pins",
+          "sha256": "41c9ee82480e5b8077f3de285461ff5fa88972db746579b416747ed643000f06"
         }
       ],
-      "hooks": [
-        "acquire",
-        "build",
-        "install",
-        "remove"
-      ],
+      "functions": [],
       "name": "thunderbolt",
       "needs": {
+        "defines": {},
         "inputs": {},
         "memory_mib": 4096,
         "network": [
           "dl-cdn.alpinelinux.org:443",
           "dl.fedoraproject.org:443"
         ],
-        "network_max_bytes": 1048576,
+        "network_max_bytes": 0,
         "outputs": {
           "system": "directory"
         },
@@ -3957,6 +4415,12 @@
         "storage_max_objects": 262144,
         "timeout_secs": 7200
       },
+      "steps": [
+        "download",
+        "install",
+        "cleanup"
+      ],
+      "upstream": null,
       "version": "2026.11.16"
     },
     {
@@ -3975,8 +4439,7 @@
         "kind": "tool",
         "license": "MIT OR Apache-2.0",
         "steps": {
-          "acquire": "Downloads the pinned upstream release and any companion documentation or licence files, checking every SHA-256.",
-          "build": "Unpacks the static release and checks each selected file against its own digest; nothing is compiled.",
+          "download": "Downloads the pinned upstream release and any companion documentation or licence files, checking every SHA-256.",
           "install": "Copies the commands and accompanying release files into bin and share."
         }
       },
@@ -3985,19 +4448,15 @@
       "description": "Python project and package manager",
       "files": [
         {
-          "bytes": 5271,
+          "bytes": 2261,
           "path": "uv.rhai",
-          "sha256": "555b6af65f653cf4e76335eff0a05e6da3fe02c54702a879c484208b80fc0030"
+          "sha256": "88d0e09180cd13e8765c27d64d471aaa049278eb05de1a9ca051cb832d0d06ec"
         }
       ],
-      "hooks": [
-        "acquire",
-        "build",
-        "install",
-        "remove"
-      ],
+      "functions": [],
       "name": "uv",
       "needs": {
+        "defines": {},
         "inputs": {},
         "memory_mib": 2048,
         "network": [
@@ -4012,6 +4471,14 @@
         "storage_max_bytes": null,
         "storage_max_objects": 16384,
         "timeout_secs": 300
+      },
+      "steps": [
+        "download",
+        "install",
+        "cleanup"
+      ],
+      "upstream": {
+        "github": "astral-sh/uv"
       },
       "version": "0.13.7"
     },
@@ -4028,9 +4495,8 @@
         ],
         "license": "GPL-3.0-or-later",
         "steps": {
-          "acquire": "Takes each pinned package by its SHA-256, from the install medium's cache or the distribution's mirror.",
-          "build": "Unpacks the packages natively into one system tree, without running their scripts.",
-          "install": "Publishes the system tree for Recipe to write into the system root, with a receipt."
+          "download": "Takes each pinned package by its SHA-256, from the install medium's cache or the distribution's mirror.",
+          "install": "Unpacks the packages natively into one system tree, without running their scripts, and writes it into the system root with a receipt."
         },
         "systems": [
           "levitateos",
@@ -4044,26 +4510,29 @@
       "description": "Guest agent for SPICE virtual machines",
       "files": [
         {
-          "bytes": 12695,
+          "bytes": 2624,
           "path": "vm-guest.rhai",
-          "sha256": "afd3d175cac6d6a7f3330ec521a26786fbfa6ad38ffc1d6e65405b19543c6bb4"
+          "sha256": "0c60aea02ca61fd6b91aaeea678fb6cf3d84d673698a40eedc2bd2c1bae45a39"
+        },
+        {
+          "bytes": 822,
+          "path": "vm-guest.pins",
+          "sha256": "aea6492075216e354469f845e568072d39697f151a8257a0609a6c69ebf9556d"
         }
       ],
-      "hooks": [
-        "acquire",
-        "build",
-        "install",
-        "remove"
+      "functions": [
+        "configure"
       ],
       "name": "vm-guest",
       "needs": {
+        "defines": {},
         "inputs": {},
         "memory_mib": 4096,
         "network": [
           "dl-cdn.alpinelinux.org:443",
           "dl.fedoraproject.org:443"
         ],
-        "network_max_bytes": 1048576,
+        "network_max_bytes": 0,
         "outputs": {
           "system": "directory"
         },
@@ -4071,6 +4540,12 @@
         "storage_max_objects": 262144,
         "timeout_secs": 7200
       },
+      "steps": [
+        "download",
+        "install",
+        "cleanup"
+      ],
+      "upstream": null,
       "version": "2026.11.16"
     },
     {
@@ -4085,9 +4560,8 @@
         ],
         "license": "MIT AND X11 AND LGPL-2.1-or-later",
         "steps": {
-          "acquire": "Takes each pinned package and the pinned display-server prebuilt by their SHA-256, from the install medium's cache or the distribution's mirror and GitHub.",
-          "build": "Unpacks the packages natively into one system tree, without running their scripts, and adds the X server's files from the prebuilt, the wrapper setuid root.",
-          "install": "Publishes the system tree for Recipe to write into the system root, with a receipt."
+          "download": "Takes each pinned package and the pinned display-server prebuilt by their SHA-256, from the install medium's cache or the distribution's mirror and GitHub.",
+          "install": "Unpacks the packages natively into one system tree, without running their scripts, adds the X server's files from the prebuilt, the wrapper setuid root, and writes the tree into the system root with a receipt."
         },
         "systems": [
           "acornos"
@@ -4100,19 +4574,22 @@
       "description": "The XLibre display server and its run-time parts",
       "files": [
         {
-          "bytes": 17529,
+          "bytes": 7339,
           "path": "xlibre.rhai",
-          "sha256": "05a48324da950de6b52e31b6d8447495264897e9ff1dde6b5b3d1191fb878ca7"
+          "sha256": "5030245e86bf3dbfd7dd4600d896f694c45ea010149d223763dd4a0bafa650e8"
+        },
+        {
+          "bytes": 1375,
+          "path": "xlibre.pins",
+          "sha256": "f4681ba4ab2a464a35b47cf4dc87e0075c582aadedca67583948fdb79c2ecc72"
         }
       ],
-      "hooks": [
-        "acquire",
-        "build",
-        "install",
-        "remove"
+      "functions": [
+        "configure"
       ],
       "name": "xlibre",
       "needs": {
+        "defines": {},
         "inputs": {},
         "memory_mib": 4096,
         "network": [
@@ -4122,7 +4599,7 @@
           "objects.githubusercontent.com:443",
           "release-assets.githubusercontent.com:443"
         ],
-        "network_max_bytes": 6291456,
+        "network_max_bytes": 2097152,
         "outputs": {
           "system": "directory"
         },
@@ -4130,6 +4607,12 @@
         "storage_max_objects": 262144,
         "timeout_secs": 7200
       },
+      "steps": [
+        "download",
+        "install",
+        "cleanup"
+      ],
+      "upstream": null,
       "version": "2026.11.16"
     },
     {
@@ -4147,8 +4630,7 @@
         "kind": "tool",
         "license": "MIT",
         "steps": {
-          "acquire": "Downloads the pinned upstream release and any companion documentation or licence files, checking every SHA-256.",
-          "build": "Unpacks the static release and checks each selected file against its own digest; nothing is compiled.",
+          "download": "Downloads the pinned upstream release and checks it against its SHA-256 digest.",
           "install": "Copies the commands and accompanying release files into bin and share."
         }
       },
@@ -4157,19 +4639,15 @@
       "description": "Directory jumping based on usage",
       "files": [
         {
-          "bytes": 6968,
+          "bytes": 2514,
           "path": "zoxide.rhai",
-          "sha256": "0bbefdecf93b1c0915ee1226a42c4f4334af4ba4d86bdae43b3250cccabf1743"
+          "sha256": "f740295b2811102092457c8e508d9e98b89e5cee69fc10e96c500a89c4139027"
         }
       ],
-      "hooks": [
-        "acquire",
-        "build",
-        "install",
-        "remove"
-      ],
+      "functions": [],
       "name": "zoxide",
       "needs": {
+        "defines": {},
         "inputs": {},
         "memory_mib": 2048,
         "network": [
@@ -4183,6 +4661,15 @@
         "storage_max_bytes": null,
         "storage_max_objects": 16384,
         "timeout_secs": 300
+      },
+      "steps": [
+        "download",
+        "install",
+        "cleanup"
+      ],
+      "upstream": {
+        "github": "ajeetdsouza/zoxide",
+        "prefix": "v"
       },
       "version": "0.10.0"
     }
