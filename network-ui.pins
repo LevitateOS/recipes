@@ -1,0 +1,24 @@
+# network-ui.pins: written by `cargo xtask base groups`; do not edit.
+# glibc: Fedora 45, locked 2026-11-16. musl: Alpine v3.24, locked 2026-11-16.
+version 2026.11.16
+
+[glibc rpm]
+NetworkManager-openvpn aa4e21e1573d96425c9bc3e90a04419eeeb4840794d8bdebc286d5f2d47c44ad 318926 - https://dl.fedoraproject.org/pub/fedora/linux/releases/45/Everything/x86_64/os/Packages/n/NetworkManager-openvpn-1.12.5-5.fc45.x86_64.rpm GPL-2.0-or-later
+kf6-modemmanager-qt e37d630d8e12c04c52806b98873e3760943dd4cb8dceff3206fa4153a0d40164 273157 - https://dl.fedoraproject.org/pub/fedora/linux/updates/45/Everything/x86_64/Packages/k/kf6-modemmanager-qt-6.32.0-1.fc45.x86_64.rpm GPL-2.0-only AND GPL-3.0-only AND LGPL-2.1-only AND LGPL-3.0-only AND (GPL-2.0-only OR GPL-3.0-only) AND (LGPL-2.1-only OR LGPL-3.0-only)
+openvpn ba38ed093cc75518e1219fc6ac74d7aea179bea2b88b747910b27ecbbd6cea8d 749439 - https://dl.fedoraproject.org/pub/fedora/linux/updates/45/Everything/x86_64/Packages/o/openvpn-2.7.9-1.fc45.x86_64.rpm GPL-2.0-only
+pkcs11-helper ebf52773737eb613c0fa58db2725cfa6b0b09bec764c3fd776a666d74778c9d7 70967 - https://dl.fedoraproject.org/pub/fedora/linux/releases/45/Everything/x86_64/os/Packages/p/pkcs11-helper-1.30.0-8.fc45.x86_64.rpm GPL-2.0-only OR BSD-3-Clause
+plasma-nm 0aa5706b5a8335fbfef62fcc0190f63bedf838b91ae00c1bdd679d6cb4079e58 1812465 - https://dl.fedoraproject.org/pub/fedora/linux/updates/45/Everything/x86_64/Packages/p/plasma-nm-6.8.3-1.fc45.x86_64.rpm BSD-3-Clause AND CC0-1.0 AND GPL-2.0-only AND GPL-2.0-or-later AND GPL-3.0-only AND LGPL-2.0-or-later AND LGPL-2.1-only AND LGPL-3.0-only AND (GPL-2.0-only OR GPL-3.0-only) AND (LGPL-2.1-only OR LGPL-3.0-only)
+plasma-nm-openvpn dbb5cd77f297a2bc139ad4e38d601d7045792dfb5f89a2f1890ed7c33a87b337 275998 - https://dl.fedoraproject.org/pub/fedora/linux/updates/45/Everything/x86_64/Packages/p/plasma-nm-openvpn-6.8.3-1.fc45.x86_64.rpm BSD-3-Clause AND CC0-1.0 AND GPL-2.0-only AND GPL-2.0-or-later AND GPL-3.0-only AND LGPL-2.0-or-later AND LGPL-2.1-only AND LGPL-3.0-only AND (GPL-2.0-only OR GPL-3.0-only) AND (LGPL-2.1-only OR LGPL-3.0-only)
+qtkeychain-qt6 69fd8af41d0e683e538a8f5d1467271c2248960249d81ecabd29bdf90a35d7ad 81591 - https://dl.fedoraproject.org/pub/fedora/linux/releases/45/Everything/x86_64/os/Packages/q/qtkeychain-qt6-0.17.0-1.fc45.x86_64.rpm BSD-3-Clause
+
+[musl apk]
+ayatana-ido 31aa6e860c6b02a96de17899eadfbd7c75634b6cc77b3b19c69b92fbc5587406 59658 - https://dl-cdn.alpinelinux.org/alpine/v3.24/community/x86_64/ayatana-ido-0.10.4-r1.apk LGPL-2.1-only AND LGPL-3.0-only AND GPL-3.0-only
+libayatana-appindicator 897f0b08b318b2820f340a85c6ce3a8b030c58ddee32b25581a1bc3695c2b91d 23112 - https://dl-cdn.alpinelinux.org/alpine/v3.24/community/x86_64/libayatana-appindicator-0.5.94-r0.apk LGPL-3.0-only
+libayatana-indicator cc3f5ead925e2691ebf7fb6c8bf45ebe94bb63c4b13372229c40f6d5d15e23b5 35435 - https://dl-cdn.alpinelinux.org/alpine/v3.24/community/x86_64/libayatana-indicator-0.9.4-r2.apk GPL-3.0-only
+libdbusmenu-glib be1d19fbdbc5080951dc751d5e51add7e164e48d0a462ade0672407f9320c082 52031 - https://dl-cdn.alpinelinux.org/alpine/v3.24/community/x86_64/libdbusmenu-glib-16.04.0-r6.apk GPL-3.0-or-later AND LGPL-2.1-or-later AND LGPL-3.0-or-later
+libdbusmenu-gtk3 f6982f2f5fa8ba689a56428c4f44de41c7a42d58e7559f2663b3c1c19e2d22ba 27394 - https://dl-cdn.alpinelinux.org/alpine/v3.24/community/x86_64/libdbusmenu-gtk3-16.04.0-r6.apk GPL-3.0-or-later AND LGPL-2.1-or-later AND LGPL-3.0-or-later
+libnma e4f895876a739bc43a50d49ad45f040310c844b474b8a7166482672a424a8172 94986 - https://dl-cdn.alpinelinux.org/alpine/v3.24/community/x86_64/libnma-1.10.6-r4.apk LGPL-2.1-or-later
+libnma-common 3ae8e61379953f9bc99e00f6540a41f8444bf698ade5ba97ddf3ded9c64cddd4 1915 - https://dl-cdn.alpinelinux.org/alpine/v3.24/community/x86_64/libnma-common-1.10.6-r4.apk LGPL-2.1-or-later
+mobile-broadband-provider-info cb1a23045086f251afb7e166a004419cd93b69baf31c6c48ac780b1517a289a7 79086 - https://dl-cdn.alpinelinux.org/alpine/v3.24/community/x86_64/mobile-broadband-provider-info-20251101-r1.apk CC-PDDC
+network-manager-applet 84e230ac6867a618fa54a66cce2cdfd322508c7387fc3859f95d7fe21edeeb03 348716 - https://dl-cdn.alpinelinux.org/alpine/v3.24/community/x86_64/network-manager-applet-1.36.0-r0.apk GPL-2.0-or-later
+networkmanager-openvpn ad0e6a120ae51052d7347188714281e4cd6c9a90efad9cabbdcd4a67b7ca8ce5 1305 - https://dl-cdn.alpinelinux.org/alpine/v3.24/community/x86_64/networkmanager-openvpn-1.12.2-r1.apk GPL-2.0-or-later

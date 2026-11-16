@@ -1,0 +1,6 @@
+# lximage-qt.pins: written by `cargo xtask base groups`; do not edit.
+# No glibc build. musl: Alpine v3.24, locked 2026-11-16.
+version 2026.11.16
+
+[musl apk]
+lximage-qt 53f31e5c8d2a001e61386d72eb03a4438feaec06e84a59bd7bbba80b7cc0efc5 185174 - https://dl-cdn.alpinelinux.org/alpine/v3.24/community/x86_64/lximage-qt-2.4.0-r0.apk LGPL-2.0-or-later

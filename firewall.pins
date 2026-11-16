@@ -1,0 +1,29 @@
+# firewall.pins: written by `cargo xtask base groups`; do not edit.
+# glibc: Fedora 45, locked 2026-11-16. musl: Alpine v3.24, locked 2026-11-16.
+version 2026.11.16
+
+[glibc rpm]
+firewalld a214f928b56fb678ccba8c328e976d02ef5684a4915ec216ca4ea86df473b541 560763 - https://dl.fedoraproject.org/pub/fedora/linux/releases/45/Everything/x86_64/os/Packages/f/firewalld-2.5.2-1.fc45.noarch.rpm GPL-2.0-or-later
+firewalld-filesystem ac762b333c9bbc7c0072fa224f12010453dd7a8278ce95ae02a35349465817f4 10041 - https://dl.fedoraproject.org/pub/fedora/linux/releases/45/Everything/x86_64/os/Packages/f/firewalld-filesystem-2.5.2-1.fc45.noarch.rpm GPL-2.0-or-later
+iptables-libs 2e918ea84115596b7469fbe5a335e5f25cd438f8f3a412acd6f10c1c50550676 415476 - https://dl.fedoraproject.org/pub/fedora/linux/releases/45/Everything/x86_64/os/Packages/i/iptables-libs-1.8.13-3.fc45.x86_64.rpm GPL-2.0-only AND Artistic-2.0 AND ISC
+libnetfilter_conntrack 929bfe0bd5def4a1b8d9ce63b70e7a3bf688f5e15bcb9625f349d4f73c2d8e51 63697 - https://dl.fedoraproject.org/pub/fedora/linux/releases/45/Everything/x86_64/os/Packages/l/libnetfilter_conntrack-1.1.1-2.fc45.x86_64.rpm GPL-2.0-or-later
+libnfnetlink d332a8c13a1aff44d45b9106b883dcada5d50d8f399f13bd6dd5c23e8d516a1e 29887 - https://dl.fedoraproject.org/pub/fedora/linux/releases/45/Everything/x86_64/os/Packages/l/libnfnetlink-1.0.2-2.fc45.x86_64.rpm GPL-2.0-or-later
+libnftnl b79fbb57a0852c4e6e3b6d94221ac2c6ac195c166d846ea47297fd5ed69ee080 91975 - https://dl.fedoraproject.org/pub/fedora/linux/releases/45/Everything/x86_64/os/Packages/l/libnftnl-1.3.1-3.fc45.x86_64.rpm GPL-2.0-or-later
+nftables 6cd8d5b71430fa8aec48d012aa3b663d53dbf703ac7d753be633d35716b7dc64 459829 - https://dl.fedoraproject.org/pub/fedora/linux/releases/45/Everything/x86_64/os/Packages/n/nftables-1.1.6-4.fc45.x86_64.rpm GPL-2.0-only
+nftables-services 01755da25f0fca3082369a821cf627a5bef4c317ced0911991f5b0c9dc76ff10 21833 - https://dl.fedoraproject.org/pub/fedora/linux/releases/45/Everything/x86_64/os/Packages/n/nftables-services-1.1.6-4.fc45.noarch.rpm GPL-2.0-only
+plasma-firewall d62d6fa48864c4058ad558d0e0a933d418398bafd1c329cf37066b93ac0a25a6 497073 - https://dl.fedoraproject.org/pub/fedora/linux/updates/45/Everything/x86_64/Packages/p/plasma-firewall-6.8.3-1.fc45.x86_64.rpm BSD-3-Clause AND CC0-1.0 AND FSFAP AND GPL-2.0-only AND GPL-2.0-or-later AND GPL-3.0-only AND GPL-3.0-or-later AND (GPL-2.0-only OR GPL-3.0-only)
+plasma-firewall-firewalld deffea21dc5a832b9584f1ba0f96a065776296a691b4f34548ee48132be8b82c 68381 - https://dl.fedoraproject.org/pub/fedora/linux/updates/45/Everything/x86_64/Packages/p/plasma-firewall-firewalld-6.8.3-1.fc45.x86_64.rpm BSD-3-Clause AND CC0-1.0 AND FSFAP AND GPL-2.0-only AND GPL-2.0-or-later AND GPL-3.0-only AND GPL-3.0-or-later AND (GPL-2.0-only OR GPL-3.0-only)
+python3-firewall 08a28652e5f832fafb71c980190977b71fcaa1d7396c96312e416b0c01e7dff9 529323 - https://dl.fedoraproject.org/pub/fedora/linux/releases/45/Everything/x86_64/os/Packages/p/python3-firewall-2.5.2-1.fc45.noarch.rpm GPL-2.0-or-later
+python3-nftables fe9473c5269c296aceb0b2ef09b8a46af57da3399142df8b7cc0fa9ba13535d0 21819 - https://dl.fedoraproject.org/pub/fedora/linux/releases/45/Everything/x86_64/os/Packages/p/python3-nftables-1.1.6-4.fc45.noarch.rpm GPL-2.0-only
+
+[musl apk]
+firewalld 8efe764d658857908903bf22c84f4dd2c9e2658c0541f0175f68848c942608ee 1217504 - https://dl-cdn.alpinelinux.org/alpine/v3.24/community/x86_64/firewalld-2.4.1-r0.apk GPL-2.0-or-later
+firewalld-bash-completion 308acd02e6b2c43b53db00106cc2ae6cd180d59a8a22efc75b60045f0d63e082 4288 - https://dl-cdn.alpinelinux.org/alpine/v3.24/community/x86_64/firewalld-bash-completion-2.4.1-r0.apk GPL-2.0-or-later
+firewalld-gui 8dd9dcf4b3781d1882325a92377f854471aa6c77818618043add2e10954cd7c5 110301 - https://dl-cdn.alpinelinux.org/alpine/v3.24/community/x86_64/firewalld-gui-2.4.1-r0.apk GPL-2.0-or-later
+firewalld-openrc a99a61ac70fd526899e6f0e40ec3db2161c160148d3954743fa4f73b7c95d6f5 1787 - https://dl-cdn.alpinelinux.org/alpine/v3.24/community/x86_64/firewalld-openrc-2.4.1-r0.apk GPL-2.0-or-later
+libnftnl 2f4cf35959fde00fdba0dd35ef12a6739739b504e8319c97e30bd4834f98d924 67237 - https://dl-cdn.alpinelinux.org/alpine/v3.24/main/x86_64/libnftnl-1.3.1-r0.apk GPL-2.0-or-later
+nftables edca96e6160479bd734bb6cdb8412f84f689c6a771fdec75ce2c1c18f3e7cf42 348599 var https://dl-cdn.alpinelinux.org/alpine/v3.24/main/x86_64/nftables-1.1.6-r1.apk GPL-2.0-or-later
+nftables-openrc 91c361bb038b4e37f1e9a586d43e2b3f8ebf607ace3280ee0194fa00c00ae0be 3748 - https://dl-cdn.alpinelinux.org/alpine/v3.24/main/x86_64/nftables-openrc-1.1.6-r1.apk GPL-2.0-or-later
+py3-libcap-ng 671053f2782eca0f1eed6a175ccb6f9753d32c0e6e5fa78543c607cd91d3bb20 21634 - https://dl-cdn.alpinelinux.org/alpine/v3.24/main/x86_64/py3-libcap-ng-0.8.5-r2.apk GPL-2.0-or-later AND LGPL-2.1-or-later
+py3-nftables f7e030c338f75d5d9f65e64e5360e20f44e46ba73cde2c9bc53440818ab68856 7072 - https://dl-cdn.alpinelinux.org/alpine/v3.24/main/x86_64/py3-nftables-1.1.6-r1.apk GPL-2.0-or-later
+py3-nftables-pyc 74bd6e1d96d581e053926c93f21b8f2f0dd2779768be7c2785b3ab012dec787a 9731 - https://dl-cdn.alpinelinux.org/alpine/v3.24/main/x86_64/py3-nftables-pyc-1.1.6-r1.apk GPL-2.0-or-later

@@ -1,0 +1,6 @@
+# qps.pins: written by `cargo xtask base groups`; do not edit.
+# No glibc build. musl: Alpine v3.24, locked 2026-11-16.
+version 2026.11.16
+
+[musl apk]
+qps 4d3e4742186007c343b1720b549744c0ee78e68924cf9758975484e10c324c07 251468 - https://dl-cdn.alpinelinux.org/alpine/v3.24/community/x86_64/qps-2.13.0-r0.apk LGPL-2.0-or-later

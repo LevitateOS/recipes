@@ -1,0 +1,6 @@
+# screengrab.pins: written by `cargo xtask base groups`; do not edit.
+# No glibc build. musl: Alpine v3.24, locked 2026-11-16.
+version 2026.11.16
+
+[musl apk]
+screengrab a9199956578eb2b557d0b0902c5be7451bf2051f6588148ecd2cf94fbedd15c2 154142 - https://dl-cdn.alpinelinux.org/alpine/v3.24/community/x86_64/screengrab-3.2.0-r0.apk GPL-2.0-or-later

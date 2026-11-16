@@ -1,0 +1,16 @@
+# mousepad.pins: written by `cargo xtask base groups`; do not edit.
+# No glibc build. musl: Alpine v3.24, locked 2026-11-16.
+version 2026.11.16
+
+[musl apk]
+enchant2-data 1be5d65bf122c5c375728af9af52dde63412ef6d98c5089c99095b0d9c8ff869 1697 - https://dl-cdn.alpinelinux.org/alpine/v3.24/community/x86_64/enchant2-data-2.8.15-r0.apk LGPL-2.1-or-later
+enchant2-hunspell 0c8cc525327dc6937aa8aea0af2cb341a6ba16b00858c1267b8a0c9a8c45233f 12685 - https://dl-cdn.alpinelinux.org/alpine/v3.24/community/x86_64/enchant2-hunspell-2.8.15-r0.apk LGPL-2.1-or-later
+enchant2-libs 34c7fdeb0b5313e362f0bd0fcd4d96ee636ac906770e67bb8fc5406d0ae3de5e 26651 - https://dl-cdn.alpinelinux.org/alpine/v3.24/community/x86_64/enchant2-libs-2.8.15-r0.apk LGPL-2.1-or-later
+gspell 27bc7825fdbe1660a22d1e1b624c60b29d67b371ef029077abbc0b6111275768 117797 - https://dl-cdn.alpinelinux.org/alpine/v3.24/community/x86_64/gspell-1.14.4-r0.apk LGPL-2.1-or-later
+gtksourceview4 fbc1905d4a5f7cbb1e33723ae1e9aef194da0878fde1134ec7840eea9afe843c 587178 - https://dl-cdn.alpinelinux.org/alpine/v3.24/community/x86_64/gtksourceview4-4.8.4-r4.apk GPL-2.0-or-later
+libgtop 810cfc7f4a50c2633ab6d022c63158b8512b788045a34524845d738301959f11 44438 - https://dl-cdn.alpinelinux.org/alpine/v3.24/community/x86_64/libgtop-2.41.3-r1.apk LGPL-2.1-or-later
+libxfce4ui 19db529ac4d013e935470bbc2d3bc36278f9722bd7a5de234abf08e909ed4e70 150199 - https://dl-cdn.alpinelinux.org/alpine/v3.24/community/x86_64/libxfce4ui-4.20.1-r1.apk GPL-2.0-only
+libxfce4util 15e4802fe99771c93089080754a5f237221f6d5c7d676299aeccf19979a1e8e3 37431 - https://dl-cdn.alpinelinux.org/alpine/v3.24/community/x86_64/libxfce4util-4.20.1-r0.apk GPL-2.0-only
+mousepad 1d18dde5eeefb5087f50382304889f2c81e4cd094a65a6454283c34ff7b74453 188904 - https://dl-cdn.alpinelinux.org/alpine/v3.24/community/x86_64/mousepad-0.7.0-r0.apk GPL-2.0-or-later
+xfconf c936df109484021fb9d903f77acdd1b5b6365127a654280e3d835b82aa93dfd1 93660 - https://dl-cdn.alpinelinux.org/alpine/v3.24/community/x86_64/xfconf-4.20.0-r2.apk GPL-2.0-only
+xfconf-bash-completion 5693c2c21a2a78980cedf6220a455a49974015de7f765105e8095f4b6c411498 2649 - https://dl-cdn.alpinelinux.org/alpine/v3.24/community/x86_64/xfconf-bash-completion-4.20.0-r2.apk GPL-2.0-only

@@ -1,0 +1,12 @@
+# manuals.pins: written by `cargo xtask base groups`; do not edit.
+# glibc: Fedora 45, locked 2026-11-16. musl: Alpine v3.24, locked 2026-11-16.
+version 2026.11.16
+
+[glibc rpm]
+groff-base 17993c1509f0a525cae73c824d3b2507c6df58e7701a9629e61340711e6774bd 1286768 - https://dl.fedoraproject.org/pub/fedora/linux/releases/45/Everything/x86_64/os/Packages/g/groff-base-1.24.1-2.fc45.x86_64.rpm GPL-3.0-or-later AND GFDL-1.3-or-later AND BSD-4-Clause-UC AND MIT AND X11 AND LicenseRef-Fedora-Public-Domain
+libpipeline 08bbb96dbf3edeec805e30117c443bffafd6bdfc3684c08db602edb9bfc3cb20 61355 - https://dl.fedoraproject.org/pub/fedora/linux/releases/45/Everything/x86_64/os/Packages/l/libpipeline-1.5.8-5.fc45.x86_64.rpm GPL-3.0-or-later
+man-db f92b70d844133e7e1722ad8ddc003867ca1cd1fac831060eb483fd6bd2d79e71 1462689 - https://dl.fedoraproject.org/pub/fedora/linux/releases/45/Everything/x86_64/os/Packages/m/man-db-2.13.1-4.fc45.x86_64.rpm GPL-2.0-or-later AND GPL-3.0-or-later
+
+[musl apk]
+man-pages 2ba1a7a9f579495cdb084fab1bc3efc72266402b172f94279549affb30506916 3237674 - https://dl-cdn.alpinelinux.org/alpine/v3.24/main/x86_64/man-pages-6.18-r0.apk GPL-2.0-or-later
+mandoc fdd4d65d53da83bcc09b5861a4addc53b0783c289637958a235e0018866e0d9b 201648 - https://dl-cdn.alpinelinux.org/alpine/v3.24/main/x86_64/mandoc-1.14.6-r15.apk ISC

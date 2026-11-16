@@ -1,0 +1,7 @@
+# pavucontrol-qt.pins: written by `cargo xtask base groups`; do not edit.
+# No glibc build. musl: Alpine v3.24, locked 2026-11-16.
+version 2026.11.16
+
+[musl apk]
+libpulse-mainloop-glib aa9474cd2eb342ad9d757dd1bf7b1f85dd93e4fd2f6371431c2db5a348efb42c 7163 - https://dl-cdn.alpinelinux.org/alpine/v3.24/community/x86_64/libpulse-mainloop-glib-17.0-r7.apk LGPL-2.1-or-later
+pavucontrol-qt e124b2f59de061686159bd8a98733d75963660d8c7513a7bcec4eeb114820e09 78169 - https://dl-cdn.alpinelinux.org/alpine/v3.24/community/x86_64/pavucontrol-qt-2.4.0-r0.apk LGPL-2.0-or-later

@@ -1,0 +1,14 @@
+# fonts.pins: written by `cargo xtask base groups`; do not edit.
+# glibc: Fedora 45, locked 2026-11-16. musl: Alpine v3.24, locked 2026-11-16.
+version 2026.11.16
+
+[glibc rpm]
+google-noto-color-emoji-fonts 0af92354a225427763272b93ac791640b67f90a3d64a889f5b46f63d947cc19a 2532912 - https://dl.fedoraproject.org/pub/fedora/linux/releases/45/Everything/x86_64/os/Packages/g/google-noto-color-emoji-fonts-20260921-1.fc45.noarch.rpm OFL-1.1 AND Apache-2.0
+google-noto-sans-fonts b6fe61f52057664366f26150bc72c673d7071b31d5ca4f68e540018c80a5f9f8 11679787 - https://dl.fedoraproject.org/pub/fedora/linux/releases/45/Everything/x86_64/os/Packages/g/google-noto-sans-fonts-20260601-3.fc45.noarch.rpm OFL-1.1
+google-noto-sans-mono-fonts 3f89ca24bd623823af7407b1f2c985ed7f4f1720adbe627cc6c107400708996d 5083509 - https://dl.fedoraproject.org/pub/fedora/linux/releases/45/Everything/x86_64/os/Packages/g/google-noto-sans-mono-fonts-20260601-3.fc45.noarch.rpm OFL-1.1
+
+[musl apk]
+font-noto 20963034f8fcce766feaff461d02e1c83989f43311b4537761017ca8986b8e2f 4690658 - https://dl-cdn.alpinelinux.org/alpine/v3.24/community/x86_64/font-noto-2026.11.01-r0.apk OFL-1.1
+font-noto-common c23cf44fdaaf825cc379c4194f1b4e5824a3acc6cc470d40d5be973a01f96b10 3543 - https://dl-cdn.alpinelinux.org/alpine/v3.24/community/x86_64/font-noto-common-2026.11.01-r0.apk OFL-1.1
+font-noto-math 6b6a4129878765fdee7715730611a60184b0c8f67c20e337d727d4aee2b402f4 467150 - https://dl-cdn.alpinelinux.org/alpine/v3.24/community/x86_64/font-noto-math-2026.11.01-r0.apk OFL-1.1
+font-noto-symbols de6174cd813dd96631a7eb326ad05af77e7b23cc5853255f5856a18615b7b56b 1382087 - https://dl-cdn.alpinelinux.org/alpine/v3.24/community/x86_64/font-noto-symbols-2026.11.01-r0.apk OFL-1.1

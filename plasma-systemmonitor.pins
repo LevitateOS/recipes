@@ -1,0 +1,6 @@
+# plasma-systemmonitor.pins: written by `cargo xtask base groups`; do not edit.
+# glibc: Fedora 45, locked 2026-11-16. No musl build.
+version 2026.11.16
+
+[glibc rpm]
+plasma-systemmonitor 8e4900a1b53bac2bc817914f1b143ab68d1fd02cc8a2c4ab1c09a791f16f9ceb 709379 - https://dl.fedoraproject.org/pub/fedora/linux/updates/45/Everything/x86_64/Packages/p/plasma-systemmonitor-6.8.3-1.fc45.x86_64.rpm BSD-3-Clause AND CC0-1.0 AND GPL-2.0-only AND GPL-3.0-only AND LGPL-2.0-or-later AND LGPL-2.1-only AND LGPL-3.0-only AND LGPL-3.0-or-later AND (GPL-2.0-only OR GPL-3.0-only) AND (LGPL-2.1-only OR LGPL-3.0-only)

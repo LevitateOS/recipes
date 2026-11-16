@@ -1,0 +1,10 @@
+# vm-guest.pins: written by `cargo xtask base groups`; do not edit.
+# glibc: Fedora 45, locked 2026-11-16. musl: Alpine v3.24, locked 2026-11-16.
+version 2026.11.16
+
+[glibc rpm]
+spice-vdagent 68f160cab0635557966ab402a498c72f6a2abcd9cf12bd8bff92566f632161cd 93161 - https://dl.fedoraproject.org/pub/fedora/linux/releases/45/Everything/x86_64/os/Packages/s/spice-vdagent-0.23.0-3.fc45.x86_64.rpm GPL-3.0-or-later
+
+[musl apk]
+spice-vdagent d18147d155db782c7d63565d959c79d28340cfbbb4d50fab9dacb68d44a72a8d 55428 - https://dl-cdn.alpinelinux.org/alpine/v3.24/community/x86_64/spice-vdagent-0.23.0-r1.apk GPL-3.0-or-later
+spice-vdagent-openrc e094e1bb7eca294e3c2088f7042b8ca2021c68ba1926adf0c35fbeaafe73bf53 1722 - https://dl-cdn.alpinelinux.org/alpine/v3.24/community/x86_64/spice-vdagent-openrc-0.23.0-r1.apk GPL-3.0-or-later

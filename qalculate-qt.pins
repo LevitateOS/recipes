@@ -1,0 +1,12 @@
+# qalculate-qt.pins: written by `cargo xtask base groups`; do not edit.
+# No glibc build. musl: Alpine v3.24, locked 2026-11-16.
+version 2026.11.16
+
+[musl apk]
+gnuplot 0fcc03c8f7df5469fbc9ecd859a0e56984979f4c6008de27dd62adb872755cf7 1064127 - https://dl-cdn.alpinelinux.org/alpine/v3.24/community/x86_64/gnuplot-6.0.4-r2.apk MIT
+libavif f7086bf6e2d1ad1b265038d94ae8d66eccefbead5eac013f455c6763cb50a481 121307 - https://dl-cdn.alpinelinux.org/alpine/v3.24/main/x86_64/libavif-1.4.1-r0.apk BSD-2-Clause
+libcerf 498f19ad725c771ae8f4d7df731fd8c93f76ec0116e225235638273faa5787d4 53644 - https://dl-cdn.alpinelinux.org/alpine/v3.24/community/x86_64/libcerf-3.3-r1.apk MIT
+libgd 6ebd23c64bfb7e195fe99b49bb2f82c61407b4994ff5c4290a5d32b5cfe1c6fb 115705 - https://dl-cdn.alpinelinux.org/alpine/v3.24/main/x86_64/libgd-2.3.3-r10.apk GD
+libqalculate cc89d4527e253c79ddb94e9e940a7913782149e7684953957756418be634c388 2133549 - https://dl-cdn.alpinelinux.org/alpine/v3.24/community/x86_64/libqalculate-5.11.0-r0.apk GPL-2.0-or-later
+libxpm 1ed312a00abac5a5840c1f3721921ea8183e664566c19763ed00aa9f35bb2178 43390 - https://dl-cdn.alpinelinux.org/alpine/v3.24/main/x86_64/libxpm-3.5.20-r0.apk X11
+qalculate-qt 4f3e9695fafecf99e97fd441189592631a0e11599272a63668e6423ad38cf39b 1811593 - https://dl-cdn.alpinelinux.org/alpine/v3.24/community/x86_64/qalculate-qt-5.11.0-r0.apk GPL-2.0-or-later

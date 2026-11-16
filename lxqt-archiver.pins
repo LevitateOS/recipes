@@ -1,0 +1,8 @@
+# lxqt-archiver.pins: written by `cargo xtask base groups`; do not edit.
+# No glibc build. musl: Alpine v3.24, locked 2026-11-16.
+version 2026.11.16
+
+[musl apk]
+7zip dbc049b4b2eb1f6651f10b8814ce62f3d7e5cebb7560746d20aa038e1c60b0e4 917978 - https://dl-cdn.alpinelinux.org/alpine/v3.24/main/x86_64/7zip-26.01-r0.apk LGPL-2.0-only
+lxqt-archiver 1bf7b46a64b5b3aeb4dde64ae02041f5f10f083450031817cec635cbad02d113 196179 - https://dl-cdn.alpinelinux.org/alpine/v3.24/community/x86_64/lxqt-archiver-1.4.0-r0.apk LGPL-2.0-or-later
+unzip e05e00290af872b3c8a313d6490ef53697f8b9921ef9eea999ff7d93643caf28 115832 - https://dl-cdn.alpinelinux.org/alpine/v3.24/main/x86_64/unzip-6.0-r16.apk custom

@@ -1,0 +1,7 @@
+# kcalc.pins: written by `cargo xtask base groups`; do not edit.
+# glibc: Fedora 45, locked 2026-11-16. No musl build.
+version 2026.11.16
+
+[glibc rpm]
+kcalc ddf0995731a3d9209a517f1eda641d044bd42da3582a66e8ffcd0c2a604e6ae5 828537 - https://dl.fedoraproject.org/pub/fedora/linux/updates/45/Everything/x86_64/Packages/k/kcalc-26.08.3-1.fc45.x86_64.rpm GPL-2.0-or-later
+libmpc 471e69c1cd9be651804a376ecee3cc3e1140da0c71ace50d4b5ab436a1f2923f 77547 - https://dl.fedoraproject.org/pub/fedora/linux/releases/45/Everything/x86_64/os/Packages/l/libmpc-1.4.1-2.fc45.x86_64.rpm LGPL-3.0-or-later AND FSFAP

@@ -1,0 +1,17 @@
+# graphics-drivers.pins: written by `cargo xtask base groups`; do not edit.
+# glibc: Fedora 45, locked 2026-11-16. musl: Alpine v3.24, locked 2026-11-16.
+version 2026.11.16
+
+[glibc rpm]
+intel-gmmlib 123828b6b1ce74813f2c6b1653a7232d07aab0734aadb35fb28853de4d44b00e 209261 - https://dl.fedoraproject.org/pub/fedora/linux/releases/45/Everything/x86_64/os/Packages/i/intel-gmmlib-22.10.2-1.fc45.x86_64.rpm MIT AND BSD-3-Clause
+libva-intel-media-driver 6003f6eea5ca5fff7361714a733fc9965ffe80f585de93637308dbc17724a576 3591941 - https://dl.fedoraproject.org/pub/fedora/linux/updates/45/Everything/x86_64/Packages/l/libva-intel-media-driver-26.3.5-1.fc45.x86_64.rpm MIT and BSD
+mesa-vulkan-drivers 8b89ac6263e0c39162d68500d76f36bf1ba23c12aec45a51974f6f02aad65e4d 28998090 - https://dl.fedoraproject.org/pub/fedora/linux/updates/45/Everything/x86_64/Packages/m/mesa-vulkan-drivers-26.2.6-1.fc45.x86_64.rpm MIT AND BSD-3-Clause AND SGI-B-2.0
+
+[musl apk]
+intel-gmmlib 6b7d2f7ec0d28216c4f4a8f9a737bf5eb05cb835cf00ddb069344f194db6fe43 299738 - https://dl-cdn.alpinelinux.org/alpine/v3.24/community/x86_64/intel-gmmlib-22.10.1-r0.apk MIT
+intel-media-driver af46dd5c13bdbab4e22831a3e5d6be706a9dd1d0f9dbcfa6ac09557ef101f8f4 12253500 - https://dl-cdn.alpinelinux.org/alpine/v3.24/community/x86_64/intel-media-driver-26.2.1-r0.apk BSD-3-Clause AND MIT
+libdisplay-info f356bc2fd3ea269f58de6688a550503318216bba87899281c36dbb16285f873c 79051 - https://dl-cdn.alpinelinux.org/alpine/v3.24/main/x86_64/libdisplay-info-0.3.0-r0.apk MIT
+mesa-dri-gallium 91a8c6d8186a0f855e545cd7d7fedeb6265e90b0d74fda2538652665941d1de5 21894 - https://dl-cdn.alpinelinux.org/alpine/v3.24/main/x86_64/mesa-dri-gallium-26.1.6-r0.apk MIT AND SGI-B-2.0 AND BSL-1.0
+mesa-va-gallium 553dbf9f323d1d8b30281f40e3d26df7230cbc1c8af32005a56a83ff281e2cf4 1674 - https://dl-cdn.alpinelinux.org/alpine/v3.24/main/x86_64/mesa-va-gallium-26.1.6-r0.apk MIT AND SGI-B-2.0 AND BSL-1.0
+mesa-vulkan-ati 4d70c9ca8f38df444443db84fb4d20547b35143420fa9c90c58e7906825df27f 4375409 - https://dl-cdn.alpinelinux.org/alpine/v3.24/main/x86_64/mesa-vulkan-ati-26.1.6-r0.apk MIT AND SGI-B-2.0 AND BSL-1.0
+mesa-vulkan-intel 8e30f65bdd8df951f165be81794b27289c272991b117048e502161263d82fe73 9675200 - https://dl-cdn.alpinelinux.org/alpine/v3.24/main/x86_64/mesa-vulkan-intel-26.1.6-r0.apk MIT AND SGI-B-2.0 AND BSL-1.0

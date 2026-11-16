@@ -1,0 +1,13 @@
+# filesystems.pins: written by `cargo xtask base groups`; do not edit.
+# glibc: Fedora 45, locked 2026-11-16. musl: Alpine v3.24, locked 2026-11-16.
+version 2026.11.16
+
+[glibc rpm]
+exfatprogs 5005f8ea88719eec4c6405c047597df1d8f5acfb4e5db6c10a004d796e996dd2 156060 - https://dl.fedoraproject.org/pub/fedora/linux/updates/45/Everything/x86_64/Packages/e/exfatprogs-1.4.4-1.fc45.x86_64.rpm GPL-2.0-only
+ntfs-3g 55f4485880d557fd74ceb44a7cb53dab6a58b3d51fedcecbba36af4c5be8030b 136676 - https://dl.fedoraproject.org/pub/fedora/linux/releases/45/Everything/x86_64/os/Packages/n/ntfs-3g-2026.2.25-3.fc45.x86_64.rpm GPL-2.0-or-later
+ntfs-3g-libs ff325017b0a427cd575fcfe32e2d570ef03589cf9020acdf110ce0c03c2b4697 188950 - https://dl.fedoraproject.org/pub/fedora/linux/releases/45/Everything/x86_64/os/Packages/n/ntfs-3g-libs-2026.2.25-3.fc45.x86_64.rpm GPL-2.0-or-later
+
+[musl apk]
+exfatprogs b3878aa3e2edb0e1ab88c38fe49e2996ba0ca5d6b83aa2c3dff1a4878e03c0b8 163554 - https://dl-cdn.alpinelinux.org/alpine/v3.24/community/x86_64/exfatprogs-1.4.1-r0.apk GPL-2.0-or-later
+ntfs-3g 5ce9a3df2de103b2ecda773267b9f182bda8f68549e839fd523795faff963f31 97027 - https://dl-cdn.alpinelinux.org/alpine/v3.24/main/x86_64/ntfs-3g-2026.2.25-r0.apk GPL-2.0-only
+ntfs-3g-libs 49a1bcce726057237048fc16745a24ce159979f897218f486d2cd03c5a3f92dc 138522 - https://dl-cdn.alpinelinux.org/alpine/v3.24/main/x86_64/ntfs-3g-libs-2026.2.25-r0.apk GPL-2.0-only

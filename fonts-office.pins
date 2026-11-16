@@ -1,0 +1,12 @@
+# fonts-office.pins: written by `cargo xtask base groups`; do not edit.
+# glibc: Fedora 45, locked 2026-11-16. musl: Alpine v3.24, locked 2026-11-16.
+version 2026.11.16
+
+[glibc rpm]
+google-noto-serif-fonts 43f10645b2c5817399a6116f0db67a61ff7c065d3746a7ba1d1b3b968d7691ac 13452789 - https://dl.fedoraproject.org/pub/fedora/linux/releases/45/Everything/x86_64/os/Packages/g/google-noto-serif-fonts-20260601-3.fc45.noarch.rpm OFL-1.1
+liberation-mono-fonts a306b1ba9022b824fb39360e3d10c296056803aa7f71a2a04c3a4581f007917a 518653 - https://dl.fedoraproject.org/pub/fedora/linux/releases/45/Everything/x86_64/os/Packages/l/liberation-mono-fonts-2.1.5-16.fc45.noarch.rpm OFL-1.1-RFN
+liberation-sans-fonts 87dd719c48a64696b64d674ec1da1965f806c84ef211c741c0631a5f76d65476 625403 - https://dl.fedoraproject.org/pub/fedora/linux/releases/45/Everything/x86_64/os/Packages/l/liberation-sans-fonts-2.1.5-16.fc45.noarch.rpm OFL-1.1-RFN
+liberation-serif-fonts c5f6ac138b96cc78d431b3b94971f588be9cc1cffe5aa0cafc2d74c0ad25377c 625090 - https://dl.fedoraproject.org/pub/fedora/linux/releases/45/Everything/x86_64/os/Packages/l/liberation-serif-fonts-2.1.5-16.fc45.noarch.rpm OFL-1.1-RFN
+
+[musl apk]
+font-liberation fcd4d5f27c4a2a8e32a53e3466d4eb0adfb198bf720397fa6ad130bca67a7e00 2378467 - https://dl-cdn.alpinelinux.org/alpine/v3.24/main/x86_64/font-liberation-2.1.5-r2.apk OFL-1.1
