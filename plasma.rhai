@@ -147,4 +147,25 @@ fn configure(tree) {
     put_link(tree, "usr/share/wallpapers/Default", os.name);
 
     put(tree, "usr/share/polkit-1/rules.d/50-" + os.id + "-desktop.rules", look::desktop_polkit_rules(), 0o644);
+
+    // Guest defaults (docs/reclogin-guest.md): the login screen copies
+    // /usr/share/reclogin/guest-home/ into the guest's new home at every
+    // guest login. The guest has no password, so a locked screen could never
+    // be opened, and a wallet that asks to be created is noise in a session
+    // that is thrown away. Plain files nothing else reads: harmless without
+    // the login screen.
+    //  kscreenlockerrc (kscreenlocker's kscreenlockersettings.kcfg, group
+    //  Daemon): no automatic lock after idle (Autolock), none when the
+    //  screen blanks (Lock), none on suspend (LockOnResume); and a lock by
+    //  the shortcut needs no password (RequirePassword=false makes it a
+    //  grace lock that any input ends).
+    //  kdeglobals: KAuthorized's action restriction lock_screen, which
+    //  kscreenlocker checks before it registers the lock shortcut and before
+    //  it answers the Lock D-Bus call (the menu's Lock Screen).
+    //  kwalletrc (kwallet's kwalletsettings.kcfg): the wallet daemons stay off
+    //  and the first-use wizard is marked done.
+    let guest = "usr/share/reclogin/guest-home/.config/";
+    put(tree, guest + "kscreenlockerrc", "[Daemon]\nAutolock=false\nLock=false\nLockOnResume=false\nLockOnStart=false\nRequirePassword=false\n", 0o644);
+    put(tree, guest + "kdeglobals", "[KDE Action Restrictions]\naction/lock_screen=false\n", 0o644);
+    put(tree, guest + "kwalletrc", "[Wallet]\nEnabled=false\nFirst Use=false\n\n[KSecretD]\nEnabled=false\n", 0o644);
 }

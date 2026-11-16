@@ -115,4 +115,23 @@ fn configure(tree) {
         "Section \"InputClass\"\n    Identifier \"touchpad defaults\"\n    MatchIsTouchpad \"on\"\n    Driver \"libinput\"\n    Option \"Tapping\" \"on\"\n    Option \"NaturalScrolling\" \"true\"\nEndSection\n",
         0o644);
     put(tree, "usr/share/polkit-1/rules.d/50-" + os.id + "-desktop.rules", look::desktop_polkit_rules(), 0o644);
+
+    // Guest defaults (docs/reclogin-guest.md): the login screen copies
+    // /usr/share/reclogin/guest-home/ into the guest's new home at every
+    // guest login. The guest has no password, so a locked screen could never
+    // be opened, and a keyring that asks for a password at first use is noise
+    // in a session that is thrown away. Plain files nothing else reads:
+    // harmless without the login screen.
+    //  .xscreensaver (XScreenSaver's `lock` resource): the daemon the session
+    //  starts never locks by itself, on idle or before suspend.
+    //  .config/lxqt/session.conf (liblxqt's `lock_command`, which lxqt-leave,
+    //  the lock shortcut and the power manager run): a command that does
+    //  nothing, so the desktop's own "Lock screen" does not lock.
+    //  .local/share/keyrings/login.keyring: an empty keyring without a
+    //  password (gnome-keyring's plain-text format), so the first use finds
+    //  the default keyring and does not ask to create one.
+    let guest = "usr/share/reclogin/guest-home/";
+    put(tree, guest + ".xscreensaver", "lock:\t\tFalse\nlockTimeout:\t0:00:00\n", 0o644);
+    put(tree, guest + ".config/lxqt/session.conf", "[General]\nlock_command=true\n", 0o644);
+    put(tree, guest + ".local/share/keyrings/login.keyring", "[keyring]\ndisplay-name=Login\nctime=0\nmtime=0\nlock-on-idle=false\nlock-after=false\n", 0o644);
 }
