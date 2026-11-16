@@ -1,5 +1,5 @@
 {
-  "commit": "c347ee508a07268c7a0f310b589debf39aed968f",
+  "commit": "0da9504b9d610ea6a9d46a7f230a3d15e5501644",
   "recipes": [
     {
       "about": {
@@ -397,7 +397,7 @@
           ]
         },
         "category": "development",
-        "details": "Runs Anthropic's Claude Code coding agent in the terminal. Needs a Claude account or API key and network access to Anthropic. Proprietary software under Anthropic's Commercial Terms. Upstream updates itself; Recipe manages updates here, so set DISABLE_AUTOUPDATER=1 in your environment. This recipe does not change user environment. The build matches the system's C library: glibc on LevitateOS, musl on AcornOS.",
+        "details": "Runs Anthropic's Claude Code coding agent in the terminal. Needs a Claude account or API key and network access to Anthropic. Proprietary software under Anthropic's Commercial Terms. Upstream updates itself; the claude command installed here is a launcher that turns the program's own updater off (DISABLE_AUTOUPDATER=1, DISABLE_UPDATES=1), and Recipe updates the program (recipe update claude-code). This recipe does not change user environment or configuration. The build matches the system's C library: glibc on LevitateOS, musl on AcornOS.",
         "homepage": "https://claude.com/product/claude-code",
         "keeps": [],
         "kind": "tool",
@@ -407,8 +407,9 @@
         ],
         "license": "proprietary (Anthropic Commercial Terms, all rights reserved)",
         "steps": {
+          "build": "Writes the launcher bin/claude, which turns the program's own updater off; nothing is compiled.",
           "download": "Downloads the pinned file from Anthropic and checks it against the digest in Anthropic's signed release manifest.",
-          "install": "Puts the claude command in bin."
+          "install": "Puts the program under lib/claude-code and the launcher in bin."
         }
       },
       "build_deps": [],
@@ -416,12 +417,14 @@
       "description": "Claude Code terminal coding agent",
       "files": [
         {
-          "bytes": 2755,
+          "bytes": 4189,
           "path": "claude-code.rhai",
-          "sha256": "a23b2dc8594086acb5fa78da9c616d43b069238b959949d6caa7a6ac7278163a"
+          "sha256": "f3229ea7eae9da131556fe25bce4eca739d96e47f74b790016b13cede0e0e092"
         }
       ],
-      "functions": [],
+      "functions": [
+        "build"
+      ],
       "name": "claude-code",
       "needs": {
         "defines": {},
@@ -440,6 +443,7 @@
       },
       "steps": [
         "download",
+        "build",
         "install",
         "cleanup"
       ],
@@ -700,9 +704,9 @@
       "description": "Libraries more than one desktop group needs",
       "files": [
         {
-          "bytes": 2906,
+          "bytes": 3893,
           "path": "desktop-libs.rhai",
-          "sha256": "3252248d7e2d86176be2d52230e0eca473b697ab7fb8187458f5e544efda856b"
+          "sha256": "9857cc1ecec8f54c6f0cdec87e169a3c3820312d861d2d0814b3572d6e3d8cf7"
         },
         {
           "bytes": 160279,
@@ -3771,7 +3775,7 @@
         "license": "MIT OR Apache-2.0",
         "steps": {
           "download": "Downloads the pinned prebuilt archive for this system's C library and checks its SHA-256.",
-          "install": "Unpacks it, keeps the two apps' programs, menu entries and Recipe's polkit actions, and writes them into the system root with a receipt."
+          "install": "Unpacks it, keeps the two apps' programs, menu entries and icons and Recipe's polkit action (not the Recab app or the Updater, which the installer places), and writes them into the system root with a receipt."
         },
         "systems": [
           "levitateos",
@@ -3785,9 +3789,9 @@
       "description": "Recipe and Recdirstat, LevitateOS's desktop apps",
       "files": [
         {
-          "bytes": 4062,
+          "bytes": 5316,
           "path": "rec-apps.rhai",
-          "sha256": "cb4d06ca96bb90d36cf547f01cb694890585ced268203663c9a3669b02a34678"
+          "sha256": "53d1bdb9a00df88f05ebc1da381f3235ab53a640b7e7cc7e35b4f2a476ff68e0"
         }
       ],
       "functions": [],
@@ -3815,7 +3819,7 @@
         "cleanup"
       ],
       "upstream": null,
-      "version": "2026.11.15"
+      "version": "2026.11.17"
     },
     {
       "about": {
