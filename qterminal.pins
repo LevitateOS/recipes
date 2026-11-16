@@ -1,0 +1,7 @@
+# qterminal.pins: written by `cargo xtask base groups`; do not edit.
+# No glibc build. musl: Alpine v3.24, locked 2026-11-16.
+version 2026.11.16
+
+[musl apk]
+qterminal 87142d70651b7d26e4d29c4d9f925b388ea278e71d1810ca977412c0d31d7354 214658 - https://dl-cdn.alpinelinux.org/alpine/v3.24/community/x86_64/qterminal-2.4.0-r0.apk LGPL-2.0-or-later
+qtermwidget 70aa3218c7f573576f094ff93818c4ba40bc49651f3ec2d4adc4cb0925a403b9 297592 - https://dl-cdn.alpinelinux.org/alpine/v3.24/community/x86_64/qtermwidget-2.4.0-r0.apk LGPL-2.0-or-later

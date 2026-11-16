@@ -1,0 +1,6 @@
+# pcmanfm-qt.pins: written by `cargo xtask base groups`; do not edit.
+# No glibc build. musl: Alpine v3.24, locked 2026-11-16.
+version 2026.11.16
+
+[musl apk]
+pcmanfm-qt 2cc70b1d35ddd7dba19cca4f9a7fb0b24164dec78834d7a5e9a236114049a656 331876 - https://dl-cdn.alpinelinux.org/alpine/v3.24/community/x86_64/pcmanfm-qt-2.4.0-r0.apk LGPL-2.0-or-later
