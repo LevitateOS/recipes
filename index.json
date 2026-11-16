@@ -1,5 +1,5 @@
 {
-  "commit": "322e1f627d424bf6d1220f5e927f9ad732317760",
+  "commit": "5db8f8fc97d96a40b1efb45ed453e47723938b26",
   "recipes": [
     {
       "about": {
@@ -397,12 +397,13 @@
           ]
         },
         "category": "development",
-        "details": "Runs Anthropic's Claude Code coding agent in the terminal. Needs a Claude account or API key and network access to Anthropic. Proprietary software under Anthropic's Commercial Terms. Upstream updates itself; Recipe manages updates here, so set DISABLE_AUTOUPDATER=1 in your environment. This recipe does not change user environment. Its build is linked against glibc, as LevitateOS has.",
+        "details": "Runs Anthropic's Claude Code coding agent in the terminal. Needs a Claude account or API key and network access to Anthropic. Proprietary software under Anthropic's Commercial Terms. Upstream updates itself; Recipe manages updates here, so set DISABLE_AUTOUPDATER=1 in your environment. This recipe does not change user environment. The build matches the system's C library: glibc on LevitateOS, musl on AcornOS.",
         "homepage": "https://claude.com/product/claude-code",
         "keeps": [],
         "kind": "tool",
         "libc": [
-          "glibc"
+          "glibc",
+          "musl"
         ],
         "license": "proprietary (Anthropic Commercial Terms, all rights reserved)",
         "steps": {
@@ -415,9 +416,9 @@
       "description": "Claude Code terminal coding agent",
       "files": [
         {
-          "bytes": 2443,
+          "bytes": 2755,
           "path": "claude-code.rhai",
-          "sha256": "74243bd901dd97b9af2ecec3d08db1def00918a6a627a9d38c5a1b6945a969be"
+          "sha256": "a23b2dc8594086acb5fa78da9c616d43b069238b959949d6caa7a6ac7278163a"
         }
       ],
       "functions": [],
@@ -2815,12 +2816,13 @@
           ]
         },
         "category": "development",
-        "details": "Runs the opencode coding agent in the terminal, with the model provider of your choice. Needs network access to that provider, and fetches a model catalogue and may download language servers. Upstream can update itself; Recipe manages updates here, so set \"update\": \"disable\" in opencode's global config. This recipe does not write user configuration. Its build is linked against glibc, as LevitateOS has.",
+        "details": "Runs the opencode coding agent in the terminal, with the model provider of your choice. Needs network access to that provider, and fetches a model catalogue and may download language servers. Upstream can update itself; Recipe manages updates here, so set \"update\": \"disable\" in opencode's global config. This recipe does not write user configuration. The build matches the system's C library: glibc on LevitateOS, musl on AcornOS.",
         "homepage": "https://opencode.ai",
         "keeps": [],
         "kind": "tool",
         "libc": [
-          "glibc"
+          "glibc",
+          "musl"
         ],
         "license": "MIT",
         "steps": {
@@ -2833,9 +2835,9 @@
       "description": "opencode terminal coding agent",
       "files": [
         {
-          "bytes": 2345,
+          "bytes": 2713,
           "path": "opencode.rhai",
-          "sha256": "f36efcbb11fc87563ab36f80adf3f44baac0197aa24d1fae97563087d72928c2"
+          "sha256": "012a9b679d5d28fe38ab625af0cd9c1424ddb9cd9e5ef85b3b553015705884b1"
         }
       ],
       "functions": [],
@@ -3200,7 +3202,7 @@
         {
           "bytes": 51741,
           "path": "plasma.pins",
-          "sha256": "9819682309f0ee8a30453a20b07eef1fed7f81603c52c53e90a5606f5bad9c2e"
+          "sha256": "5b7356e3952b66cc5c59fb9d02ff6fe7e4872043458bb88d3f1c2db8249a261a"
         }
       ],
       "functions": [
