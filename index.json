@@ -1,5 +1,5 @@
 {
-  "commit": "5db8f8fc97d96a40b1efb45ed453e47723938b26",
+  "commit": "0335b6160d905edd2f880265aecd8a9a42c6e7fa",
   "recipes": [
     {
       "about": {
@@ -498,6 +498,67 @@
         "prefix": "v"
       },
       "version": "4.4.5"
+    },
+    {
+      "about": {
+        "adds": {
+          "menu": [],
+          "programs": []
+        },
+        "category": "media",
+        "details": "The full FFmpeg codec library, so H.264, HEVC (H.265), AAC and the other formats this build of FFmpeg decodes start to play. They play in the programs that use the system's FFmpeg: Firefox for web video, Qt and KDE players, and the video thumbnails in the file manager. This does not add hardware decoding. Programs that play only through GStreamer need GStreamer's own plug-ins, which this does not bring. The system's own FFmpeg leaves these formats out because they are covered by patents in some countries; whether to install them is your choice, and you are responsible for it where you live. It also adds the libraries the full codec library needs: x264 (H.264 encoding), x265 (HEVC encoding) and vvenc (VVC/H.266 encoding), for programs that encode video through FFmpeg. It is RPM Fusion's libavcodec-freeworld with those libraries and numactl-libs from Fedora, fetched by this recipe from RPM Fusion and Fedora; LevitateOS does not redistribute it. It is open source software (GPL-3.0-or-later and the licences of the added libraries). It is built for exactly the system's FFmpeg version (9.0.2) and must match it: when a system release changes FFmpeg, this recipe is updated to the matching build. Built for glibc and LevitateOS; AcornOS (musl) already ships the full codecs.",
+        "homepage": "https://rpmfusion.org",
+        "keeps": [],
+        "kind": "system",
+        "libc": [
+          "glibc"
+        ],
+        "license": "GPL-3.0-or-later AND GPL-2.0-or-later AND Khronos AND BSD-3-Clause AND BSD-3-Clause-Clear AND LGPL-2.1-only AND GPL-2.0-only",
+        "steps": {
+          "download": "Downloads RPM Fusion's pinned libavcodec-freeworld, x264-libs, x265-libs and vvenc-libs packages from download1.rpmfusion.org and Fedora's numactl-libs from dl.fedoraproject.org, and checks their SHA-256 values.",
+          "install": "Unpacks the packages natively into one system tree, without running its scripts, and writes it into the system root with a receipt; the library goes into its own folder, /usr/lib64/ffmpeg, which the dynamic loader prefers."
+        },
+        "systems": [
+          "levitateos"
+        ]
+      },
+      "build_deps": [],
+      "deps": [
+        "desktop-libs"
+      ],
+      "description": "Full FFmpeg codecs: H.264, HEVC, AAC",
+      "files": [
+        {
+          "bytes": 8998,
+          "path": "codecs.rhai",
+          "sha256": "3c8378ac8c74e18db40309e2335e8f5477879f7c8c3c13c5095fa5d301229e9d"
+        }
+      ],
+      "functions": [],
+      "name": "codecs",
+      "needs": {
+        "defines": {},
+        "inputs": {},
+        "memory_mib": 1024,
+        "network": [
+          "dl.fedoraproject.org:443",
+          "download1.rpmfusion.org:443"
+        ],
+        "network_max_bytes": 12582912,
+        "outputs": {
+          "system": "directory"
+        },
+        "storage_max_bytes": null,
+        "storage_max_objects": 4096,
+        "timeout_secs": 600
+      },
+      "steps": [
+        "download",
+        "install",
+        "cleanup"
+      ],
+      "upstream": null,
+      "version": "9.0.2-3.fc45"
     },
     {
       "about": {
