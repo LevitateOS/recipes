@@ -139,8 +139,7 @@ fn thin_i686(tree) {
 // of its scripts: first the i686 packages (a `.i686.rpm` file), thinned to
 // their 32-bit libraries (thin_i686), then the x86_64/noarch packages whose
 // var/ is not kept, then the var/ they left is deleted, then the packages
-// whose var/ is kept as state seeds (`pin["var"]`: `var` is a Rhai keyword,
-// so `pin.var` does not compile). Recipe then removes the paths a system
+// whose var/ is kept as state seeds (`pin.keep_var`). Recipe then removes the paths a system
 // package does not own and finishes the tree (owners resolved in the root it
 // is written into, var/ as state seeds).
 fn build(src, out) {
@@ -150,7 +149,7 @@ fn build(src, out) {
         for pin in src.packages {
             let i686 = pin.path.ends_with(".i686.rpm");
             if (pass == "i686") != i686 { continue; }
-            if pass != "i686" && pin["var"] != (pass == "seeds") { continue; }
+            if pass != "i686" && pin.keep_var != (pass == "seeds") { continue; }
             progress(done, total, "packages");
             target_extract_rpm(pin.path, out);
             done += 1;
