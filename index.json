@@ -1,5 +1,5 @@
 {
-  "commit": "0335b6160d905edd2f880265aecd8a9a42c6e7fa",
+  "commit": "65493e3f03b52fbd90ba3be9bc408562440ae220",
   "recipes": [
     {
       "about": {
@@ -516,7 +516,7 @@
         "license": "GPL-3.0-or-later AND GPL-2.0-or-later AND Khronos AND BSD-3-Clause AND BSD-3-Clause-Clear AND LGPL-2.1-only AND GPL-2.0-only",
         "steps": {
           "download": "Downloads RPM Fusion's pinned libavcodec-freeworld, x264-libs, x265-libs and vvenc-libs packages from download1.rpmfusion.org and Fedora's numactl-libs from dl.fedoraproject.org, and checks their SHA-256 values.",
-          "install": "Unpacks the packages natively into one system tree, without running its scripts, and writes it into the system root with a receipt; the library goes into its own folder, /usr/lib64/ffmpeg, which the dynamic loader prefers."
+          "install": "Unpacks the packages natively into one system tree, without running their scripts, and writes it into the system root with a receipt; the library goes into its own folder, /usr/lib64/ffmpeg, which the dynamic loader prefers."
         },
         "systems": [
           "levitateos"
@@ -529,9 +529,9 @@
       "description": "Full FFmpeg codecs: H.264, HEVC, AAC",
       "files": [
         {
-          "bytes": 8998,
+          "bytes": 9000,
           "path": "codecs.rhai",
-          "sha256": "3c8378ac8c74e18db40309e2335e8f5477879f7c8c3c13c5095fa5d301229e9d"
+          "sha256": "67ab8f8ce83eac117da57cf7697072424e27b6d9d00ba8457866d6770dbe0c97"
         }
       ],
       "functions": [],
