@@ -1,5 +1,5 @@
 {
-  "commit": "3d25c694d9645570b3c3c0d0a77fbd355cb2503e",
+  "commit": "c347ee508a07268c7a0f310b589debf39aed968f",
   "recipes": [
     {
       "about": {
@@ -2385,9 +2385,9 @@
       "description": "The LXQt desktop on X11",
       "files": [
         {
-          "bytes": 7143,
+          "bytes": 8528,
           "path": "lxqt.rhai",
-          "sha256": "4f5def2af23a700d4a22ccc64ddf76ad47a87b35bcdcbae3cd57f8bd38907ee4"
+          "sha256": "5e70cc149a052d0b2433051916345526bea46b82082fd8832c70ebb6f7b9a9f8"
         },
         {
           "bytes": 11199,
@@ -3241,9 +3241,9 @@
       "description": "The KDE Plasma desktop on Wayland",
       "files": [
         {
-          "bytes": 9261,
+          "bytes": 10776,
           "path": "plasma.rhai",
-          "sha256": "048291cf4f63e444a90e78b121432d36ba7a113bfcc6ec3827f00c9af83210b5"
+          "sha256": "db408a3985412c6024675ba51cdb511a15e74794c7b8225db5747dbd0fcb8ba9"
         },
         {
           "bytes": 11199,
