@@ -1,0 +1,25 @@
+# network.pins: written by `cargo xtask base groups`; do not edit.
+# glibc: Fedora 45, locked 2026-11-16. musl: Alpine v3.24, locked 2026-11-16.
+version 2026.11.16
+
+[glibc rpm]
+NetworkManager d671027360305dbedf54553eb37d49a9072c2ce291d29bc7c800d21f47cfeb47 2440040 var https://dl.fedoraproject.org/pub/fedora/linux/releases/45/Everything/x86_64/os/Packages/n/NetworkManager-1.58.1-3.fc45.x86_64.rpm GPL-2.0-or-later AND LGPL-2.1-or-later
+NetworkManager-libnm 2a678dcf3676c22ae0f4bcbf6635d7216a3eff34266f3b9f739527037aed85b0 2293523 - https://dl.fedoraproject.org/pub/fedora/linux/releases/45/Everything/x86_64/os/Packages/n/NetworkManager-libnm-1.58.1-3.fc45.x86_64.rpm LGPL-2.1-or-later
+NetworkManager-wifi 87fee075a32918648afe466f90b860575c63cad603697169cb11521d913f7515 141477 - https://dl.fedoraproject.org/pub/fedora/linux/releases/45/Everything/x86_64/os/Packages/n/NetworkManager-wifi-1.58.1-3.fc45.x86_64.rpm GPL-2.0-or-later AND LGPL-2.1-or-later
+libndp 0a7dda4e5c4c6249f7796b5c88ea3f19e0fc09cef346f2de6a88b51e5e6dcadb 37961 - https://dl.fedoraproject.org/pub/fedora/linux/releases/45/Everything/x86_64/os/Packages/l/libndp-1.9-6.fc45.x86_64.rpm LGPL-2.1-or-later
+pkcs11-provider c136e282fafec2b162401b14b6b62594e841be3f9bb0bad0f29d87dd7c0ebe94 214078 - https://dl.fedoraproject.org/pub/fedora/linux/updates/45/Everything/x86_64/Packages/p/pkcs11-provider-1.3.0-1.fc45.x86_64.rpm Apache-2.0
+wpa_supplicant 5aed14fde99c7473765ec32fceef7cee7112bee527726388fe80a2aacbb9fba0 1870528 - https://dl.fedoraproject.org/pub/fedora/linux/releases/45/Everything/x86_64/os/Packages/w/wpa_supplicant-2.11-13.fc45.x86_64.rpm BSD-3-Clause
+
+[musl apk]
+ifupdown-ng-wifi 1e2ac354da99c601210a60d236938ec7e2325a9d8adc0fd04f4af4cceaff3af6 3039 - https://dl-cdn.alpinelinux.org/alpine/v3.24/main/x86_64/ifupdown-ng-wifi-0.13.0-r0.apk ISC
+libndp 5249e4624947046729bfc2c48de77ff90a5ed59d934b9f9b1f099f899eea86d1 16962 - https://dl-cdn.alpinelinux.org/alpine/v3.24/community/x86_64/libndp-1.9-r1.apk LGPL-2.1-or-later
+libnm 4cf09c5edbf337138c7bafac0246977e4e0543846d844bd5c97e2d789ebf9491 460235 - https://dl-cdn.alpinelinux.org/alpine/v3.24/community/x86_64/libnm-1.52.2-r0.apk GPL-2.0-or-later
+networkmanager e94d73bfaeceed7cbae6c10d7197ac7258a6b32b158117c84c2f91f32fcff92b 1491034 var https://dl-cdn.alpinelinux.org/alpine/v3.24/community/x86_64/networkmanager-1.52.2-r0.apk GPL-2.0-or-later
+networkmanager-bash-completion 4585b4804c60503d4dfa7d5a0f8d0a6d8ccd2f823d6624655435fc1fb0767bd8 3188 - https://dl-cdn.alpinelinux.org/alpine/v3.24/community/x86_64/networkmanager-bash-completion-1.52.2-r0.apk GPL-2.0-or-later
+networkmanager-cli 4de109d73f3632174933acdf1f6bacb3c3c167e32ca1185d7926a1e7404d8ccc 257437 - https://dl-cdn.alpinelinux.org/alpine/v3.24/community/x86_64/networkmanager-cli-1.52.2-r0.apk GPL-2.0-or-later
+networkmanager-openrc bb4cc3fa4b0bfe17cfc6ec80a20903eb60c2886fa3fc6d7e6fb92616a4ea407b 1962 - https://dl-cdn.alpinelinux.org/alpine/v3.24/community/x86_64/networkmanager-openrc-1.52.2-r0.apk GPL-2.0-or-later
+networkmanager-wifi b67f197513616e1d8649c0f2bfb2139ae35017654d8598ef8cb6a4f9242675f4 106123 - https://dl-cdn.alpinelinux.org/alpine/v3.24/community/x86_64/networkmanager-wifi-1.52.2-r0.apk GPL-2.0-or-later
+networkmanager-wwan 871e3075cc9fac4dbd0ba6579ed8f64efd4559623bc9ce0edc411b0fbd1cf83a 57692 - https://dl-cdn.alpinelinux.org/alpine/v3.24/community/x86_64/networkmanager-wwan-1.52.2-r0.apk GPL-2.0-or-later
+pcsc-lite-libs f01c9af6f32a01dc385e7959dd2215711ab1037afe45f0cbf34efb19c7cb39ac 22767 - https://dl-cdn.alpinelinux.org/alpine/v3.24/main/x86_64/pcsc-lite-libs-2.4.0-r4.apk BSD-3-Clause AND BSD-2-Clause AND ISC
+wpa_supplicant 6b3dc3546634cebd64570162b6b399582a83d6d00635d7436804e39a7850a0ef 1933646 - https://dl-cdn.alpinelinux.org/alpine/v3.24/main/x86_64/wpa_supplicant-2.11-r4.apk BSD-3-Clause
+wpa_supplicant-openrc 0241a61765f1ff2416b034f8f4a6fb225aafc43df06beaee4a6c9a711b95dfa4 3162 - https://dl-cdn.alpinelinux.org/alpine/v3.24/main/x86_64/wpa_supplicant-openrc-2.11-r4.apk BSD-3-Clause

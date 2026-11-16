@@ -1,0 +1,9 @@
+# steam.pins: written by `cargo xtask base groups`; do not edit.
+# glibc: Fedora 45, locked 2026-11-16. No musl build: Steam does not run on AcornOS.
+version 2026.11.16
+
+[glibc rpm]
+gtk4 fb02ba7ae2efbb014d18d56207ced6f7f2c6be5ef2af7e797d4da0bdc738e943 7244168 - https://dl.fedoraproject.org/pub/fedora/linux/releases/45/Everything/x86_64/os/Packages/g/gtk4-4.24.1-1.fc45.x86_64.rpm LGPL-2.0-or-later AND LGPL-2.1-or-later AND Apache-2.0 AND CC0-1.0 AND MIT AND MIT-open-group AND HPND-sell-variant AND GPL-2.0-or-later AND GPL-3.0-or-later AND OFL-1.1
+libadwaita 4ce2349fb1809450ec6c22686c6b63cf571c3079db36fa9fed1f26db0a22dde2 805146 - https://dl.fedoraproject.org/pub/fedora/linux/releases/45/Everything/x86_64/os/Packages/l/libadwaita-1.10.0-2.fc45.x86_64.rpm LGPL-2.1-or-later AND MIT
+xz 47eb91b7b870716aa6fc177ea883fed67e3c091c06bc772c6e2261edbb0f940c 666836 - https://dl.fedoraproject.org/pub/fedora/linux/releases/45/Everything/x86_64/os/Packages/x/xz-5.8.3-2.fc45.x86_64.rpm 0BSD AND GPL-2.0-or-later AND LicenseRef-Fedora-Public-Domain
+zenity b473d0f3d41d16d9ac38b282999b8b42b51a130472b2b76e4983c5abd32ae9a4 3072042 - https://dl.fedoraproject.org/pub/fedora/linux/releases/45/Everything/x86_64/os/Packages/z/zenity-4.2.2-5.fc45.x86_64.rpm LGPL-2.1-or-later
