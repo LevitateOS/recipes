@@ -1,5 +1,5 @@
 {
-  "commit": "57c1069f69caeb1ad36ec4e7bd40ff9d2875d0eb",
+  "commit": "ff914927ee52640641b9adeec789fbe7f34f2919",
   "recipes": [
     {
       "about": {
@@ -109,7 +109,7 @@
         {
           "bytes": 1540,
           "path": "ark.pins",
-          "sha256": "a9c8cdc619cc593960cf9d002ba439d2633070a8677ad513c19bb4a05a1bef30"
+          "sha256": "543fa4b822f34e64454ad0f879e2cf4a2bb542fc3b1b5e8173207257a3c4815d"
         }
       ],
       "functions": [],
@@ -136,7 +136,7 @@
         "cleanup"
       ],
       "upstream": null,
-      "version": "2026.11.16"
+      "version": "2026.11.17"
     },
     {
       "about": {
@@ -173,7 +173,7 @@
         {
           "bytes": 6067,
           "path": "audio.pins",
-          "sha256": "3382b280eb49f74e508ca7fa2a2569f12f98a4c0a3a71ade6b1e5b5fa7e06d01"
+          "sha256": "416f1ab09ade2733e306afc1deab476e7a3444d1fa3e00c4228228c3e104eb9f"
         }
       ],
       "functions": [
@@ -202,7 +202,7 @@
         "cleanup"
       ],
       "upstream": null,
-      "version": "2026.11.16"
+      "version": "2026.11.17"
     },
     {
       "about": {
@@ -299,7 +299,7 @@
         {
           "bytes": 2275,
           "path": "bluetooth.pins",
-          "sha256": "399570fc11b549e1f13aa0b3ee2dd7b05a52726e4e4a071bb92f4e53aea2e811"
+          "sha256": "b063ff0fbb479a6ac7075d28952650764bdeda44c610f36ce1299d8277308c6e"
         }
       ],
       "functions": [
@@ -328,7 +328,7 @@
         "cleanup"
       ],
       "upstream": null,
-      "version": "2026.11.16"
+      "version": "2026.11.17"
     },
     {
       "about": {
@@ -711,7 +711,7 @@
         {
           "bytes": 160279,
           "path": "desktop-libs.pins",
-          "sha256": "5c3d3e95a8766523adb698f6938a6273bbc4fe48b6f97dfb4b928a950d9b2c20"
+          "sha256": "bac61e822ad553505423bc268a314d9fe2d5e863d17725bf940e8a1c24260aa7"
         }
       ],
       "functions": [
@@ -740,7 +740,7 @@
         "cleanup"
       ],
       "upstream": null,
-      "version": "2026.11.16"
+      "version": "2026.11.17"
     },
     {
       "about": {
@@ -844,7 +844,7 @@
         {
           "bytes": 1279,
           "path": "dolphin.pins",
-          "sha256": "faf1db67cb74463260c8196f78e4c41f035c800b2ef5846148e3045a7a1dfcfb"
+          "sha256": "8a383d3c2955ec73b76b918f3faf29756ca894ee8e60f1f0876ac1e77b0cfce8"
         }
       ],
       "functions": [],
@@ -871,7 +871,7 @@
         "cleanup"
       ],
       "upstream": null,
-      "version": "2026.11.16"
+      "version": "2026.11.17"
     },
     {
       "about": {
@@ -914,7 +914,7 @@
         {
           "bytes": 3013,
           "path": "drkonqi.pins",
-          "sha256": "babdb0e3fd61f36ef6454b242b5f6786846a59ad6982c507d79d301c23046e50"
+          "sha256": "540310bab2031ed99191af3ecdc044990796171b40494837279661dd7a9c2e8b"
         }
       ],
       "functions": [],
@@ -941,7 +941,7 @@
         "cleanup"
       ],
       "upstream": null,
-      "version": "2026.11.16"
+      "version": "2026.11.17"
     },
     {
       "about": {
@@ -1093,7 +1093,7 @@
         {
           "bytes": 1420,
           "path": "filesystems.pins",
-          "sha256": "fbbebe238e2d928de2c64b5d6a70f21ef010f35bcaf02dba076ef230995f08b9"
+          "sha256": "61992a51e87d09430759273e686408eeb53ddba41d465a98011633c852752d77"
         }
       ],
       "functions": [],
@@ -1120,7 +1120,7 @@
         "cleanup"
       ],
       "upstream": null,
-      "version": "2026.11.16"
+      "version": "2026.11.17"
     },
     {
       "about": {
@@ -1170,7 +1170,7 @@
         {
           "bytes": 1129,
           "path": "firefox.pins",
-          "sha256": "bdba89c809b43d8938be988461d89ffe7602260f4cf42c620ef7a15b0d03456f"
+          "sha256": "d86040490bc2d37ac2ddf16b23342a651a3c3a4f3546a69e73775e349e37e523"
         }
       ],
       "functions": [
@@ -1199,7 +1199,7 @@
         "cleanup"
       ],
       "upstream": null,
-      "version": "2026.11.16"
+      "version": "2026.11.17"
     },
     {
       "about": {
@@ -1236,7 +1236,7 @@
         {
           "bytes": 5212,
           "path": "firewall.pins",
-          "sha256": "f3b5a183cce71bc3d429404de40b96872dca50d677f70663b3a52e72c675ebdc"
+          "sha256": "b152f71fb83cc6c17e862357a7cc1df8599e018de3e9d2e55cafd86f84ccfceb"
         }
       ],
       "functions": [
@@ -1265,7 +1265,7 @@
         "cleanup"
       ],
       "upstream": null,
-      "version": "2026.11.16"
+      "version": "2026.11.17"
     },
     {
       "about": {
@@ -1364,7 +1364,7 @@
         {
           "bytes": 638,
           "path": "fonts-cjk.pins",
-          "sha256": "07d2539a992ad7837e999a4dc3cac197a811258cf61fa6f2689a7e4b25148c49"
+          "sha256": "b9950a7ec4e9f9ec31a7bc816ee2764fb868defa73543c01df2e2347e6483279"
         }
       ],
       "functions": [],
@@ -1391,7 +1391,7 @@
         "cleanup"
       ],
       "upstream": null,
-      "version": "2026.11.16"
+      "version": "2026.11.17"
     },
     {
       "about": {
@@ -1428,7 +1428,7 @@
         {
           "bytes": 1364,
           "path": "fonts-office.pins",
-          "sha256": "1cbf95c3ddc1bd0e6d86796325de020eacf6bc893e7553f746355d1abd2dae3e"
+          "sha256": "165417e172ae733a37bae0c19e91a73b521dc485303c07806ed4fa80424fcfce"
         }
       ],
       "functions": [],
@@ -1455,7 +1455,7 @@
         "cleanup"
       ],
       "upstream": null,
-      "version": "2026.11.16"
+      "version": "2026.11.17"
     },
     {
       "about": {
@@ -1492,7 +1492,7 @@
         {
           "bytes": 1729,
           "path": "fonts.pins",
-          "sha256": "da32a3fae0ed00942326ce256e562f0f33536b0e06ca6dad57aacf6ffd31c697"
+          "sha256": "408660fd323ffa4913c640cc4fbbb872b634f9346e8a55df2c852725032b4ee7"
         }
       ],
       "functions": [],
@@ -1519,7 +1519,7 @@
         "cleanup"
       ],
       "upstream": null,
-      "version": "2026.11.16"
+      "version": "2026.11.17"
     },
     {
       "about": {
@@ -1729,7 +1729,7 @@
         {
           "bytes": 2342,
           "path": "graphics-drivers.pins",
-          "sha256": "8b95dbbd0022c0878a458a4ca17c25a9ec4f3a9d2c10eac201a83f9d4671a6e9"
+          "sha256": "477495a79a5a86d598ddf0f309d46ce996eabd7c7288bd2d5e1e8b17eeb0802a"
         }
       ],
       "functions": [],
@@ -1756,7 +1756,7 @@
         "cleanup"
       ],
       "upstream": null,
-      "version": "2026.11.16"
+      "version": "2026.11.17"
     },
     {
       "about": {
@@ -1910,7 +1910,7 @@
         {
           "bytes": 595,
           "path": "kcalc.pins",
-          "sha256": "612213a929c958aa74864dfdcd116b14f5138cb629d15aed1a1739f32af6af8f"
+          "sha256": "52171bacb70bc4d2709386ed4bc810e391486a452b71b987907a9ca2c1479afb"
         }
       ],
       "functions": [],
@@ -1937,7 +1937,7 @@
         "cleanup"
       ],
       "upstream": null,
-      "version": "2026.11.16"
+      "version": "2026.11.17"
     },
     {
       "about": {
@@ -1990,7 +1990,7 @@
         {
           "bytes": 1506,
           "path": "konsole.pins",
-          "sha256": "5302dadd480350c14e886d0e5e787c59a94bc4ff00028a0ca038cfcd9352e598"
+          "sha256": "8fe355af36b32a483d7b086e74051a06d5415c2cdc48bf581fa03e3013f565df"
         }
       ],
       "functions": [
@@ -2019,7 +2019,7 @@
         "cleanup"
       ],
       "upstream": null,
-      "version": "2026.11.16"
+      "version": "2026.11.17"
     },
     {
       "about": {
@@ -2062,7 +2062,7 @@
         {
           "bytes": 633,
           "path": "kwrite.pins",
-          "sha256": "5692ca6cfd372d9064be4529e8f8311f127f66b20e68e92903393edc4673a51f"
+          "sha256": "2afb04bd3d0b301683118ecf968030317929b46114fa1ce8c5b94b6c47f12453"
         }
       ],
       "functions": [],
@@ -2089,7 +2089,7 @@
         "cleanup"
       ],
       "upstream": null,
-      "version": "2026.11.16"
+      "version": "2026.11.17"
     },
     {
       "about": {
@@ -2124,7 +2124,7 @@
         {
           "bytes": 35557,
           "path": "lib32.pins",
-          "sha256": "21fb3f620b1c52bac80367545d09487fe991eb8f31e1f86b1a5cc9cba031e142"
+          "sha256": "a39c31ba342e06b908c8938da2836bc59a94d71d3099e39181fc95bab1836241"
         }
       ],
       "functions": [
@@ -2153,7 +2153,7 @@
         "cleanup"
       ],
       "upstream": null,
-      "version": "2026.11.16"
+      "version": "2026.11.17"
     },
     {
       "about": {
@@ -2470,7 +2470,7 @@
         {
           "bytes": 1325,
           "path": "manuals.pins",
-          "sha256": "15b8408fec496d15990685a2900c9605a21a05e0e1f781e2a643d076f4593ed0"
+          "sha256": "4b915bebfb63cdffa94dfa11c27ff492f9ad740d4023de395abf4a08f88ee1ae"
         }
       ],
       "functions": [
@@ -2499,7 +2499,7 @@
         "cleanup"
       ],
       "upstream": null,
-      "version": "2026.11.16"
+      "version": "2026.11.17"
     },
     {
       "about": {
@@ -2720,7 +2720,7 @@
         {
           "bytes": 4477,
           "path": "network-ui.pins",
-          "sha256": "37e25b8c92b1848c62125a1676e6626eff331b9444223ce5b576113327779730"
+          "sha256": "bcbfc167b4908a4a11bb5facb8c0a0b85f40dc73d465fdb7b0ea2d728afcf240"
         }
       ],
       "functions": [],
@@ -2747,7 +2747,7 @@
         "cleanup"
       ],
       "upstream": null,
-      "version": "2026.11.16"
+      "version": "2026.11.17"
     },
     {
       "about": {
@@ -2784,7 +2784,7 @@
         {
           "bytes": 4020,
           "path": "network.pins",
-          "sha256": "e6551b00d7d751eb3a942764034bb3f63eac4b287830c8d756c7c3e15a3f9d0c"
+          "sha256": "f87b4b6199a1b63ec3e2c690b84e0f607873703ad7c0d8f37b30d0e23227abc8"
         }
       ],
       "functions": [
@@ -2813,7 +2813,7 @@
         "cleanup"
       ],
       "upstream": null,
-      "version": "2026.11.16"
+      "version": "2026.11.17"
     },
     {
       "about": {
@@ -3187,7 +3187,7 @@
         {
           "bytes": 603,
           "path": "plasma-systemmonitor.pins",
-          "sha256": "e958fe885be1d0f2f8f61dbdacffa1aea577ed8fe2a21ed96dc9e37d580b738c"
+          "sha256": "681c92ec6244afb6d72e5c602d1f1969c5488383bbbee10991569984b9276d86"
         }
       ],
       "functions": [],
@@ -3214,7 +3214,7 @@
         "cleanup"
       ],
       "upstream": null,
-      "version": "2026.11.16"
+      "version": "2026.11.17"
     },
     {
       "about": {
@@ -3262,7 +3262,7 @@
         {
           "bytes": 48857,
           "path": "plasma.pins",
-          "sha256": "06246a91212ffd9d3824836c9fe618b04b7e5eed4dc99674adc164649b61e904"
+          "sha256": "9a8a87993b458e1b0e93e3f4356fcdb941170205523cd1d21152cde44cf640f1"
         }
       ],
       "functions": [
@@ -3291,7 +3291,7 @@
         "cleanup"
       ],
       "upstream": null,
-      "version": "2026.11.16"
+      "version": "2026.11.17"
     },
     {
       "about": {
@@ -3332,7 +3332,7 @@
         {
           "bytes": 1372,
           "path": "print-manager.pins",
-          "sha256": "a28306a9be4b23af35b17286ee548349e558732150347a6434a03a8b46638dfe"
+          "sha256": "f599caac705fcc6b8651b1ec11f9a837307bc3cfb51658da73c65aad57ae2843"
         }
       ],
       "functions": [],
@@ -3359,7 +3359,7 @@
         "cleanup"
       ],
       "upstream": null,
-      "version": "2026.11.16"
+      "version": "2026.11.17"
     },
     {
       "about": {
@@ -3396,7 +3396,7 @@
         {
           "bytes": 15814,
           "path": "printing.pins",
-          "sha256": "20b42aac70444d9b580f1829a22a8730794a54c04ef2320f6529ebdb08765ce4"
+          "sha256": "7a69b54b858adf031f7d35919f429805c23d6794a5b570b2ceaf2fefb976b6b6"
         }
       ],
       "functions": [
@@ -3425,7 +3425,7 @@
         "cleanup"
       ],
       "upstream": null,
-      "version": "2026.11.16"
+      "version": "2026.11.17"
     },
     {
       "about": {
@@ -3915,7 +3915,7 @@
         {
           "bytes": 10358,
           "path": "screen-reader.pins",
-          "sha256": "1725c18819cfdebb9e7c2d0e5cdf6e51be11d829eb0f006259c3ea6619c3ffcd"
+          "sha256": "0eb47479381fdbfd36423040e7493f9946c21d2089635ed95f1b94a5f979783b"
         }
       ],
       "functions": [
@@ -3944,7 +3944,7 @@
         "cleanup"
       ],
       "upstream": null,
-      "version": "2026.11.16"
+      "version": "2026.11.17"
     },
     {
       "about": {
@@ -4127,7 +4127,7 @@
         {
           "bytes": 2836,
           "path": "skanlite.pins",
-          "sha256": "acb5000a535c9ea72febbbb542519537697d88fdcaff4619cc6b3212a512f961"
+          "sha256": "8251484fa6e54486c52f0ee1ff0d1dfd3ea2346ed7e20a60c67fbcca6d07e6e6"
         }
       ],
       "functions": [],
@@ -4154,7 +4154,7 @@
         "cleanup"
       ],
       "upstream": null,
-      "version": "2026.11.16"
+      "version": "2026.11.17"
     },
     {
       "about": {
@@ -4197,7 +4197,7 @@
         {
           "bytes": 1256,
           "path": "spectacle.pins",
-          "sha256": "0bbfd9833cae85670a7de1fea288706a717ab94714564ef2574c6dc7c7a5534e"
+          "sha256": "5f0530fdd932233e86f854aaf0697917a373163de85097f6a0b492f4e93e80a6"
         }
       ],
       "functions": [],
@@ -4224,7 +4224,7 @@
         "cleanup"
       ],
       "upstream": null,
-      "version": "2026.11.16"
+      "version": "2026.11.17"
     },
     {
       "about": {
@@ -4259,7 +4259,7 @@
         {
           "bytes": 5637,
           "path": "spelling.pins",
-          "sha256": "7b12a1c41da3672e1596e7cd0d86b0ec088e614f28360e8b1e5a45b4caa6e752"
+          "sha256": "255e6a89b98c518dd3de6b30113d6ac29d8ccc225176bee4d7e99e1bf522cb60"
         }
       ],
       "functions": [],
@@ -4286,7 +4286,7 @@
         "cleanup"
       ],
       "upstream": null,
-      "version": "2026.11.16"
+      "version": "2026.11.17"
     },
     {
       "about": {
@@ -4331,7 +4331,7 @@
         {
           "bytes": 1266,
           "path": "steam.pins",
-          "sha256": "a8cdb1871006372cdbf609e29d761a0186b3c20fbcaef25a43c6a46e64bb369d"
+          "sha256": "03c2d21e836cb003dae0a50548e0839b66245d919828351b5a550517e27f1d4a"
         }
       ],
       "functions": [
@@ -4360,7 +4360,7 @@
         "cleanup"
       ],
       "upstream": null,
-      "version": "2026.11.16"
+      "version": "2026.11.17"
     },
     {
       "about": {
@@ -4397,7 +4397,7 @@
         {
           "bytes": 5021,
           "path": "thumbnailers.pins",
-          "sha256": "513e79a04b7fad81a7069b2ef2cf5826e193a60856a25a4a3451d35cf41c748a"
+          "sha256": "5f1c6f23e9023add4c14637ee5eacca53b34126439f6fbf9a3cf67fe7a771576"
         }
       ],
       "functions": [],
@@ -4424,7 +4424,7 @@
         "cleanup"
       ],
       "upstream": null,
-      "version": "2026.11.16"
+      "version": "2026.11.17"
     },
     {
       "about": {
@@ -4461,7 +4461,7 @@
         {
           "bytes": 907,
           "path": "thunderbolt.pins",
-          "sha256": "41c9ee82480e5b8077f3de285461ff5fa88972db746579b416747ed643000f06"
+          "sha256": "a9a057e69977ec40bc373c4733f626ecad8ca701c53d91d78614583d4722efdb"
         }
       ],
       "functions": [],
@@ -4488,7 +4488,7 @@
         "cleanup"
       ],
       "upstream": null,
-      "version": "2026.11.16"
+      "version": "2026.11.17"
     },
     {
       "about": {
@@ -4584,7 +4584,7 @@
         {
           "bytes": 822,
           "path": "vm-guest.pins",
-          "sha256": "aea6492075216e354469f845e568072d39697f151a8257a0609a6c69ebf9556d"
+          "sha256": "d690723531882f3a5c7d4f650d7ff6d9a56da56aa91d2d2cdc43e71ad13e3d4b"
         }
       ],
       "functions": [
@@ -4613,7 +4613,7 @@
         "cleanup"
       ],
       "upstream": null,
-      "version": "2026.11.16"
+      "version": "2026.11.17"
     },
     {
       "about": {
