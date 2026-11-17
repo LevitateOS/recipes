@@ -22,7 +22,7 @@ const NEEDS = #{
     outputs: #{ system: "directory" },
     network: ["github.com:443", "release-assets.githubusercontent.com:443", "objects.githubusercontent.com:443"],
     // Two stripped programs, the fonts and the background: the larger
-    // archive (glibc, 5525296 bytes), rounded up.
+    // archive (glibc, 5525221 bytes), rounded up.
     network_max_bytes: 6291456,
     timeout_secs: 1800,
 };
@@ -54,8 +54,8 @@ let deps = ["desktop-libs"];
 // so nothing is left out when it is unpacked (strip: false).
 const SOURCES = #{
     glibc: #{
-        url: "https://github.com/LevitateOS/prebuilt/releases/download/login-screen-86d815752d902d81/login-screen-levitate.tar.gz",
-        sha256: "e0317266c250ed8ba67c98043d56dca1be58f302fd72f903c189cfe813849947",
+        url: "https://github.com/LevitateOS/prebuilt/releases/download/login-screen-d1b52d0912b41d7b/login-screen-levitate.tar.gz",
+        sha256: "7e4aa8e9ac295d078ad8cb3e95e23179de647e91b5ba2a55b93e813e88a102bc",
         strip: false,
         libc: "glibc",
     },
