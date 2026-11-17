@@ -1,5 +1,5 @@
 {
-  "commit": "d89423bc74378346ba30912ad6097599a1bbe080",
+  "commit": "57c1069f69caeb1ad36ec4e7bd40ff9d2875d0eb",
   "recipes": [
     {
       "about": {
@@ -3908,9 +3908,9 @@
       "description": "The Orca screen reader, with speech",
       "files": [
         {
-          "bytes": 2170,
+          "bytes": 2750,
           "path": "screen-reader.rhai",
-          "sha256": "036003019aee9e132c22211ae8278076e7f2be7dac9f06f1086fdc5138689acf"
+          "sha256": "0b726f1f80dd678371d9448fc0a11621d8ea30e39d41bd7a42ef53029f02d972"
         },
         {
           "bytes": 10358,
@@ -3918,7 +3918,9 @@
           "sha256": "1725c18819cfdebb9e7c2d0e5cdf6e51be11d829eb0f006259c3ea6619c3ffcd"
         }
       ],
-      "functions": [],
+      "functions": [
+        "configure"
+      ],
       "name": "screen-reader",
       "needs": {
         "defines": {},
