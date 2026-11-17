@@ -42,3 +42,15 @@ const PACKAGES = #{
 };
 
 let deps = ["desktop-libs", "audio", "spelling"];
+
+// Alpine's onboard package ships a compiled GSettings cache of its own
+// (usr/share/glib-2.0/schemas/gschemas.compiled). The root effects recipe
+// writes that same path for the whole root, with every installed schema, so
+// the file stays out of this group: two packages may not own one path with
+// different content. The schema XML files stay; the effects recipe compiles them.
+fn configure(tree) {
+    if PACKAGE_FORMAT == "apk" {
+        let compiled = join_path(tree, "usr/share/glib-2.0/schemas/gschemas.compiled");
+        if exists(compiled) { rm(compiled); }
+    }
+}
