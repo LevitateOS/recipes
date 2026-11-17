@@ -54,7 +54,8 @@ const ACCOUNTS = #{ musl: ["g plugdev -"] };
 
 let deps = ["desktop-libs"];
 
-// NetworkManager starts at boot (the OS builder enabled it in the base).
+// NetworkManager starts at boot: this group enables it, in the system root it
+// is installed into and in the live overlay.
 fn configure(tree) {
     enable_service(tree, "NetworkManager.service", "networkmanager");
 }
