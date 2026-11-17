@@ -15,10 +15,11 @@ const RECIPE_API = 1;
 // desktop-apps` makes from tools/gui/), compiled in each OS's own apps-build
 // root against the Qt that desktop-libs ships: one archive per C library
 // (SOURCES, by libc; Recipe fetches only this system's). The pins follow the
-// newest published key (2026-11-16: glibc desktop-apps-a55c64e2b967af33,
-// musl desktop-apps-1d8c3e52cfdf462c); when the apps or the Qt they are built against
-// change, a new key is published and these pins must be moved to it (by hand
-// today: nothing generates them).
+// newest published key (2026-11-17: glibc desktop-apps-297964e589aa3205,
+// 1001899 bytes; musl desktop-apps-2d44e2a5002e1785, 1047585 bytes; both builds
+// are stripped and built without the story code); when the apps or the Qt they
+// are built against change, a new key is published and these pins must be moved
+// to it (by hand today: nothing generates them).
 const NEEDS = #{
     outputs: #{ system: "directory" },
     network: ["github.com:443", "release-assets.githubusercontent.com:443", "objects.githubusercontent.com:443"],
@@ -49,14 +50,14 @@ let deps = ["desktop-libs"];
 // Their paths start at usr/, so the top folder is kept (strip: false).
 const SOURCES = #{
     glibc: #{
-        url: "https://github.com/LevitateOS/prebuilt/releases/download/desktop-apps-a55c64e2b967af33/desktop-apps-levitate.tar.gz",
-        sha256: "6a968920998a3da476989424768b637a139911381220d0265ccaa8897bb749ce",
+        url: "https://github.com/LevitateOS/prebuilt/releases/download/desktop-apps-297964e589aa3205/desktop-apps-levitate.tar.gz",
+        sha256: "9d9e1bd570f0f19699389742b9981969d8fd0228724f1e378ce0704ec887204b",
         strip: false,
         libc: "glibc",
     },
     musl: #{
-        url: "https://github.com/LevitateOS/prebuilt/releases/download/desktop-apps-1d8c3e52cfdf462c/desktop-apps-acorn.tar.gz",
-        sha256: "f7608e81f315c236e712d22d1a3ea0f64659f02faf364138902153195a25a2e5",
+        url: "https://github.com/LevitateOS/prebuilt/releases/download/desktop-apps-2d44e2a5002e1785/desktop-apps-acorn.tar.gz",
+        sha256: "707795c063b3e0e8ad8220767aada9f72880dbf1187cfefbd74b8ce950f12d8d",
         strip: false,
         libc: "musl",
     },
