@@ -1,5 +1,5 @@
 {
-  "commit": "0da9504b9d610ea6a9d46a7f230a3d15e5501644",
+  "commit": "f805678ad2f400b837e4cc828c41ec8f81c69813",
   "recipes": [
     {
       "about": {
@@ -3789,9 +3789,9 @@
       "description": "Recipe and Recdirstat, LevitateOS's desktop apps",
       "files": [
         {
-          "bytes": 5316,
+          "bytes": 5408,
           "path": "rec-apps.rhai",
-          "sha256": "53d1bdb9a00df88f05ebc1da381f3235ab53a640b7e7cc7e35b4f2a476ff68e0"
+          "sha256": "3c2859159377f11ce0aa5eb972bf6c7a0ea3384f903e884d2a708cdb35125c95"
         }
       ],
       "functions": [],
