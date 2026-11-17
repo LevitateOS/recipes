@@ -1,6 +1,6 @@
 # bluetooth.pins: written by `cargo xtask base groups`; do not edit.
-# glibc: Fedora 45, locked 2026-11-16. musl: Alpine v3.24, locked 2026-11-16.
-version 2026.11.16
+# glibc: Fedora 45, locked 2026-11-17. musl: Alpine v3.24, locked 2026-11-16.
+version 2026.11.17
 
 [glibc rpm]
 bluedevil ed44581b5aab6bee3b1c002ea1222fa1ad8167f545dbdc34627c3dbc106e9f36 829649 - https://dl.fedoraproject.org/pub/fedora/linux/updates/45/Everything/x86_64/Packages/b/bluedevil-6.8.3-1.fc45.x86_64.rpm GPL-2.0-or-later

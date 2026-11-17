@@ -1,6 +1,6 @@
 # network-ui.pins: written by `cargo xtask base groups`; do not edit.
-# glibc: Fedora 45, locked 2026-11-16. musl: Alpine v3.24, locked 2026-11-16.
-version 2026.11.16
+# glibc: Fedora 45, locked 2026-11-17. musl: Alpine v3.24, locked 2026-11-16.
+version 2026.11.17
 
 [glibc rpm]
 NetworkManager-openvpn aa4e21e1573d96425c9bc3e90a04419eeeb4840794d8bdebc286d5f2d47c44ad 318926 - https://dl.fedoraproject.org/pub/fedora/linux/releases/45/Everything/x86_64/os/Packages/n/NetworkManager-openvpn-1.12.5-5.fc45.x86_64.rpm GPL-2.0-or-later

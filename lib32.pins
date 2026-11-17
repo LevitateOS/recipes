@@ -1,6 +1,6 @@
 # lib32.pins: written by `cargo xtask base groups`; do not edit.
-# glibc: Fedora 45, locked 2026-11-16. No musl build.
-version 2026.11.16
+# glibc: Fedora 45, locked 2026-11-17. No musl build.
+version 2026.11.17
 
 [glibc rpm]
 NetworkManager-libnm.i686 84e1f27617e01bb56894cb46b9c2fa0143c612b9f400983c8410d7ed1d7ee608 2320688 - https://dl.fedoraproject.org/pub/fedora/linux/releases/45/Everything/x86_64/os/Packages/n/NetworkManager-libnm-1.58.1-3.fc45.i686.rpm LGPL-2.1-or-later

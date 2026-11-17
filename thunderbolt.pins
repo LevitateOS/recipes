@@ -1,6 +1,6 @@
 # thunderbolt.pins: written by `cargo xtask base groups`; do not edit.
-# glibc: Fedora 45, locked 2026-11-16. musl: Alpine v3.24, locked 2026-11-16.
-version 2026.11.16
+# glibc: Fedora 45, locked 2026-11-17. musl: Alpine v3.24, locked 2026-11-16.
+version 2026.11.17
 
 [glibc rpm]
 bolt 85a8bee9e51477ae08703b43049998f22e2ba31f5b87c00aa3d0905350887ac8 195746 var https://dl.fedoraproject.org/pub/fedora/linux/releases/45/Everything/x86_64/os/Packages/b/bolt-0.9.11-2.fc45.x86_64.rpm LGPL-2.1-or-later

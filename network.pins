@@ -1,6 +1,6 @@
 # network.pins: written by `cargo xtask base groups`; do not edit.
-# glibc: Fedora 45, locked 2026-11-16. musl: Alpine v3.24, locked 2026-11-16.
-version 2026.11.16
+# glibc: Fedora 45, locked 2026-11-17. musl: Alpine v3.24, locked 2026-11-16.
+version 2026.11.17
 
 [glibc rpm]
 NetworkManager d671027360305dbedf54553eb37d49a9072c2ce291d29bc7c800d21f47cfeb47 2440040 var https://dl.fedoraproject.org/pub/fedora/linux/releases/45/Everything/x86_64/os/Packages/n/NetworkManager-1.58.1-3.fc45.x86_64.rpm GPL-2.0-or-later AND LGPL-2.1-or-later

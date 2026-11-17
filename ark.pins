@@ -1,6 +1,6 @@
 # ark.pins: written by `cargo xtask base groups`; do not edit.
-# glibc: Fedora 45, locked 2026-11-16. No musl build.
-version 2026.11.16
+# glibc: Fedora 45, locked 2026-11-17. No musl build.
+version 2026.11.17
 
 [glibc rpm]
 7zip 699901f624fc01b32f410bd3f7079647ada1d0ea16096afab1640e29a4be8bd7 1359084 - https://dl.fedoraproject.org/pub/fedora/linux/updates/45/Everything/x86_64/Packages/7/7zip-26.04-1.fc45.x86_64.rpm LGPL-2.1-or-later AND BSD-3-Clause AND BSD-2-Clause AND LicenseRef-Fedora-Public-Domain

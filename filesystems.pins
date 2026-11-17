@@ -1,6 +1,6 @@
 # filesystems.pins: written by `cargo xtask base groups`; do not edit.
-# glibc: Fedora 45, locked 2026-11-16. musl: Alpine v3.24, locked 2026-11-16.
-version 2026.11.16
+# glibc: Fedora 45, locked 2026-11-17. musl: Alpine v3.24, locked 2026-11-16.
+version 2026.11.17
 
 [glibc rpm]
 exfatprogs 5005f8ea88719eec4c6405c047597df1d8f5acfb4e5db6c10a004d796e996dd2 156060 - https://dl.fedoraproject.org/pub/fedora/linux/updates/45/Everything/x86_64/Packages/e/exfatprogs-1.4.4-1.fc45.x86_64.rpm GPL-2.0-only

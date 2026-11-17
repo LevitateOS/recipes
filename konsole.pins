@@ -1,6 +1,6 @@
 # konsole.pins: written by `cargo xtask base groups`; do not edit.
-# glibc: Fedora 45, locked 2026-11-16. No musl build.
-version 2026.11.16
+# glibc: Fedora 45, locked 2026-11-17. No musl build.
+version 2026.11.17
 
 [glibc rpm]
 keditbookmarks dd1f06c195228fda3e566bbc49058c5a0e25c5db7b612aac40791d95235cff9f 450466 - https://dl.fedoraproject.org/pub/fedora/linux/updates/45/Everything/x86_64/Packages/k/keditbookmarks-26.08.3-1.fc45.x86_64.rpm GPL-2.0-only AND GPL-3.0-only AND LicenseRef-Callaway-GFDL

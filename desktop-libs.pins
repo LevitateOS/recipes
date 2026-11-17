@@ -1,6 +1,6 @@
 # desktop-libs.pins: written by `cargo xtask base groups`; do not edit.
-# glibc: Fedora 45, locked 2026-11-16. musl: Alpine v3.24, locked 2026-11-16.
-version 2026.11.16
+# glibc: Fedora 45, locked 2026-11-17. musl: Alpine v3.24, locked 2026-11-16.
+version 2026.11.17
 
 [glibc rpm]
 LibRaw 5e74ee24bb2d324695d3f554b23a3600c2682d5357d011fcae386c028acfdb33 499919 - https://dl.fedoraproject.org/pub/fedora/linux/updates/45/Everything/x86_64/Packages/l/LibRaw-0.22.3-1.fc45.x86_64.rpm BSD-3-Clause and (CDDL-1.0 or LGPL-2.1-only)
@@ -14,7 +14,7 @@ adwaita-icon-theme 68ffbb8c26ef29c7371b3803435cb34cfab435f5eb1efd54f3b9bb5bbe709
 adwaita-icon-theme-legacy b0b4ec97bb402e2edb35d0c285e05eb54f16a45c22657a467f994f75a3cd2d36 2599140 - https://dl.fedoraproject.org/pub/fedora/linux/releases/45/Everything/x86_64/os/Packages/a/adwaita-icon-theme-legacy-46.2-12.fc45.noarch.rpm LGPL-3.0-only OR CC-BY-SA-3.0
 alsa-lib 1563c75f83862048ce9690687f06f38c73d1a23148a8b331086bb8762fcc59e3 580394 - https://dl.fedoraproject.org/pub/fedora/linux/releases/45/Everything/x86_64/os/Packages/a/alsa-lib-1.2.16.1-2.fc45.x86_64.rpm LGPL-2.1-or-later
 aribb24 9c1ba5d7d4b7d066d8318b4f42bc7303a1c2e6e6a02c7c5cbf5716d0be74f3b9 41971 - https://dl.fedoraproject.org/pub/fedora/linux/releases/45/Everything/x86_64/os/Packages/a/aribb24-1.0.3^20160216git5e9be27-6.fc45.x86_64.rpm LGPL-3.0-only
-assimp 895ae9c515ea84968b27979700de7cbc6cbe74d40261efdade137be7d7f29285 2620596 - https://dl.fedoraproject.org/pub/fedora/linux/updates/45/Everything/x86_64/Packages/a/assimp-6.0.5-6.fc45.x86_64.rpm BSD-3-Clause AND MIT AND BSL-1.0 AND Unlicense AND Zlib
+assimp c763cec4a61c186f6b22b006942442826d32630550f9fe4abbc75f3c78558ce3 2652538 - https://dl.fedoraproject.org/pub/fedora/linux/updates/45/Everything/x86_64/Packages/a/assimp-6.0.6-1.fc45.x86_64.rpm BSD-3-Clause AND MIT AND BSL-1.0 AND Unlicense AND Zlib
 at-spi2-atk aa4e59a6e26bd0ed648b5f57e94fbbd9dea82173584cad79cf74ca6b0d989ad7 92025 - https://dl.fedoraproject.org/pub/fedora/linux/updates/45/Everything/x86_64/Packages/a/at-spi2-atk-2.62.1-1.fc45.x86_64.rpm LGPL-2.1-or-later
 at-spi2-core 3c55cf4902dc43c7e122a0875fae806f8409d74006e48337bdd20289be3439d9 410264 - https://dl.fedoraproject.org/pub/fedora/linux/updates/45/Everything/x86_64/Packages/a/at-spi2-core-2.62.1-1.fc45.x86_64.rpm LGPL-2.1-or-later
 atk b242900b57d565c1b68bbd666f62453ca4086e90e6120d5fe2193cc5e527dfd9 85039 - https://dl.fedoraproject.org/pub/fedora/linux/updates/45/Everything/x86_64/Packages/a/atk-2.62.1-1.fc45.x86_64.rpm LGPL-2.1-or-later

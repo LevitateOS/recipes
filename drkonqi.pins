@@ -1,6 +1,6 @@
 # drkonqi.pins: written by `cargo xtask base groups`; do not edit.
-# glibc: Fedora 45, locked 2026-11-16. No musl build.
-version 2026.11.16
+# glibc: Fedora 45, locked 2026-11-17. No musl build.
+version 2026.11.17
 
 [glibc rpm]
 elfutils 46c498fc255dada98dfb250cfde0cd9c46b0e3e3855df643879db3b04ed23c64 640402 - https://dl.fedoraproject.org/pub/fedora/linux/updates/45/Everything/x86_64/Packages/e/elfutils-0.197-1.fc45.x86_64.rpm GPL-3.0-or-later AND (GPL-2.0-or-later OR LGPL-3.0-or-later) AND GFDL-1.3-no-invariants-or-later

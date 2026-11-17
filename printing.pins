@@ -1,6 +1,6 @@
 # printing.pins: written by `cargo xtask base groups`; do not edit.
-# glibc: Fedora 45, locked 2026-11-16. musl: Alpine v3.24, locked 2026-11-16.
-version 2026.11.16
+# glibc: Fedora 45, locked 2026-11-17. musl: Alpine v3.24, locked 2026-11-16.
+version 2026.11.17
 
 [glibc rpm]
 acl 48e25a76cd159e18665ddabdc768e426ddaa76115fa733926a5936bd359717b5 78378 - https://dl.fedoraproject.org/pub/fedora/linux/releases/45/Everything/x86_64/os/Packages/a/acl-2.4.0-2.fc45.x86_64.rpm GPL-2.0-or-later AND LGPL-2.1-or-later

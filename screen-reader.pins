@@ -1,6 +1,6 @@
 # screen-reader.pins: written by `cargo xtask base groups`; do not edit.
-# glibc: Fedora 45, locked 2026-11-16. musl: Alpine v3.24, locked 2026-11-16.
-version 2026.11.16
+# glibc: Fedora 45, locked 2026-11-17. musl: Alpine v3.24, locked 2026-11-16.
+version 2026.11.17
 
 [glibc rpm]
 brlapi b023d8f04bec6281cdd3ade78b5cf87106a7848b1dc7a92fddb720973c4a25ad 203065 - https://dl.fedoraproject.org/pub/fedora/linux/releases/45/Everything/x86_64/os/Packages/b/brlapi-0.8.8-9.fc45.x86_64.rpm LGPL-2.0-or-later AND LGPL-2.1-or-later AND GPL-2.0-or-later

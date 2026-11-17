@@ -1,6 +1,6 @@
 # firefox.pins: written by `cargo xtask base groups`; do not edit.
-# glibc: Fedora 45, locked 2026-11-16. musl: Alpine v3.24, locked 2026-11-16.
-version 2026.11.16
+# glibc: Fedora 45, locked 2026-11-17. musl: Alpine v3.24, locked 2026-11-16.
+version 2026.11.17
 
 [glibc rpm]
 firefox 9e53a1e1011a0d921a91b086453658bfa250551af7f5f0eb04a7bdab183544b5 96304536 - https://dl.fedoraproject.org/pub/fedora/linux/updates/45/Everything/x86_64/Packages/f/firefox-160.0-1.fc45.x86_64.rpm LicenseRef-Callaway-MPLv1.1 OR GPL-2.0-or-later OR LicenseRef-Callaway-LGPLv2+

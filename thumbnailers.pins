@@ -1,6 +1,6 @@
 # thumbnailers.pins: written by `cargo xtask base groups`; do not edit.
-# glibc: Fedora 45, locked 2026-11-16. musl: Alpine v3.24, locked 2026-11-16.
-version 2026.11.16
+# glibc: Fedora 45, locked 2026-11-17. musl: Alpine v3.24, locked 2026-11-16.
+version 2026.11.17
 
 [glibc rpm]
 ffmpegthumbs 1a651126ef1a22d153dee33b8ce500eca152aa753020ef86bb045bea3eaf416b 53771 - https://dl.fedoraproject.org/pub/fedora/linux/updates/45/Everything/x86_64/Packages/f/ffmpegthumbs-26.08.3-1.fc45.x86_64.rpm GPL-2.0-or-later

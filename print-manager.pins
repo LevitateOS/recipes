@@ -1,6 +1,6 @@
 # print-manager.pins: written by `cargo xtask base groups`; do not edit.
-# glibc: Fedora 45, locked 2026-11-16. No musl build.
-version 2026.11.16
+# glibc: Fedora 45, locked 2026-11-17. No musl build.
+version 2026.11.17
 
 [glibc rpm]
 plasma-print-manager 674abbe5f1a0525fe5e39ab525b65be55a68c33b7257a768f7e75fbb120f4ec6 537698 - https://dl.fedoraproject.org/pub/fedora/linux/updates/45/Everything/x86_64/Packages/p/plasma-print-manager-6.8.3-1.fc45.x86_64.rpm BSD-3-Clause AND GPL-2.0-or-later AND LGPL-2.0-or-later AND LGPL-2.1-only AND LGPL-3.0-only AND (LGPL-2.1-only OR LGPL-3.0-only)

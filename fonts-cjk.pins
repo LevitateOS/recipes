@@ -1,6 +1,6 @@
 # fonts-cjk.pins: written by `cargo xtask base groups`; do not edit.
-# glibc: Fedora 45, locked 2026-11-16. musl: Alpine v3.24, locked 2026-11-16.
-version 2026.11.16
+# glibc: Fedora 45, locked 2026-11-17. musl: Alpine v3.24, locked 2026-11-16.
+version 2026.11.17
 
 [glibc rpm]
 google-noto-sans-cjk-fonts 42e2d0171b3c2b1c71a1d4c1545aae580a54c6a921e3d4ffb0aafc68268ef266 84383207 - https://dl.fedoraproject.org/pub/fedora/linux/releases/45/Everything/x86_64/os/Packages/g/google-noto-sans-cjk-fonts-2.004-12.fc45.noarch.rpm OFL-1.1

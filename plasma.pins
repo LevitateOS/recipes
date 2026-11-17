@@ -1,6 +1,6 @@
 # plasma.pins: written by `cargo xtask base groups`; do not edit.
-# glibc: Fedora 45, locked 2026-11-16. No musl build.
-version 2026.11.16
+# glibc: Fedora 45, locked 2026-11-17. No musl build.
+version 2026.11.17
 
 [glibc rpm]
 accountsservice 759425bb99b5408edde1d64642bf356ac04933f3ff26999d45dd964a8d19972d 149203 var https://dl.fedoraproject.org/pub/fedora/linux/releases/45/Everything/x86_64/os/Packages/a/accountsservice-26.27.3-2.fc45.x86_64.rpm GPL-3.0-or-later

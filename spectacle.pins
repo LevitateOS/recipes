@@ -1,6 +1,6 @@
 # spectacle.pins: written by `cargo xtask base groups`; do not edit.
-# glibc: Fedora 45, locked 2026-11-16. No musl build.
-version 2026.11.16
+# glibc: Fedora 45, locked 2026-11-17. No musl build.
+version 2026.11.17
 
 [glibc rpm]
 accounts-qml-module-qt6 8d013b57c8237a0f51a48722a490234c7d3e2cda32d8ffd93e1d7c38efd3f568 91067 - https://dl.fedoraproject.org/pub/fedora/linux/releases/45/Everything/x86_64/os/Packages/a/accounts-qml-module-qt6-0.7^20231216.05e79eb-9.fc45.x86_64.rpm LGPL-2.1-only

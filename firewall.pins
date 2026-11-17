@@ -1,6 +1,6 @@
 # firewall.pins: written by `cargo xtask base groups`; do not edit.
-# glibc: Fedora 45, locked 2026-11-16. musl: Alpine v3.24, locked 2026-11-16.
-version 2026.11.16
+# glibc: Fedora 45, locked 2026-11-17. musl: Alpine v3.24, locked 2026-11-16.
+version 2026.11.17
 
 [glibc rpm]
 firewalld a214f928b56fb678ccba8c328e976d02ef5684a4915ec216ca4ea86df473b541 560763 - https://dl.fedoraproject.org/pub/fedora/linux/releases/45/Everything/x86_64/os/Packages/f/firewalld-2.5.2-1.fc45.noarch.rpm GPL-2.0-or-later

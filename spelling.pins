@@ -1,6 +1,6 @@
 # spelling.pins: written by `cargo xtask base groups`; do not edit.
-# glibc: Fedora 45, locked 2026-11-16. musl: Alpine v3.24, locked 2026-11-16.
-version 2026.11.16
+# glibc: Fedora 45, locked 2026-11-17. musl: Alpine v3.24, locked 2026-11-16.
+version 2026.11.17
 
 [glibc rpm]
 hunspell d0aef462490b0f533872e1c4906b108c026e5b6d8443a38f39272f110a324972 475372 - https://dl.fedoraproject.org/pub/fedora/linux/updates/45/Everything/x86_64/Packages/h/hunspell-1.7.6-1.fc45.x86_64.rpm LGPL-2.1-or-later OR GPL-2.0-or-later OR MPL-1.1

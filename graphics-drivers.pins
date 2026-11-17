@@ -1,6 +1,6 @@
 # graphics-drivers.pins: written by `cargo xtask base groups`; do not edit.
-# glibc: Fedora 45, locked 2026-11-16. musl: Alpine v3.24, locked 2026-11-16.
-version 2026.11.16
+# glibc: Fedora 45, locked 2026-11-17. musl: Alpine v3.24, locked 2026-11-16.
+version 2026.11.17
 
 [glibc rpm]
 intel-gmmlib 123828b6b1ce74813f2c6b1653a7232d07aab0734aadb35fb28853de4d44b00e 209261 - https://dl.fedoraproject.org/pub/fedora/linux/releases/45/Everything/x86_64/os/Packages/i/intel-gmmlib-22.10.2-1.fc45.x86_64.rpm MIT AND BSD-3-Clause

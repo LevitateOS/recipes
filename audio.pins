@@ -1,6 +1,6 @@
 # audio.pins: written by `cargo xtask base groups`; do not edit.
-# glibc: Fedora 45, locked 2026-11-16. musl: Alpine v3.24, locked 2026-11-16.
-version 2026.11.16
+# glibc: Fedora 45, locked 2026-11-17. musl: Alpine v3.24, locked 2026-11-16.
+version 2026.11.17
 
 [glibc rpm]
 pipewire 8d730d83a255acf8eb75a01eb4ab055be1a5d008c04aaf02bcff8c2acb57ddfc 144993 - https://dl.fedoraproject.org/pub/fedora/linux/updates/45/Everything/x86_64/Packages/p/pipewire-1.6.11-1.fc45.x86_64.rpm MIT

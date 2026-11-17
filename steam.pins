@@ -1,6 +1,6 @@
 # steam.pins: written by `cargo xtask base groups`; do not edit.
-# glibc: Fedora 45, locked 2026-11-16. No musl build: Steam does not run on AcornOS.
-version 2026.11.16
+# glibc: Fedora 45, locked 2026-11-17. No musl build: Steam does not run on AcornOS.
+version 2026.11.17
 
 [glibc rpm]
 gtk4 fb02ba7ae2efbb014d18d56207ced6f7f2c6be5ef2af7e797d4da0bdc738e943 7244168 - https://dl.fedoraproject.org/pub/fedora/linux/releases/45/Everything/x86_64/os/Packages/g/gtk4-4.24.1-1.fc45.x86_64.rpm LGPL-2.0-or-later AND LGPL-2.1-or-later AND Apache-2.0 AND CC0-1.0 AND MIT AND MIT-open-group AND HPND-sell-variant AND GPL-2.0-or-later AND GPL-3.0-or-later AND OFL-1.1

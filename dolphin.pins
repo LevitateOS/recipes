@@ -1,6 +1,6 @@
 # dolphin.pins: written by `cargo xtask base groups`; do not edit.
-# glibc: Fedora 45, locked 2026-11-16. No musl build.
-version 2026.11.16
+# glibc: Fedora 45, locked 2026-11-17. No musl build.
+version 2026.11.17
 
 [glibc rpm]
 baloo-widgets 8dd60945be88c92fff438ea419b6d8deb3986d3b422061cb146ed76d9b5b7ad2 212383 - https://dl.fedoraproject.org/pub/fedora/linux/updates/45/Everything/x86_64/Packages/b/baloo-widgets-26.08.3-1.fc45.x86_64.rpm LGPL-2.0-only OR LGPL-3.0-only
