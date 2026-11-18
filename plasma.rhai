@@ -42,13 +42,15 @@ const PACKAGE = #{ name: "plasma", description: "The KDE Plasma desktop on Wayla
 // What this group installs, by name; the generator adds what they need.
 // glibc: LevitateOS (Fedora 45). musl: AcornOS (Alpine 3.24).
 // kf6-kimageformats: the image formats KDE's programs and thumbnails read
-// beyond Qt's own (AVIF and others).
+// beyond Qt's own (AVIF and others). xdg-user-dirs: makes Documents, Pictures
+// and the other user folders at login (Fedora's kde-settings, which the lock
+// leaves out, required it).
 const PACKAGES = #{
     glibc: [
         "plasma-desktop", "plasma-workspace", "kwin", "xorg-x11-server-Xwayland", "plasma-pa",
         "powerdevil", "kscreen", "kinfocenter", "kde-gtk-config", "breeze-gtk",
         "xdg-desktop-portal-kde", "polkit-kde", "kwalletmanager5", "pam-kwallet", "upower",
-        "power-profiles-daemon", "udisks2", "kf6-kimageformats"
+        "power-profiles-daemon", "udisks2", "kf6-kimageformats", "xdg-user-dirs"
     ],
 };
 
@@ -58,11 +60,15 @@ let deps = ["desktop-libs", "audio", "fonts", "spelling"];
 // with Plasma: power profiles at boot, Recipe as the software app on the
 // panel and in the menu's favourites (Discover is not shipped), the default
 // applications, the look (colour schemes from the OS's
-// palettes, the Global Theme of the starting mode, Breeze icons and cursor),
-// the OS's mark on the start button, the OS's wallpaper as Plasma's default,
-// and what a user at the machine may do without the administrator's
+// palettes, KDE's Breeze Global Theme of the starting mode, Breeze icons and
+// cursor), the OS's mark on the start button, the OS's wallpaper as Plasma's
+// default, and what a user at the machine may do without the administrator's
 // password. The wallpapers and the mark are the base's files (the image's
-// branding); this only points at them.
+// branding); this only points at them. Fedora's look (its Global Themes, logos
+// and backgrounds, kde-settings) is not in the lock: what kde-settings set
+// that the desktop needs (the menu's favourites, the empty session at login,
+// no file indexing of the home folder, the clock's authorization) is written
+// here.
 fn configure(tree) {
     let os = os_facts::of(PACKAGE_FORMAT);
     let mode = os.appearance;
@@ -75,38 +81,23 @@ fn configure(tree) {
                   image: "org.mozilla.firefox.desktop", pdf: "org.mozilla.firefox.desktop", archive: "org.kde.ark.desktop" };
     put(tree, "etc/xdg/mimeapps.list", look::mimeapps(apps), 0o644);
 
-    // Recipe in Discover's place on the panel, in the menu's favourites, and
-    // not as the handler of .rpm files.
+    // Recipe in Discover's place on the panel and in the menu's favourites,
+    // and the OS's mark on the new start button (Breeze's panel template
+    // names the launcher without an icon). Kickoff reads its `favorites` from
+    // its configuration.
     let recipe = "org.levitateos.recipe.desktop";
+    let name = "distributor-logo-" + os.id;
     let panel = "usr/share/plasma/layout-templates/org.kde.plasma.desktop.defaultPanel/contents/layout.js";
     let tasks = "panel.addWidget(\"org.kde.plasma.icontasks\")";
+    let kickoff = "panel.addWidget(\"org.kde.plasma.kickoff\")";
     let text = tree_text(tree, panel);
     if !text.contains(tasks) { throw "plasma: the default panel no longer adds the icon task manager"; }
+    if !text.contains(kickoff) { throw "plasma: the default panel no longer adds the application launcher"; }
     let launchers = "applications:systemsettings.desktop,applications:" + recipe + ",preferred://filemanager,preferred://browser";
-    put(tree, panel, text.replace(tasks, "var tasks = " + tasks + "\ntasks.currentConfigGroup = [\"General\"]\ntasks.writeConfig(\"launchers\", \"" + launchers + "\")"), 0o644);
-    let profile = "usr/share/kde-settings/kde-profile/default/xdg/";
-    text = tree_text(tree, profile + "kicker-extra-favoritesrc");
-    if !text.contains(";org.kde.discover.desktop") { throw "plasma: Fedora's menu favourites no longer list Discover"; }
-    put(tree, profile + "kicker-extra-favoritesrc", text.replace(";org.kde.discover.desktop", ";" + recipe), 0o644);
-    text = tree_text(tree, profile + "kde-mimeapps.list");
-    if !text.contains("=org.kde.discover.desktop\n") { throw "plasma: Fedora's default applications no longer name Discover"; }
-    put(tree, profile + "kde-mimeapps.list", text.replace("application/x-rpm=org.kde.discover.desktop\n", ""), 0o644);
-
-    // The OS's mark on a new start button, in place of Fedora's start-here.
-    let name = "distributor-logo-" + os.id;
-    let fedora_icon = "writeConfig(\"icon\", \"start-here\")";
-    let set = 0;
-    for flavour in ["fedora", "fedoradark", "fedoralight"] {
-        let dir = "usr/share/plasma/look-and-feel/org.fedoraproject." + flavour + ".desktop/contents/plasmoidsetupscripts";
-        for file in glob_list(join_path(tree, dir) + "/*.js") {
-            let script = read_file(file);
-            if !script.contains(fedora_icon) { continue; }
-            let path = dir + "/" + basename(file);
-            put(tree, path, script.replace(fedora_icon, "writeConfig(\"icon\", \"" + name + "\")"), 0o644);
-            set += 1;
-        }
-    }
-    if set == 0 { throw "plasma: the Global Themes no longer set the launcher's icon to start-here"; }
+    let favourites = "preferred://browser,systemsettings.desktop,org.kde.dolphin.desktop,org.kde.kwrite.desktop,org.kde.konsole.desktop," + recipe;
+    text = text.replace(tasks, "var tasks = " + tasks + "\ntasks.currentConfigGroup = [\"General\"]\ntasks.writeConfig(\"launchers\", \"" + launchers + "\")");
+    text = text.replace(kickoff, "var kickoff = " + kickoff + "\nkickoff.currentConfigGroup = [\"General\"]\nkickoff.writeConfig(\"icon\", \"" + name + "\")\nkickoff.writeConfig(\"favorites\", \"" + favourites + "\")");
+    put(tree, panel, text, 0o644);
 
     // The look: one cursor theme everywhere, the OS's colour schemes, the
     // starting mode's Global Theme naming them, Breeze icons of that mode.
@@ -116,22 +107,30 @@ fn configure(tree) {
     tree_text(tree, "usr/share/icons/breeze_cursors/index.theme");
     put(tree, "etc/xdg/kcminputrc", "[Mouse]\ncursorTheme=breeze_cursors\n", 0o644);
     let lnf = "usr/share/plasma/look-and-feel/";
-    let theme = if mode == "dark" { "org.fedoraproject.fedoradark.desktop" } else { "org.fedoraproject.fedoralight.desktop" };
+    let theme = if mode == "dark" { "org.kde.breezedark.desktop" } else { "org.kde.breeze.desktop" };
     for m in ["light", "dark"] {
         put(tree, "usr/share/color-schemes/" + look::scheme_name(os, m) + ".colors", look::kde_colour_scheme(os, m), 0o644);
     }
+    // Plasma copies a Global Theme's defaults into each user's kdedefaults,
+    // which is read ahead of /etc/xdg: Breeze's name Breeze's colour schemes
+    // and its wallpaper, so they name the OS's.
     let found = false;
-    for pair in [["org.fedoraproject.fedora.desktop", "BreezeLight", "light"], ["org.fedoraproject.fedoralight.desktop", "BreezeLight", "light"],
-                 ["org.fedoraproject.fedoradark.desktop", "BreezeDark", "dark"]] {
+    for pair in [["org.kde.breeze.desktop", "BreezeLight", "light"], ["org.kde.breezedark.desktop", "BreezeDark", "dark"],
+                 ["org.kde.breezetwilight.desktop", "", ""]] {
         let defaults = lnf + pair[0] + "/contents/defaults";
-        if !is_file(join_path(tree, defaults)) { continue; }
-        let t = read_file(join_path(tree, defaults));
-        let packaged = "ColorScheme=" + pair[1] + "\n";
-        if !t.contains(packaged) { continue; }
-        put(tree, defaults, t.replace(packaged, "ColorScheme=" + look::scheme_name(os, pair[2]) + "\n"), 0o644);
+        let t = tree_text(tree, defaults);
+        let wallpaper = "Image=Next\n";
+        if !t.contains(wallpaper) { throw "plasma: the Global Theme " + pair[0] + " no longer names its wallpaper (Image=Next)"; }
+        t = t.replace(wallpaper, "Image=" + os.name + "\n");
+        if pair[1] != "" {
+            let packaged = "ColorScheme=" + pair[1] + "\n";
+            if !t.contains(packaged) { throw "plasma: the Global Theme " + pair[0] + " no longer names the colour scheme " + pair[1]; }
+            t = t.replace(packaged, "ColorScheme=" + look::scheme_name(os, pair[2]) + "\n");
+        }
+        put(tree, defaults, t, 0o644);
         if pair[0] == theme { found = true; }
     }
-    if !found { throw "plasma: the Global Theme " + theme + " no longer names a Breeze colour scheme"; }
+    if !found { throw "plasma: the Global Theme " + theme + " is not in the packages"; }
     let globals = "[KDE]\nLookAndFeelPackage=" + theme + "\n\n";
     globals += "[General]\nColorScheme=" + look::scheme_name(os, mode) + "\naccentColorFromWallpaper=false\n\n";
     globals += "[Icons]\nTheme=" + look::icon_theme(mode) + "\n\n";
@@ -141,12 +140,21 @@ fn configure(tree) {
     if os.home_url != "" { about += "Website=" + os.home_url + "\n"; }
     put(tree, "etc/xdg/kcm-about-distrorc", about, 0o644);
 
-    // Plasma's default wallpaper package is the OS's (Fedora's points
-    // "Default" at Fedora's own).
-    if !exists(join_path(tree, "usr/share/wallpapers/Fedora")) { throw "plasma: the packages no longer take their wallpaper from /usr/share/wallpapers/Default"; }
+    // The OS's wallpaper is also what /usr/share/wallpapers/Default names.
     put_link(tree, "usr/share/wallpapers/Default", os.name);
 
+    // What Fedora's kde-settings set for every user, as the defaults of
+    // /etc/xdg: a start with an empty session (Plasma restores the previous
+    // one otherwise) and no indexing of the home folder (Baloo indexes it
+    // otherwise, which costs a first boot its speed).
+    put(tree, "etc/xdg/ksmserverrc", "[General]\nloginMode=emptySession\n", 0o644);
+    put(tree, "etc/xdg/baloofilerc", "[General]\nexclude folders[$e]=$HOME\n", 0o644);
+
     put(tree, "usr/share/polkit-1/rules.d/50-" + os.id + "-desktop.rules", look::desktop_polkit_rules(), 0o644);
+    // Setting the clock in System Settings asks for no password (kde-settings
+    // allowed it for the wheel group).
+    put(tree, "usr/share/polkit-1/rules.d/50-" + os.id + "-plasma.rules",
+        "polkit.addRule(function(action, subject) {\n    if (subject.active && subject.local && action.id == \"org.kde.kcontrol.kcmclock.save\") {\n        return polkit.Result.YES;\n    }\n});\n", 0o644);
 
     // Guest defaults (docs/reclogin-guest.md): the login screen copies
     // /usr/share/reclogin/guest-home/ into the guest's new home at every
