@@ -1,5 +1,5 @@
 {
-  "commit": "4b79b085346ed72005850f704226c59d06b33358",
+  "commit": "c13f96382ae609138dda245a899984b3ffe2b180",
   "recipes": [
     {
       "about": {
@@ -102,14 +102,14 @@
       "description": "KDE's archive manager",
       "files": [
         {
-          "bytes": 1908,
+          "bytes": 1942,
           "path": "ark.rhai",
-          "sha256": "58069b5180650982108df99c511cfc89a0462ad72f55b40f7a9ac4667ac45258"
+          "sha256": "82fd102d644fbf4c80ffcbc5a17557f9099bb8a171c354d2c65a6108dcac7a12"
         },
         {
-          "bytes": 1540,
+          "bytes": 1561,
           "path": "ark.pins",
-          "sha256": "543fa4b822f34e64454ad0f879e2cf4a2bb542fc3b1b5e8173207257a3c4815d"
+          "sha256": "b8a76f8bb83344e0732664a6b68e8487004e11e8ae5f97746f3a8afe1f9be285"
         }
       ],
       "functions": [],
@@ -120,7 +120,8 @@
         "memory_mib": 4096,
         "network": [
           "dl-cdn.alpinelinux.org:443",
-          "dl.fedoraproject.org:443"
+          "dl.fedoraproject.org:443",
+          "kojipkgs.fedoraproject.org:443"
         ],
         "network_max_bytes": 0,
         "outputs": {
@@ -136,7 +137,7 @@
         "cleanup"
       ],
       "upstream": null,
-      "version": "2026.11.17"
+      "version": "2026.11.18"
     },
     {
       "about": {
@@ -166,14 +167,14 @@
       "description": "Sound: PipeWire and WirePlumber",
       "files": [
         {
-          "bytes": 3092,
+          "bytes": 3126,
           "path": "audio.rhai",
-          "sha256": "7302cd878699fb671c97b2fa558db716a218755c60acfad1fb0b733061ef3454"
+          "sha256": "c4834b71ec7e45fb1e14a6ade2ce2b4790f6e03185e7ff734af2cb3560e3d94e"
         },
         {
-          "bytes": 6067,
+          "bytes": 6118,
           "path": "audio.pins",
-          "sha256": "416f1ab09ade2733e306afc1deab476e7a3444d1fa3e00c4228228c3e104eb9f"
+          "sha256": "a0091ea1445f23f0d1ed89430d14aed1212b560a5e9b0fd5eb44eb1e0af4bed9"
         }
       ],
       "functions": [
@@ -186,7 +187,8 @@
         "memory_mib": 4096,
         "network": [
           "dl-cdn.alpinelinux.org:443",
-          "dl.fedoraproject.org:443"
+          "dl.fedoraproject.org:443",
+          "kojipkgs.fedoraproject.org:443"
         ],
         "network_max_bytes": 0,
         "outputs": {
@@ -202,7 +204,7 @@
         "cleanup"
       ],
       "upstream": null,
-      "version": "2026.11.17"
+      "version": "2026.11.18"
     },
     {
       "about": {
@@ -292,14 +294,14 @@
       "description": "Bluetooth",
       "files": [
         {
-          "bytes": 2078,
+          "bytes": 2112,
           "path": "bluetooth.rhai",
-          "sha256": "b7ef3ba6f9110dea5af7f5fafc01ba128782c8f9c08edd774b0cbac92b121d35"
+          "sha256": "7d8ce56c86ac5e729ed46786b675a36464f1bfdf6cf4dcc87fcc51c77f0a6f15"
         },
         {
-          "bytes": 2275,
+          "bytes": 2301,
           "path": "bluetooth.pins",
-          "sha256": "b063ff0fbb479a6ac7075d28952650764bdeda44c610f36ce1299d8277308c6e"
+          "sha256": "34d7d5b1fe6162999a5562009ba84fbb62d06192089e53c64946e5c09a34e2dd"
         }
       ],
       "functions": [
@@ -312,7 +314,8 @@
         "memory_mib": 4096,
         "network": [
           "dl-cdn.alpinelinux.org:443",
-          "dl.fedoraproject.org:443"
+          "dl.fedoraproject.org:443",
+          "kojipkgs.fedoraproject.org:443"
         ],
         "network_max_bytes": 0,
         "outputs": {
@@ -328,7 +331,7 @@
         "cleanup"
       ],
       "upstream": null,
-      "version": "2026.11.17"
+      "version": "2026.11.18"
     },
     {
       "about": {
@@ -704,14 +707,14 @@
       "description": "Libraries more than one desktop group needs",
       "files": [
         {
-          "bytes": 3917,
+          "bytes": 3951,
           "path": "desktop-libs.rhai",
-          "sha256": "2aa6068e17eee7be0929368a47953cf1116399fc4d0ffbd75133e4a555c6ddf1"
+          "sha256": "45985d59a0830a78daebcf7771aa2e25eeb6d915cc4f8af72c02bb3afc9d2361"
         },
         {
-          "bytes": 160279,
+          "bytes": 161801,
           "path": "desktop-libs.pins",
-          "sha256": "bac61e822ad553505423bc268a314d9fe2d5e863d17725bf940e8a1c24260aa7"
+          "sha256": "3a30a524c5af9a6328048612b68de494fe085b201008a5acf5d7fa79b67e2cd1"
         }
       ],
       "functions": [
@@ -724,7 +727,8 @@
         "memory_mib": 4096,
         "network": [
           "dl-cdn.alpinelinux.org:443",
-          "dl.fedoraproject.org:443"
+          "dl.fedoraproject.org:443",
+          "kojipkgs.fedoraproject.org:443"
         ],
         "network_max_bytes": 0,
         "outputs": {
@@ -741,7 +745,7 @@
         "cleanup"
       ],
       "upstream": null,
-      "version": "2026.11.17"
+      "version": "2026.11.18"
     },
     {
       "about": {
@@ -765,14 +769,14 @@
       "description": "Libraries and data carried by upstream desktop builds",
       "files": [
         {
-          "bytes": 11670,
+          "bytes": 11704,
           "path": "desktop-runtime.rhai",
-          "sha256": "1a5270c7779e091b45e17106bbbedbcb532303929957025d188bf775ce90a76e"
+          "sha256": "bb863521b0a44e556e4dec94bdfdb5d901a75bc3d22b3314a9ba03dcf6997d4e"
         },
         {
-          "bytes": 23461,
+          "bytes": 23649,
           "path": "desktop-runtime.pins",
-          "sha256": "6f35fb22f5cd8cc324f14e492d516f26294c0a7c094b64b66e7f43d35fed0b91"
+          "sha256": "c3d5f435f5a0dfcd4fa9bf2366dc47d8519becd19259d368b672100a688a6853"
         }
       ],
       "functions": [
@@ -785,7 +789,8 @@
         "inputs": {},
         "memory_mib": 4096,
         "network": [
-          "dl.fedoraproject.org:443"
+          "dl.fedoraproject.org:443",
+          "kojipkgs.fedoraproject.org:443"
         ],
         "network_max_bytes": 0,
         "outputs": {
@@ -802,7 +807,7 @@
         "cleanup"
       ],
       "upstream": null,
-      "version": "45.20261113"
+      "version": "45.20261118"
     },
     {
       "about": {
@@ -838,14 +843,14 @@
       "description": "KDE's file manager",
       "files": [
         {
-          "bytes": 1898,
+          "bytes": 1932,
           "path": "dolphin.rhai",
-          "sha256": "f3dca8f26947dd9b29ab1b6b67cc7f1c6463a5156b1a33c7054bbba886c8e5ed"
+          "sha256": "febc12d2c9e732470a7ac18d11add77a5a56d12fcd10959e44fc334e7b047bb6"
         },
         {
-          "bytes": 1279,
+          "bytes": 1312,
           "path": "dolphin.pins",
-          "sha256": "8a383d3c2955ec73b76b918f3faf29756ca894ee8e60f1f0876ac1e77b0cfce8"
+          "sha256": "58801648a6769e3d174dc79668f9fe1c56541cbdc2de713a30179ad1df497900"
         }
       ],
       "functions": [],
@@ -856,7 +861,8 @@
         "memory_mib": 4096,
         "network": [
           "dl-cdn.alpinelinux.org:443",
-          "dl.fedoraproject.org:443"
+          "dl.fedoraproject.org:443",
+          "kojipkgs.fedoraproject.org:443"
         ],
         "network_max_bytes": 0,
         "outputs": {
@@ -872,7 +878,7 @@
         "cleanup"
       ],
       "upstream": null,
-      "version": "2026.11.17"
+      "version": "2026.11.18"
     },
     {
       "about": {
@@ -908,14 +914,14 @@
       "description": "KDE's crash handler",
       "files": [
         {
-          "bytes": 1983,
+          "bytes": 2017,
           "path": "drkonqi.rhai",
-          "sha256": "8fb13627021b1031b68ac27757376b4b0b3df2429a270543364f0e97103bfa96"
+          "sha256": "a024ad0e9447f5c9b8c94c2b765585cc97932f0b1ef2146daab7b5c8cf6ad6ec"
         },
         {
-          "bytes": 3013,
+          "bytes": 3072,
           "path": "drkonqi.pins",
-          "sha256": "540310bab2031ed99191af3ecdc044990796171b40494837279661dd7a9c2e8b"
+          "sha256": "d64b1641e8057013a89cb5bfdd37c6410f486928ffad6bc800e04183b083f5cf"
         }
       ],
       "functions": [],
@@ -926,7 +932,8 @@
         "memory_mib": 4096,
         "network": [
           "dl-cdn.alpinelinux.org:443",
-          "dl.fedoraproject.org:443"
+          "dl.fedoraproject.org:443",
+          "kojipkgs.fedoraproject.org:443"
         ],
         "network_max_bytes": 0,
         "outputs": {
@@ -942,7 +949,7 @@
         "cleanup"
       ],
       "upstream": null,
-      "version": "2026.11.17"
+      "version": "2026.11.18"
     },
     {
       "about": {
@@ -1087,14 +1094,14 @@
       "description": "exFAT and NTFS drives",
       "files": [
         {
-          "bytes": 1969,
+          "bytes": 2003,
           "path": "filesystems.rhai",
-          "sha256": "935131765bc61ffca9edfc04a5a5f822cff61c7a8dd06bfc4647ea9699c29118"
+          "sha256": "032e5664c50946ea29ee9d56a5d8919a0d3222fe7822e6637333876125710d69"
         },
         {
-          "bytes": 1420,
+          "bytes": 1430,
           "path": "filesystems.pins",
-          "sha256": "61992a51e87d09430759273e686408eeb53ddba41d465a98011633c852752d77"
+          "sha256": "6229e13a75efc0655199ac4c2da9cdbae21b99c936e4566e4a758758fc31c2c4"
         }
       ],
       "functions": [],
@@ -1105,7 +1112,8 @@
         "memory_mib": 4096,
         "network": [
           "dl-cdn.alpinelinux.org:443",
-          "dl.fedoraproject.org:443"
+          "dl.fedoraproject.org:443",
+          "kojipkgs.fedoraproject.org:443"
         ],
         "network_max_bytes": 0,
         "outputs": {
@@ -1121,7 +1129,7 @@
         "cleanup"
       ],
       "upstream": null,
-      "version": "2026.11.17"
+      "version": "2026.11.18"
     },
     {
       "about": {
@@ -1159,9 +1167,9 @@
       "description": "The Firefox web browser",
       "files": [
         {
-          "bytes": 4417,
+          "bytes": 4451,
           "path": "firefox.rhai",
-          "sha256": "24971fb0127524434e017eee7f6e69b09e6f82e6338b41668a88115f896cd126"
+          "sha256": "b1fbc769689869316b913459738ada82e84873f5b7c8a959796853c39fc67f98"
         },
         {
           "bytes": 2994,
@@ -1169,9 +1177,9 @@
           "sha256": "df29a3f420f2269e4dffc4018af4768f02c60af4bd864b48de2c2d5a837029f9"
         },
         {
-          "bytes": 1129,
+          "bytes": 1136,
           "path": "firefox.pins",
-          "sha256": "d86040490bc2d37ac2ddf16b23342a651a3c3a4f3546a69e73775e349e37e523"
+          "sha256": "5f49d237a3b6643d7a48d802d6bb7cd9e7bbd1b6fbe59f342680529062821b4a"
         }
       ],
       "functions": [
@@ -1184,7 +1192,8 @@
         "memory_mib": 4096,
         "network": [
           "dl-cdn.alpinelinux.org:443",
-          "dl.fedoraproject.org:443"
+          "dl.fedoraproject.org:443",
+          "kojipkgs.fedoraproject.org:443"
         ],
         "network_max_bytes": 0,
         "outputs": {
@@ -1200,7 +1209,7 @@
         "cleanup"
       ],
       "upstream": null,
-      "version": "2026.11.17"
+      "version": "2026.11.18"
     },
     {
       "about": {
@@ -1230,14 +1239,14 @@
       "description": "The firewalld firewall, with its settings",
       "files": [
         {
-          "bytes": 2582,
+          "bytes": 2616,
           "path": "firewall.rhai",
-          "sha256": "bce950dd2d0f075b93b9298e04bc736daaf8a9057f19d97dc1cc9251a9e227f5"
+          "sha256": "8574d31c116db4a7782ee46241eacf686d8e0553760ee2ac449740dc7d5910f4"
         },
         {
-          "bytes": 5212,
+          "bytes": 5242,
           "path": "firewall.pins",
-          "sha256": "b152f71fb83cc6c17e862357a7cc1df8599e018de3e9d2e55cafd86f84ccfceb"
+          "sha256": "ba4723bf7872107277ad0b104d8a441ad0be62cb1273b39df9723aa155d57266"
         }
       ],
       "functions": [
@@ -1250,7 +1259,8 @@
         "memory_mib": 4096,
         "network": [
           "dl-cdn.alpinelinux.org:443",
-          "dl.fedoraproject.org:443"
+          "dl.fedoraproject.org:443",
+          "kojipkgs.fedoraproject.org:443"
         ],
         "network_max_bytes": 0,
         "outputs": {
@@ -1266,7 +1276,7 @@
         "cleanup"
       ],
       "upstream": null,
-      "version": "2026.11.17"
+      "version": "2026.11.18"
     },
     {
       "about": {
@@ -1365,7 +1375,7 @@
         {
           "bytes": 638,
           "path": "fonts-cjk.pins",
-          "sha256": "b9950a7ec4e9f9ec31a7bc816ee2764fb868defa73543c01df2e2347e6483279"
+          "sha256": "8a735c9cb8c04f94574a79c6ce3c61c519e85687c3f48ed89c006971a243fe8b"
         }
       ],
       "functions": [],
@@ -1392,7 +1402,7 @@
         "cleanup"
       ],
       "upstream": null,
-      "version": "2026.11.17"
+      "version": "2026.11.18"
     },
     {
       "about": {
@@ -1429,7 +1439,7 @@
         {
           "bytes": 1364,
           "path": "fonts-office.pins",
-          "sha256": "165417e172ae733a37bae0c19e91a73b521dc485303c07806ed4fa80424fcfce"
+          "sha256": "c20fd30e6f5b3bc5f2b5895871f9ed4f56eb0bb109bf05b3e0e88ec0de592df7"
         }
       ],
       "functions": [],
@@ -1456,7 +1466,7 @@
         "cleanup"
       ],
       "upstream": null,
-      "version": "2026.11.17"
+      "version": "2026.11.18"
     },
     {
       "about": {
@@ -1493,7 +1503,7 @@
         {
           "bytes": 1729,
           "path": "fonts.pins",
-          "sha256": "408660fd323ffa4913c640cc4fbbb872b634f9346e8a55df2c852725032b4ee7"
+          "sha256": "c9108b5db4178d979686d635ec7f368c6f8f450ae8b9038cd11aab4853c1e3c9"
         }
       ],
       "functions": [],
@@ -1520,7 +1530,7 @@
         "cleanup"
       ],
       "upstream": null,
-      "version": "2026.11.17"
+      "version": "2026.11.18"
     },
     {
       "about": {
@@ -1723,14 +1733,14 @@
       "description": "Mesa's OpenGL, Vulkan and video decoding drivers",
       "files": [
         {
-          "bytes": 2137,
+          "bytes": 2171,
           "path": "graphics-drivers.rhai",
-          "sha256": "5efd506548609df030295fa5d1b089eb491d42a71a62601729061cf975f43593"
+          "sha256": "0ceb8a0eecaff44cf205ccf8001fc1c5315017cdb0595596a4092cdbf28b727f"
         },
         {
-          "bytes": 2342,
+          "bytes": 2371,
           "path": "graphics-drivers.pins",
-          "sha256": "477495a79a5a86d598ddf0f309d46ce996eabd7c7288bd2d5e1e8b17eeb0802a"
+          "sha256": "7995e654e66acb16f5a3b4e533a5563efa70c35619559372d1a9cde0b5e73681"
         }
       ],
       "functions": [],
@@ -1741,7 +1751,8 @@
         "memory_mib": 4096,
         "network": [
           "dl-cdn.alpinelinux.org:443",
-          "dl.fedoraproject.org:443"
+          "dl.fedoraproject.org:443",
+          "kojipkgs.fedoraproject.org:443"
         ],
         "network_max_bytes": 0,
         "outputs": {
@@ -1757,7 +1768,7 @@
         "cleanup"
       ],
       "upstream": null,
-      "version": "2026.11.17"
+      "version": "2026.11.18"
     },
     {
       "about": {
@@ -1904,14 +1915,14 @@
       "description": "KDE's calculator",
       "files": [
         {
-          "bytes": 1861,
+          "bytes": 1895,
           "path": "kcalc.rhai",
-          "sha256": "a0f1999483867afe2766e43afeb1a08ee096837127759a0259e6a20d23603a49"
+          "sha256": "860cf5f0137f0fc720c28becf92f78e49462ddf4ae5d133574a1646cc2a8ff61"
         },
         {
-          "bytes": 595,
+          "bytes": 602,
           "path": "kcalc.pins",
-          "sha256": "52171bacb70bc4d2709386ed4bc810e391486a452b71b987907a9ca2c1479afb"
+          "sha256": "b9ea92c47562fbabe5dbc82e2f09f1b9dc43c04956dde8baab60dd28ef802a61"
         }
       ],
       "functions": [],
@@ -1922,7 +1933,8 @@
         "memory_mib": 4096,
         "network": [
           "dl-cdn.alpinelinux.org:443",
-          "dl.fedoraproject.org:443"
+          "dl.fedoraproject.org:443",
+          "kojipkgs.fedoraproject.org:443"
         ],
         "network_max_bytes": 0,
         "outputs": {
@@ -1938,7 +1950,7 @@
         "cleanup"
       ],
       "upstream": null,
-      "version": "2026.11.17"
+      "version": "2026.11.18"
     },
     {
       "about": {
@@ -1974,9 +1986,9 @@
       "description": "KDE's terminal",
       "files": [
         {
-          "bytes": 2869,
+          "bytes": 2903,
           "path": "konsole.rhai",
-          "sha256": "1171861bce0bcf74a01b3cda88e2e098043356f26aa59c621fba825b9c41cfbe"
+          "sha256": "d52762bf31a3cab374da929f7444ec8bd5724b4c263b75eded6b784fc969616c"
         },
         {
           "bytes": 11199,
@@ -1989,9 +2001,9 @@
           "sha256": "df29a3f420f2269e4dffc4018af4768f02c60af4bd864b48de2c2d5a837029f9"
         },
         {
-          "bytes": 1506,
+          "bytes": 1556,
           "path": "konsole.pins",
-          "sha256": "8fe355af36b32a483d7b086e74051a06d5415c2cdc48bf581fa03e3013f565df"
+          "sha256": "75d8e05d72832af468274e2e63db1f0d02e391f85fc669aee9b364aba2bce373"
         }
       ],
       "functions": [
@@ -2004,7 +2016,8 @@
         "memory_mib": 4096,
         "network": [
           "dl-cdn.alpinelinux.org:443",
-          "dl.fedoraproject.org:443"
+          "dl.fedoraproject.org:443",
+          "kojipkgs.fedoraproject.org:443"
         ],
         "network_max_bytes": 0,
         "outputs": {
@@ -2020,7 +2033,7 @@
         "cleanup"
       ],
       "upstream": null,
-      "version": "2026.11.17"
+      "version": "2026.11.18"
     },
     {
       "about": {
@@ -2056,14 +2069,14 @@
       "description": "KDE's text editor",
       "files": [
         {
-          "bytes": 1901,
+          "bytes": 1935,
           "path": "kwrite.rhai",
-          "sha256": "aea310bbf30e697842b94d3e129665d20d970ed03eb7ab1aa6661ab1eba2053c"
+          "sha256": "cc51141aae11cf948a73f90e788779b969a0596e8f43e398df5b4442ebe7a7b3"
         },
         {
-          "bytes": 633,
+          "bytes": 645,
           "path": "kwrite.pins",
-          "sha256": "2afb04bd3d0b301683118ecf968030317929b46114fa1ce8c5b94b6c47f12453"
+          "sha256": "59209852cc1239f3a1685b2c4cfa62380638c535c7d00b42155f6811942e6d6e"
         }
       ],
       "functions": [],
@@ -2074,7 +2087,8 @@
         "memory_mib": 4096,
         "network": [
           "dl-cdn.alpinelinux.org:443",
-          "dl.fedoraproject.org:443"
+          "dl.fedoraproject.org:443",
+          "kojipkgs.fedoraproject.org:443"
         ],
         "network_max_bytes": 0,
         "outputs": {
@@ -2090,7 +2104,7 @@
         "cleanup"
       ],
       "upstream": null,
-      "version": "2026.11.17"
+      "version": "2026.11.18"
     },
     {
       "about": {
@@ -2118,14 +2132,14 @@
       "description": "32-bit libraries for 32-bit programs and Steam",
       "files": [
         {
-          "bytes": 9305,
+          "bytes": 9339,
           "path": "lib32.rhai",
-          "sha256": "d4751920b37bc8a9ebbab0ca55fe109bcf1a11fb1e264bc9c5d56e477db2f990"
+          "sha256": "a6ba8f78c0db00dff0dbd38bde122fdf0b169073a222680dd912eef719c07ab8"
         },
         {
-          "bytes": 35557,
+          "bytes": 35692,
           "path": "lib32.pins",
-          "sha256": "a39c31ba342e06b908c8938da2836bc59a94d71d3099e39181fc95bab1836241"
+          "sha256": "5ed0ce8f81c47d2590b65db95c22d1bf1dc44bc43d2a382550ff2d7852b41020"
         }
       ],
       "functions": [
@@ -2137,7 +2151,8 @@
         "inputs": {},
         "memory_mib": 4096,
         "network": [
-          "dl.fedoraproject.org:443"
+          "dl.fedoraproject.org:443",
+          "kojipkgs.fedoraproject.org:443"
         ],
         "network_max_bytes": 0,
         "outputs": {
@@ -2154,7 +2169,7 @@
         "cleanup"
       ],
       "upstream": null,
-      "version": "2026.11.17"
+      "version": "2026.11.18"
     },
     {
       "about": {
@@ -2471,7 +2486,7 @@
         {
           "bytes": 1325,
           "path": "manuals.pins",
-          "sha256": "4b915bebfb63cdffa94dfa11c27ff492f9ad740d4023de395abf4a08f88ee1ae"
+          "sha256": "e006e4c350e6892ab6736b1672bca1aaab6c948ff6614b0488d29026c6fc4ad5"
         }
       ],
       "functions": [
@@ -2500,7 +2515,7 @@
         "cleanup"
       ],
       "upstream": null,
-      "version": "2026.11.17"
+      "version": "2026.11.18"
     },
     {
       "about": {
@@ -2714,14 +2729,14 @@
       "description": "Network settings in the desktop, with OpenVPN",
       "files": [
         {
-          "bytes": 2127,
+          "bytes": 2161,
           "path": "network-ui.rhai",
-          "sha256": "4ba0a4f357e8c092776cf3b674e28656207978bd8a63815c469a0bbd5ce4c4a4"
+          "sha256": "9a4e6f3089897365f00c287ac068b096652e3ec16b16bf9bfef757ec1e3ebab6"
         },
         {
-          "bytes": 4477,
+          "bytes": 4522,
           "path": "network-ui.pins",
-          "sha256": "bcbfc167b4908a4a11bb5facb8c0a0b85f40dc73d465fdb7b0ea2d728afcf240"
+          "sha256": "ed1bd5249faf3e379fece753e63d8920411a23bc66be24a53b0e6f36e96bfe31"
         }
       ],
       "functions": [],
@@ -2732,7 +2747,8 @@
         "memory_mib": 4096,
         "network": [
           "dl-cdn.alpinelinux.org:443",
-          "dl.fedoraproject.org:443"
+          "dl.fedoraproject.org:443",
+          "kojipkgs.fedoraproject.org:443"
         ],
         "network_max_bytes": 0,
         "outputs": {
@@ -2748,7 +2764,7 @@
         "cleanup"
       ],
       "upstream": null,
-      "version": "2026.11.17"
+      "version": "2026.11.18"
     },
     {
       "about": {
@@ -2778,14 +2794,14 @@
       "description": "NetworkManager, with WiFi",
       "files": [
         {
-          "bytes": 2936,
+          "bytes": 2970,
           "path": "network.rhai",
-          "sha256": "3e3f7bb26751315e0930b2d81c060e1714e4bc5738f72c697948cb0a6b9630b7"
+          "sha256": "7ad5ad4ad759d2fa52adb0184f162eb3ef4b5d3333c41295762035af42f4edb2"
         },
         {
-          "bytes": 4020,
+          "bytes": 4035,
           "path": "network.pins",
-          "sha256": "f87b4b6199a1b63ec3e2c690b84e0f607873703ad7c0d8f37b30d0e23227abc8"
+          "sha256": "77a3b6365a24d044a7cc6d6d15b3debcb62b446d844cccdec8828e8319df45e2"
         }
       ],
       "functions": [
@@ -2798,7 +2814,8 @@
         "memory_mib": 4096,
         "network": [
           "dl-cdn.alpinelinux.org:443",
-          "dl.fedoraproject.org:443"
+          "dl.fedoraproject.org:443",
+          "kojipkgs.fedoraproject.org:443"
         ],
         "network_max_bytes": 0,
         "outputs": {
@@ -2815,7 +2832,7 @@
         "cleanup"
       ],
       "upstream": null,
-      "version": "2026.11.17"
+      "version": "2026.11.18"
     },
     {
       "about": {
@@ -3182,14 +3199,14 @@
       "description": "KDE's system monitor",
       "files": [
         {
-          "bytes": 2048,
+          "bytes": 2082,
           "path": "plasma-systemmonitor.rhai",
-          "sha256": "a3e6492a328413dad3a8ddc1c8a5633f9320b972eec1478d33e1583e673c7379"
+          "sha256": "f429be687279251a4aad57650210ce4b80a2a69fcaf56df97c207f098463323e"
         },
         {
-          "bytes": 603,
+          "bytes": 623,
           "path": "plasma-systemmonitor.pins",
-          "sha256": "681c92ec6244afb6d72e5c602d1f1969c5488383bbbee10991569984b9276d86"
+          "sha256": "a7c6e893ed15315a0855b18ecc80d67d875144c3092add4f43ca7f659faba61f"
         }
       ],
       "functions": [],
@@ -3200,7 +3217,8 @@
         "memory_mib": 4096,
         "network": [
           "dl-cdn.alpinelinux.org:443",
-          "dl.fedoraproject.org:443"
+          "dl.fedoraproject.org:443",
+          "kojipkgs.fedoraproject.org:443"
         ],
         "network_max_bytes": 0,
         "outputs": {
@@ -3216,7 +3234,7 @@
         "cleanup"
       ],
       "upstream": null,
-      "version": "2026.11.17"
+      "version": "2026.11.18"
     },
     {
       "about": {
@@ -3247,9 +3265,9 @@
       "description": "The KDE Plasma desktop on Wayland",
       "files": [
         {
-          "bytes": 10776,
+          "bytes": 10810,
           "path": "plasma.rhai",
-          "sha256": "db408a3985412c6024675ba51cdb511a15e74794c7b8225db5747dbd0fcb8ba9"
+          "sha256": "7effb7aa8df915f8c98ec1c701fceea0256b87159be5225c6e4f25a2a0398873"
         },
         {
           "bytes": 11199,
@@ -3262,9 +3280,9 @@
           "sha256": "df29a3f420f2269e4dffc4018af4768f02c60af4bd864b48de2c2d5a837029f9"
         },
         {
-          "bytes": 48857,
+          "bytes": 49933,
           "path": "plasma.pins",
-          "sha256": "9a8a87993b458e1b0e93e3f4356fcdb941170205523cd1d21152cde44cf640f1"
+          "sha256": "47e8f43a63f9035301f1d6090c9f9e6d98cafb4254e30d30f345a0c403f7e93d"
         }
       ],
       "functions": [
@@ -3277,7 +3295,8 @@
         "memory_mib": 4096,
         "network": [
           "dl-cdn.alpinelinux.org:443",
-          "dl.fedoraproject.org:443"
+          "dl.fedoraproject.org:443",
+          "kojipkgs.fedoraproject.org:443"
         ],
         "network_max_bytes": 0,
         "outputs": {
@@ -3293,7 +3312,7 @@
         "cleanup"
       ],
       "upstream": null,
-      "version": "2026.11.17"
+      "version": "2026.11.18"
     },
     {
       "about": {
@@ -3327,14 +3346,14 @@
       "description": "Plasma's printer settings",
       "files": [
         {
-          "bytes": 2040,
+          "bytes": 2074,
           "path": "print-manager.rhai",
-          "sha256": "5ce269226aa411939a16ffbf7b883ef5c3b9838d1f7fa9aae5c445173c72f1ae"
+          "sha256": "d9bd42bb76c6d08fcee0b97622275dc63a9995a817f663c3c661674d3e553127"
         },
         {
-          "bytes": 1372,
+          "bytes": 1412,
           "path": "print-manager.pins",
-          "sha256": "f599caac705fcc6b8651b1ec11f9a837307bc3cfb51658da73c65aad57ae2843"
+          "sha256": "d34bcbd00ab0037410cea357acd9b7c56de46a70721af9a4ff978fdbe63cc733"
         }
       ],
       "functions": [],
@@ -3345,7 +3364,8 @@
         "memory_mib": 4096,
         "network": [
           "dl-cdn.alpinelinux.org:443",
-          "dl.fedoraproject.org:443"
+          "dl.fedoraproject.org:443",
+          "kojipkgs.fedoraproject.org:443"
         ],
         "network_max_bytes": 0,
         "outputs": {
@@ -3361,7 +3381,7 @@
         "cleanup"
       ],
       "upstream": null,
-      "version": "2026.11.17"
+      "version": "2026.11.18"
     },
     {
       "about": {
@@ -3391,14 +3411,14 @@
       "description": "Printing: CUPS with driverless printers",
       "files": [
         {
-          "bytes": 4818,
+          "bytes": 4852,
           "path": "printing.rhai",
-          "sha256": "62cc0d7111d3327a15503e2d0c93293f130d91794b0121a145d45fa0649897c7"
+          "sha256": "bbf2d9c070a0d647342f34e72eb6cdf1c7073a7bbd3aa2e04ead9fb0e3af0292"
         },
         {
-          "bytes": 15814,
+          "bytes": 15895,
           "path": "printing.pins",
-          "sha256": "7a69b54b858adf031f7d35919f429805c23d6794a5b570b2ceaf2fefb976b6b6"
+          "sha256": "232b0fc64ea322363cbeffb98008edf71b7259dbc83e0a03195be8ee920cfee2"
         }
       ],
       "functions": [
@@ -3411,7 +3431,8 @@
         "memory_mib": 4096,
         "network": [
           "dl-cdn.alpinelinux.org:443",
-          "dl.fedoraproject.org:443"
+          "dl.fedoraproject.org:443",
+          "kojipkgs.fedoraproject.org:443"
         ],
         "network_max_bytes": 0,
         "outputs": {
@@ -3427,7 +3448,7 @@
         "cleanup"
       ],
       "upstream": null,
-      "version": "2026.11.17"
+      "version": "2026.11.18"
     },
     {
       "about": {
@@ -3910,14 +3931,14 @@
       "description": "The Orca screen reader, with speech",
       "files": [
         {
-          "bytes": 2750,
+          "bytes": 2784,
           "path": "screen-reader.rhai",
-          "sha256": "0b726f1f80dd678371d9448fc0a11621d8ea30e39d41bd7a42ef53029f02d972"
+          "sha256": "4a0f0c3f45d9e976187244fac912cf28e1395b80607950d40618f73e757814c5"
         },
         {
-          "bytes": 10358,
+          "bytes": 10361,
           "path": "screen-reader.pins",
-          "sha256": "0eb47479381fdbfd36423040e7493f9946c21d2089635ed95f1b94a5f979783b"
+          "sha256": "29341ed1450485b22858d2e6bd4282bbac7eb4d10b20c18b16cc755f0838a6c1"
         }
       ],
       "functions": [
@@ -3930,7 +3951,8 @@
         "memory_mib": 4096,
         "network": [
           "dl-cdn.alpinelinux.org:443",
-          "dl.fedoraproject.org:443"
+          "dl.fedoraproject.org:443",
+          "kojipkgs.fedoraproject.org:443"
         ],
         "network_max_bytes": 0,
         "outputs": {
@@ -3946,7 +3968,7 @@
         "cleanup"
       ],
       "upstream": null,
-      "version": "2026.11.17"
+      "version": "2026.11.18"
     },
     {
       "about": {
@@ -4122,14 +4144,14 @@
       "description": "KDE's scanning program, with the scanner drivers",
       "files": [
         {
-          "bytes": 2035,
+          "bytes": 2069,
           "path": "skanlite.rhai",
-          "sha256": "448378503c78a0b586e953652f15b2abe01625d1fc6cce58ea93ca12376ed516"
+          "sha256": "e0737a263dfb235f19bf489d853c3458568ab4bf3d8dbd006bbc7ed867a37229"
         },
         {
-          "bytes": 2836,
+          "bytes": 2895,
           "path": "skanlite.pins",
-          "sha256": "8251484fa6e54486c52f0ee1ff0d1dfd3ea2346ed7e20a60c67fbcca6d07e6e6"
+          "sha256": "2027e8b5bac8a3611c20bc20f160b432581be10f11851522536b4af2c7630852"
         }
       ],
       "functions": [],
@@ -4140,7 +4162,8 @@
         "memory_mib": 4096,
         "network": [
           "dl-cdn.alpinelinux.org:443",
-          "dl.fedoraproject.org:443"
+          "dl.fedoraproject.org:443",
+          "kojipkgs.fedoraproject.org:443"
         ],
         "network_max_bytes": 0,
         "outputs": {
@@ -4156,7 +4179,7 @@
         "cleanup"
       ],
       "upstream": null,
-      "version": "2026.11.17"
+      "version": "2026.11.18"
     },
     {
       "about": {
@@ -4192,14 +4215,14 @@
       "description": "KDE's screenshot tool",
       "files": [
         {
-          "bytes": 1962,
+          "bytes": 1996,
           "path": "spectacle.rhai",
-          "sha256": "37bba1e9561e3809737bc8b280897052b44b65e62a028b87ca0f7e4dfc582b73"
+          "sha256": "fd7a5009a61974fc196de734ce50af3a01ee3d70e0ffb0467b52cc994fa7ef8f"
         },
         {
-          "bytes": 1256,
+          "bytes": 1277,
           "path": "spectacle.pins",
-          "sha256": "5f0530fdd932233e86f854aaf0697917a373163de85097f6a0b492f4e93e80a6"
+          "sha256": "46cdd480dc30759dd64cfcddc37e8765ae981b6e864cb40c44373d24700c9722"
         }
       ],
       "functions": [],
@@ -4210,7 +4233,8 @@
         "memory_mib": 4096,
         "network": [
           "dl-cdn.alpinelinux.org:443",
-          "dl.fedoraproject.org:443"
+          "dl.fedoraproject.org:443",
+          "kojipkgs.fedoraproject.org:443"
         ],
         "network_max_bytes": 0,
         "outputs": {
@@ -4226,7 +4250,7 @@
         "cleanup"
       ],
       "upstream": null,
-      "version": "2026.11.17"
+      "version": "2026.11.18"
     },
     {
       "about": {
@@ -4254,14 +4278,14 @@
       "description": "English spelling dictionaries",
       "files": [
         {
-          "bytes": 1942,
+          "bytes": 1976,
           "path": "spelling.rhai",
-          "sha256": "58322a49599882575732820008e7a8b4c2cb9c3c3e89a9d44f58871ca821cf45"
+          "sha256": "e0fc53be56526903f86039970dfdc88a074b613c138c807f155177ec1af751c7"
         },
         {
-          "bytes": 5637,
+          "bytes": 5653,
           "path": "spelling.pins",
-          "sha256": "255e6a89b98c518dd3de6b30113d6ac29d8ccc225176bee4d7e99e1bf522cb60"
+          "sha256": "4b05c75bb181155e7589e08321255c9a23b13d3f792129057790becd1a009293"
         }
       ],
       "functions": [],
@@ -4272,7 +4296,8 @@
         "memory_mib": 4096,
         "network": [
           "dl-cdn.alpinelinux.org:443",
-          "dl.fedoraproject.org:443"
+          "dl.fedoraproject.org:443",
+          "kojipkgs.fedoraproject.org:443"
         ],
         "network_max_bytes": 0,
         "outputs": {
@@ -4288,7 +4313,7 @@
         "cleanup"
       ],
       "upstream": null,
-      "version": "2026.11.17"
+      "version": "2026.11.18"
     },
     {
       "about": {
@@ -4333,7 +4358,7 @@
         {
           "bytes": 1266,
           "path": "steam.pins",
-          "sha256": "03c2d21e836cb003dae0a50548e0839b66245d919828351b5a550517e27f1d4a"
+          "sha256": "41dc45f891374c00b87a3084c7c270d1129141d43f4b9cb822823c0c62866ca4"
         }
       ],
       "functions": [
@@ -4362,7 +4387,7 @@
         "cleanup"
       ],
       "upstream": null,
-      "version": "2026.11.17"
+      "version": "2026.11.18"
     },
     {
       "about": {
@@ -4392,14 +4417,14 @@
       "description": "File thumbnails",
       "files": [
         {
-          "bytes": 1949,
+          "bytes": 1983,
           "path": "thumbnailers.rhai",
-          "sha256": "6f0b3a6282747f5911fd8e7b58b19d6c5cb3ba8ed2fc6f8a759357f945708cd8"
+          "sha256": "1425414331f1a4ca49c448ddbd072c9e77aaabe5870a9f71d8d8fc526a4600c8"
         },
         {
-          "bytes": 5021,
+          "bytes": 5072,
           "path": "thumbnailers.pins",
-          "sha256": "5f1c6f23e9023add4c14637ee5eacca53b34126439f6fbf9a3cf67fe7a771576"
+          "sha256": "1795085504a6bef09a07fe9435328fdcec35ef22cdb10bc88b2b5175f81d20bd"
         }
       ],
       "functions": [],
@@ -4410,7 +4435,8 @@
         "memory_mib": 4096,
         "network": [
           "dl-cdn.alpinelinux.org:443",
-          "dl.fedoraproject.org:443"
+          "dl.fedoraproject.org:443",
+          "kojipkgs.fedoraproject.org:443"
         ],
         "network_max_bytes": 0,
         "outputs": {
@@ -4426,7 +4452,7 @@
         "cleanup"
       ],
       "upstream": null,
-      "version": "2026.11.17"
+      "version": "2026.11.18"
     },
     {
       "about": {
@@ -4456,14 +4482,14 @@
       "description": "Thunderbolt device authorisation",
       "files": [
         {
-          "bytes": 1994,
+          "bytes": 2028,
           "path": "thunderbolt.rhai",
-          "sha256": "44e621908d23299eb0573b3c3fdb0b82082e7bda58498181b51e5864f9058a4b"
+          "sha256": "33f24424846745137f708fe799b15a1c2176081520bba79768ef892902479821"
         },
         {
-          "bytes": 907,
+          "bytes": 925,
           "path": "thunderbolt.pins",
-          "sha256": "a9a057e69977ec40bc373c4733f626ecad8ca701c53d91d78614583d4722efdb"
+          "sha256": "7b55dcc4a0536cb0d74ac6e99314adcc527908f42d19f272e07c90777e39e6dc"
         }
       ],
       "functions": [],
@@ -4474,7 +4500,8 @@
         "memory_mib": 4096,
         "network": [
           "dl-cdn.alpinelinux.org:443",
-          "dl.fedoraproject.org:443"
+          "dl.fedoraproject.org:443",
+          "kojipkgs.fedoraproject.org:443"
         ],
         "network_max_bytes": 0,
         "outputs": {
@@ -4490,7 +4517,7 @@
         "cleanup"
       ],
       "upstream": null,
-      "version": "2026.11.17"
+      "version": "2026.11.18"
     },
     {
       "about": {
@@ -4586,7 +4613,7 @@
         {
           "bytes": 822,
           "path": "vm-guest.pins",
-          "sha256": "d690723531882f3a5c7d4f650d7ff6d9a56da56aa91d2d2cdc43e71ad13e3d4b"
+          "sha256": "4e071d1bc6844adaa4437dfba3bb379a7adefe1acc9571bd4db08ef9eed5ad6b"
         }
       ],
       "functions": [
@@ -4615,7 +4642,7 @@
         "cleanup"
       ],
       "upstream": null,
-      "version": "2026.11.17"
+      "version": "2026.11.18"
     },
     {
       "about": {
