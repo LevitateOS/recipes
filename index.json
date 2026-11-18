@@ -1,5 +1,5 @@
 {
-  "commit": "56d46191361717e1efecbd5d4e2f04da97d1cc42",
+  "commit": "4b79b085346ed72005850f704226c59d06b33358",
   "recipes": [
     {
       "about": {
@@ -704,9 +704,9 @@
       "description": "Libraries more than one desktop group needs",
       "files": [
         {
-          "bytes": 3893,
+          "bytes": 3917,
           "path": "desktop-libs.rhai",
-          "sha256": "9857cc1ecec8f54c6f0cdec87e169a3c3820312d861d2d0814b3572d6e3d8cf7"
+          "sha256": "2aa6068e17eee7be0929368a47953cf1116399fc4d0ffbd75133e4a555c6ddf1"
         },
         {
           "bytes": 160279,
@@ -730,6 +730,7 @@
         "outputs": {
           "system": "directory"
         },
+        "runtime": "minimal",
         "storage_max_bytes": null,
         "storage_max_objects": 262144,
         "timeout_secs": 7200
@@ -2777,9 +2778,9 @@
       "description": "NetworkManager, with WiFi",
       "files": [
         {
-          "bytes": 2912,
+          "bytes": 2936,
           "path": "network.rhai",
-          "sha256": "81827539a54549d9283b2734cc0ec6fc2c9f50a473fc7574704f52d8f3168e0e"
+          "sha256": "3e3f7bb26751315e0930b2d81c060e1714e4bc5738f72c697948cb0a6b9630b7"
         },
         {
           "bytes": 4020,
@@ -2803,6 +2804,7 @@
         "outputs": {
           "system": "directory"
         },
+        "runtime": "minimal",
         "storage_max_bytes": null,
         "storage_max_objects": 262144,
         "timeout_secs": 7200
