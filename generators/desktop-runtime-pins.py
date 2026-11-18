@@ -43,6 +43,13 @@ REPOS = [
     f"{MIRROR}/releases/{RELEASE}/Everything/x86_64/os/",
     f"{MIRROR}/updates/{RELEASE}/Everything/x86_64/",
 ]
+# Fedora deletes a superseded build from the updates repository, so those
+# packages are pinned at koji, which keeps every build (same file, same
+# checksum as the repository's). koji's plain file is the unsigned build; the
+# signed one is under data/signed/<short key id>/. Same rule as pinned_url in
+# LevitateOS xtask/src/tasks/base.rs. The key id is Fedora 45's.
+KOJI = "https://kojipkgs.fedoraproject.org/packages"
+KOJI_KEY = "f577861e"
 KEY = "/home/vince/Projects/LevitateOS/distro/variants/levitate/keys/RPM-GPG-KEY-fedora-45-primary"
 HERE = os.path.dirname(os.path.abspath(__file__))
 CACHE = os.path.join(os.path.dirname(HERE), "rpms")
@@ -142,6 +149,15 @@ def evr_cmp(a, b):
     return rpmvercmp(a["ver"], b["ver"]) or rpmvercmp(a["rel"], b["rel"])
 
 
+def pinned_url(repo, href, sourcerpm, arch):
+    mirror_url = repo + href
+    if "/updates/" not in repo or not sourcerpm or not sourcerpm.endswith(".src.rpm"):
+        return mirror_url
+    # The source package's own name-version-release, not the binary's.
+    source, sver, srel = sourcerpm[: -len(".src.rpm")].rsplit("-", 2)
+    return f"{KOJI}/{source}/{sver}/{srel}/data/signed/{KOJI_KEY}/{arch}/{href.rsplit('/', 1)[1]}"
+
+
 def primary(repo, newest):
     repomd = fetch(repo + "repodata/repomd.xml").decode()
     sect = next(s for s in repomd.split("<data ") if s.startswith('type="primary"'))
@@ -168,7 +184,12 @@ def primary(repo, newest):
             "arch": arch,
             "epoch": v.get("epoch"), "ver": v.get("ver"), "rel": v.get("rel"),
             "sha256": el.find("c:checksum", ns).text,
-            "url": repo + el.find("c:location", ns).get("href"),
+            "url": pinned_url(
+                repo,
+                el.find("c:location", ns).get("href"),
+                fmt.findtext("rpm:sourcerpm", namespaces=ns),
+                arch,
+            ),
             "size": int(size.get("package")),
             "installed": int(size.get("installed")),
             "provides": [e.get("name") for e in fmt.findall("rpm:provides/rpm:entry", ns)]

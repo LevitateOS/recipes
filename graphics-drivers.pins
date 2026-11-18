@@ -1,11 +1,11 @@
 # graphics-drivers.pins: written by `cargo xtask base groups`; do not edit.
-# glibc: Fedora 45, locked 2026-11-17. musl: Alpine v3.24, locked 2026-11-16.
-version 2026.11.17
+# glibc: Fedora 45, locked 2026-11-18. musl: Alpine v3.24, locked 2026-11-16.
+version 2026.11.18
 
 [glibc rpm]
 intel-gmmlib 123828b6b1ce74813f2c6b1653a7232d07aab0734aadb35fb28853de4d44b00e 209261 - https://dl.fedoraproject.org/pub/fedora/linux/releases/45/Everything/x86_64/os/Packages/i/intel-gmmlib-22.10.2-1.fc45.x86_64.rpm MIT AND BSD-3-Clause
-libva-intel-media-driver 6003f6eea5ca5fff7361714a733fc9965ffe80f585de93637308dbc17724a576 3591941 - https://dl.fedoraproject.org/pub/fedora/linux/updates/45/Everything/x86_64/Packages/l/libva-intel-media-driver-26.3.5-1.fc45.x86_64.rpm MIT and BSD
-mesa-vulkan-drivers 8b89ac6263e0c39162d68500d76f36bf1ba23c12aec45a51974f6f02aad65e4d 28998090 - https://dl.fedoraproject.org/pub/fedora/linux/updates/45/Everything/x86_64/Packages/m/mesa-vulkan-drivers-26.2.6-1.fc45.x86_64.rpm MIT AND BSD-3-Clause AND SGI-B-2.0
+libva-intel-media-driver 6003f6eea5ca5fff7361714a733fc9965ffe80f585de93637308dbc17724a576 3591941 - https://kojipkgs.fedoraproject.org/packages/intel-media-driver-free/26.3.5/1.fc45/data/signed/f577861e/x86_64/libva-intel-media-driver-26.3.5-1.fc45.x86_64.rpm MIT and BSD
+mesa-vulkan-drivers e644e5d7a4b6a80d38756e27add2b0416232fc794f9b25fafa94749eaac1442a 29018593 - https://kojipkgs.fedoraproject.org/packages/mesa/26.2.7/1.fc45/data/signed/f577861e/x86_64/mesa-vulkan-drivers-26.2.7-1.fc45.x86_64.rpm MIT AND BSD-3-Clause AND SGI-B-2.0
 
 [musl apk]
 intel-gmmlib 6b7d2f7ec0d28216c4f4a8f9a737bf5eb05cb835cf00ddb069344f194db6fe43 299738 - https://dl-cdn.alpinelinux.org/alpine/v3.24/community/x86_64/intel-gmmlib-22.10.1-r0.apk MIT

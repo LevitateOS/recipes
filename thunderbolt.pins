@@ -1,10 +1,10 @@
 # thunderbolt.pins: written by `cargo xtask base groups`; do not edit.
-# glibc: Fedora 45, locked 2026-11-17. musl: Alpine v3.24, locked 2026-11-16.
-version 2026.11.17
+# glibc: Fedora 45, locked 2026-11-18. musl: Alpine v3.24, locked 2026-11-16.
+version 2026.11.18
 
 [glibc rpm]
 bolt 85a8bee9e51477ae08703b43049998f22e2ba31f5b87c00aa3d0905350887ac8 195746 var https://dl.fedoraproject.org/pub/fedora/linux/releases/45/Everything/x86_64/os/Packages/b/bolt-0.9.11-2.fc45.x86_64.rpm LGPL-2.1-or-later
-plasma-thunderbolt dbd4a2f5a59d56e85623559431065e4445ca40dacbdb299632832edb3c67ce8f 227532 - https://dl.fedoraproject.org/pub/fedora/linux/updates/45/Everything/x86_64/Packages/p/plasma-thunderbolt-6.8.3-1.fc45.x86_64.rpm BSD-3-Clause AND CC0-1.0 AND GPL-2.0-only AND GPL-3.0-only AND (GPL-2.0-only OR GPL-3.0-only)
+plasma-thunderbolt dbd4a2f5a59d56e85623559431065e4445ca40dacbdb299632832edb3c67ce8f 227532 - https://kojipkgs.fedoraproject.org/packages/plasma-thunderbolt/6.8.3/1.fc45/data/signed/f577861e/x86_64/plasma-thunderbolt-6.8.3-1.fc45.x86_64.rpm BSD-3-Clause AND CC0-1.0 AND GPL-2.0-only AND GPL-3.0-only AND (GPL-2.0-only OR GPL-3.0-only)
 
 [musl apk]
 bolt 141ad42c933e23f7e1d260f84a20a5e319b311ab5b0e430327ecf1f60091b4e5 137115 var https://dl-cdn.alpinelinux.org/alpine/v3.24/community/x86_64/bolt-0.9.11-r0.apk LGPL-2.1-or-later

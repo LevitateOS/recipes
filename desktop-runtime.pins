@@ -1,12 +1,12 @@
 # desktop-runtime.pins: written by `recipes/generators/desktop-runtime-pins.py`; do not edit.
-# Fedora 45 release and updates, generated 2026-11-13: the seeds and every package whose shared library one of them links against.
-version 45.20261113
+# Fedora 45 release and updates, generated 2026-11-18: the seeds and every package whose shared library one of them links against.
+version 45.20261118
 
 [any rpm]
 alsa-lib 1563c75f83862048ce9690687f06f38c73d1a23148a8b331086bb8762fcc59e3 580394 - https://dl.fedoraproject.org/pub/fedora/linux/releases/45/Everything/x86_64/os/Packages/a/alsa-lib-1.2.16.1-2.fc45.x86_64.rpm -
-at-spi2-atk aa4e59a6e26bd0ed648b5f57e94fbbd9dea82173584cad79cf74ca6b0d989ad7 92025 - https://dl.fedoraproject.org/pub/fedora/linux/updates/45/Everything/x86_64/Packages/a/at-spi2-atk-2.62.1-1.fc45.x86_64.rpm -
-at-spi2-core 3c55cf4902dc43c7e122a0875fae806f8409d74006e48337bdd20289be3439d9 410264 - https://dl.fedoraproject.org/pub/fedora/linux/updates/45/Everything/x86_64/Packages/a/at-spi2-core-2.62.1-1.fc45.x86_64.rpm -
-atk b242900b57d565c1b68bbd666f62453ca4086e90e6120d5fe2193cc5e527dfd9 85039 - https://dl.fedoraproject.org/pub/fedora/linux/updates/45/Everything/x86_64/Packages/a/atk-2.62.1-1.fc45.x86_64.rpm -
+at-spi2-atk aa4e59a6e26bd0ed648b5f57e94fbbd9dea82173584cad79cf74ca6b0d989ad7 92025 - https://kojipkgs.fedoraproject.org/packages/at-spi2-core/2.62.1/1.fc45/data/signed/f577861e/x86_64/at-spi2-atk-2.62.1-1.fc45.x86_64.rpm -
+at-spi2-core 3c55cf4902dc43c7e122a0875fae806f8409d74006e48337bdd20289be3439d9 410264 - https://kojipkgs.fedoraproject.org/packages/at-spi2-core/2.62.1/1.fc45/data/signed/f577861e/x86_64/at-spi2-core-2.62.1-1.fc45.x86_64.rpm -
+atk b242900b57d565c1b68bbd666f62453ca4086e90e6120d5fe2193cc5e527dfd9 85039 - https://kojipkgs.fedoraproject.org/packages/at-spi2-core/2.62.1/1.fc45/data/signed/f577861e/x86_64/atk-2.62.1-1.fc45.x86_64.rpm -
 avahi-glib 5c212a9572865bff5d6ddceba1e521d888c860f1dfb14a0f382813a675b13399 15534 - https://dl.fedoraproject.org/pub/fedora/linux/releases/45/Everything/x86_64/os/Packages/a/avahi-glib-0.9~rc2-9.fc45.x86_64.rpm -
 avahi-libs 5c7c20754931df98db1f512567a46a2ba6de70b59d181e216e78bb4ce9ad76c8 72798 - https://dl.fedoraproject.org/pub/fedora/linux/releases/45/Everything/x86_64/os/Packages/a/avahi-libs-0.9~rc2-9.fc45.x86_64.rpm -
 bzip2-libs 0c4338556b818394570eef963fd183ab2bde7babe277de146f355c7595d36d8a 44548 - https://dl.fedoraproject.org/pub/fedora/linux/releases/45/Everything/x86_64/os/Packages/b/bzip2-libs-1.0.8-24.fc45.x86_64.rpm -
@@ -14,26 +14,26 @@ cairo 28f57588c221504308bf8027ba3f5ad36b185bf45bdfe7a1c599b1688e25c180 775811 - 
 cairo-gobject 844b0c08cb2cd801e1762a2ce04273f8e27e60ad1fda8e9199d8c97ab9e9f257 17096 - https://dl.fedoraproject.org/pub/fedora/linux/releases/45/Everything/x86_64/os/Packages/c/cairo-gobject-1.18.6-1.fc45.x86_64.rpm -
 colord-libs e9f503998e265aea75327f1cfcbb15735866b3c6028837d62680ed9757b02043 240186 - https://dl.fedoraproject.org/pub/fedora/linux/releases/45/Everything/x86_64/os/Packages/c/colord-libs-1.4.8-5.fc45.x86_64.rpm -
 cups-libs b5d6664200c9d3eea3082d357ed7295bbe17613d6d0479c5a29f76f2342bf6cc 276932 - https://dl.fedoraproject.org/pub/fedora/linux/releases/45/Everything/x86_64/os/Packages/c/cups-libs-2.4.19-4.fc45.x86_64.rpm -
-dbus-libs ad55fbe37d0829382dd668cdec82799fbdcd07c2d7f168f1875439f084dda21d 159296 - https://dl.fedoraproject.org/pub/fedora/linux/releases/45/Everything/x86_64/os/Packages/d/dbus-libs-1.16.2-6.fc45.x86_64.rpm -
+dbus-libs 23cda1f4a50860f34329407d2740830dad1294a450258c052568bb58bca8d5d1 159618 - https://kojipkgs.fedoraproject.org/packages/dbus/1.16.4/2.fc45/data/signed/f577861e/x86_64/dbus-libs-1.16.4-2.fc45.x86_64.rpm -
 dconf 4a8689590be8ddfc8cf0a40e391b51e030a2cc360e44a1db739c5929144f0878 118532 - https://dl.fedoraproject.org/pub/fedora/linux/releases/45/Everything/x86_64/os/Packages/d/dconf-51.0-1.fc45.x86_64.rpm -
-expat 8e94a14880241d9eff840418124dcee0f862bd18356c85a5212fea4abed93773 139468 - https://dl.fedoraproject.org/pub/fedora/linux/updates/45/Everything/x86_64/Packages/e/expat-2.9.0-1.fc45.x86_64.rpm -
+expat 8e94a14880241d9eff840418124dcee0f862bd18356c85a5212fea4abed93773 139468 - https://kojipkgs.fedoraproject.org/packages/expat/2.9.0/1.fc45/data/signed/f577861e/x86_64/expat-2.9.0-1.fc45.x86_64.rpm -
 fontconfig d1b8e44920f91a83dd323cfe4bae0dc981c5bd9242b7f4dbf51d068ac7666dc2 391618 - https://dl.fedoraproject.org/pub/fedora/linux/releases/45/Everything/x86_64/os/Packages/f/fontconfig-2.18.3-2.fc45.x86_64.rpm -
-freetype 9ee315c852f962e074293d8c4c44566cee1c7ed0b37aa9bafca75439104fc8f3 454197 - https://dl.fedoraproject.org/pub/fedora/linux/updates/45/Everything/x86_64/Packages/f/freetype-2.14.3-3.fc45.x86_64.rpm -
-fribidi 0b8fbaf8bc77652aaa78c928a4826daedfcf417b00bc754c8909da0eb533a04d 107526 - https://dl.fedoraproject.org/pub/fedora/linux/updates/45/Everything/x86_64/Packages/f/fribidi-1.0.18-1.fc45.x86_64.rpm -
+freetype 9ee315c852f962e074293d8c4c44566cee1c7ed0b37aa9bafca75439104fc8f3 454197 - https://kojipkgs.fedoraproject.org/packages/freetype/2.14.3/3.fc45/data/signed/f577861e/x86_64/freetype-2.14.3-3.fc45.x86_64.rpm -
+fribidi 0b8fbaf8bc77652aaa78c928a4826daedfcf417b00bc754c8909da0eb533a04d 107526 - https://kojipkgs.fedoraproject.org/packages/fribidi/1.0.18/1.fc45/data/signed/f577861e/x86_64/fribidi-1.0.18-1.fc45.x86_64.rpm -
 gdk-pixbuf2 26ad92539a2c8fa8ef7493a9bd999f180d969d9b426d357659ace233bb2493f2 522844 - https://dl.fedoraproject.org/pub/fedora/linux/releases/45/Everything/x86_64/os/Packages/g/gdk-pixbuf2-2.44.8-3.fc45.x86_64.rpm -
-glib2 b60cf429338776312f0937ac512ecdb595b00c0642d22075c31f6c86410f46d0 3365226 - https://dl.fedoraproject.org/pub/fedora/linux/updates/45/Everything/x86_64/Packages/g/glib2-2.90.1-1.fc45.x86_64.rpm -
-glibc 8d6ec366a92f423acdc112c722b6ee9f81723fbcc6d60615401a09ec7fd0b007 2581371 - https://dl.fedoraproject.org/pub/fedora/linux/updates/45/Everything/x86_64/Packages/g/glibc-2.44-2.fc45.x86_64.rpm -
-glibc-common df314456af481691c0212028dfd000a51a8ee9c51a3ef2fc4e67d136ec457e5c 426498 - https://dl.fedoraproject.org/pub/fedora/linux/updates/45/Everything/x86_64/Packages/g/glibc-common-2.44-2.fc45.x86_64.rpm -
-glycin-libs 053c3c73d185af3cc23c2c8070572925c304cb32955d5f09c2c0f0f39f887514 1851765 - https://dl.fedoraproject.org/pub/fedora/linux/updates/45/Everything/x86_64/Packages/g/glycin-libs-2.2.6-1.fc45.x86_64.rpm -
-glycin-loaders 6f3028ba3123bc6266f44f36555d536db047a1a602634d2b87f3cff9ad8e3e94 3561779 - https://dl.fedoraproject.org/pub/fedora/linux/updates/45/Everything/x86_64/Packages/g/glycin-loaders-2.2.6-1.fc45.x86_64.rpm -
+glib2 b60cf429338776312f0937ac512ecdb595b00c0642d22075c31f6c86410f46d0 3365226 - https://kojipkgs.fedoraproject.org/packages/glib2/2.90.1/1.fc45/data/signed/f577861e/x86_64/glib2-2.90.1-1.fc45.x86_64.rpm -
+glibc 8d6ec366a92f423acdc112c722b6ee9f81723fbcc6d60615401a09ec7fd0b007 2581371 - https://kojipkgs.fedoraproject.org/packages/glibc/2.44/2.fc45/data/signed/f577861e/x86_64/glibc-2.44-2.fc45.x86_64.rpm -
+glibc-common df314456af481691c0212028dfd000a51a8ee9c51a3ef2fc4e67d136ec457e5c 426498 - https://kojipkgs.fedoraproject.org/packages/glibc/2.44/2.fc45/data/signed/f577861e/x86_64/glibc-common-2.44-2.fc45.x86_64.rpm -
+glycin-libs 053c3c73d185af3cc23c2c8070572925c304cb32955d5f09c2c0f0f39f887514 1851765 - https://kojipkgs.fedoraproject.org/packages/glycin/2.2.6/1.fc45/data/signed/f577861e/x86_64/glycin-libs-2.2.6-1.fc45.x86_64.rpm -
+glycin-loaders 6f3028ba3123bc6266f44f36555d536db047a1a602634d2b87f3cff9ad8e3e94 3561779 - https://kojipkgs.fedoraproject.org/packages/glycin/2.2.6/1.fc45/data/signed/f577861e/x86_64/glycin-loaders-2.2.6-1.fc45.x86_64.rpm -
 gmp 434884021f2e95f464950b6af962c79e7b3e9f3a89a17bc6a3e6307a555746f7 329507 - https://dl.fedoraproject.org/pub/fedora/linux/releases/45/Everything/x86_64/os/Packages/g/gmp-6.3.0-6.fc45.x86_64.rpm -
 gnutls 69284865678b6478dd1d78afaad3549f4276800ce9b9e17c8d8bfe1035ddbd57 1491440 - https://dl.fedoraproject.org/pub/fedora/linux/releases/45/Everything/x86_64/os/Packages/g/gnutls-3.8.13-3.fc45.x86_64.rpm -
 graphite2 08cd675bdea4dab2021ee29f8d5a25407b5a94cec78cfa98d889c1b43a32ae6f 97074 - https://dl.fedoraproject.org/pub/fedora/linux/releases/45/Everything/x86_64/os/Packages/g/graphite2-1.3.14-22.fc45.x86_64.rpm -
 gtk3 2e2d4e236a95d858d093d3c2a57f367536ae5c00c37f826616221d9d4cd2c0c5 6364926 - https://dl.fedoraproject.org/pub/fedora/linux/releases/45/Everything/x86_64/os/Packages/g/gtk3-3.24.52-6.fc45.x86_64.rpm -
-harfbuzz df2bf709d332629f0b5f586678eb31e6652a997ba0eb11c7c64c113ecce869a7 1406248 - https://dl.fedoraproject.org/pub/fedora/linux/updates/45/Everything/x86_64/Packages/h/harfbuzz-15.0.0-2.fc45.x86_64.rpm -
+harfbuzz df2bf709d332629f0b5f586678eb31e6652a997ba0eb11c7c64c113ecce869a7 1406248 - https://kojipkgs.fedoraproject.org/packages/harfbuzz/15.0.0/2.fc45/data/signed/f577861e/x86_64/harfbuzz-15.0.0-2.fc45.x86_64.rpm -
 json-glib 37bfec1cf8da0d04c1f391f45b941d177984d9dd6dece61b5f3524249ba560c7 180354 - https://dl.fedoraproject.org/pub/fedora/linux/releases/45/Everything/x86_64/os/Packages/j/json-glib-1.10.8-11.fc45.x86_64.rpm -
 keyutils-libs 37c056b41062fa9b62355a03ac63cf923776625410f98b81a62ecef7f68b8037 32230 - https://dl.fedoraproject.org/pub/fedora/linux/releases/45/Everything/x86_64/os/Packages/k/keyutils-libs-1.6.3-8.fc45.x86_64.rpm -
-krb5-libs f3516bdce9ab3a99c9d8eafe9ca347ccbf922283e2d975549c27f96965139fde 822997 - https://dl.fedoraproject.org/pub/fedora/linux/updates/45/Everything/x86_64/Packages/k/krb5-libs-1.22.2-11.fc45.x86_64.rpm -
+krb5-libs f3516bdce9ab3a99c9d8eafe9ca347ccbf922283e2d975549c27f96965139fde 822997 - https://kojipkgs.fedoraproject.org/packages/krb5/1.22.2/11.fc45/data/signed/f577861e/x86_64/krb5-libs-1.22.2-11.fc45.x86_64.rpm -
 lcms2 80d7003e93a85b7a3b14798cde18478254e1d17545d13b035dc9400d54b148fc 194883 - https://dl.fedoraproject.org/pub/fedora/linux/releases/45/Everything/x86_64/os/Packages/l/lcms2-2.16-8.fc45.x86_64.rpm -
 libX11 b810820916a0008209a061b22e7369f7ef1d12ac7fa1c729399b5683b0194076 693616 - https://dl.fedoraproject.org/pub/fedora/linux/releases/45/Everything/x86_64/os/Packages/l/libX11-1.8.13-3.fc45.x86_64.rpm -
 libX11-xcb 1f2b1b7f8fa4103c60887965d642ffe40fd88d2cdccd7da0ce4ef237e916a5b8 11099 - https://dl.fedoraproject.org/pub/fedora/linux/releases/45/Everything/x86_64/os/Packages/l/libX11-xcb-1.8.13-3.fc45.x86_64.rpm -
@@ -45,7 +45,7 @@ libXdamage b51024119acaa682dd84b685e3f97c1880ae82c7877d47a9f6f4a096e5b0e043 2370
 libXext 598de1986395e8b81dcd1f8606c4698e4a306152e606959ed62beaa8b9fca4a3 41074 - https://dl.fedoraproject.org/pub/fedora/linux/releases/45/Everything/x86_64/os/Packages/l/libXext-1.3.6-6.fc45.x86_64.rpm -
 libXfixes 31a29f5339a23927cacfb6c9b63659e377a54edf67741789cb5f4169ba24f11c 19575 - https://dl.fedoraproject.org/pub/fedora/linux/releases/45/Everything/x86_64/os/Packages/l/libXfixes-6.0.1-8.fc45.x86_64.rpm -
 libXft c9cdd5f05a848c33d4b897211d6f3926cfb9e24b09903003a03aedc67e6f0162 75468 - https://dl.fedoraproject.org/pub/fedora/linux/releases/45/Everything/x86_64/os/Packages/l/libXft-2.3.8-11.fc45.x86_64.rpm -
-libXi 01e5591ab5698f4b7fb8a8669b932b98dca3d30ddf88d9cb09960eb3755534f6 43198 - https://dl.fedoraproject.org/pub/fedora/linux/updates/45/Everything/x86_64/Packages/l/libXi-1.8.4-1.fc45.x86_64.rpm -
+libXi 01e5591ab5698f4b7fb8a8669b932b98dca3d30ddf88d9cb09960eb3755534f6 43198 - https://kojipkgs.fedoraproject.org/packages/libXi/1.8.4/1.fc45/data/signed/f577861e/x86_64/libXi-1.8.4-1.fc45.x86_64.rpm -
 libXinerama 4c62d41e83cbb6f28bbff72038399ac938015e58e7f662decd39986984a0461f 14505 - https://dl.fedoraproject.org/pub/fedora/linux/releases/45/Everything/x86_64/os/Packages/l/libXinerama-1.1.5-11.fc45.x86_64.rpm -
 libXrandr 2a3a82ede051dc57d495ef9a901fe8e2a7baf0ca492976c67bf735584b1e125b 28373 - https://dl.fedoraproject.org/pub/fedora/linux/releases/45/Everything/x86_64/os/Packages/l/libXrandr-1.5.4-8.fc45.x86_64.rpm -
 libXrender d3bd1a05bb6bf9714e4a1b663e202d088ad33e2820c317fdb3d66bb462b9d13f 28430 - https://dl.fedoraproject.org/pub/fedora/linux/releases/45/Everything/x86_64/os/Packages/l/libXrender-0.9.12-5.fc45.x86_64.rpm -
@@ -60,24 +60,24 @@ libdrm b6b6575c734d899dd25c2c6af93ce14195f2143467973f4544865371b6fc74f9 170712 -
 libepoxy a897d3d251d0489da6ec30fb187903040ad91b9074547733bed7307b6b222a84 235391 - https://dl.fedoraproject.org/pub/fedora/linux/releases/45/Everything/x86_64/os/Packages/l/libepoxy-1.5.10-13.fc45.x86_64.rpm -
 libevent c39698953327e53a5de2f703d4c6d8063e3580cc74dee3e14125319bfc204c6b 296244 - https://dl.fedoraproject.org/pub/fedora/linux/releases/45/Everything/x86_64/os/Packages/l/libevent-2.1.13-1.fc45.x86_64.rpm -
 libffi e8c4cf4b1747f677b98e9f195c14c6abc8d70f1154d0d03f4d5cdeb110a77698 42861 - https://dl.fedoraproject.org/pub/fedora/linux/releases/45/Everything/x86_64/os/Packages/l/libffi-3.5.2-3.fc45.x86_64.rpm -
-libgcc 57fc410c4b5939d5f85d42f90c5f0ab3514dbb74c965de1de7e3ac0d1374d606 142903 - https://dl.fedoraproject.org/pub/fedora/linux/updates/45/Everything/x86_64/Packages/l/libgcc-16.2.1-3.fc45.x86_64.rpm -
+libgcc 57fc410c4b5939d5f85d42f90c5f0ab3514dbb74c965de1de7e3ac0d1374d606 142903 - https://kojipkgs.fedoraproject.org/packages/gcc/16.2.1/3.fc45/data/signed/f577861e/x86_64/libgcc-16.2.1-3.fc45.x86_64.rpm -
 libglvnd 8d055193c8a2da0d04a7ae2d858333bfe46fd573f7483cfab732c75ed1cac256 116711 - https://dl.fedoraproject.org/pub/fedora/linux/releases/45/Everything/x86_64/os/Packages/l/libglvnd-1.7.0-10.fc45.x86_64.rpm -
 libglvnd-glx 352aa61d8b1f88cc4a61f2cfec06e4454c3bd7129b112785eeef6da019cf30c9 132848 - https://dl.fedoraproject.org/pub/fedora/linux/releases/45/Everything/x86_64/os/Packages/l/libglvnd-glx-1.7.0-10.fc45.x86_64.rpm -
 libgusb 347eb22bc7dcc796d3adacd6a2a9e5e1331581f8fd87300c45bcb5efad34ea29 66257 - https://dl.fedoraproject.org/pub/fedora/linux/releases/45/Everything/x86_64/os/Packages/l/libgusb-0.4.9-6.fc45.x86_64.rpm -
-libicu 0d9a97887c37d0a635679f38731f4973d034c188f0d5aa13c0b88397ce1603dd 11664975 - https://dl.fedoraproject.org/pub/fedora/linux/updates/45/Everything/x86_64/Packages/l/libicu-78.3-9.fc45.x86_64.rpm -
+libicu 0d9a97887c37d0a635679f38731f4973d034c188f0d5aa13c0b88397ce1603dd 11664975 - https://kojipkgs.fedoraproject.org/packages/icu/78.3/9.fc45/data/signed/f577861e/x86_64/libicu-78.3-9.fc45.x86_64.rpm -
 libidn2 292b62009f71cc0bebfd8f1087397d507a4932ae3d081d8a1fb1b79f34705569 179393 - https://dl.fedoraproject.org/pub/fedora/linux/releases/45/Everything/x86_64/os/Packages/l/libidn2-2.3.8-4.fc45.x86_64.rpm -
 libmount caa1091d72eb831047655ab27b834d194e2690993af619444d0139b11e51a200 183759 - https://dl.fedoraproject.org/pub/fedora/linux/releases/45/Everything/x86_64/os/Packages/l/libmount-2.42.4-1.fc45.x86_64.rpm -
 libnghttp2 4ad405fa966df0d1ba6602d4a7d205b9bbf0e54d369a9b96ce26d45c0a91e168 79006 - https://dl.fedoraproject.org/pub/fedora/linux/releases/45/Everything/x86_64/os/Packages/l/libnghttp2-1.69.0-6.fc45.x86_64.rpm -
-libnotify e0863d445dedd48d06a2a89cec44cb0ed67b2c871083c157a7a0df1ac432e0a1 58079 - https://dl.fedoraproject.org/pub/fedora/linux/updates/45/Everything/x86_64/Packages/l/libnotify-0.8.9-1.fc45.x86_64.rpm -
+libnotify e0863d445dedd48d06a2a89cec44cb0ed67b2c871083c157a7a0df1ac432e0a1 58079 - https://kojipkgs.fedoraproject.org/packages/libnotify/0.8.9/1.fc45/data/signed/f577861e/x86_64/libnotify-0.8.9-1.fc45.x86_64.rpm -
 libpciaccess 1992e2f0336e4c3b9b7d7f442b58ea527fc9d65d879b18790d58206fe5e2c49b 27814 - https://dl.fedoraproject.org/pub/fedora/linux/releases/45/Everything/x86_64/os/Packages/l/libpciaccess-0.16-18.fc45.x86_64.rpm -
-libpng 81e1d7cb71d001c9e96acb50687622bb801a86b4d0618896618dfc291d97a4d6 132286 - https://dl.fedoraproject.org/pub/fedora/linux/updates/45/Everything/x86_64/Packages/l/libpng-1.6.59-1.fc45.x86_64.rpm -
+libpng 81e1d7cb71d001c9e96acb50687622bb801a86b4d0618896618dfc291d97a4d6 132286 - https://kojipkgs.fedoraproject.org/packages/libpng/1.6.59/1.fc45/data/signed/f577861e/x86_64/libpng-1.6.59-1.fc45.x86_64.rpm -
 libpsl 82762074632ee1e59a01ebd14ca1ab9afbebeae8167b50350eebcccebbaffabc 69193 - https://dl.fedoraproject.org/pub/fedora/linux/releases/45/Everything/x86_64/os/Packages/l/libpsl-0.23.1-1.fc45.x86_64.rpm -
 librsvg2 e8d1f3e73a17514fef606dcd40d9e0a13314cb44666a0fae076ffe779db1af78 1963603 - https://dl.fedoraproject.org/pub/fedora/linux/releases/45/Everything/x86_64/os/Packages/l/librsvg2-2.63.2-2.fc45.x86_64.rpm -
 libseccomp a10e3b932cb5eb364ec5123af8cec38ae05a8b5bde9c620f1f631c88dcc71c27 77460 - https://dl.fedoraproject.org/pub/fedora/linux/releases/45/Everything/x86_64/os/Packages/l/libseccomp-2.6.1-3.fc45.x86_64.rpm -
 libsecret dac8f70040c76e14766db4206fb1636122de3d05c6f883b720f07d3c63353356 184950 - https://dl.fedoraproject.org/pub/fedora/linux/releases/45/Everything/x86_64/os/Packages/l/libsecret-0.21.8.2-2.fc45.x86_64.rpm -
 libselinux 6420804a2eea7da60854ae14098c1b5c76bb44cda550abe2cf7962208097f23b 106608 - https://dl.fedoraproject.org/pub/fedora/linux/releases/45/Everything/x86_64/os/Packages/l/libselinux-3.11-5.fc45.x86_64.rpm -
-libsoup3 7784d52cb197bae7a2e99e290d25c81ebc812eb454ffa0ef7de12b5de42fbdf6 433412 - https://dl.fedoraproject.org/pub/fedora/linux/updates/45/Everything/x86_64/Packages/l/libsoup3-3.8.1-1.fc45.x86_64.rpm -
-libstdc++ c4256a01fab863cecadd3aaf24b015902ac4f3b841924550d788017e28aa2d9a 1052840 - https://dl.fedoraproject.org/pub/fedora/linux/updates/45/Everything/x86_64/Packages/l/libstdc++-16.2.1-3.fc45.x86_64.rpm -
+libsoup3 7784d52cb197bae7a2e99e290d25c81ebc812eb454ffa0ef7de12b5de42fbdf6 433412 - https://kojipkgs.fedoraproject.org/packages/libsoup3/3.8.1/1.fc45/data/signed/f577861e/x86_64/libsoup3-3.8.1-1.fc45.x86_64.rpm -
+libstdc++ c4256a01fab863cecadd3aaf24b015902ac4f3b841924550d788017e28aa2d9a 1052840 - https://kojipkgs.fedoraproject.org/packages/gcc/16.2.1/3.fc45/data/signed/f577861e/x86_64/libstdc++-16.2.1-3.fc45.x86_64.rpm -
 libstemmer f779c6fe472fc19505c402353fd04422e75b4ff88431aad0811f88d519b08947 157548 - https://dl.fedoraproject.org/pub/fedora/linux/releases/45/Everything/x86_64/os/Packages/l/libstemmer-3.1.1-2.fc45.x86_64.rpm -
 libtasn1 d61fcf0d0690a5ab8de48578e5e5d09356c8cf7ae0d729704f680b090ecfdc78 77769 - https://dl.fedoraproject.org/pub/fedora/linux/releases/45/Everything/x86_64/os/Packages/l/libtasn1-4.21.0-2.fc45.x86_64.rpm -
 libthai 1b06eb1bbbe9aa597d475ed48652bfa8a105db7d96e5e68dfb5ffeb395f2a391 221250 - https://dl.fedoraproject.org/pub/fedora/linux/releases/45/Everything/x86_64/os/Packages/l/libthai-0.1.30-3.fc45.x86_64.rpm -
@@ -97,20 +97,20 @@ libxml2 7c21dbf8e1dde792c35687b9a340b398b4640b1e2633a87cf6026975fd659456 693013 
 libxshmfence 31c2eb73ba93fe602eb9a90a8ff8f1278419c7f26d7d98b7d38a512f8b93f0a6 13401 - https://dl.fedoraproject.org/pub/fedora/linux/releases/45/Everything/x86_64/os/Packages/l/libxshmfence-1.3.2-9.fc45.x86_64.rpm -
 libzstd d637ecf99fffca9746ffe29a8b5f9db56a16a86dff6d637365e072f460f364a7 372586 - https://dl.fedoraproject.org/pub/fedora/linux/releases/45/Everything/x86_64/os/Packages/l/libzstd-1.5.7-6.fc45.x86_64.rpm -
 lzo fb84f83c9896ce93bd77a0796be99a9254e63fadf13001b59693b3128407ea2f 72246 - https://dl.fedoraproject.org/pub/fedora/linux/releases/45/Everything/x86_64/os/Packages/l/lzo-2.10-17.fc45.x86_64.rpm -
-mesa-libgbm cd717527e5ffb482994477565501e8a4cfc366eb5a12642ba134225a3f229a4a 21418 - https://dl.fedoraproject.org/pub/fedora/linux/updates/45/Everything/x86_64/Packages/m/mesa-libgbm-26.2.6-1.fc45.x86_64.rpm -
+mesa-libgbm 4df3cd9776644e2958a18bb725bd0e042e5825c9676be236a3ec9604c12231d0 21529 - https://kojipkgs.fedoraproject.org/packages/mesa/26.2.7/1.fc45/data/signed/f577861e/x86_64/mesa-libgbm-26.2.7-1.fc45.x86_64.rpm -
 ncurses-libs bc8d79cdd67d96248c93bd1a3eec1e499ec2d1f96cb6922a709df6df06d5cd38 351947 - https://dl.fedoraproject.org/pub/fedora/linux/releases/45/Everything/x86_64/os/Packages/n/ncurses-libs-6.6-3.fc45.x86_64.rpm -
 nettle c6e93f21d9b7e16078f2f057f3fd1ebcd913d02a030480550a396b2a774c46b4 439963 - https://dl.fedoraproject.org/pub/fedora/linux/releases/45/Everything/x86_64/os/Packages/n/nettle-4.0-5.fc45.x86_64.rpm -
-nspr c8b47fb596dea3ed875b57eb693a8a36055ef7e9d3d44ab3f3174b6f281f146f 148390 - https://dl.fedoraproject.org/pub/fedora/linux/updates/45/Everything/x86_64/Packages/n/nspr-4.39.0-10.fc45.x86_64.rpm -
-nss f0ccd09fee50f4986feb2395d9c0cf17965e361c89f5861f8125ef308f3831b8 786585 - https://dl.fedoraproject.org/pub/fedora/linux/updates/45/Everything/x86_64/Packages/n/nss-3.133.0-1.fc45.x86_64.rpm -
-nss-softokn 55fc3748d385412983e85339d7cdae3fec0ca5af5c2ea7dfd5e3e1524a4320b0 461888 - https://dl.fedoraproject.org/pub/fedora/linux/updates/45/Everything/x86_64/Packages/n/nss-softokn-3.133.0-1.fc45.x86_64.rpm -
-nss-softokn-freebl f90a333ad288d1fa88a67631fd42bbedf39b2a751228e9a213e48bb288176d73 400281 - https://dl.fedoraproject.org/pub/fedora/linux/updates/45/Everything/x86_64/Packages/n/nss-softokn-freebl-3.133.0-1.fc45.x86_64.rpm -
-nss-util a4bb05c1c7c7d83dd29df260ade877e45f431f1921798d3da8201d0dd824e82a 93534 - https://dl.fedoraproject.org/pub/fedora/linux/updates/45/Everything/x86_64/Packages/n/nss-util-3.133.0-1.fc45.x86_64.rpm -
+nspr c8b47fb596dea3ed875b57eb693a8a36055ef7e9d3d44ab3f3174b6f281f146f 148390 - https://kojipkgs.fedoraproject.org/packages/nss/3.133.0/1.fc45/data/signed/f577861e/x86_64/nspr-4.39.0-10.fc45.x86_64.rpm -
+nss f0ccd09fee50f4986feb2395d9c0cf17965e361c89f5861f8125ef308f3831b8 786585 - https://kojipkgs.fedoraproject.org/packages/nss/3.133.0/1.fc45/data/signed/f577861e/x86_64/nss-3.133.0-1.fc45.x86_64.rpm -
+nss-softokn 55fc3748d385412983e85339d7cdae3fec0ca5af5c2ea7dfd5e3e1524a4320b0 461888 - https://kojipkgs.fedoraproject.org/packages/nss/3.133.0/1.fc45/data/signed/f577861e/x86_64/nss-softokn-3.133.0-1.fc45.x86_64.rpm -
+nss-softokn-freebl f90a333ad288d1fa88a67631fd42bbedf39b2a751228e9a213e48bb288176d73 400281 - https://kojipkgs.fedoraproject.org/packages/nss/3.133.0/1.fc45/data/signed/f577861e/x86_64/nss-softokn-freebl-3.133.0-1.fc45.x86_64.rpm -
+nss-util a4bb05c1c7c7d83dd29df260ade877e45f431f1921798d3da8201d0dd824e82a 93534 - https://kojipkgs.fedoraproject.org/packages/nss/3.133.0/1.fc45/data/signed/f577861e/x86_64/nss-util-3.133.0-1.fc45.x86_64.rpm -
 openssl-libs 4f8ece27fdbdbf94ced234b088e1f9eb6f1e60cf6732a898c2d8ad156dbc86ae 2456529 - https://dl.fedoraproject.org/pub/fedora/linux/releases/45/Everything/x86_64/os/Packages/o/openssl-libs-4.0.3-1.fc45.x86_64.rpm -
-p11-kit 422c985080ab36378c80394d0293133b4608b1195a5f9e5737ab76c30ef65409 573464 - https://dl.fedoraproject.org/pub/fedora/linux/releases/45/Everything/x86_64/os/Packages/p/p11-kit-0.26.5-1.fc45.x86_64.rpm -
+p11-kit 4992335eb6c202dfa685f7460a829d0851281afa677483ab18cca84aed58fd53 582583 - https://kojipkgs.fedoraproject.org/packages/p11-kit/0.26.6/1.fc45/data/signed/f577861e/x86_64/p11-kit-0.26.6-1.fc45.x86_64.rpm -
 pango 98dffb38486d324625ac221cc6eac1343c37829645d58d3a204dc58934806b16 377482 - https://dl.fedoraproject.org/pub/fedora/linux/releases/45/Everything/x86_64/os/Packages/p/pango-1.58.2-1.fc45.x86_64.rpm -
-pcre2 178b22ce6b2215257854742b8de5c37d78f50aa4db364d7088a3fc6dd3fbdc7d 286761 - https://dl.fedoraproject.org/pub/fedora/linux/updates/45/Everything/x86_64/Packages/p/pcre2-10.49-1.fc45.x86_64.rpm -
+pcre2 178b22ce6b2215257854742b8de5c37d78f50aa4db364d7088a3fc6dd3fbdc7d 286761 - https://kojipkgs.fedoraproject.org/packages/pcre2/10.49/1.fc45/data/signed/f577861e/x86_64/pcre2-10.49-1.fc45.x86_64.rpm -
 pixman 1901e43f205f236d487166d0ad27f9c2250c0f940399665606dfbe41e9ffc827 303814 - https://dl.fedoraproject.org/pub/fedora/linux/releases/45/Everything/x86_64/os/Packages/p/pixman-0.46.2-4.fc45.x86_64.rpm -
 readline f47c0a94e9f775fa5711bada265880af7dc7d3de6404b817c94bc4bf9a8522ea 234270 - https://dl.fedoraproject.org/pub/fedora/linux/releases/45/Everything/x86_64/os/Packages/r/readline-8.3-6.fc45.x86_64.rpm -
 sqlite-libs 55d417e2be9eb4e20d2adb8fb55fdb3e71bb1fc17321f98347216f4a29070bc8 831591 - https://dl.fedoraproject.org/pub/fedora/linux/releases/45/Everything/x86_64/os/Packages/s/sqlite-libs-3.53.4-1.fc45.x86_64.rpm -
-systemd-libs c1af6d9a736f0337e14e219cff0f8fb9ed8a282bcf658c62efe6e8061f8692ab 986849 - https://dl.fedoraproject.org/pub/fedora/linux/updates/45/Everything/x86_64/Packages/s/systemd-libs-262.1-1.fc45.x86_64.rpm -
+systemd-libs c1af6d9a736f0337e14e219cff0f8fb9ed8a282bcf658c62efe6e8061f8692ab 986849 - https://kojipkgs.fedoraproject.org/packages/systemd/262.1/1.fc45/data/signed/f577861e/x86_64/systemd-libs-262.1-1.fc45.x86_64.rpm -
 zlib-ng-compat 1bab05fecdd71fc4a946852d83405f238c89cccb63987c0941c7f2f0184a99e2 92600 - https://dl.fedoraproject.org/pub/fedora/linux/releases/45/Everything/x86_64/os/Packages/z/zlib-ng-compat-2.3.3-6.fc45.x86_64.rpm -

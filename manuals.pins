@@ -1,6 +1,6 @@
 # manuals.pins: written by `cargo xtask base groups`; do not edit.
-# glibc: Fedora 45, locked 2026-11-17. musl: Alpine v3.24, locked 2026-11-16.
-version 2026.11.17
+# glibc: Fedora 45, locked 2026-11-18. musl: Alpine v3.24, locked 2026-11-16.
+version 2026.11.18
 
 [glibc rpm]
 groff-base 17993c1509f0a525cae73c824d3b2507c6df58e7701a9629e61340711e6774bd 1286768 - https://dl.fedoraproject.org/pub/fedora/linux/releases/45/Everything/x86_64/os/Packages/g/groff-base-1.24.1-2.fc45.x86_64.rpm GPL-3.0-or-later AND GFDL-1.3-or-later AND BSD-4-Clause-UC AND MIT AND X11 AND LicenseRef-Fedora-Public-Domain

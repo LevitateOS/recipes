@@ -14,7 +14,7 @@ const RECIPE_API = 1;
 // more groups' closures need.
 const NEEDS = #{
     outputs: #{ system: "directory" },
-    network: ["dl.fedoraproject.org:443", "dl-cdn.alpinelinux.org:443"],
+    network: ["dl.fedoraproject.org:443", "kojipkgs.fedoraproject.org:443", "dl-cdn.alpinelinux.org:443"],
     memory_mib: 4096,
     storage_max_objects: 262144,
     timeout_secs: 7200,

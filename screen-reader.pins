@@ -1,6 +1,6 @@
 # screen-reader.pins: written by `cargo xtask base groups`; do not edit.
-# glibc: Fedora 45, locked 2026-11-17. musl: Alpine v3.24, locked 2026-11-16.
-version 2026.11.17
+# glibc: Fedora 45, locked 2026-11-18. musl: Alpine v3.24, locked 2026-11-16.
+version 2026.11.18
 
 [glibc rpm]
 brlapi b023d8f04bec6281cdd3ade78b5cf87106a7848b1dc7a92fddb720973c4a25ad 203065 - https://dl.fedoraproject.org/pub/fedora/linux/releases/45/Everything/x86_64/os/Packages/b/brlapi-0.8.8-9.fc45.x86_64.rpm LGPL-2.0-or-later AND LGPL-2.1-or-later AND GPL-2.0-or-later
@@ -9,7 +9,7 @@ espeak-ng bb0421e2ce542fa0d2890b69d85c8780ecdb0c815564c4b140e73acf3d80c4f6 97429
 libao 99113e417e37ade253d29185a7d61eeb6d78d134823df39516f6e5b189cc0447 54779 - https://dl.fedoraproject.org/pub/fedora/linux/releases/45/Everything/x86_64/os/Packages/l/libao-1.2.0-32.fc45.x86_64.rpm GPL-2.0-or-later
 liblouis 6ec9577feddbe5d64f72c2066cbcce768a5507af5bc38f4215647e524191c2e7 218693 - https://dl.fedoraproject.org/pub/fedora/linux/releases/45/Everything/x86_64/os/Packages/l/liblouis-3.33.0-9.fc45.x86_64.rpm LGPL-2.1-or-later AND LGPL-2.0-or-later
 liblouis-tables 9869b7c3d51c0e2cec3a090b8ef2275303576178655dcfd4c313d2e6048173f9 2432555 - https://dl.fedoraproject.org/pub/fedora/linux/releases/45/Everything/x86_64/os/Packages/l/liblouis-tables-3.33.0-9.fc45.noarch.rpm LGPL-2.1-or-later AND LGPL-3.0-or-later
-orca 9ebafb81bcb3adce127f4a308ca04215a8e6e590c4953f380928c2552e7b3b8c 4505763 - https://dl.fedoraproject.org/pub/fedora/linux/updates/45/Everything/x86_64/Packages/o/orca-51.1-1.fc45.noarch.rpm LGPL-2.1-or-later AND CC-BY-SA-3.0
+orca 9ebafb81bcb3adce127f4a308ca04215a8e6e590c4953f380928c2552e7b3b8c 4505763 - https://kojipkgs.fedoraproject.org/packages/orca/51.1/1.fc45/data/signed/f577861e/noarch/orca-51.1-1.fc45.noarch.rpm LGPL-2.1-or-later AND CC-BY-SA-3.0
 pcaudiolib 2f6eadbe1890733d589096c92fcd7d604f7be6e945b72d12b7ebbd9c0d205cf5 29487 - https://dl.fedoraproject.org/pub/fedora/linux/releases/45/Everything/x86_64/os/Packages/p/pcaudiolib-1.1-20.fc45.x86_64.rpm GPL-3.0-or-later
 python3-brlapi f2c22f0f5716ea079c80222145349b8207e2b9ab6e139799029ccf316c897731 112145 - https://dl.fedoraproject.org/pub/fedora/linux/releases/45/Everything/x86_64/os/Packages/p/python3-brlapi-0.8.8-9.fc45.x86_64.rpm LGPL-2.0-or-later AND LGPL-2.1-or-later AND GPL-2.0-or-later
 python3-dasbus e49b688045f7f50f4c5da5fd9f2cbd7bc62990adc12c6fa21f812624e03a0202 123919 - https://dl.fedoraproject.org/pub/fedora/linux/releases/45/Everything/x86_64/os/Packages/p/python3-dasbus-1.7-16.fc45.noarch.rpm LGPL-2.1-or-later

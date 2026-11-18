@@ -1,12 +1,12 @@
 # bluetooth.pins: written by `cargo xtask base groups`; do not edit.
-# glibc: Fedora 45, locked 2026-11-17. musl: Alpine v3.24, locked 2026-11-16.
-version 2026.11.17
+# glibc: Fedora 45, locked 2026-11-18. musl: Alpine v3.24, locked 2026-11-16.
+version 2026.11.18
 
 [glibc rpm]
-bluedevil ed44581b5aab6bee3b1c002ea1222fa1ad8167f545dbdc34627c3dbc106e9f36 829649 - https://dl.fedoraproject.org/pub/fedora/linux/updates/45/Everything/x86_64/Packages/b/bluedevil-6.8.3-1.fc45.x86_64.rpm GPL-2.0-or-later
-bluez 89cf1c66846d19819be4584f1e9d67230fa8d715297c768064e98b11c6c3d350 1580448 var https://dl.fedoraproject.org/pub/fedora/linux/updates/45/Everything/x86_64/Packages/b/bluez-5.88-1.fc45.x86_64.rpm GPL-2.0-or-later
-bluez-obexd 835b4e5e895dea044afe7c7003b300478584d2e3c362f8b1a5f560e0f459ed4f 159558 - https://dl.fedoraproject.org/pub/fedora/linux/updates/45/Everything/x86_64/Packages/b/bluez-obexd-5.88-1.fc45.x86_64.rpm GPL-2.0-or-later
-libical b4cc2ec06f12d5d3e63a8c1ae6d1b60c02a334d45a6d41080788718f670673be 268267 - https://dl.fedoraproject.org/pub/fedora/linux/updates/45/Everything/x86_64/Packages/l/libical-3.0.20-11.fc45.x86_64.rpm LGPL-2.1-only OR MPL-2.0
+bluedevil ed44581b5aab6bee3b1c002ea1222fa1ad8167f545dbdc34627c3dbc106e9f36 829649 - https://kojipkgs.fedoraproject.org/packages/bluedevil/6.8.3/1.fc45/data/signed/f577861e/x86_64/bluedevil-6.8.3-1.fc45.x86_64.rpm GPL-2.0-or-later
+bluez 89cf1c66846d19819be4584f1e9d67230fa8d715297c768064e98b11c6c3d350 1580448 var https://kojipkgs.fedoraproject.org/packages/bluez/5.88/1.fc45/data/signed/f577861e/x86_64/bluez-5.88-1.fc45.x86_64.rpm GPL-2.0-or-later
+bluez-obexd 835b4e5e895dea044afe7c7003b300478584d2e3c362f8b1a5f560e0f459ed4f 159558 - https://kojipkgs.fedoraproject.org/packages/bluez/5.88/1.fc45/data/signed/f577861e/x86_64/bluez-obexd-5.88-1.fc45.x86_64.rpm GPL-2.0-or-later
+libical b4cc2ec06f12d5d3e63a8c1ae6d1b60c02a334d45a6d41080788718f670673be 268267 - https://kojipkgs.fedoraproject.org/packages/libical/3.0.20/11.fc45/data/signed/f577861e/x86_64/libical-3.0.20-11.fc45.x86_64.rpm LGPL-2.1-only OR MPL-2.0
 
 [musl apk]
 blueman a3814ab6f6f684663f70eb908de96873744a82fb9a7a9b08f389db9f68b66459 789764 - https://dl-cdn.alpinelinux.org/alpine/v3.24/community/x86_64/blueman-2.4.6-r2.apk GPL-3.0-or-later

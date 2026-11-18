@@ -1,9 +1,9 @@
 # filesystems.pins: written by `cargo xtask base groups`; do not edit.
-# glibc: Fedora 45, locked 2026-11-17. musl: Alpine v3.24, locked 2026-11-16.
-version 2026.11.17
+# glibc: Fedora 45, locked 2026-11-18. musl: Alpine v3.24, locked 2026-11-16.
+version 2026.11.18
 
 [glibc rpm]
-exfatprogs 5005f8ea88719eec4c6405c047597df1d8f5acfb4e5db6c10a004d796e996dd2 156060 - https://dl.fedoraproject.org/pub/fedora/linux/updates/45/Everything/x86_64/Packages/e/exfatprogs-1.4.4-1.fc45.x86_64.rpm GPL-2.0-only
+exfatprogs 5005f8ea88719eec4c6405c047597df1d8f5acfb4e5db6c10a004d796e996dd2 156060 - https://kojipkgs.fedoraproject.org/packages/exfatprogs/1.4.4/1.fc45/data/signed/f577861e/x86_64/exfatprogs-1.4.4-1.fc45.x86_64.rpm GPL-2.0-only
 ntfs-3g 55f4485880d557fd74ceb44a7cb53dab6a58b3d51fedcecbba36af4c5be8030b 136676 - https://dl.fedoraproject.org/pub/fedora/linux/releases/45/Everything/x86_64/os/Packages/n/ntfs-3g-2026.2.25-3.fc45.x86_64.rpm GPL-2.0-or-later
 ntfs-3g-libs ff325017b0a427cd575fcfe32e2d570ef03589cf9020acdf110ce0c03c2b4697 188950 - https://dl.fedoraproject.org/pub/fedora/linux/releases/45/Everything/x86_64/os/Packages/n/ntfs-3g-libs-2026.2.25-3.fc45.x86_64.rpm GPL-2.0-or-later
 

@@ -1,11 +1,11 @@
 # thumbnailers.pins: written by `cargo xtask base groups`; do not edit.
-# glibc: Fedora 45, locked 2026-11-17. musl: Alpine v3.24, locked 2026-11-16.
-version 2026.11.17
+# glibc: Fedora 45, locked 2026-11-18. musl: Alpine v3.24, locked 2026-11-16.
+version 2026.11.18
 
 [glibc rpm]
-ffmpegthumbs 1a651126ef1a22d153dee33b8ce500eca152aa753020ef86bb045bea3eaf416b 53771 - https://dl.fedoraproject.org/pub/fedora/linux/updates/45/Everything/x86_64/Packages/f/ffmpegthumbs-26.08.3-1.fc45.x86_64.rpm GPL-2.0-or-later
-kdegraphics-thumbnailers 520599508b8c0bcd5c3f785445bb856860951f44514b9a1eb76cd355f70a22fa 78726 - https://dl.fedoraproject.org/pub/fedora/linux/updates/45/Everything/x86_64/Packages/k/kdegraphics-thumbnailers-26.08.3-1.fc45.x86_64.rpm GPL-2.0-or-later
-libkdcraw 508d811e73b9f56c624309f34e2bc871b353b45b708baf813b4d035f4cb7f7dd 52549 - https://dl.fedoraproject.org/pub/fedora/linux/updates/45/Everything/x86_64/Packages/l/libkdcraw-26.08.3-1.fc45.x86_64.rpm BSD-3-Clause AND CC0-1.0 AND GPL-2.0-or-later
+ffmpegthumbs 1a651126ef1a22d153dee33b8ce500eca152aa753020ef86bb045bea3eaf416b 53771 - https://kojipkgs.fedoraproject.org/packages/ffmpegthumbs/26.08.3/1.fc45/data/signed/f577861e/x86_64/ffmpegthumbs-26.08.3-1.fc45.x86_64.rpm GPL-2.0-or-later
+kdegraphics-thumbnailers 520599508b8c0bcd5c3f785445bb856860951f44514b9a1eb76cd355f70a22fa 78726 - https://kojipkgs.fedoraproject.org/packages/kdegraphics-thumbnailers/26.08.3/1.fc45/data/signed/f577861e/x86_64/kdegraphics-thumbnailers-26.08.3-1.fc45.x86_64.rpm GPL-2.0-or-later
+libkdcraw 508d811e73b9f56c624309f34e2bc871b353b45b708baf813b4d035f4cb7f7dd 52549 - https://kojipkgs.fedoraproject.org/packages/libkdcraw/26.08.3/1.fc45/data/signed/f577861e/x86_64/libkdcraw-26.08.3-1.fc45.x86_64.rpm BSD-3-Clause AND CC0-1.0 AND GPL-2.0-or-later
 
 [musl apk]
 cjson b1aca971a5ba46e42169311ef7bcfa96eac40d39207b22dbd3af8d4f3103d1d8 12866 - https://dl-cdn.alpinelinux.org/alpine/v3.24/main/x86_64/cjson-1.7.19-r1.apk MIT

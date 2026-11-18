@@ -1,9 +1,9 @@
 # konsole.pins: written by `cargo xtask base groups`; do not edit.
-# glibc: Fedora 45, locked 2026-11-17. No musl build.
-version 2026.11.17
+# glibc: Fedora 45, locked 2026-11-18. No musl build.
+version 2026.11.18
 
 [glibc rpm]
-keditbookmarks dd1f06c195228fda3e566bbc49058c5a0e25c5db7b612aac40791d95235cff9f 450466 - https://dl.fedoraproject.org/pub/fedora/linux/updates/45/Everything/x86_64/Packages/k/keditbookmarks-26.08.3-1.fc45.x86_64.rpm GPL-2.0-only AND GPL-3.0-only AND LicenseRef-Callaway-GFDL
-keditbookmarks-libs 48d4c363efbe0256bbe7a887e63602f93505778dc79011a1c5a59af60f5b3315 52441 - https://dl.fedoraproject.org/pub/fedora/linux/updates/45/Everything/x86_64/Packages/k/keditbookmarks-libs-26.08.3-1.fc45.x86_64.rpm GPL-2.0-only AND GPL-3.0-only AND LicenseRef-Callaway-GFDL
-konsole 7a78e0f6a770dea8f4a3523d7774eb18b201f98367aa0f289a088fe90b8ed701 1490267 - https://dl.fedoraproject.org/pub/fedora/linux/updates/45/Everything/x86_64/Packages/k/konsole-26.08.3-1.fc45.x86_64.rpm CC0-1.0 AND GPL-2.0-only AND GPL-2.0-or-later AND GPL-3.0-only AND LGPL-2.0-only AND LGPL-2.1-only AND LGPL-3.0-only AND (GPL-2.0-only OR GPL-3.0-only) AND (LGPL-2.1-only OR LGPL-3.0-only)
-konsole-part 5a61db346da0f9bd42265d97c7e0510390701b5d32d86f74afe8380c0f07f4f3 1124204 - https://dl.fedoraproject.org/pub/fedora/linux/updates/45/Everything/x86_64/Packages/k/konsole-part-26.08.3-1.fc45.x86_64.rpm CC0-1.0 AND GPL-2.0-only AND GPL-2.0-or-later AND GPL-3.0-only AND LGPL-2.0-only AND LGPL-2.1-only AND LGPL-3.0-only AND (GPL-2.0-only OR GPL-3.0-only) AND (LGPL-2.1-only OR LGPL-3.0-only)
+keditbookmarks dd1f06c195228fda3e566bbc49058c5a0e25c5db7b612aac40791d95235cff9f 450466 - https://kojipkgs.fedoraproject.org/packages/keditbookmarks/26.08.3/1.fc45/data/signed/f577861e/x86_64/keditbookmarks-26.08.3-1.fc45.x86_64.rpm GPL-2.0-only AND GPL-3.0-only AND LicenseRef-Callaway-GFDL
+keditbookmarks-libs 48d4c363efbe0256bbe7a887e63602f93505778dc79011a1c5a59af60f5b3315 52441 - https://kojipkgs.fedoraproject.org/packages/keditbookmarks/26.08.3/1.fc45/data/signed/f577861e/x86_64/keditbookmarks-libs-26.08.3-1.fc45.x86_64.rpm GPL-2.0-only AND GPL-3.0-only AND LicenseRef-Callaway-GFDL
+konsole 7a78e0f6a770dea8f4a3523d7774eb18b201f98367aa0f289a088fe90b8ed701 1490267 - https://kojipkgs.fedoraproject.org/packages/konsole/26.08.3/1.fc45/data/signed/f577861e/x86_64/konsole-26.08.3-1.fc45.x86_64.rpm CC0-1.0 AND GPL-2.0-only AND GPL-2.0-or-later AND GPL-3.0-only AND LGPL-2.0-only AND LGPL-2.1-only AND LGPL-3.0-only AND (GPL-2.0-only OR GPL-3.0-only) AND (LGPL-2.1-only OR LGPL-3.0-only)
+konsole-part 5a61db346da0f9bd42265d97c7e0510390701b5d32d86f74afe8380c0f07f4f3 1124204 - https://kojipkgs.fedoraproject.org/packages/konsole/26.08.3/1.fc45/data/signed/f577861e/x86_64/konsole-part-26.08.3-1.fc45.x86_64.rpm CC0-1.0 AND GPL-2.0-only AND GPL-2.0-or-later AND GPL-3.0-only AND LGPL-2.0-only AND LGPL-2.1-only AND LGPL-3.0-only AND (GPL-2.0-only OR GPL-3.0-only) AND (LGPL-2.1-only OR LGPL-3.0-only)

@@ -1,9 +1,9 @@
 # print-manager.pins: written by `cargo xtask base groups`; do not edit.
-# glibc: Fedora 45, locked 2026-11-17. No musl build.
-version 2026.11.17
+# glibc: Fedora 45, locked 2026-11-18. No musl build.
+version 2026.11.18
 
 [glibc rpm]
-plasma-print-manager 674abbe5f1a0525fe5e39ab525b65be55a68c33b7257a768f7e75fbb120f4ec6 537698 - https://dl.fedoraproject.org/pub/fedora/linux/updates/45/Everything/x86_64/Packages/p/plasma-print-manager-6.8.3-1.fc45.x86_64.rpm BSD-3-Clause AND GPL-2.0-or-later AND LGPL-2.0-or-later AND LGPL-2.1-only AND LGPL-3.0-only AND (LGPL-2.1-only OR LGPL-3.0-only)
-plasma-print-manager-libs 2d4ad0801eddb774a2006ee7f989e5d3aa57c1c3921006eccf5d1abc1d729949 263405 - https://dl.fedoraproject.org/pub/fedora/linux/updates/45/Everything/x86_64/Packages/p/plasma-print-manager-libs-6.8.3-1.fc45.x86_64.rpm BSD-3-Clause AND GPL-2.0-or-later AND LGPL-2.0-or-later AND LGPL-2.1-only AND LGPL-3.0-only AND (LGPL-2.1-only OR LGPL-3.0-only)
+plasma-print-manager 674abbe5f1a0525fe5e39ab525b65be55a68c33b7257a768f7e75fbb120f4ec6 537698 - https://kojipkgs.fedoraproject.org/packages/plasma-print-manager/6.8.3/1.fc45/data/signed/f577861e/x86_64/plasma-print-manager-6.8.3-1.fc45.x86_64.rpm BSD-3-Clause AND GPL-2.0-or-later AND LGPL-2.0-or-later AND LGPL-2.1-only AND LGPL-3.0-only AND (LGPL-2.1-only OR LGPL-3.0-only)
+plasma-print-manager-libs 2d4ad0801eddb774a2006ee7f989e5d3aa57c1c3921006eccf5d1abc1d729949 263405 - https://kojipkgs.fedoraproject.org/packages/plasma-print-manager/6.8.3/1.fc45/data/signed/f577861e/x86_64/plasma-print-manager-libs-6.8.3-1.fc45.x86_64.rpm BSD-3-Clause AND GPL-2.0-or-later AND LGPL-2.0-or-later AND LGPL-2.1-only AND LGPL-3.0-only AND (LGPL-2.1-only OR LGPL-3.0-only)
 python3-cups 3eba927025e176cb62a66abcd02692a7e910265c9f408e7a2ba07ad884ffd1ae 86869 - https://dl.fedoraproject.org/pub/fedora/linux/releases/45/Everything/x86_64/os/Packages/p/python3-cups-2.0.4-11.fc45.x86_64.rpm GPL-2.0-or-later
 system-config-printer-libs 5ce54c04a54b68a5537e6ec27b8bf0a74b9f7a8ae2a07d034096a4f2969a12a0 1287512 - https://dl.fedoraproject.org/pub/fedora/linux/releases/45/Everything/x86_64/os/Packages/s/system-config-printer-libs-1.5.18-20.fc45.noarch.rpm GPL-2.0-or-later

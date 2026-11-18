@@ -1,6 +1,6 @@
 # fonts.pins: written by `cargo xtask base groups`; do not edit.
-# glibc: Fedora 45, locked 2026-11-17. musl: Alpine v3.24, locked 2026-11-16.
-version 2026.11.17
+# glibc: Fedora 45, locked 2026-11-18. musl: Alpine v3.24, locked 2026-11-16.
+version 2026.11.18
 
 [glibc rpm]
 google-noto-color-emoji-fonts 0af92354a225427763272b93ac791640b67f90a3d64a889f5b46f63d947cc19a 2532912 - https://dl.fedoraproject.org/pub/fedora/linux/releases/45/Everything/x86_64/os/Packages/g/google-noto-color-emoji-fonts-20260921-1.fc45.noarch.rpm OFL-1.1 AND Apache-2.0

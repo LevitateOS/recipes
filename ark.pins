@@ -1,11 +1,11 @@
 # ark.pins: written by `cargo xtask base groups`; do not edit.
-# glibc: Fedora 45, locked 2026-11-17. No musl build.
-version 2026.11.17
+# glibc: Fedora 45, locked 2026-11-18. No musl build.
+version 2026.11.18
 
 [glibc rpm]
-7zip 699901f624fc01b32f410bd3f7079647ada1d0ea16096afab1640e29a4be8bd7 1359084 - https://dl.fedoraproject.org/pub/fedora/linux/updates/45/Everything/x86_64/Packages/7/7zip-26.04-1.fc45.x86_64.rpm LGPL-2.1-or-later AND BSD-3-Clause AND BSD-2-Clause AND LicenseRef-Fedora-Public-Domain
-ark f27dbaee5e60d86aad6717beb7b9478f8bd91037ad65bc27e27ab83244ac735c 1230552 - https://dl.fedoraproject.org/pub/fedora/linux/updates/45/Everything/x86_64/Packages/a/ark-26.08.3-1.fc45.x86_64.rpm GPL-2.0-or-later AND LGPL-3.0-only
-ark-libs 83e60600c764446244736eb8a16e799ab6f1b7d3a3dc93864b61f6beed254f4d 539395 - https://dl.fedoraproject.org/pub/fedora/linux/updates/45/Everything/x86_64/Packages/a/ark-libs-26.08.3-1.fc45.x86_64.rpm BSD-2-Clause AND GPL-2.0-or-later AND MIT
+7zip e0433aea31df70e410c2e8c271706c4e5e3d22c1c7c196ebcce39b9eb7253e7b 1353954 - https://kojipkgs.fedoraproject.org/packages/7zip/26.06/1.fc45/data/signed/f577861e/x86_64/7zip-26.06-1.fc45.x86_64.rpm LGPL-2.1-or-later AND BSD-3-Clause AND BSD-2-Clause AND LicenseRef-Fedora-Public-Domain
+ark f27dbaee5e60d86aad6717beb7b9478f8bd91037ad65bc27e27ab83244ac735c 1230552 - https://kojipkgs.fedoraproject.org/packages/ark/26.08.3/1.fc45/data/signed/f577861e/x86_64/ark-26.08.3-1.fc45.x86_64.rpm GPL-2.0-or-later AND LGPL-3.0-only
+ark-libs 83e60600c764446244736eb8a16e799ab6f1b7d3a3dc93864b61f6beed254f4d 539395 - https://kojipkgs.fedoraproject.org/packages/ark/26.08.3/1.fc45/data/signed/f577861e/x86_64/ark-libs-26.08.3-1.fc45.x86_64.rpm BSD-2-Clause AND GPL-2.0-or-later AND MIT
 bzip2 3ccf5b4b033119a91a68049cce27868ce2832284746c390a9611a79e5462af0f 53508 - https://dl.fedoraproject.org/pub/fedora/linux/releases/45/Everything/x86_64/os/Packages/b/bzip2-1.0.8-24.fc45.x86_64.rpm BSD-4-Clause
-libzip 402d47cfea209d8d5b2c40ec265f9b3f81ef5440a8a5cd582e4dc652e518810d 79337 - https://dl.fedoraproject.org/pub/fedora/linux/updates/45/Everything/x86_64/Packages/l/libzip-1.12.1-1.fc45.x86_64.rpm BSD-3-Clause
+libzip 402d47cfea209d8d5b2c40ec265f9b3f81ef5440a8a5cd582e4dc652e518810d 79337 - https://kojipkgs.fedoraproject.org/packages/libzip/1.12.1/1.fc45/data/signed/f577861e/x86_64/libzip-1.12.1-1.fc45.x86_64.rpm BSD-3-Clause
 unzip bcc959eb44aad1c77760ea27a217f559f2f0271a786206ca33a48da654bc1e2b 204366 - https://dl.fedoraproject.org/pub/fedora/linux/releases/45/Everything/x86_64/os/Packages/u/unzip-6.0-71.fc45.x86_64.rpm Info-ZIP

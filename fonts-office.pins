@@ -1,6 +1,6 @@
 # fonts-office.pins: written by `cargo xtask base groups`; do not edit.
-# glibc: Fedora 45, locked 2026-11-17. musl: Alpine v3.24, locked 2026-11-16.
-version 2026.11.17
+# glibc: Fedora 45, locked 2026-11-18. musl: Alpine v3.24, locked 2026-11-16.
+version 2026.11.18
 
 [glibc rpm]
 google-noto-serif-fonts 43f10645b2c5817399a6116f0db67a61ff7c065d3746a7ba1d1b3b968d7691ac 13452789 - https://dl.fedoraproject.org/pub/fedora/linux/releases/45/Everything/x86_64/os/Packages/g/google-noto-serif-fonts-20260601-3.fc45.noarch.rpm OFL-1.1

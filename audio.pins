@@ -1,15 +1,15 @@
 # audio.pins: written by `cargo xtask base groups`; do not edit.
-# glibc: Fedora 45, locked 2026-11-17. musl: Alpine v3.24, locked 2026-11-16.
-version 2026.11.17
+# glibc: Fedora 45, locked 2026-11-18. musl: Alpine v3.24, locked 2026-11-16.
+version 2026.11.18
 
 [glibc rpm]
-pipewire 8d730d83a255acf8eb75a01eb4ab055be1a5d008c04aaf02bcff8c2acb57ddfc 144993 - https://dl.fedoraproject.org/pub/fedora/linux/updates/45/Everything/x86_64/Packages/p/pipewire-1.6.11-1.fc45.x86_64.rpm MIT
-pipewire-alsa 31f2af216f90c04a7e7a2f87d5e8346597005c3aad6e7dc13c2b65bf36cf70b9 65737 - https://dl.fedoraproject.org/pub/fedora/linux/updates/45/Everything/x86_64/Packages/p/pipewire-alsa-1.6.11-1.fc45.x86_64.rpm MIT
-pipewire-pulseaudio 970e0cdbc8d58a21a7c73ffde02b410b04d4cd20b09f10314046ed112297e2ca 230387 - https://dl.fedoraproject.org/pub/fedora/linux/updates/45/Everything/x86_64/Packages/p/pipewire-pulseaudio-1.6.11-1.fc45.x86_64.rpm MIT
+pipewire 8d730d83a255acf8eb75a01eb4ab055be1a5d008c04aaf02bcff8c2acb57ddfc 144993 - https://kojipkgs.fedoraproject.org/packages/pipewire/1.6.11/1.fc45/data/signed/f577861e/x86_64/pipewire-1.6.11-1.fc45.x86_64.rpm MIT
+pipewire-alsa 31f2af216f90c04a7e7a2f87d5e8346597005c3aad6e7dc13c2b65bf36cf70b9 65737 - https://kojipkgs.fedoraproject.org/packages/pipewire/1.6.11/1.fc45/data/signed/f577861e/x86_64/pipewire-alsa-1.6.11-1.fc45.x86_64.rpm MIT
+pipewire-pulseaudio 970e0cdbc8d58a21a7c73ffde02b410b04d4cd20b09f10314046ed112297e2ca 230387 - https://kojipkgs.fedoraproject.org/packages/pipewire/1.6.11/1.fc45/data/signed/f577861e/x86_64/pipewire-pulseaudio-1.6.11-1.fc45.x86_64.rpm MIT
 polkit c4a3f94ce1f1af0dcd1ebefe53e80e8ea70d007c5441a04dbfd3b589051bd6a1 176338 - https://dl.fedoraproject.org/pub/fedora/linux/releases/45/Everything/x86_64/os/Packages/p/polkit-127-5.fc45.x86_64.rpm LGPL-2.0-or-later
 rtkit fcf36d37a7b5f25d121d1ccf336fda293e12e1963b7eee660d35f14297224700 59209 - https://dl.fedoraproject.org/pub/fedora/linux/releases/45/Everything/x86_64/os/Packages/r/rtkit-0.14-2.fc45.x86_64.rpm GPL-3.0-or-later AND MIT
-wireplumber f17e4dca2e0d864ca7852af2b1228ed5ebb0f62dcd96b854a1fc6bf8fe9b8ed9 147746 - https://dl.fedoraproject.org/pub/fedora/linux/updates/45/Everything/x86_64/Packages/w/wireplumber-0.5.19-1.fc45.x86_64.rpm MIT
-wireplumber-libs a72958a301be2424211a9b5a093e095a8be8aeb0757a76e8760e6f968f4747f1 485141 - https://dl.fedoraproject.org/pub/fedora/linux/updates/45/Everything/x86_64/Packages/w/wireplumber-libs-0.5.19-1.fc45.x86_64.rpm MIT
+wireplumber f17e4dca2e0d864ca7852af2b1228ed5ebb0f62dcd96b854a1fc6bf8fe9b8ed9 147746 - https://kojipkgs.fedoraproject.org/packages/wireplumber/0.5.19/1.fc45/data/signed/f577861e/x86_64/wireplumber-0.5.19-1.fc45.x86_64.rpm MIT
+wireplumber-libs a72958a301be2424211a9b5a093e095a8be8aeb0757a76e8760e6f968f4747f1 485141 - https://kojipkgs.fedoraproject.org/packages/wireplumber/0.5.19/1.fc45/data/signed/f577861e/x86_64/wireplumber-libs-0.5.19-1.fc45.x86_64.rpm MIT
 
 [musl apk]
 alsa-ucm-conf 8b2cb4ec5e93d353c2b5687cf9064fceea6d3e02e4c89fe0522b81a4f4bb77da 163785 - https://dl-cdn.alpinelinux.org/alpine/v3.24/main/x86_64/alsa-ucm-conf-1.2.16.1-r0.apk BSD-3-Clause

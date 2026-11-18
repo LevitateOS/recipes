@@ -1,11 +1,11 @@
 # spelling.pins: written by `cargo xtask base groups`; do not edit.
-# glibc: Fedora 45, locked 2026-11-17. musl: Alpine v3.24, locked 2026-11-16.
-version 2026.11.17
+# glibc: Fedora 45, locked 2026-11-18. musl: Alpine v3.24, locked 2026-11-16.
+version 2026.11.18
 
 [glibc rpm]
-hunspell d0aef462490b0f533872e1c4906b108c026e5b6d8443a38f39272f110a324972 475372 - https://dl.fedoraproject.org/pub/fedora/linux/updates/45/Everything/x86_64/Packages/h/hunspell-1.7.6-1.fc45.x86_64.rpm LGPL-2.1-or-later OR GPL-2.0-or-later OR MPL-1.1
+hunspell d0aef462490b0f533872e1c4906b108c026e5b6d8443a38f39272f110a324972 475372 - https://kojipkgs.fedoraproject.org/packages/hunspell/1.7.6/1.fc45/data/signed/f577861e/x86_64/hunspell-1.7.6-1.fc45.x86_64.rpm LGPL-2.1-or-later OR GPL-2.0-or-later OR MPL-1.1
 hunspell-en-US efb6564e75afab50bc1615565e2add0647516a46e67c4fd07f0276303d5a62ea 175270 - https://dl.fedoraproject.org/pub/fedora/linux/releases/45/Everything/x86_64/os/Packages/h/hunspell-en-US-0.20260225-3.fc45.noarch.rpm LGPL-2.1-or-later AND LGPL-2.1-only AND BSD-3-Clause-Modification
-hunspell-filesystem 7882079824d8775dc603aca10081390fc7ee5225579c82b50e97c5b75a54b6e0 8060 - https://dl.fedoraproject.org/pub/fedora/linux/updates/45/Everything/x86_64/Packages/h/hunspell-filesystem-1.7.6-1.fc45.x86_64.rpm LGPL-2.1-or-later OR GPL-2.0-or-later OR MPL-1.1
+hunspell-filesystem 7882079824d8775dc603aca10081390fc7ee5225579c82b50e97c5b75a54b6e0 8060 - https://kojipkgs.fedoraproject.org/packages/hunspell/1.7.6/1.fc45/data/signed/f577861e/x86_64/hunspell-filesystem-1.7.6-1.fc45.x86_64.rpm LGPL-2.1-or-later OR GPL-2.0-or-later OR MPL-1.1
 
 [musl apk]
 hunspell bd98c4e5f93c07e491396dcd8b8a78840272f3064a7383659b8dbe207ecd48c0 84238 - https://dl-cdn.alpinelinux.org/alpine/v3.24/main/x86_64/hunspell-1.7.3-r0.apk GPL-2.0-or-later OR LGPL-2.1-or-later OR MPL-1.1

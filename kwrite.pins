@@ -1,7 +1,7 @@
 # kwrite.pins: written by `cargo xtask base groups`; do not edit.
-# glibc: Fedora 45, locked 2026-11-17. No musl build.
-version 2026.11.17
+# glibc: Fedora 45, locked 2026-11-18. No musl build.
+version 2026.11.18
 
 [glibc rpm]
-kate-libs 3d806af49250cc16a047c0c8fa3822d9bf15d1824ec7c575fe98b526911f6a8e 851375 - https://dl.fedoraproject.org/pub/fedora/linux/updates/45/Everything/x86_64/Packages/k/kate-libs-26.08.3-1.fc45.x86_64.rpm LGPL-2.0-only AND LGPL-2.0-or-later AND GPL-2.0-or-later
-kwrite 7370db4022c9235258d9230da5bae7a91d950a1df79f4010094c1d4e290fa8f8 715862 - https://dl.fedoraproject.org/pub/fedora/linux/updates/45/Everything/x86_64/Packages/k/kwrite-26.08.3-1.fc45.x86_64.rpm LGPL-2.0-or-later
+kate-libs 3d806af49250cc16a047c0c8fa3822d9bf15d1824ec7c575fe98b526911f6a8e 851375 - https://kojipkgs.fedoraproject.org/packages/kate/26.08.3/1.fc45/data/signed/f577861e/x86_64/kate-libs-26.08.3-1.fc45.x86_64.rpm LGPL-2.0-only AND LGPL-2.0-or-later AND GPL-2.0-or-later
+kwrite 7370db4022c9235258d9230da5bae7a91d950a1df79f4010094c1d4e290fa8f8 715862 - https://kojipkgs.fedoraproject.org/packages/kate/26.08.3/1.fc45/data/signed/f577861e/x86_64/kwrite-26.08.3-1.fc45.x86_64.rpm LGPL-2.0-or-later

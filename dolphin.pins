@@ -1,8 +1,8 @@
 # dolphin.pins: written by `cargo xtask base groups`; do not edit.
-# glibc: Fedora 45, locked 2026-11-17. No musl build.
-version 2026.11.17
+# glibc: Fedora 45, locked 2026-11-18. No musl build.
+version 2026.11.18
 
 [glibc rpm]
-baloo-widgets 8dd60945be88c92fff438ea419b6d8deb3986d3b422061cb146ed76d9b5b7ad2 212383 - https://dl.fedoraproject.org/pub/fedora/linux/updates/45/Everything/x86_64/Packages/b/baloo-widgets-26.08.3-1.fc45.x86_64.rpm LGPL-2.0-only OR LGPL-3.0-only
-dolphin 034ebac49e4f0f4f6ba11628d6cad81e401a85ae440fb019bdec410803a6db23 4717985 - https://dl.fedoraproject.org/pub/fedora/linux/updates/45/Everything/x86_64/Packages/d/dolphin-26.08.3-1.fc45.x86_64.rpm BSD-2-Clause AND BSD-3-Clause AND GPL-2.0-only AND GPL-2.0-or-later AND GPL-3.0-only AND LGPL-2.0-only AND LGPL-2.0-or-later AND LGPL-2.1-only AND LGPL-3.0-only AND (GPL-2.0-only OR GPL-3.0-only) AND (LGPL-2.1-only OR LGPL-3.0-only)
-dolphin-libs 057751a1006f56965e453795b689b4e795bc30eb703eacad3e4319a2f9c119f7 734612 - https://dl.fedoraproject.org/pub/fedora/linux/updates/45/Everything/x86_64/Packages/d/dolphin-libs-26.08.3-1.fc45.x86_64.rpm BSD-2-Clause AND BSD-3-Clause AND GPL-2.0-only AND GPL-2.0-or-later AND GPL-3.0-only AND LGPL-2.0-only AND LGPL-2.0-or-later AND LGPL-2.1-only AND LGPL-3.0-only AND (GPL-2.0-only OR GPL-3.0-only) AND (LGPL-2.1-only OR LGPL-3.0-only)
+baloo-widgets 8dd60945be88c92fff438ea419b6d8deb3986d3b422061cb146ed76d9b5b7ad2 212383 - https://kojipkgs.fedoraproject.org/packages/baloo-widgets/26.08.3/1.fc45/data/signed/f577861e/x86_64/baloo-widgets-26.08.3-1.fc45.x86_64.rpm LGPL-2.0-only OR LGPL-3.0-only
+dolphin 034ebac49e4f0f4f6ba11628d6cad81e401a85ae440fb019bdec410803a6db23 4717985 - https://kojipkgs.fedoraproject.org/packages/dolphin/26.08.3/1.fc45/data/signed/f577861e/x86_64/dolphin-26.08.3-1.fc45.x86_64.rpm BSD-2-Clause AND BSD-3-Clause AND GPL-2.0-only AND GPL-2.0-or-later AND GPL-3.0-only AND LGPL-2.0-only AND LGPL-2.0-or-later AND LGPL-2.1-only AND LGPL-3.0-only AND (GPL-2.0-only OR GPL-3.0-only) AND (LGPL-2.1-only OR LGPL-3.0-only)
+dolphin-libs 057751a1006f56965e453795b689b4e795bc30eb703eacad3e4319a2f9c119f7 734612 - https://kojipkgs.fedoraproject.org/packages/dolphin/26.08.3/1.fc45/data/signed/f577861e/x86_64/dolphin-libs-26.08.3-1.fc45.x86_64.rpm BSD-2-Clause AND BSD-3-Clause AND GPL-2.0-only AND GPL-2.0-or-later AND GPL-3.0-only AND LGPL-2.0-only AND LGPL-2.0-or-later AND LGPL-2.1-only AND LGPL-3.0-only AND (GPL-2.0-only OR GPL-3.0-only) AND (LGPL-2.1-only OR LGPL-3.0-only)

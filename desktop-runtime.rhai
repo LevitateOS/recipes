@@ -43,7 +43,7 @@
 const RECIPE_API = 1;
 const NEEDS = #{
     outputs: #{ sdk: "directory" },
-    network: ["dl.fedoraproject.org:443"],
+    network: ["dl.fedoraproject.org:443", "kojipkgs.fedoraproject.org:443"],
     memory_mib: 4096,
     storage_max_objects: 65536,
     timeout_secs: 3600,

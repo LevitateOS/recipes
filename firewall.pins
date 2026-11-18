@@ -1,6 +1,6 @@
 # firewall.pins: written by `cargo xtask base groups`; do not edit.
-# glibc: Fedora 45, locked 2026-11-17. musl: Alpine v3.24, locked 2026-11-16.
-version 2026.11.17
+# glibc: Fedora 45, locked 2026-11-18. musl: Alpine v3.24, locked 2026-11-16.
+version 2026.11.18
 
 [glibc rpm]
 firewalld a214f928b56fb678ccba8c328e976d02ef5684a4915ec216ca4ea86df473b541 560763 - https://dl.fedoraproject.org/pub/fedora/linux/releases/45/Everything/x86_64/os/Packages/f/firewalld-2.5.2-1.fc45.noarch.rpm GPL-2.0-or-later
@@ -11,8 +11,8 @@ libnfnetlink d332a8c13a1aff44d45b9106b883dcada5d50d8f399f13bd6dd5c23e8d516a1e 29
 libnftnl b79fbb57a0852c4e6e3b6d94221ac2c6ac195c166d846ea47297fd5ed69ee080 91975 - https://dl.fedoraproject.org/pub/fedora/linux/releases/45/Everything/x86_64/os/Packages/l/libnftnl-1.3.1-3.fc45.x86_64.rpm GPL-2.0-or-later
 nftables 6cd8d5b71430fa8aec48d012aa3b663d53dbf703ac7d753be633d35716b7dc64 459829 - https://dl.fedoraproject.org/pub/fedora/linux/releases/45/Everything/x86_64/os/Packages/n/nftables-1.1.6-4.fc45.x86_64.rpm GPL-2.0-only
 nftables-services 01755da25f0fca3082369a821cf627a5bef4c317ced0911991f5b0c9dc76ff10 21833 - https://dl.fedoraproject.org/pub/fedora/linux/releases/45/Everything/x86_64/os/Packages/n/nftables-services-1.1.6-4.fc45.noarch.rpm GPL-2.0-only
-plasma-firewall d62d6fa48864c4058ad558d0e0a933d418398bafd1c329cf37066b93ac0a25a6 497073 - https://dl.fedoraproject.org/pub/fedora/linux/updates/45/Everything/x86_64/Packages/p/plasma-firewall-6.8.3-1.fc45.x86_64.rpm BSD-3-Clause AND CC0-1.0 AND FSFAP AND GPL-2.0-only AND GPL-2.0-or-later AND GPL-3.0-only AND GPL-3.0-or-later AND (GPL-2.0-only OR GPL-3.0-only)
-plasma-firewall-firewalld deffea21dc5a832b9584f1ba0f96a065776296a691b4f34548ee48132be8b82c 68381 - https://dl.fedoraproject.org/pub/fedora/linux/updates/45/Everything/x86_64/Packages/p/plasma-firewall-firewalld-6.8.3-1.fc45.x86_64.rpm BSD-3-Clause AND CC0-1.0 AND FSFAP AND GPL-2.0-only AND GPL-2.0-or-later AND GPL-3.0-only AND GPL-3.0-or-later AND (GPL-2.0-only OR GPL-3.0-only)
+plasma-firewall d62d6fa48864c4058ad558d0e0a933d418398bafd1c329cf37066b93ac0a25a6 497073 - https://kojipkgs.fedoraproject.org/packages/plasma-firewall/6.8.3/1.fc45/data/signed/f577861e/x86_64/plasma-firewall-6.8.3-1.fc45.x86_64.rpm BSD-3-Clause AND CC0-1.0 AND FSFAP AND GPL-2.0-only AND GPL-2.0-or-later AND GPL-3.0-only AND GPL-3.0-or-later AND (GPL-2.0-only OR GPL-3.0-only)
+plasma-firewall-firewalld deffea21dc5a832b9584f1ba0f96a065776296a691b4f34548ee48132be8b82c 68381 - https://kojipkgs.fedoraproject.org/packages/plasma-firewall/6.8.3/1.fc45/data/signed/f577861e/x86_64/plasma-firewall-firewalld-6.8.3-1.fc45.x86_64.rpm BSD-3-Clause AND CC0-1.0 AND FSFAP AND GPL-2.0-only AND GPL-2.0-or-later AND GPL-3.0-only AND GPL-3.0-or-later AND (GPL-2.0-only OR GPL-3.0-only)
 python3-firewall 08a28652e5f832fafb71c980190977b71fcaa1d7396c96312e416b0c01e7dff9 529323 - https://dl.fedoraproject.org/pub/fedora/linux/releases/45/Everything/x86_64/os/Packages/p/python3-firewall-2.5.2-1.fc45.noarch.rpm GPL-2.0-or-later
 python3-nftables fe9473c5269c296aceb0b2ef09b8a46af57da3399142df8b7cc0fa9ba13535d0 21819 - https://dl.fedoraproject.org/pub/fedora/linux/releases/45/Everything/x86_64/os/Packages/p/python3-nftables-1.1.6-4.fc45.noarch.rpm GPL-2.0-only
 
