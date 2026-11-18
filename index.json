@@ -1,5 +1,5 @@
 {
-  "commit": "c13f96382ae609138dda245a899984b3ffe2b180",
+  "commit": "446187863ea14b0cc5da0d6460fb0e47b7f06880",
   "recipes": [
     {
       "about": {
@@ -712,9 +712,9 @@
           "sha256": "45985d59a0830a78daebcf7771aa2e25eeb6d915cc4f8af72c02bb3afc9d2361"
         },
         {
-          "bytes": 161801,
+          "bytes": 161561,
           "path": "desktop-libs.pins",
-          "sha256": "3a30a524c5af9a6328048612b68de494fe085b201008a5acf5d7fa79b67e2cd1"
+          "sha256": "101c9c10f31757fba790017f7112daa4e49a2290f8ef5f3c6f88b65aa054ebdc"
         }
       ],
       "functions": [
@@ -3265,9 +3265,9 @@
       "description": "The KDE Plasma desktop on Wayland",
       "files": [
         {
-          "bytes": 10810,
+          "bytes": 11562,
           "path": "plasma.rhai",
-          "sha256": "7effb7aa8df915f8c98ec1c701fceea0256b87159be5225c6e4f25a2a0398873"
+          "sha256": "345d24558893fc93d6a1874f4f796ad28d6da3a1485f7197ae58903e05ac29ba"
         },
         {
           "bytes": 11199,
@@ -3280,9 +3280,9 @@
           "sha256": "df29a3f420f2269e4dffc4018af4768f02c60af4bd864b48de2c2d5a837029f9"
         },
         {
-          "bytes": 49933,
+          "bytes": 48123,
           "path": "plasma.pins",
-          "sha256": "47e8f43a63f9035301f1d6090c9f9e6d98cafb4254e30d30f345a0c403f7e93d"
+          "sha256": "641512f3376d01b2b7668c9c6b976306f71e1cfe578c82079022971600facbac"
         }
       ],
       "functions": [
