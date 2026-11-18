@@ -18,6 +18,7 @@ const NEEDS = #{
     memory_mib: 4096,
     storage_max_objects: 262144,
     timeout_secs: 7200,
+    runtime: "minimal",
 };
 
 const ABOUT = #{
